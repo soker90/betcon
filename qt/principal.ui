@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1002</width>
+    <height>768</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_2">
+   <item>
+    <widget class="QTreeWidget" name="treeWidget">
+     <column>
+      <property name="text">
+       <string notr="true"> </string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Fecha</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Deporte</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Competición</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Zona</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Local</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Visitante</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Pick</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Casa</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Mercado</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Tipster</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Stake</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Unidad</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Cuota</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Res.</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Bank</string>
+      </property>
+     </column>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
