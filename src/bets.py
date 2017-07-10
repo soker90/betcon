@@ -3,9 +3,9 @@ from PyQt5.QtWidgets import QApplication, QWidget
 from PyQt5 import uic
 
 
-class Principal(QWidget):
+class Bets(QWidget):
     def __init__(self):
         QWidget.__init__(self)
-        uic.loadUi("../qt/principal.ui", self)
+        uic.loadUi("../ui/bets.ui", self)
 
 

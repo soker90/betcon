@@ -2,14 +2,14 @@ import sys
 from PyQt5.QtWidgets import QComboBox, QMessageBox, QWidget, QGridLayout, QAction, QPushButton, QShortcut
 from PyQt5 import uic
 from PyQt5.QtCore import QDateTime, QVariant
-from principal import Principal
+from bets import Bets
 sys.path.append("./lib")
 from bbdd import Bbdd
 
 class NewBet(QWidget):
     def __init__(self, mainWindows):
         QWidget.__init__(self)
-        uic.loadUi("../qt/new_bet.ui", self)
+        uic.loadUi("../ui/new_bet.ui", self)
         self.mainWindows = mainWindows
         self.btnAccept.clicked.connect(self.accept)
         self.btnCancel.clicked.connect(self.cancel)
@@ -24,7 +24,7 @@ class NewBet(QWidget):
 
         #cmbSport
         bd = Bbdd()
-        data = bd.select("sports")
+        data = bd.select("sport")
 
         for i in data:
             index = i[0]
@@ -32,6 +32,8 @@ class NewBet(QWidget):
             self.cmbSport.insertItem(index, name)
 
         self.cmbSport.model().sort(0)
+
+
 
 
         bd.close()
@@ -42,7 +44,7 @@ class NewBet(QWidget):
 
 
     def close(self):
-            self.mainWindows.setCentralWidget(Principal())
+            self.mainWindows.setCentralWidget(Bets())
             self.mainWindows.aApuesta.setEnabled(True)
             self.mainWindows.aInicio.setEnabled(False)
             self.mainWindows.setWindowTitle("Inicio | Betcon")
