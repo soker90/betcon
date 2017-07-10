@@ -52,7 +52,7 @@ class Main(QMainWindow):
         self.setCentralWidget(Regions(self))
         self.enableTools()
         self.aRegion.setEnabled(False)
-        self.setWindowTitle("Zonas | Betcon")
+        self.setWindowTitle("Regiones | Betcon")
         self.setVisibleTools("regions")
 
     def newRegion(self):

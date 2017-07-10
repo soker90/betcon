@@ -13,6 +13,7 @@ class NewRegion(QWidget):
         self.btnAccept.clicked.connect(self.accept)
         self.btnCancel.clicked.connect(self.cancel)
         self.mainWindows.setWindowTitle("Nueva Zona | Betcon")
+        self.txtRegion.returnPressed.connect(self.btnAccept.click)
 
     def close(self):
             self.mainWindows.setCentralWidget(Regions(self.mainWindows))

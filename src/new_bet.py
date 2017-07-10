@@ -11,6 +11,7 @@ class NewBet(QWidget):
         QWidget.__init__(self)
         uic.loadUi("../ui/new_bet.ui", self)
         self.mainWindows = mainWindows
+        self.mainWindows.setWindowTitle("Nueva Apuesta | Betcon")
         self.btnAccept.clicked.connect(self.accept)
         self.btnCancel.clicked.connect(self.cancel)
         self.initData()
@@ -33,21 +34,25 @@ class NewBet(QWidget):
 
         self.cmbSport.model().sort(0)
 
+        # cmbRegion
+        bd = Bbdd()
+        data = bd.select("region")
+
+        for i in data:
+            index = i[0]
+            name = i[1]
+            self.cmbRegion.insertItem(index, name)
+
+        self.cmbRegion.model().sort(0)
+
 
 
 
         bd.close()
 
 
-
-
-
-
     def close(self):
             self.mainWindows.setCentralWidget(Bets())
-            self.mainWindows.aApuesta.setEnabled(True)
-            self.mainWindows.aInicio.setEnabled(False)
-            self.mainWindows.setWindowTitle("Inicio | Betcon")
 
     def cancel(self):
         self.close()
@@ -65,11 +70,15 @@ class NewBet(QWidget):
 
         #cmbSport
         datos.append(self.cmbSport.currentIndex())
-
-
         sport = self.cmbSport.currentIndex()
 
-        data = [date, sport, "Mundia", "Mundo", "España", "Italia", "España", "Bet365", "Resultado Final", "",
+        #cmbRegion
+        datos.append(self.cmbRegion.currentIndex())
+        region = self.cmbRegion.currentIndex()
+
+
+
+        data = [date, sport, "Mundia", region, "España", "Italia", "España", "Bet365", "Resultado Final", "",
                 str(3), str(1), "", ""]
         columns = ["date", "sport", "competition", "region", "player1", "player2", "pick", "bookie", "market",
                    "tipster", "stake", "one", "result", "profit"]

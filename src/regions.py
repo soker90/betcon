@@ -11,13 +11,12 @@ class Regions(QWidget):
         QWidget.__init__(self)
         uic.loadUi("../ui/regions.ui", self)
         self.mainWindows = mainWindows
-        self.mainWindows.setWindowTitle("Zonas | Betcon")
         self.treeMain.header().hideSection(1)
         self.initTree()
 
     def initTree(self):
         bd = Bbdd()
-        data = bd.select("region","name")
+        data = bd.select("region", "name")
 
         index = 0
         items = []
@@ -30,12 +29,6 @@ class Regions(QWidget):
             items.append(item)
 
         self.treeMain.addTopLevelItems(items)
-
-
-
-
-
-        #self.cmbSport.model().sort(0)
 
         bd.close()
 
