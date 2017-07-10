@@ -11,6 +11,7 @@ class Regions(QWidget):
         QWidget.__init__(self)
         uic.loadUi("../ui/regions.ui", self)
         self.mainWindows = mainWindows
+        mainWindows.aNew.triggered.connect(mainWindows.newRegion)
         self.treeMain.header().hideSection(1)
         self.initTree()
 

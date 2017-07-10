@@ -12,7 +12,7 @@ class NewRegion(QWidget):
         self.mainWindows = mainWindows
         self.btnAccept.clicked.connect(self.accept)
         self.btnCancel.clicked.connect(self.cancel)
-        self.mainWindows.setWindowTitle("Nueva Zona | Betcon")
+        self.mainWindows.setWindowTitle("Nueva Región | Betcon")
         self.txtRegion.returnPressed.connect(self.btnAccept.click)
 
     def close(self):
@@ -30,7 +30,7 @@ class NewRegion(QWidget):
         bbdd.insert(columns, data, "region")
         bbdd.close()
 
-        QMessageBox.information(self, "Añadida", "Nueva region añadida.")
+        QMessageBox.information(self, "Añadida", "Nueva región añadida.")
 
         self.close()
 

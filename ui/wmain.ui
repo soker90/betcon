@@ -58,7 +58,7 @@
    <addaction name="menuArchivo"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <widget class="QToolBar" name="toolBar_2">
+  <widget class="QToolBar" name="toolPrimary">
    <property name="windowTitle">
     <string>toolBar_2</string>
    </property>
@@ -70,13 +70,13 @@
    </attribute>
    <addaction name="aInicio"/>
    <addaction name="aRegion"/>
-   <addaction name="actionCasas"/>
+   <addaction name="aCompetition"/>
    <addaction name="actionDeportes"/>
    <addaction name="actionEstadisticas"/>
    <addaction name="actionMercados"/>
    <addaction name="actionTipsters"/>
   </widget>
-  <widget class="QToolBar" name="toolBet">
+  <widget class="QToolBar" name="toolSecondary">
    <property name="windowTitle">
     <string>toolBar_3</string>
    </property>
@@ -86,21 +86,9 @@
    <attribute name="toolBarBreak">
     <bool>true</bool>
    </attribute>
-   <addaction name="aNewBet"/>
+   <addaction name="aNew"/>
   </widget>
-  <widget class="QToolBar" name="toolRegion">
-   <property name="windowTitle">
-    <string>toolBar_3</string>
-   </property>
-   <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
-   <addaction name="aNewRegion"/>
-  </widget>
-  <action name="aNewBet">
+  <action name="aNew">
    <property name="text">
     <string>Nueva</string>
    </property>
@@ -108,9 +96,9 @@
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Nueva Apuesta&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </action>
-  <action name="actionCasas">
+  <action name="aCompetition">
    <property name="text">
-    <string>Casas</string>
+    <string>Competiciones</string>
    </property>
   </action>
   <action name="actionEstadisticas">
@@ -143,7 +131,7 @@
   </action>
   <action name="aRegion">
    <property name="text">
-    <string>Region</string>
+    <string>Regiones</string>
    </property>
   </action>
   <action name="aNewRegion">

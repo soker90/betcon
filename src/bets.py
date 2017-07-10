@@ -4,8 +4,11 @@ from PyQt5 import uic
 
 
 class Bets(QWidget):
-    def __init__(self):
+    def __init__(self, mainWindows):
         QWidget.__init__(self)
         uic.loadUi("../ui/bets.ui", self)
+        self.mainWindows = mainWindows
+
+        mainWindows.aNew.triggered.connect(mainWindows.newBet)
 
 

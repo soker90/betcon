@@ -25,6 +25,7 @@ CREATE TABLE sport
     name VARCHAR(50)
 );
 
+INSERT INTO sport (id, name) VALUES (1, '');
 INSERT INTO sport (name) VALUES ('Baloncesto');
 INSERT INTO sport (name) VALUES ('Balonmano');
 INSERT INTO sport (name) VALUES ('Béisbol');
@@ -39,6 +40,14 @@ INSERT INTO sport (name) VALUES ('Voleibol');
 
 
 
+CREATE TABLE region
+(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name VARCHAR(50)
+);
+
+INSERT INTO region (id,name) VALUES (1,'');
+
 CREATE TABLE competition
 (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -47,8 +56,4 @@ CREATE TABLE competition
     sport INT
 );
 
-CREATE TABLE region
-(
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name VARCHAR(50)
-);
+INSERT INTO competition (id, name, region, sport) VALUES (1, '', 1, 1);
