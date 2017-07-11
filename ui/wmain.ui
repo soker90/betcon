@@ -71,7 +71,7 @@
    <addaction name="aInicio"/>
    <addaction name="aRegion"/>
    <addaction name="aCompetition"/>
-   <addaction name="actionDeportes"/>
+   <addaction name="aSport"/>
    <addaction name="actionEstadisticas"/>
    <addaction name="actionMercados"/>
    <addaction name="actionTipsters"/>
@@ -106,7 +106,7 @@
     <string>Estadisticas</string>
    </property>
   </action>
-  <action name="actionDeportes">
+  <action name="aSport">
    <property name="text">
     <string>Deportes</string>
    </property>

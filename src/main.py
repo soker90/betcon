@@ -10,6 +10,8 @@ from regions import Regions
 from new_region import NewRegion
 from competitions import Competitions
 from new_competition import NewCompetition
+from sports import Sports
+from new_sport import NewSport
 
 
 class Main(QMainWindow):
@@ -22,6 +24,7 @@ class Main(QMainWindow):
 		self.aInicio.triggered.connect(self.home)
 		self.aRegion.triggered.connect(self.regions)
 		self.aCompetition.triggered.connect(self.competitions)
+		self.aSport.triggered.connect(self.sports)
 
 		self.setCentralWidget(Bets(self))
 		self.insertBet()
@@ -40,6 +43,10 @@ class Main(QMainWindow):
 		self.setCentralWidget(Competitions(self))
 		self.enableTools()
 
+	def sports(self):
+		self.setCentralWidget(Sports(self))
+		self.enableTools()
+
 	#ToolSecundary
 
 	def newBet(self):
@@ -53,6 +60,12 @@ class Main(QMainWindow):
 	def newCompetition(self):
 		self.setCentralWidget(NewCompetition(self))
 		self.enableTools()
+
+	def newSport(self):
+		self.setCentralWidget(NewSport(self))
+		self.enableTools()
+
+
 
 	#Auxiliary Functions
 
