@@ -49,24 +49,10 @@
          </property>
         </widget>
        </item>
-       <item row="4" column="1">
-        <widget class="QComboBox" name="cmbPlayer1">
-         <property name="editable">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
        <item row="5" column="0">
         <widget class="QLabel" name="label_13">
          <property name="text">
           <string>Visitante</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="1">
-        <widget class="QComboBox" name="cmbPlayer2">
-         <property name="editable">
-          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -156,6 +142,12 @@
           <bool>true</bool>
          </property>
         </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QLineEdit" name="txtPlayer1"/>
+       </item>
+       <item row="5" column="1">
+        <widget class="QLineEdit" name="txtPlayer2"/>
        </item>
       </layout>
      </item>

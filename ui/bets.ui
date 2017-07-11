@@ -15,10 +15,15 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
-    <widget class="QTreeWidget" name="treeWidget">
+    <widget class="QTreeWidget" name="treeMain">
      <column>
       <property name="text">
        <string notr="true"> </string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>index</string>
       </property>
      </column>
      <column>
@@ -38,7 +43,7 @@
      </column>
      <column>
       <property name="text">
-       <string>Zona</string>
+       <string>Región</string>
       </property>
      </column>
      <column>
@@ -83,6 +88,11 @@
      </column>
      <column>
       <property name="text">
+       <string>Apuesta</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
        <string>Cuota</string>
       </property>
      </column>
@@ -93,7 +103,7 @@
      </column>
      <column>
       <property name="text">
-       <string>Bank</string>
+       <string>Beneficio</string>
       </property>
      </column>
     </widget>

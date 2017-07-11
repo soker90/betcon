@@ -72,6 +72,7 @@
    <addaction name="aRegion"/>
    <addaction name="aCompetition"/>
    <addaction name="aSport"/>
+   <addaction name="aBookie"/>
    <addaction name="actionEstadisticas"/>
    <addaction name="actionMercados"/>
    <addaction name="actionTipsters"/>
@@ -134,9 +135,9 @@
     <string>Regiones</string>
    </property>
   </action>
-  <action name="aNewRegion">
+  <action name="aBookie">
    <property name="text">
-    <string>Nueva</string>
+    <string>Casas</string>
    </property>
   </action>
  </widget>

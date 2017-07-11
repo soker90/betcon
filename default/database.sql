@@ -1,4 +1,4 @@
-CREATE TABLE bets
+CREATE TABLE bet
 (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     date DATETIME,
@@ -57,3 +57,19 @@ CREATE TABLE competition
 );
 
 INSERT INTO competition (id, name, region, sport) VALUES (1, '', 1, 1);
+
+CREATE TABLE bookie
+(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name VARCHAR(50) NOT NULL
+);
+CREATE UNIQUE INDEX bookie_name_uindex ON bookie (name);
+
+INSERT INTO bookie(name) VALUES ('Bet365');
+INSERT INTO bookie(name) VALUES ('Betfair');
+INSERT INTO bookie(name) VALUES ('Sportium');
+INSERT INTO bookie(name) VALUES ('Bwin');
+INSERT INTO bookie(name) VALUES ('888sport');
+INSERT INTO bookie(name) VALUES ('William Hill');
+INSERT INTO bookie(name) VALUES ('Luckia');
+

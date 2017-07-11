@@ -1,5 +1,5 @@
 import sys
-from PyQt5.QtWidgets import QComboBox, QMessageBox, QWidget, QGridLayout, QAction, QPushButton, QShortcut
+from PyQt5.QtWidgets import QLineEdit, QMessageBox, QWidget, QGridLayout, QAction, QPushButton, QShortcut
 from PyQt5 import uic
 from PyQt5.QtCore import QDateTime, QVariant
 from bets import Bets
@@ -17,6 +17,8 @@ class NewBet(QWidget):
 		self.initData()
 		self.cmbRegion.activated.connect(self.setCompetition)
 		self.cmbSport.activated.connect(self.setCompetition)
+
+		#self.txtQuota.activated.connect(self.setCompetition)
 
 
 
@@ -50,8 +52,21 @@ class NewBet(QWidget):
 			self.regionIndexToId[index] = id
 			index += 1
 
+		#cmbBookie
+		data = bd.select("bookie", "name")
+
+		self.bookieIndexToId = {}
+		index = 0
+		for i in data:
+			id = i[0]
+			name = i[1]
+			self.cmbBookie.addItem(name)
+			self.bookieIndexToId[index] = id
+			index += 1
+
 		bd.close()
 
+		#cmbCompetition
 		self.setCompetition()
 
 	def setCompetition(self):
@@ -85,36 +100,48 @@ class NewBet(QWidget):
 		self.close()
 
 	def accept(self):
-		datos = []
+		data = []
 
 		bbdd = Bbdd()
 
 		#dtDate
-		datos.append(self.dtDate.dateTime().toPyDateTime())
-
-		date = self.dtDate.dateTime().toPyDateTime()
-		datos.append(date)
+		data.append(self.dtDate.dateTime().toPyDateTime())
 
 		#cmbSport
 		idSport = self.sportIndexToId.get(self.cmbSport.currentIndex())
-		datos.append(idSport)
-		sport = idSport
+		data.append(idSport)
 
+		# cmbCompetition
+		idCompetition = self.competitionIndexToId.get(self.cmbCompetition.currentIndex())
+		data.append(idCompetition)
 
 		#cmbRegion
 		idRegion = self.regionIndexToId.get(self.cmbRegion.currentIndex())
-		datos.append(idRegion)
-		region = idRegion
+		data.append(idRegion)
+
+		data.append(self.txtPlayer1.text())
+		data.append(self.txtPlayer2.text())
+		data.append(self.txtPick.text())
+
+		#cmbBookie
+		idBookie = self.bookieIndexToId.get(self.cmbBookie.currentIndex())
+		data.append(idBookie)
+
+		data.append("Resultado Final")
+		data.append("")
+		data.append(self.txtStake.text())
+		data.append(self.txtOne.text())
+		data.append("")
+		data.append("")
+		data.append(self.txtBet.text())
+		data.append(self.txtQuota.text())
 
 
-
-		data = [date, sport, "Mundia", region, "España", "Italia", "España", "Bet365", "Resultado Final", "",
-				str(3), str(1), "", ""]
 		columns = ["date", "sport", "competition", "region", "player1", "player2", "pick", "bookie", "market",
-				   "tipster", "stake", "one", "result", "profit"]
+				   "tipster", "stake", "one", "result", "profit", "bet", "quota"]
 
 
-		bbdd.insert(columns, data, "bets")
+		bbdd.insert(columns, data, "bet")
 		bbdd.close()
 
 
