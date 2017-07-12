@@ -64,6 +64,18 @@ class NewBet(QWidget):
 			self.bookieIndexToId[index] = id
 			index += 1
 
+		# cmbMarket
+		data = bd.select("market", "name")
+
+		self.marketIndexToId = {}
+		index = 0
+		for i in data:
+			id = i[0]
+			name = i[1]
+			self.cmbMarket.addItem(name)
+			self.marketIndexToId[index] = id
+			index += 1
+
 		bd.close()
 
 		#cmbCompetition
@@ -127,7 +139,10 @@ class NewBet(QWidget):
 		idBookie = self.bookieIndexToId.get(self.cmbBookie.currentIndex())
 		data.append(idBookie)
 
-		data.append("Resultado Final")
+		#cmbMarket
+		idMarket = self.marketIndexToId.get(self.cmbMarket.currentIndex())
+		data.append(idMarket)
+
 		data.append("")
 		data.append(self.txtStake.text())
 		data.append(self.txtOne.text())

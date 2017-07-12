@@ -16,7 +16,7 @@ class Bets(QWidget):
 
     def initTree(self):
         bd = Bbdd()
-        data = bd.select("bet")
+        data = bd.select("bet", "date DESC")
 
         index = 0
         items = []
@@ -31,7 +31,7 @@ class Bets(QWidget):
             player2 = i[6]
             pick = i[7]
             bookie = bd.getValue(i[8], "bookie")
-            market = i[9]
+            market = bd.getValue(i[9], "market")
             tipster = i[10]
             stake = i[11]
             one = i[12]

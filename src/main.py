@@ -33,7 +33,6 @@ class Main(QMainWindow):
 		self.aMarket.triggered.connect(self.markets)
 
 		self.setCentralWidget(Bets(self))
-		self.insertBet()
 
 	#ToolPrimary
 
@@ -103,15 +102,6 @@ class Main(QMainWindow):
 		else:
 			event.ignore()
 
-
-	def insertBet(self):
-		bbdd = Bbdd()
-
-		data = ["9/7/2017", "Futbol", "Mundia", "Mundo", "España", "Italia", "España", "Bet365", "Resultado Final", "", str(3), str(1), "", ""]
-		columns = ["date","sport", "competition", "region", "player1", "player2", "pick", "bookie", "market", "tipster", "stake", "one", "result", "profit"]
-
-		#bbdd.insert(columns, data, "bets")
-		#bbdd.close()
 
 app = QApplication(sys.argv)
 _main = Main()
