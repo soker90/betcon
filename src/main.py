@@ -18,6 +18,7 @@ from markets import Markets
 from new_market import NewMarket
 from tipsters import Tipsters
 from new_tipster import NewTipster
+from edit_bet import EditBet
 
 
 class Main(QMainWindow):
@@ -26,6 +27,7 @@ class Main(QMainWindow):
 		uic.loadUi("../ui/wmain.ui", self)
 		self.showMaximized()
 		self.setWindowTitle("Inicio | Betcon")
+		self.enableTools()
 
 		self.aInicio.triggered.connect(self.home)
 		self.aRegion.triggered.connect(self.regions)
@@ -67,7 +69,8 @@ class Main(QMainWindow):
 		self.setCentralWidget(Tipsters(self))
 		self.enableTools()
 
-	#ToolSecundary
+	# ToolSecundary
+	# New Buttons
 
 	def newBet(self):
 		self.setCentralWidget(NewBet(self))
@@ -97,11 +100,48 @@ class Main(QMainWindow):
 		self.setCentralWidget(NewTipster(self))
 		self.enableTools()
 
+	# Edit Buttons
+
+	def editBet(self, id):
+		self.setCentralWidget(EditBet(self, id))
+		self.enableTools()
+
+	def editRegion(self, id):
+		self.setCentralWidget(EditRegion(self, id))
+		self.enableTools()
+
+	def editCompetition(self, id):
+		self.setCentralWidget(EditCompetition(self, id))
+		self.enableTools()
+
+	def editSport(self, id):
+		self.setCentralWidget(EditSport(self, id))
+		self.enableTools()
+
+	def editBookie(self, id):
+		self.setCentralWidget(EditBookie(self, id))
+		self.enableTools()
+
+	def editMarket(self, id):
+		self.setCentralWidget(EditMarket(self, id))
+		self.enableTools()
+
+	def editTipster(self, id):
+		self.setCentralWidget(EditTipster(self, id))
+		self.enableTools()
+
 
 	#Auxiliary Functions
 
 	def enableTools(self):
 		self.toolSecondary.setVisible(True)
+		self.aEdit.setEnabled(False)
+		self.aRemove.setEnabled(False)
+
+	def enableActions(self):
+		self.aEdit.setEnabled(True)
+		self.aRemove.setEnabled(True)
+
 
 	#Events
 

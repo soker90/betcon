@@ -1,5 +1,5 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QWidget, QTreeWidgetItem
+from PyQt5.QtWidgets import QApplication, QWidget, QTreeWidgetItem, QTreeWidget
 from PyQt5 import uic
 
 sys.path.append("./lib")
@@ -13,6 +13,12 @@ class Bets(QWidget):
         mainWindows.aNew.triggered.connect(mainWindows.newBet)
         self.treeMain.header().hideSection(1)
         self.initTree()
+        self.treeMain.itemSelectionChanged.connect(self.changeItem)
+        self.mainWindows.aEdit.triggered.connect(self.editItem)
+        self.mainWindows.aRemove.triggered.connect(self.deleteItem)
+
+        self.itemSelected = -1
+
 
     def initTree(self):
         bd = Bbdd()
@@ -46,5 +52,22 @@ class Bets(QWidget):
         self.treeMain.addTopLevelItems(items)
 
         bd.close()
+
+    def changeItem(self):
+        self.itemSelected = self.treeMain.currentItem().text(1)
+        self.mainWindows.enableActions()
+
+    def editItem(self):
+        self.mainWindows.editBet(self.itemSelected)
+
+    def deleteItem(self):
+        bd = Bbdd()
+        bd.delete("bet", self.itemSelected)
+        self.mainWindows.setCentralWidget(Bets(self.mainWindows))
+        self.mainWindows.enableTools()
+
+
+
+
 
 

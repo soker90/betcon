@@ -1,23 +1,24 @@
-import sys
-from datetime import datetime
+import sys, datetime
 from PyQt5.QtWidgets import QLineEdit, QMessageBox, QWidget, QComboBox, QAction, QPushButton, QShortcut
 from PyQt5 import uic
 from PyQt5.QtCore import QDateTime, QVariant
 from bets import Bets
+from PyQt5.QtCore import QDateTime
 from decimal import Decimal
 
 sys.path.append("./lib")
 from bbdd import Bbdd
 
 
-class NewBet(QWidget):
-	def __init__(self, mainWindows):
+class EditBet(QWidget):
+	def __init__(self, mainWindows, id):
 		QWidget.__init__(self)
 		uic.loadUi("../ui/new_bet.ui", self)
 		self.mainWindows = mainWindows
-		self.mainWindows.setWindowTitle("Nueva Apuesta | Betcon")
+		self.mainWindows.setWindowTitle("Modificar Apuesta | Betcon")
 		self.btnAccept.clicked.connect(self.accept)
 		self.btnCancel.clicked.connect(self.cancel)
+		self.id = id
 		self.initData()
 		self.cmbRegion.activated.connect(self.setCompetition)
 		self.cmbSport.activated.connect(self.setCompetition)
@@ -31,70 +32,104 @@ class NewBet(QWidget):
 
 	def initData(self):
 		# dtDate
-		sDate = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+		bd = Bbdd()
+		sDate = bd.getValue(self.id, "bet", "date")
 		date = QDateTime.fromString(sDate, "yyyy-MM-dd hh:mm:ss")
 		self.dtDate.setDateTime(date)
 
 		# cmbSport
-		bd = Bbdd()
+
 		data = bd.select("sport", "name")
 
 		self.sportIndexToId = {}
-		index = 0
+		index, idCmb = 0, 0
+		idBd = bd.getValue(self.id, "bet", "sport")
 		for i in data:
 			id = i[0]
+			if id == idBd:
+				idCmb = index
 			name = i[1]
 			self.cmbSport.addItem(name)
 			self.sportIndexToId[index] = id
 			index += 1
 
+		self.cmbSport.setCurrentIndex(idCmb)
+
 		# cmbRegion
 		data = bd.select("region", "name")
+
+		index, idCmb = 0, 0
+		idBd = bd.getValue(self.id, "bet", "region")
 
 		self.regionIndexToId = {}
 		index = 0
 		for i in data:
 			id = i[0]
+			if id == idBd:
+				idCmb = index
 			name = i[1]
 			self.cmbRegion.addItem(name)
 			self.regionIndexToId[index] = id
 			index += 1
 
+		self.cmbRegion.setCurrentIndex(idCmb)
+
 		# cmbBookie
 		data = bd.select("bookie", "name")
+
+		index, idCmb = 0, 0
+		idBd = bd.getValue(self.id, "bet", "bookie")
 
 		self.bookieIndexToId = {}
 		index = 0
 		for i in data:
 			id = i[0]
+			if id == idBd:
+				idCmb = index
 			name = i[1]
 			self.cmbBookie.addItem(name)
 			self.bookieIndexToId[index] = id
 			index += 1
 
+		self.cmbBookie.setCurrentIndex(idCmb)
+
 		# cmbMarket
 		data = bd.select("market", "name")
+
+		index, idCmb = 0, 0
+		idBd = bd.getValue(self.id, "bet", "market")
 
 		self.marketIndexToId = {}
 		index = 0
 		for i in data:
 			id = i[0]
+			if id == idBd:
+				idCmb = index
 			name = i[1]
 			self.cmbMarket.addItem(name)
 			self.marketIndexToId[index] = id
 			index += 1
 
+		self.cmbMarket.setCurrentIndex(idCmb)
+
 		# cmbTipster
 		data = bd.select("tipster", "name")
+
+		index, idCmb = 0, 0
+		idBd = bd.getValue(self.id, "bet", "tipster")
 
 		self.tipsterIndexToId = {}
 		index = 0
 		for i in data:
 			id = i[0]
+			if id == idBd:
+				idCmb = index
 			name = i[1]
 			self.cmbTipster.addItem(name)
 			self.tipsterIndexToId[index] = id
 			index += 1
+
+		self.cmbTipster.setCurrentIndex(idCmb)
 
 		bd.close()
 
@@ -112,14 +147,21 @@ class NewBet(QWidget):
 
 		data = bd.select("competition", "name", where)
 
+		index, idCmb = 0, 0
+		idBd = bd.getValue(self.id, "bet", "competition")
+
 		self.competitionIndexToId = {}
 		index = 0
 		for i in data:
 			id = i[0]
+			if id == idBd:
+				idCmb = index
 			name = i[1]
 			self.cmbCompetition.addItem(name)
 			self.competitionIndexToId[index] = id
 			index += 1
+
+		self.cmbCompetition.setCurrentIndex(idCmb)
 
 		bd.close()
 
@@ -178,10 +220,10 @@ class NewBet(QWidget):
 		columns = ["date", "sport", "competition", "region", "player1", "player2", "pick", "bookie", "market",
 		           "tipster", "stake", "one", "result", "profit", "bet", "quota"]
 
-		bbdd.insert(columns, data, "bet")
+		bbdd.update(columns, data, "bet",self.id)
 		bbdd.close()
 
-		QMessageBox.information(self, "Añadida", "Nueva apuesta añadida.")
+		QMessageBox.information(self, "Modificada", "Apuesta modificada.")
 		self.close()
 
 	def updateProfit(self):

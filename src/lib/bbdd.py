@@ -17,10 +17,6 @@ class Bbdd:
 			self.initDatabase()
 
 
-
-
-
-
 	def insert(self, columns, values, table):
 		aux = ', '.join('?' * len(values))
 		if len(columns) == 1:
@@ -32,13 +28,33 @@ class Bbdd:
 		self.cursor.execute(query, values)
 		self.bd.commit()
 
+	def update(self, columns, values, table, id):
+
+		sentence = " "
+		for i in range(len(columns)):
+			sentence += str("'" + columns[i]) + "' = '" + str(values[i]) + "', "
+
+		sentence = sentence[:-2]
+
+
+		query = "UPDATE " + table + " SET " + sentence + " WHERE id=" + id + ";"
+
+		print(query)
+
+		self.cursor.execute(query)
+		self.bd.commit()
+
+	def delete(self, table, id):
+		self.cursor.execute("DELETE FROM {} WHERE id = ?;".format(table), (id,))
+		self.bd.commit()
+
 	def select(self, table, order_by=None, where=None):
 		query = "SELECT * FROM " + table
 		if where:
 			query += " WHERE " + where
 		if order_by:
 			query += " order by " + order_by
-
+		print(query)
 		self.cursor.execute(query)
 		data = self.cursor.fetchall()
 

@@ -88,6 +88,8 @@
     <bool>true</bool>
    </attribute>
    <addaction name="aNew"/>
+   <addaction name="aEdit"/>
+   <addaction name="aRemove"/>
   </widget>
   <action name="aNew">
    <property name="text">
@@ -96,10 +98,16 @@
    <property name="toolTip">
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Nueva Apuesta&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
   </action>
   <action name="aCompetition">
    <property name="text">
     <string>Competiciones</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+C</string>
    </property>
   </action>
   <action name="actionEstadisticas">
@@ -111,15 +119,24 @@
    <property name="text">
     <string>Deportes</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+D</string>
+   </property>
   </action>
   <action name="aMarket">
    <property name="text">
     <string>Mercados</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+M</string>
+   </property>
   </action>
   <action name="aTipster">
    <property name="text">
     <string>Tipsters</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+T</string>
    </property>
   </action>
   <action name="aInicio">
@@ -134,10 +151,32 @@
    <property name="text">
     <string>Regiones</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
+   </property>
   </action>
   <action name="aBookie">
    <property name="text">
     <string>Casas</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+B</string>
+   </property>
+  </action>
+  <action name="aEdit">
+   <property name="text">
+    <string>Editar</string>
+   </property>
+   <property name="shortcut">
+    <string>E</string>
+   </property>
+  </action>
+  <action name="aRemove">
+   <property name="text">
+    <string>Eliminar</string>
+   </property>
+   <property name="shortcut">
+    <string>Del</string>
    </property>
   </action>
  </widget>
