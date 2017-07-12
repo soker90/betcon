@@ -13,7 +13,7 @@ CREATE TABLE bet
     tipster VARCHAR(50),
     stake REAL,
     one REAL,
-    result VARCHAR(1),
+    result INTEGER,
     profit REAL,
     bet REAL,
     quota FLOAT
@@ -57,6 +57,17 @@ CREATE TABLE competition
 );
 
 INSERT INTO competition (id, name, region, sport) VALUES (1, '', 1, 1);
+INSERT INTO competition (id, name, region, sport) VALUES (1, '', 1, 2);
+INSERT INTO competition (id, name, region, sport) VALUES (1, '', 1, 3);
+INSERT INTO competition (id, name, region, sport) VALUES (1, '', 1, 4);
+INSERT INTO competition (id, name, region, sport) VALUES (1, '', 1, 5);
+INSERT INTO competition (id, name, region, sport) VALUES (1, '', 1, 6);
+INSERT INTO competition (id, name, region, sport) VALUES (1, '', 1, 7);
+INSERT INTO competition (id, name, region, sport) VALUES (1, '', 1, 8);
+INSERT INTO competition (id, name, region, sport) VALUES (1, '', 1, 9);
+INSERT INTO competition (id, name, region, sport) VALUES (1, '', 1, 10);
+INSERT INTO competition (id, name, region, sport) VALUES (1, '', 1, 11);
+INSERT INTO competition (id, name, region, sport) VALUES (1, '', 1, 12);
 
 CREATE TABLE bookie
 (
@@ -95,3 +106,26 @@ INSERT INTO market(name) VALUES ('Marcador exacto');
 INSERT INTO market(name) VALUES ('Over/Under');
 INSERT INTO market(name) VALUES ('Resultado Final');
 INSERT INTO market(name) VALUES ('Tarjetas');
+
+CREATE TABLE tipster
+(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name VARCHAR(50)
+);
+
+INSERT INTO tipster(name) VALUES ('');
+
+CREATE TABLE result
+(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name VARCHAR(50),
+    value REAL NOT NULL
+);
+
+INSERT INTO result (name, value) VALUES ('Pendiente', -1);
+INSERT INTO result (name, value) VALUES ('Acertada', 1);
+INSERT INTO result (name, value) VALUES ('Fallada', -1);
+INSERT INTO result (name, value) VALUES ('Nula', 0);
+INSERT INTO result (name, value) VALUES ('Medio Acertada', 0.5);
+INSERT INTO result (name, value) VALUES ('Medio Fallada', -0.5);
+INSERT INTO result (name, value) VALUES ('Retirada', 0);

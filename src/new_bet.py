@@ -3,6 +3,8 @@ from PyQt5.QtWidgets import QLineEdit, QMessageBox, QWidget, QGridLayout, QActio
 from PyQt5 import uic
 from PyQt5.QtCore import QDateTime, QVariant
 from bets import Bets
+from decimal import Decimal
+
 sys.path.append("./lib")
 from bbdd import Bbdd
 
@@ -17,6 +19,9 @@ class NewBet(QWidget):
 		self.initData()
 		self.cmbRegion.activated.connect(self.setCompetition)
 		self.cmbSport.activated.connect(self.setCompetition)
+		self.cmbResult.activated.connect(self.updateProfit)
+		self.txtQuota.valueChanged.connect(self.updateProfit)
+
 
 		#self.txtQuota.activated.connect(self.setCompetition)
 
@@ -74,6 +79,30 @@ class NewBet(QWidget):
 			name = i[1]
 			self.cmbMarket.addItem(name)
 			self.marketIndexToId[index] = id
+			index += 1
+
+		# cmbTipster
+		data = bd.select("tipster", "name")
+
+		self.tipsterIndexToId = {}
+		index = 0
+		for i in data:
+			id = i[0]
+			name = i[1]
+			self.cmbTipster.addItem(name)
+			self.tipsterIndexToId[index] = id
+			index += 1
+
+		# cmbResult
+		data = bd.select("result")
+
+		self.resultIndexToId = {}
+		index = 0
+		for i in data:
+			id = i[0]
+			name = i[1]
+			self.cmbResult.addItem(name)
+			self.resultIndexToId[index] = id
 			index += 1
 
 		bd.close()
@@ -143,10 +172,17 @@ class NewBet(QWidget):
 		idMarket = self.marketIndexToId.get(self.cmbMarket.currentIndex())
 		data.append(idMarket)
 
-		data.append("")
+		# cmbTipster
+		idTipster = self.tipsterIndexToId.get(self.cmbTipster.currentIndex())
+		data.append(idTipster)
+
 		data.append(self.txtStake.text())
 		data.append(self.txtOne.text())
-		data.append("")
+
+		# cmbResult
+		idResult = self.resultIndexToId.get(self.cmbResult.currentIndex())
+		data.append(idResult)
+
 		data.append("")
 		data.append(self.txtBet.text())
 		data.append(self.txtQuota.text())
@@ -163,3 +199,6 @@ class NewBet(QWidget):
 		QMessageBox.information(self, "Añadida", "Nueva apuesta añadida.")
 		self.close()
 
+	def updateProfit(self):
+		profit =2  #self.txtBet.text() * (self.txtQuota.text())
+		self.txtProfit.setValue(profit)

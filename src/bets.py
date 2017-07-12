@@ -32,10 +32,10 @@ class Bets(QWidget):
             pick = i[7]
             bookie = bd.getValue(i[8], "bookie")
             market = bd.getValue(i[9], "market")
-            tipster = i[10]
+            tipster = bd.getValue(i[10], "tipster")
             stake = i[11]
             one = i[12]
-            result = i[13]
+            result = bd.getValue(i[13], "result")
             profit = i[14]
             bet = i[15]
             quota = i[16]
