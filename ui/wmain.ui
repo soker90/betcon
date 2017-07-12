@@ -73,8 +73,8 @@
    <addaction name="aCompetition"/>
    <addaction name="aSport"/>
    <addaction name="aBookie"/>
+   <addaction name="aMarket"/>
    <addaction name="actionEstadisticas"/>
-   <addaction name="actionMercados"/>
    <addaction name="actionTipsters"/>
   </widget>
   <widget class="QToolBar" name="toolSecondary">
@@ -112,7 +112,7 @@
     <string>Deportes</string>
    </property>
   </action>
-  <action name="actionMercados">
+  <action name="aMarket">
    <property name="text">
     <string>Mercados</string>
    </property>

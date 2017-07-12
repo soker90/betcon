@@ -14,6 +14,8 @@ from sports import Sports
 from new_sport import NewSport
 from bookies import Bookies
 from new_bookie import NewBookie
+from markets import Markets
+from new_market import NewMarket
 
 
 class Main(QMainWindow):
@@ -28,6 +30,7 @@ class Main(QMainWindow):
 		self.aCompetition.triggered.connect(self.competitions)
 		self.aSport.triggered.connect(self.sports)
 		self.aBookie.triggered.connect(self.bookies)
+		self.aMarket.triggered.connect(self.markets)
 
 		self.setCentralWidget(Bets(self))
 		self.insertBet()
@@ -54,6 +57,10 @@ class Main(QMainWindow):
 		self.setCentralWidget(Bookies(self))
 		self.enableTools()
 
+	def markets(self):
+		self.setCentralWidget(Markets(self))
+		self.enableTools()
+
 	#ToolSecundary
 
 	def newBet(self):
@@ -74,6 +81,10 @@ class Main(QMainWindow):
 
 	def newBookie(self):
 		self.setCentralWidget(NewBookie(self))
+		self.enableTools()
+
+	def newMarket(self):
+		self.setCentralWidget(NewMarket(self))
 		self.enableTools()
 
 

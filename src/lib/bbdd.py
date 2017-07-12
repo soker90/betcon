@@ -17,6 +17,10 @@ class Bbdd:
 			self.initDatabase()
 
 
+
+
+
+
 	def insert(self, columns, values, table):
 		aux = ', '.join('?' * len(values))
 		if len(columns) == 1:
@@ -69,7 +73,7 @@ class Bbdd:
 
 	def initDatabase(self):
 		query = open('../default/database.sql', 'r').read()
-		self.cursor.execute(query)
+		self.cursor.executescript(query)
 		self.bd.commit()
 
 

@@ -3,12 +3,12 @@ CREATE TABLE bet
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     date DATETIME,
     sport INTEGER,
-    competition VARCHAR(80),
+    competition INTEGER,
     region INTEGER,
     player1 VARCHAR(150),
     player2 VARCHAR(150),
     pick VARCHAR(150),
-    bookie VARCHAR(50),
+    bookie INTEGER,
     market VARCHAR(50),
     tipster VARCHAR(50),
     stake REAL,
@@ -18,6 +18,7 @@ CREATE TABLE bet
     bet REAL,
     quota FLOAT
 );
+
 
 CREATE TABLE sport
 (
@@ -37,7 +38,6 @@ INSERT INTO sport (name) VALUES ('Golf');
 INSERT INTO sport (name) VALUES ('Tenis');
 INSERT INTO sport (name) VALUES ('Tenis de mesa');
 INSERT INTO sport (name) VALUES ('Voleibol');
-
 
 
 CREATE TABLE region
@@ -73,3 +73,25 @@ INSERT INTO bookie(name) VALUES ('888sport');
 INSERT INTO bookie(name) VALUES ('William Hill');
 INSERT INTO bookie(name) VALUES ('Luckia');
 
+
+
+
+CREATE  TABLE market
+(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name VARCHAR(80) NOT NULL
+);
+
+INSERT INTO market(name) VALUES ('Hándicap Asiático');
+INSERT INTO market(name) VALUES ('Combinada');
+INSERT INTO market(name) VALUES ('Córners');
+INSERT INTO market(name) VALUES ('Descanso/Final');
+INSERT INTO market(name) VALUES ('Doble oportunidad');
+INSERT INTO market(name) VALUES ('Empate no válido');
+INSERT INTO market(name) VALUES ('Especiales');
+INSERT INTO market(name) VALUES ('Goles');
+INSERT INTO market(name) VALUES ('Hándicap Europeo');
+INSERT INTO market(name) VALUES ('Marcador exacto');
+INSERT INTO market(name) VALUES ('Over/Under');
+INSERT INTO market(name) VALUES ('Resultado Final');
+INSERT INTO market(name) VALUES ('Tarjetas');
