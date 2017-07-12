@@ -13,7 +13,7 @@ CREATE TABLE bet
     tipster VARCHAR(50),
     stake REAL,
     one REAL,
-    result INTEGER,
+    result VARCHAR(50),
     profit REAL,
     bet REAL,
     quota FLOAT
@@ -57,17 +57,17 @@ CREATE TABLE competition
 );
 
 INSERT INTO competition (id, name, region, sport) VALUES (1, '', 1, 1);
-INSERT INTO competition (id, name, region, sport) VALUES (1, '', 1, 2);
-INSERT INTO competition (id, name, region, sport) VALUES (1, '', 1, 3);
-INSERT INTO competition (id, name, region, sport) VALUES (1, '', 1, 4);
-INSERT INTO competition (id, name, region, sport) VALUES (1, '', 1, 5);
-INSERT INTO competition (id, name, region, sport) VALUES (1, '', 1, 6);
-INSERT INTO competition (id, name, region, sport) VALUES (1, '', 1, 7);
-INSERT INTO competition (id, name, region, sport) VALUES (1, '', 1, 8);
-INSERT INTO competition (id, name, region, sport) VALUES (1, '', 1, 9);
-INSERT INTO competition (id, name, region, sport) VALUES (1, '', 1, 10);
-INSERT INTO competition (id, name, region, sport) VALUES (1, '', 1, 11);
-INSERT INTO competition (id, name, region, sport) VALUES (1, '', 1, 12);
+INSERT INTO competition (id, name, region, sport) VALUES (2, '', 1, 2);
+INSERT INTO competition (id, name, region, sport) VALUES (3, '', 1, 3);
+INSERT INTO competition (id, name, region, sport) VALUES (4, '', 1, 4);
+INSERT INTO competition (id, name, region, sport) VALUES (5, '', 1, 5);
+INSERT INTO competition (id, name, region, sport) VALUES (6, '', 1, 6);
+INSERT INTO competition (id, name, region, sport) VALUES (7, '', 1, 7);
+INSERT INTO competition (id, name, region, sport) VALUES (8, '', 1, 8);
+INSERT INTO competition (id, name, region, sport) VALUES (9, '', 1, 9);
+INSERT INTO competition (id, name, region, sport) VALUES (10, '', 1, 10);
+INSERT INTO competition (id, name, region, sport) VALUES (11, '', 1, 11);
+INSERT INTO competition (id, name, region, sport) VALUES (12, '', 1, 12);
 
 CREATE TABLE bookie
 (
@@ -83,9 +83,6 @@ INSERT INTO bookie(name) VALUES ('Bwin');
 INSERT INTO bookie(name) VALUES ('888sport');
 INSERT INTO bookie(name) VALUES ('William Hill');
 INSERT INTO bookie(name) VALUES ('Luckia');
-
-
-
 
 CREATE  TABLE market
 (
@@ -115,17 +112,3 @@ CREATE TABLE tipster
 
 INSERT INTO tipster(name) VALUES ('');
 
-CREATE TABLE result
-(
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name VARCHAR(50),
-    value REAL NOT NULL
-);
-
-INSERT INTO result (name, value) VALUES ('Pendiente', -1);
-INSERT INTO result (name, value) VALUES ('Acertada', 1);
-INSERT INTO result (name, value) VALUES ('Fallada', -1);
-INSERT INTO result (name, value) VALUES ('Nula', 0);
-INSERT INTO result (name, value) VALUES ('Medio Acertada', 0.5);
-INSERT INTO result (name, value) VALUES ('Medio Fallada', -0.5);
-INSERT INTO result (name, value) VALUES ('Retirada', 0);

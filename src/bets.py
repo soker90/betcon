@@ -35,7 +35,7 @@ class Bets(QWidget):
             tipster = bd.getValue(i[10], "tipster")
             stake = i[11]
             one = i[12]
-            result = bd.getValue(i[13], "result")
+            result = i[13]
             profit = i[14]
             bet = i[15]
             quota = i[16]

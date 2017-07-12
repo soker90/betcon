@@ -38,7 +38,7 @@
        <item row="3" column="1">
         <widget class="QComboBox" name="cmbCompetition">
          <property name="editable">
-          <bool>true</bool>
+          <bool>false</bool>
          </property>
         </widget>
        </item>
@@ -76,8 +76,43 @@
        <item row="7" column="1">
         <widget class="QComboBox" name="cmbResult">
          <property name="currentIndex">
-          <number>-1</number>
+          <number>0</number>
          </property>
+         <item>
+          <property name="text">
+           <string>Pendiente</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Acertada</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Fallada</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Nula</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Medio Acertada</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Medio Fallada</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Retirada</string>
+          </property>
+         </item>
         </widget>
        </item>
        <item row="1" column="0">
@@ -97,14 +132,14 @@
        <item row="1" column="1">
         <widget class="QComboBox" name="cmbSport">
          <property name="editable">
-          <bool>true</bool>
+          <bool>false</bool>
          </property>
         </widget>
        </item>
        <item row="2" column="1">
         <widget class="QComboBox" name="cmbRegion">
          <property name="editable">
-          <bool>true</bool>
+          <bool>false</bool>
          </property>
         </widget>
        </item>
@@ -149,7 +184,11 @@
         </widget>
        </item>
        <item row="3" column="1">
-        <widget class="QDoubleSpinBox" name="txtStake"/>
+        <widget class="QDoubleSpinBox" name="txtStake">
+         <property name="buttonSymbols">
+          <enum>QAbstractSpinBox::NoButtons</enum>
+         </property>
+        </widget>
        </item>
        <item row="4" column="0">
         <widget class="QLabel" name="label_5">
@@ -159,7 +198,11 @@
         </widget>
        </item>
        <item row="4" column="1">
-        <widget class="QDoubleSpinBox" name="txtOne"/>
+        <widget class="QDoubleSpinBox" name="txtOne">
+         <property name="buttonSymbols">
+          <enum>QAbstractSpinBox::NoButtons</enum>
+         </property>
+        </widget>
        </item>
        <item row="5" column="0">
         <widget class="QLabel" name="label_6">
@@ -169,7 +212,17 @@
         </widget>
        </item>
        <item row="5" column="1">
-        <widget class="QDoubleSpinBox" name="txtBet"/>
+        <widget class="QDoubleSpinBox" name="txtBet">
+         <property name="buttonSymbols">
+          <enum>QAbstractSpinBox::NoButtons</enum>
+         </property>
+         <property name="minimum">
+          <double>-999999.989999999990687</double>
+         </property>
+         <property name="maximum">
+          <double>999999.989999999990687</double>
+         </property>
+        </widget>
        </item>
        <item row="6" column="0">
         <widget class="QLabel" name="label_15">
@@ -179,7 +232,11 @@
         </widget>
        </item>
        <item row="6" column="1">
-        <widget class="QDoubleSpinBox" name="txtQuota"/>
+        <widget class="QDoubleSpinBox" name="txtQuota">
+         <property name="buttonSymbols">
+          <enum>QAbstractSpinBox::NoButtons</enum>
+         </property>
+        </widget>
        </item>
        <item row="7" column="0">
         <widget class="QLabel" name="label_16">
@@ -189,7 +246,20 @@
         </widget>
        </item>
        <item row="7" column="1">
-        <widget class="QDoubleSpinBox" name="txtProfit"/>
+        <widget class="QDoubleSpinBox" name="txtProfit">
+         <property name="buttonSymbols">
+          <enum>QAbstractSpinBox::NoButtons</enum>
+         </property>
+         <property name="showGroupSeparator" stdset="0">
+          <bool>false</bool>
+         </property>
+         <property name="minimum">
+          <double>-99999990000.000000000000000</double>
+         </property>
+         <property name="maximum">
+          <double>999999.989999999990687</double>
+         </property>
+        </widget>
        </item>
        <item row="1" column="0">
         <widget class="QLabel" name="label_2">

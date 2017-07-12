@@ -1,5 +1,5 @@
 import sys
-from PyQt5.QtWidgets import QLineEdit, QMessageBox, QWidget, QGridLayout, QAction, QPushButton, QShortcut
+from PyQt5.QtWidgets import QLineEdit, QMessageBox, QWidget, QComboBox, QAction, QPushButton, QShortcut
 from PyQt5 import uic
 from PyQt5.QtCore import QDateTime, QVariant
 from bets import Bets
@@ -7,6 +7,7 @@ from decimal import Decimal
 
 sys.path.append("./lib")
 from bbdd import Bbdd
+
 
 class NewBet(QWidget):
 	def __init__(self, mainWindows):
@@ -21,18 +22,18 @@ class NewBet(QWidget):
 		self.cmbSport.activated.connect(self.setCompetition)
 		self.cmbResult.activated.connect(self.updateProfit)
 		self.txtQuota.valueChanged.connect(self.updateProfit)
+		self.txtBet.valueChanged.connect(self.updateProfit)
 
-
-		#self.txtQuota.activated.connect(self.setCompetition)
+	# self.txtQuota.activated.connect(self.setCompetition)
 
 
 
 	def initData(self):
-		#dtDate
+		# dtDate
 		curent_t = QDateTime().currentDateTime()
 		self.dtDate.setDateTime(curent_t)
 
-		#cmbSport
+		# cmbSport
 		bd = Bbdd()
 		data = bd.select("sport", "name")
 
@@ -57,7 +58,7 @@ class NewBet(QWidget):
 			self.regionIndexToId[index] = id
 			index += 1
 
-		#cmbBookie
+		# cmbBookie
 		data = bd.select("bookie", "name")
 
 		self.bookieIndexToId = {}
@@ -93,21 +94,9 @@ class NewBet(QWidget):
 			self.tipsterIndexToId[index] = id
 			index += 1
 
-		# cmbResult
-		data = bd.select("result")
-
-		self.resultIndexToId = {}
-		index = 0
-		for i in data:
-			id = i[0]
-			name = i[1]
-			self.cmbResult.addItem(name)
-			self.resultIndexToId[index] = id
-			index += 1
-
 		bd.close()
 
-		#cmbCompetition
+		# cmbCompetition
 		self.setCompetition()
 
 	def setCompetition(self):
@@ -132,10 +121,8 @@ class NewBet(QWidget):
 
 		bd.close()
 
-
-
 	def close(self):
-			self.mainWindows.setCentralWidget(Bets(self.mainWindows))
+		self.mainWindows.setCentralWidget(Bets(self.mainWindows))
 
 	def cancel(self):
 		self.close()
@@ -145,10 +132,10 @@ class NewBet(QWidget):
 
 		bbdd = Bbdd()
 
-		#dtDate
+		# dtDate
 		data.append(self.dtDate.dateTime().toPyDateTime())
 
-		#cmbSport
+		# cmbSport
 		idSport = self.sportIndexToId.get(self.cmbSport.currentIndex())
 		data.append(idSport)
 
@@ -156,7 +143,7 @@ class NewBet(QWidget):
 		idCompetition = self.competitionIndexToId.get(self.cmbCompetition.currentIndex())
 		data.append(idCompetition)
 
-		#cmbRegion
+		# cmbRegion
 		idRegion = self.regionIndexToId.get(self.cmbRegion.currentIndex())
 		data.append(idRegion)
 
@@ -164,11 +151,11 @@ class NewBet(QWidget):
 		data.append(self.txtPlayer2.text())
 		data.append(self.txtPick.text())
 
-		#cmbBookie
+		# cmbBookie
 		idBookie = self.bookieIndexToId.get(self.cmbBookie.currentIndex())
 		data.append(idBookie)
 
-		#cmbMarket
+		# cmbMarket
 		idMarket = self.marketIndexToId.get(self.cmbMarket.currentIndex())
 		data.append(idMarket)
 
@@ -180,25 +167,36 @@ class NewBet(QWidget):
 		data.append(self.txtOne.text())
 
 		# cmbResult
-		idResult = self.resultIndexToId.get(self.cmbResult.currentIndex())
-		data.append(idResult)
+		data.append(self.cmbResult.currentText())
 
 		data.append("")
 		data.append(self.txtBet.text())
 		data.append(self.txtQuota.text())
 
-
 		columns = ["date", "sport", "competition", "region", "player1", "player2", "pick", "bookie", "market",
-				   "tipster", "stake", "one", "result", "profit", "bet", "quota"]
-
+		           "tipster", "stake", "one", "result", "profit", "bet", "quota"]
 
 		bbdd.insert(columns, data, "bet")
 		bbdd.close()
-
 
 		QMessageBox.information(self, "Añadida", "Nueva apuesta añadida.")
 		self.close()
 
 	def updateProfit(self):
-		profit =2  #self.txtBet.text() * (self.txtQuota.text())
+		result = self.cmbResult.currentIndex()
+		quota = self.txtQuota.value()
+		bet = self.txtBet.value()
+
+		profit = {
+			0: lambda quota: -1,  # Pendiente
+			1: lambda quota: quota - 1,  # Acertada
+			2: lambda quota: -1,  # Fallada
+			3: lambda quota: 0,  # Nula
+			4: lambda quota: (quota - 1) * 0.5,  # Medio Acertada
+			5: lambda quota: (quota - 1) * -0.5,  # Medio Fallada
+			6: lambda quota: 0  # Retirada
+		}[result](float(quota))
+
+		profit *= bet
+
 		self.txtProfit.setValue(profit)
