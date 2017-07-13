@@ -19,6 +19,8 @@ from new_market import NewMarket
 from tipsters import Tipsters
 from new_tipster import NewTipster
 from edit_bet import EditBet
+from edit_bookie import EditBookie
+from edit_competition import EditCompetition
 
 
 class Main(QMainWindow):

@@ -5,6 +5,7 @@ from PyQt5.QtCore import QDateTime, QVariant
 from bets import Bets
 from PyQt5.QtCore import QDateTime
 from decimal import Decimal
+from locale import *
 
 sys.path.append("./lib")
 from bbdd import Bbdd
@@ -93,6 +94,18 @@ class EditBet(QWidget):
 
 		self.cmbBookie.setCurrentIndex(idCmb)
 
+		# txtPlayer1
+		player1 = bd.getValue(self.id, "bet", "player1")
+		self.txtPlayer1.setText(player1)
+
+		# txtPlayer2
+		player2 = bd.getValue(self.id, "bet", "player2")
+		self.txtPlayer2.setText(player2)
+
+		# txtPick
+		pick = bd.getValue(self.id, "bet", "pick")
+		self.txtPick.setText(pick)
+
 		# cmbMarket
 		data = bd.select("market", "name")
 
@@ -130,6 +143,29 @@ class EditBet(QWidget):
 			index += 1
 
 		self.cmbTipster.setCurrentIndex(idCmb)
+
+		setlocale(LC_NUMERIC, '')
+
+		# txtStake
+		stake = bd.getValue(self.id, "bet", "stake")
+		self.txtStake.setValue(atof(stake))
+
+		# txtOne
+		one = bd.getValue(self.id, "bet", "one")
+		self.txtOne.setValue(atof(one))
+
+		# txtBet
+		bet = bd.getValue(self.id, "bet", "bet")
+		self.txtBet.setValue(atof(bet))
+
+		# txtQuota
+		quota = bd.getValue(self.id, "bet", "quota")
+		self.txtQuota.setValue(atof(quota))
+
+		# txtProfit
+		profit = bd.getValue(self.id, "bet", "profit")
+		print(profit)
+		self.txtProfit.setValue(atof(profit))
 
 		bd.close()
 

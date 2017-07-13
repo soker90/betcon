@@ -171,7 +171,7 @@ class NewBet(QWidget):
 		# cmbResult
 		data.append(self.cmbResult.currentText())
 
-		data.append("")
+		data.append(self.txtProfit.text())
 		data.append(self.txtBet.text())
 		data.append(self.txtQuota.text())
 

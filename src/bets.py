@@ -1,9 +1,10 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QWidget, QTreeWidgetItem, QTreeWidget
+from PyQt5.QtWidgets import QWidget, QTreeWidgetItem, QMessageBox
 from PyQt5 import uic
 
 sys.path.append("./lib")
 from bbdd import Bbdd
+
 
 class Bets(QWidget):
     def __init__(self, mainWindows):
@@ -18,7 +19,6 @@ class Bets(QWidget):
         self.mainWindows.aRemove.triggered.connect(self.deleteItem)
 
         self.itemSelected = -1
-
 
     def initTree(self):
         bd = Bbdd()
@@ -61,10 +61,13 @@ class Bets(QWidget):
         self.mainWindows.editBet(self.itemSelected)
 
     def deleteItem(self):
-        bd = Bbdd()
-        bd.delete("bet", self.itemSelected)
-        self.mainWindows.setCentralWidget(Bets(self.mainWindows))
-        self.mainWindows.enableTools()
+        resultado = QMessageBox.question(self, "Eliminar", "¿Estas seguro que desas eliminarlo?",
+                                         QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+        if resultado == QMessageBox.Yes:
+            bd = Bbdd()
+            bd.delete("bet", self.itemSelected)
+            self.mainWindows.setCentralWidget(Bets(self.mainWindows))
+            self.mainWindows.enableTools()
 
 
 
