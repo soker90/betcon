@@ -21,6 +21,7 @@ from new_tipster import NewTipster
 from edit_bet import EditBet
 from edit_bookie import EditBookie
 from edit_competition import EditCompetition
+from edit_tipster import EditTipster
 
 
 class Main(QMainWindow):
