@@ -22,6 +22,9 @@ from edit_bet import EditBet
 from edit_bookie import EditBookie
 from edit_competition import EditCompetition
 from edit_tipster import EditTipster
+from stats import Stats
+from banks import Banks
+from new_bank import NewBank
 
 
 class Main(QMainWindow):
@@ -39,6 +42,8 @@ class Main(QMainWindow):
 		self.aBookie.triggered.connect(self.bookies)
 		self.aMarket.triggered.connect(self.markets)
 		self.aTipster.triggered.connect(self.tipsters)
+		self.aStat.triggered.connect(self.stats)
+		self.aBank.triggered.connect(self.banks)
 
 		self.setCentralWidget(Bets(self))
 
@@ -72,6 +77,14 @@ class Main(QMainWindow):
 		self.setCentralWidget(Tipsters(self))
 		self.enableTools()
 
+	def stats(self):
+		self.setCentralWidget(Stats(self))
+		self.enableTools("stats")
+
+	def banks(self):
+		self.setCentralWidget(Banks(self))
+		self.enableTools()
+
 	# ToolSecundary
 	# New Buttons
 
@@ -101,6 +114,10 @@ class Main(QMainWindow):
 
 	def newTipster(self):
 		self.setCentralWidget(NewTipster(self))
+		self.enableTools()
+
+	def newBank(self):
+		self.setCentralWidget(NewBank(self))
 		self.enableTools()
 
 	# Edit Buttons
@@ -136,10 +153,13 @@ class Main(QMainWindow):
 
 	#Auxiliary Functions
 
-	def enableTools(self):
-		self.toolSecondary.setVisible(True)
-		self.aEdit.setEnabled(False)
-		self.aRemove.setEnabled(False)
+	def enableTools(self, type = None):
+		if not type:
+			self.toolSecondary.setVisible(True)
+			self.aEdit.setEnabled(False)
+			self.aRemove.setEnabled(False)
+		elif type is "stats":
+			self.toolSecondary.setVisible(False)
 
 	def enableActions(self):
 		self.aEdit.setEnabled(True)

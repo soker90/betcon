@@ -9,6 +9,7 @@ from locale import *
 
 sys.path.append("./lib")
 from bbdd import Bbdd
+from func_aux import str_to_float
 
 
 class EditBet(QWidget):
@@ -164,8 +165,8 @@ class EditBet(QWidget):
 
 		# txtProfit
 		profit = bd.getValue(self.id, "bet", "profit")
-		print(profit)
-		self.txtProfit.setValue(atof(profit))
+		profit = str_to_float(profit)
+		self.txtProfit.setValue(profit)
 
 		bd.close()
 
@@ -249,7 +250,7 @@ class EditBet(QWidget):
 		# cmbResult
 		data.append(self.cmbResult.currentText())
 
-		data.append("")
+		data.append(self.txtProfit.text())
 		data.append(self.txtBet.text())
 		data.append(self.txtQuota.text())
 

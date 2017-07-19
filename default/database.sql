@@ -112,3 +112,15 @@ CREATE TABLE tipster
 
 INSERT INTO tipster(name) VALUES ('');
 
+CREATE TABLE bank
+(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name VARCHAR(30),
+    bank REAL
+);
+
+INSERT INTO bank (name, bank) VALUES ('CC', 0.0);
+INSERT INTO bank (name, bank) VALUES ('Paypal', 0.0);
+INSERT INTO bank (name, bank) VALUES ('Skrill', 0.0);
+
+

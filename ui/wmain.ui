@@ -54,8 +54,21 @@
     <property name="title">
      <string>Archivo</string>
     </property>
+    <addaction name="aClose"/>
+   </widget>
+   <widget class="QMenu" name="menuNuevo">
+    <property name="title">
+     <string>Nuevo</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuAyuda">
+    <property name="title">
+     <string>Ayuda</string>
+    </property>
    </widget>
    <addaction name="menuArchivo"/>
+   <addaction name="menuNuevo"/>
+   <addaction name="menuAyuda"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QToolBar" name="toolPrimary">
@@ -69,13 +82,15 @@
     <bool>false</bool>
    </attribute>
    <addaction name="aInicio"/>
+   <addaction name="aBank"/>
+   <addaction name="aStat"/>
+   <addaction name="separator"/>
    <addaction name="aRegion"/>
    <addaction name="aCompetition"/>
    <addaction name="aSport"/>
    <addaction name="aBookie"/>
    <addaction name="aMarket"/>
    <addaction name="aTipster"/>
-   <addaction name="actionEstadisticas"/>
   </widget>
   <widget class="QToolBar" name="toolSecondary">
    <property name="windowTitle">
@@ -110,7 +125,7 @@
     <string>Ctrl+C</string>
    </property>
   </action>
-  <action name="actionEstadisticas">
+  <action name="aStat">
    <property name="text">
     <string>Estadisticas</string>
    </property>
@@ -177,6 +192,19 @@
    </property>
    <property name="shortcut">
     <string>Del</string>
+   </property>
+  </action>
+  <action name="aBank">
+   <property name="text">
+    <string>Bank</string>
+   </property>
+  </action>
+  <action name="aClose">
+   <property name="text">
+    <string>Cerrar</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
    </property>
   </action>
  </widget>
