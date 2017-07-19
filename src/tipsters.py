@@ -12,6 +12,7 @@ class Tipsters(QWidget):
         uic.loadUi("../ui/tipsters.ui", self)
         self.mainWindows = mainWindows
         mainWindows.aNew.triggered.connect(mainWindows.newTipster)
+        self.mainWindows.setWindowTitle("Tipsters | Betcon")
         self.treeMain.header().hideSection(1)
         self.initTree()
 

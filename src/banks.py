@@ -9,3 +9,4 @@ class Banks(QWidget):
         uic.loadUi("../ui/banks.ui", self)
         self.mainWindows = mainWindows
         mainWindows.aNew.triggered.connect(mainWindows.newBank)
+        self.mainWindows.setWindowTitle("Bank | Betcon")

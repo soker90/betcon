@@ -12,6 +12,7 @@ class Markets(QWidget):
         uic.loadUi("../ui/markets.ui", self)
         self.mainWindows = mainWindows
         mainWindows.aNew.triggered.connect(mainWindows.newMarket)
+        self.mainWindows.setWindowTitle("Mercados | Betcon")
         self.treeMain.header().hideSection(1)
         self.initTree()
 

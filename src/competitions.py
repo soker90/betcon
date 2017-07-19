@@ -13,6 +13,7 @@ class Competitions(QWidget):
 		self.mainWindows = mainWindows
 		self.treeMain.header().hideSection(1)
 		mainWindows.aNew.triggered.connect(mainWindows.newCompetition)
+		self.mainWindows.setWindowTitle("Competiciones | Betcon")
 		self.initTree()
 		self.treeMain.itemSelectionChanged.connect(self.changeItem)
 		self.mainWindows.aEdit.triggered.connect(self.editItem)

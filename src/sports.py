@@ -12,6 +12,7 @@ class Sports(QWidget):
         uic.loadUi("../ui/sports.ui", self)
         self.mainWindows = mainWindows
         mainWindows.aNew.triggered.connect(mainWindows.newSport)
+        self.mainWindows.setWindowTitle("Deportes | Betcon")
         self.treeMain.header().hideSection(1)
         self.initTree()
 
