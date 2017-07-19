@@ -1,9 +1,10 @@
 import sys
 from PyQt5.QtWidgets import QMessageBox, QWidget
 from PyQt5 import uic
-sys.path.append("./lib")
-from bbdd import Bbdd
+
 from bookies import Bookies
+sys.path.append("./lib")
+from bookie import Bookie
 
 class NewBookie(QWidget):
     def __init__(self, mainWindows):
@@ -17,20 +18,20 @@ class NewBookie(QWidget):
 
     def close(self):
             self.mainWindows.setCentralWidget(Bookies(self.mainWindows))
-            #self.mainWindows.aApuesta.setEnabled(True)
 
     def cancel(self):
         self.close()
 
     def accept(self):
-        data = [self.txtName.text()]
-        columns = ["name"]
 
-        bbdd = Bbdd()
-        bbdd.insert(columns, data, "bookie")
-        bbdd.close()
+        bookie = Bookie()
+        bookie.setAll(self.txtName.text())
+        err = bookie.insert()
 
-        QMessageBox.information(self, "Añadida", "Nueva casa añadida.")
+        if err == 0:
+            QMessageBox.information(self, "Añadida", "Nueva casa añadida.")
+        else:
+            QMessageBox.critical(self, "Error", str(err))
 
         self.close()
 

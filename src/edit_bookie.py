@@ -2,8 +2,8 @@ import sys
 from PyQt5.QtWidgets import QMessageBox, QWidget
 from PyQt5 import uic
 sys.path.append("./lib")
-from bbdd import Bbdd
 from bookies import Bookies
+from bookie import Bookie
 
 class EditBookie(QWidget):
     def __init__(self, mainWindows, id):
@@ -15,14 +15,13 @@ class EditBookie(QWidget):
         self.mainWindows.setWindowTitle("Modificar Casa | Betcon")
         self.txtName.returnPressed.connect(self.btnAccept.click)
 
-        self.id = id
+        self.item = Bookie()
+        self.item.setId(id)
+
         self.initData()
 
     def initData(self):
-        bd = Bbdd()
-
-        name = bd.getValue(self.id, "bookie")
-        self.txtName.setText(name)
+        self.txtName.setText(self.item.name)
 
     def close(self):
             self.mainWindows.setCentralWidget(Bookies(self.mainWindows))
@@ -31,14 +30,13 @@ class EditBookie(QWidget):
         self.close()
 
     def accept(self):
-        data = [self.txtName.text()]
-        columns = ["name"]
+        self.item.setName(self.txtName.text())
+        err = self.item.update()
 
-        bbdd = Bbdd()
-        bbdd.update(columns, data, "bookie", self.id)
-        bbdd.close()
-
-        QMessageBox.information(self, "Actualizada", "Casa actualizada.")
+        if err == 0:
+            QMessageBox.information(self, "Actualizada", "Casa actualizada.")
+        else:
+            QMessageBox.critical(self, "Error", str(err))
 
         self.close()
 

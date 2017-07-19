@@ -2,10 +2,10 @@ import sys
 from PyQt5.QtWidgets import QWidget, QTreeWidgetItem, QMessageBox
 from PyQt5.QtGui import QBrush
 from PyQt5.QtCore import Qt
-
-
+from PyQt5 import uic
 sys.path.append("./lib")
 from bbdd import Bbdd
+from func_aux import str_to_float
 
 
 class Bets(QWidget):
@@ -49,9 +49,18 @@ class Bets(QWidget):
             quota = i[16]
             item = QTreeWidgetItem([str(index), str(id), str(date), str(sport), str(competition), str(region), player1,
                                     player2, pick, bookie, market, tipster, stake, one, bet, quota, result, profit])
+
+            profit = str_to_float(profit)
             if profit < 0:
-                for i in range(18):
-                    item.setBackground(i, QBrush(Qt.red))
+                for j in range(18):
+                    item.setBackground(j, QBrush(Qt.red))
+            elif profit > 0:
+                for j in range(18):
+                    item.setBackground(j, QBrush(Qt.green))
+            else:
+                for j in range(18):
+                    item.setBackground(j, QBrush(Qt.blue))
+
             items.append(item)
 
         self.treeMain.addTopLevelItems(items)

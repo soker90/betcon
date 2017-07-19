@@ -25,8 +25,13 @@ class Bbdd:
 			columns = str(tuple(columns))
 		query = "INSERT INTO " + table + columns + " VALUES(%s);" % aux
 
-		self.cursor.execute(query, values)
-		self.bd.commit()
+		try:
+			self.cursor.execute(query, values)
+			self.bd.commit()
+		except Exception as e:
+			print("Error insert BBDD: {0}".format(e))
+			return -1
+		return 0
 
 	def update(self, columns, values, table, id):
 
@@ -36,17 +41,24 @@ class Bbdd:
 
 		sentence = sentence[:-2]
 
-
 		query = "UPDATE " + table + " SET " + sentence + " WHERE id=" + id + ";"
 
-		print(query)
-
-		self.cursor.execute(query)
-		self.bd.commit()
+		try:
+			self.cursor.execute(query)
+			self.bd.commit()
+		except Exception as e:
+			print("Error update BBDD: {0}".format(e))
+			return -1
+		return 0
 
 	def delete(self, table, id):
-		self.cursor.execute("DELETE FROM {} WHERE id = ?;".format(table), (id,))
-		self.bd.commit()
+		try:
+			self.cursor.execute("DELETE FROM {} WHERE id = ?;".format(table), (id,))
+			self.bd.commit()
+		except Exception as e:
+			print("Error delete BBDD: {0}".format(e))
+			return -1
+		return 0
 
 	def select(self, table, order_by=None, where=None):
 		query = "SELECT * FROM " + table
@@ -54,7 +66,7 @@ class Bbdd:
 			query += " WHERE " + where
 		if order_by:
 			query += " order by " + order_by
-		print(query)
+
 		self.cursor.execute(query)
 		data = self.cursor.fetchall()
 

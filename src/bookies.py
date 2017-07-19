@@ -3,7 +3,7 @@ from PyQt5.QtWidgets import QMessageBox, QWidget, QTreeWidgetItem
 from PyQt5 import uic
 
 sys.path.append("./lib")
-from bbdd import Bbdd
+from bookie import Bookie
 
 
 class Bookies(QWidget):
@@ -18,29 +18,23 @@ class Bookies(QWidget):
         self.mainWindows.aEdit.triggered.connect(self.editItem)
         self.mainWindows.aRemove.triggered.connect(self.deleteItem)
 
-
         self.itemSelected = -1
 
     def initTree(self):
-        bd = Bbdd()
-        data = bd.select("bookie", "name")
+        data = Bookie.selectAll()
 
         index = 0
         items = []
         for i in data:
             index += 1
-            id = i[0]
-            name = i[1]
-            item = QTreeWidgetItem([str(index), str(id), name])
+            item = QTreeWidgetItem([str(index), str(i.id), i.name])
             items.append(item)
 
         self.treeMain.addTopLevelItems(items)
 
-        bd.close()
 
     def changeItem(self):
         self.itemSelected = self.treeMain.currentItem().text(1)
-        print(self.itemSelected)
         self.mainWindows.enableActions() if int(self.itemSelected) > 7 else self.mainWindows.enableTools()
 
     def editItem(self):
@@ -50,8 +44,10 @@ class Bookies(QWidget):
         resultado = QMessageBox.question(self, "Eliminar", "¿Estas seguro que desas eliminarlo?",
                                          QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
         if resultado == QMessageBox.Yes:
-            bd = Bbdd()
-            bd.delete("bookie", self.itemSelected)
+            err = Bookie.delete(self.itemSelected)
+            if err != 0:
+                QMessageBox.critical(self, "Error", "Se ha producido un error al borrar la casa")
+
             self.mainWindows.setCentralWidget(Bookies(self.mainWindows))
             self.mainWindows.enableTools()
 
