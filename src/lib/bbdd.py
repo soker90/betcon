@@ -60,13 +60,22 @@ class Bbdd:
 			return -1
 		return 0
 
-	def select(self, table, order_by=None, where=None):
-		query = "SELECT * FROM " + table
+	def select(self, table, order_by=None, where=None, select=None):
+		if not select:
+			select = "*"
+
+		query = "SELECT " + select + " FROM " + table
 		if where:
 			query += " WHERE " + where
 		if order_by:
 			query += " order by " + order_by
 
+		self.cursor.execute(query)
+		data = self.cursor.fetchall()
+
+		return data
+
+	def executeQuery(self, query):
 		self.cursor.execute(query)
 		data = self.cursor.fetchall()
 
@@ -108,4 +117,26 @@ class Bbdd:
 	def close(self):
 		self.cursor.close()
 		self.bd.close()
+
+
+	# Static
+
+	@staticmethod
+	def getYearMonth(table):
+		years = {}
+
+		bd = Bbdd()
+		datos = bd.select(table, "date DESC", None, "strftime('%Y', date), strftime('%m', date)")
+		bd.close()
+
+		for i in datos:
+			if i[0] in years:
+				if i[1] not in years[i[0]]:
+					years[i[0]].append(i[1])
+			else:
+				years[i[0]] = [i[1]]
+
+		return years
+
+
 

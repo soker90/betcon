@@ -60,11 +60,20 @@
     <property name="title">
      <string>Nuevo</string>
     </property>
+    <addaction name="actionApuesta"/>
+    <addaction name="actionMovimiento"/>
+    <addaction name="actionRegi_n"/>
+    <addaction name="actionCompetici_n"/>
+    <addaction name="actionDeporte"/>
+    <addaction name="actionCasa"/>
+    <addaction name="actionMercado"/>
+    <addaction name="actionTipster"/>
    </widget>
    <widget class="QMenu" name="menuAyuda">
     <property name="title">
      <string>Ayuda</string>
     </property>
+    <addaction name="actionAcerca_de"/>
    </widget>
    <addaction name="menuArchivo"/>
    <addaction name="menuNuevo"/>
@@ -105,6 +114,24 @@
    <addaction name="aNew"/>
    <addaction name="aEdit"/>
    <addaction name="aRemove"/>
+  </widget>
+  <widget class="QToolBar" name="toolStat">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="aStatsGeneral"/>
+   <addaction name="aStatsSport"/>
+   <addaction name="aStatsTipster"/>
+   <addaction name="aStatsBookie"/>
+   <addaction name="aStatsRegion"/>
+   <addaction name="aStatsMarket"/>
+   <addaction name="aStatsStake"/>
   </widget>
   <action name="aNew">
    <property name="text">
@@ -205,6 +232,89 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="aStatsGeneral">
+   <property name="text">
+    <string>General</string>
+   </property>
+  </action>
+  <action name="aStatsSport">
+   <property name="text">
+    <string>Deportes</string>
+   </property>
+  </action>
+  <action name="aStatsTipster">
+   <property name="text">
+    <string>Tipster</string>
+   </property>
+   <property name="toolTip">
+    <string>Tipsters</string>
+   </property>
+  </action>
+  <action name="aStatsBookie">
+   <property name="text">
+    <string>Casas</string>
+   </property>
+  </action>
+  <action name="aStatsRegion">
+   <property name="text">
+    <string>Regiones</string>
+   </property>
+  </action>
+  <action name="aStatsMarket">
+   <property name="text">
+    <string>Mercados</string>
+   </property>
+  </action>
+  <action name="aStatsStake">
+   <property name="text">
+    <string>Stake</string>
+   </property>
+  </action>
+  <action name="actionApuesta">
+   <property name="text">
+    <string>Apuesta</string>
+   </property>
+  </action>
+  <action name="actionMovimiento">
+   <property name="text">
+    <string>Movimiento</string>
+   </property>
+  </action>
+  <action name="actionRegi_n">
+   <property name="text">
+    <string>Región</string>
+   </property>
+  </action>
+  <action name="actionCompetici_n">
+   <property name="text">
+    <string>Competición</string>
+   </property>
+  </action>
+  <action name="actionDeporte">
+   <property name="text">
+    <string>Deporte</string>
+   </property>
+  </action>
+  <action name="actionCasa">
+   <property name="text">
+    <string>Casa</string>
+   </property>
+  </action>
+  <action name="actionMercado">
+   <property name="text">
+    <string>Mercado</string>
+   </property>
+  </action>
+  <action name="actionTipster">
+   <property name="text">
+    <string>Tipster</string>
+   </property>
+  </action>
+  <action name="actionAcerca_de">
+   <property name="text">
+    <string>Acerca de</string>
    </property>
   </action>
  </widget>

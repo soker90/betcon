@@ -5,7 +5,6 @@ from PyQt5.QtCore import Qt
 from bets import Bets
 from new_bet import NewBet
 sys.path.append("./lib")
-from bbdd import Bbdd
 from regions import Regions
 from new_region import NewRegion
 from competitions import Competitions
@@ -25,6 +24,12 @@ from edit_tipster import EditTipster
 from stats import Stats
 from banks import Banks
 from new_bank import NewBank
+from stats_tipster import StatsTipster
+from stats_bookie import StatsBookie
+from stats_market import StatsMarket
+from stats_region import StatsRegion
+from stats_sport import StatsSport
+from stats_stake import StatsStake
 
 
 class Main(QMainWindow):
@@ -44,6 +49,14 @@ class Main(QMainWindow):
 		self.aTipster.triggered.connect(self.tipsters)
 		self.aStat.triggered.connect(self.stats)
 		self.aBank.triggered.connect(self.banks)
+
+		self.aStatsGeneral.triggered.connect(self.stats)
+		self.aStatsTipster.triggered.connect(self.statsTipster)
+		self.aStatsBookie.triggered.connect(self.statsBookie)
+		self.aStatsMarket.triggered.connect(self.statsMarket)
+		self.aStatsRegion.triggered.connect(self.statsRegion)
+		self.aStatsSport.triggered.connect(self.statsSport)
+		self.aStatsStake.triggered.connect(self.statsStake)
 
 		self.setCentralWidget(Bets(self))
 
@@ -150,16 +163,39 @@ class Main(QMainWindow):
 		self.setCentralWidget(EditTipster(self, id))
 		self.enableTools()
 
+	# Stats
+
+	def statsTipster(self):
+		self.setCentralWidget(StatsTipster(self))
+
+	def statsBookie(self):
+		self.setCentralWidget(StatsBookie(self))
+
+	def statsMarket(self):
+		self.setCentralWidget(StatsMarket(self))
+
+	def statsRegion(self):
+		self.setCentralWidget(StatsRegion(self))
+
+	def statsSport(self):
+		self.setCentralWidget(StatsSport(self))
+
+	def statsStake(self):
+		self.setCentralWidget(StatsStake(self))
+
+
 
 	#Auxiliary Functions
 
-	def enableTools(self, type = None):
+	def enableTools(self, type=None):
 		if not type:
 			self.toolSecondary.setVisible(True)
+			self.toolStat.setVisible(False)
 			self.aEdit.setEnabled(False)
 			self.aRemove.setEnabled(False)
 		elif type is "stats":
 			self.toolSecondary.setVisible(False)
+			self.toolStat.setVisible(True)
 
 	def enableActions(self):
 		self.aEdit.setEnabled(True)

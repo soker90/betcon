@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1052</width>
-    <height>754</height>
+    <width>1043</width>
+    <height>676</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -26,7 +26,7 @@
         </widget>
        </item>
        <item row="0" column="1">
-        <widget class="QComboBox" name="cmbYear"/>
+        <widget class="QComboBox" name="comboBox"/>
        </item>
       </layout>
      </item>
@@ -40,7 +40,7 @@
         </widget>
        </item>
        <item row="0" column="1">
-        <widget class="QComboBox" name="cmbMonth"/>
+        <widget class="QComboBox" name="comboBox_2"/>
        </item>
       </layout>
      </item>
@@ -54,10 +54,10 @@
     </widget>
    </item>
    <item>
-    <widget class="QTreeWidget" name="treeMonth">
+    <widget class="QTreeWidget" name="treeWidget">
      <column>
       <property name="text">
-       <string>Tipster</string>
+       <string/>
       </property>
      </column>
      <column>
@@ -105,16 +105,10 @@
     </widget>
    </item>
    <item>
-    <widget class="QTreeWidget" name="treeTotal">
-     <property name="selectionMode">
-      <enum>QAbstractItemView::SingleSelection</enum>
-     </property>
-     <property name="sortingEnabled">
-      <bool>true</bool>
-     </property>
+    <widget class="QTreeWidget" name="treeWidget_2">
      <column>
       <property name="text">
-       <string>Tipster</string>
+       <string/>
       </property>
      </column>
      <column>
