@@ -5,6 +5,8 @@ from PyQt5 import uic
 from PyQt5.QtCore import QDateTime, QVariant
 from bets import Bets
 from decimal import Decimal
+from func_aux import str_to_float
+
 
 sys.path.append("./lib")
 from bbdd import Bbdd
@@ -171,8 +173,8 @@ class NewBet(QWidget):
 		# cmbResult
 		data.append(self.cmbResult.currentText())
 
-		data.append(self.txtProfit.text())
-		data.append(self.txtBet.text())
+		data.append(str(str_to_float(self.txtProfit.text())))
+		data.append(str(str_to_float(self.txtBet.text())))
 		data.append(self.txtQuota.text())
 
 		columns = ["date", "sport", "competition", "region", "player1", "player2", "pick", "bookie", "market",

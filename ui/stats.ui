@@ -39,7 +39,7 @@
         </widget>
        </item>
        <item row="0" column="1">
-        <widget class="QLineEdit" name="lineEdit">
+        <widget class="QLineEdit" name="txtApostado">
          <property name="readOnly">
           <bool>true</bool>
          </property>
@@ -53,7 +53,7 @@
         </widget>
        </item>
        <item row="1" column="1">
-        <widget class="QLineEdit" name="lineEdit_3">
+        <widget class="QLineEdit" name="txtGanancias">
          <property name="readOnly">
           <bool>true</bool>
          </property>
@@ -67,7 +67,7 @@
         </widget>
        </item>
        <item row="2" column="1">
-        <widget class="QLineEdit" name="lineEdit_4">
+        <widget class="QLineEdit" name="txtPerdidas">
          <property name="readOnly">
           <bool>true</bool>
          </property>
@@ -81,7 +81,7 @@
         </widget>
        </item>
        <item row="3" column="1">
-        <widget class="QLineEdit" name="lineEdit_5">
+        <widget class="QLineEdit" name="txtBeneficio">
          <property name="readOnly">
           <bool>true</bool>
          </property>
@@ -95,7 +95,7 @@
         </widget>
        </item>
        <item row="4" column="1">
-        <widget class="QLineEdit" name="lineEdit_6">
+        <widget class="QLineEdit" name="txtPendiente">
          <property name="readOnly">
           <bool>true</bool>
          </property>
@@ -109,14 +109,14 @@
         </widget>
        </item>
        <item row="5" column="1">
-        <widget class="QLineEdit" name="lineEdit_7">
+        <widget class="QLineEdit" name="txtYield">
          <property name="readOnly">
           <bool>true</bool>
          </property>
         </widget>
        </item>
        <item row="6" column="1">
-        <widget class="QLineEdit" name="lineEdit_13"/>
+        <widget class="QLineEdit" name="txtCuota"/>
        </item>
        <item row="6" column="0">
         <widget class="QLabel" name="label_19">
@@ -137,7 +137,7 @@
         </widget>
        </item>
        <item row="0" column="1">
-        <widget class="QLineEdit" name="lineEdit_2">
+        <widget class="QLineEdit" name="txtApuestas">
          <property name="readOnly">
           <bool>true</bool>
          </property>
@@ -151,7 +151,7 @@
         </widget>
        </item>
        <item row="1" column="1">
-        <widget class="QLineEdit" name="lineEdit_8">
+        <widget class="QLineEdit" name="txtAciertos">
          <property name="readOnly">
           <bool>true</bool>
          </property>
@@ -165,7 +165,7 @@
         </widget>
        </item>
        <item row="2" column="1">
-        <widget class="QLineEdit" name="lineEdit_9">
+        <widget class="QLineEdit" name="txtFallos">
          <property name="readOnly">
           <bool>true</bool>
          </property>
@@ -179,7 +179,7 @@
         </widget>
        </item>
        <item row="3" column="1">
-        <widget class="QLineEdit" name="lineEdit_10">
+        <widget class="QLineEdit" name="txtNulos">
          <property name="readOnly">
           <bool>true</bool>
          </property>
@@ -193,7 +193,7 @@
         </widget>
        </item>
        <item row="4" column="1">
-        <widget class="QLineEdit" name="lineEdit_11">
+        <widget class="QLineEdit" name="txtAcierto">
          <property name="readOnly">
           <bool>true</bool>
          </property>
@@ -207,7 +207,7 @@
         </widget>
        </item>
        <item row="5" column="1">
-        <widget class="QLineEdit" name="lineEdit_12">
+        <widget class="QLineEdit" name="txtApuestaMedia">
          <property name="readOnly">
           <bool>true</bool>
          </property>

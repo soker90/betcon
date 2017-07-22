@@ -157,7 +157,7 @@ class EditBet(QWidget):
 
 		# txtBet
 		bet = bd.getValue(self.id, "bet", "bet")
-		self.txtBet.setValue(atof(bet))
+		self.txtBet.setValue(bet)
 
 		# txtQuota
 		quota = bd.getValue(self.id, "bet", "quota")
@@ -165,7 +165,6 @@ class EditBet(QWidget):
 
 		# txtProfit
 		profit = bd.getValue(self.id, "bet", "profit")
-		profit = str_to_float(profit)
 		self.txtProfit.setValue(profit)
 
 		bd.close()
@@ -250,14 +249,14 @@ class EditBet(QWidget):
 		# cmbResult
 		data.append(self.cmbResult.currentText())
 
-		data.append(self.txtProfit.text())
-		data.append(self.txtBet.text())
+		data.append(str_to_float(self.txtProfit.text()))
+		data.append(str_to_float(self.txtBet.text()))
 		data.append(self.txtQuota.text())
 
 		columns = ["date", "sport", "competition", "region", "player1", "player2", "pick", "bookie", "market",
 		           "tipster", "stake", "one", "result", "profit", "bet", "quota"]
 
-		bbdd.update(columns, data, "bet",self.id)
+		bbdd.update(columns, data, "bet", self.id)
 		bbdd.close()
 
 		QMessageBox.information(self, "Modificada", "Apuesta modificada.")

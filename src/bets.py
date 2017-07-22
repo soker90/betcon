@@ -45,8 +45,8 @@ class Bets(QWidget):
 			stake = i[11]
 			one = i[12]
 			result = i[13]
-			profit = i[14]
-			bet = i[15]
+			profit = str(i[14])
+			bet = str(i[15])
 			quota = i[16]
 
 			item = QTreeWidgetItem([str(index), str(id), str(date), str(sport), str(competition), str(region), player1,

@@ -31,6 +31,7 @@ class StatsStake(QWidget):
 
         items = []
         for i in data:
+            print(i)
             item = QTreeWidgetItem(i)
             item = paint_row(item, i[4])
             items.append(item)
