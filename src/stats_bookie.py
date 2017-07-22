@@ -49,13 +49,13 @@ class StatsBookie(QWidget):
 		sMonth = self.cmbMonth.currentText()
 		month = key_from_value(self.months, sMonth)
 
-		data = LibStats.getTipster(year, month)
+		data = LibStats.getBookie(year, month)
 		self.treeMonth.clear()
 
 		items = []
 		for i in data:
 			item = QTreeWidgetItem(i)
-			item = paint_row(item, i[5])
+			item = paint_row(item, i[4])
 			items.append(item)
 		self.treeMonth.addTopLevelItems(items)
 

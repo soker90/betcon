@@ -63,7 +63,6 @@ class StatsTipster(QWidget):
         self.treeMonth.addTopLevelItems(items)
 
 
-
     def getMonths(self, year):
         sMonths =[]
         for i in self.years[year]:
