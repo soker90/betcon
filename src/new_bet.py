@@ -22,7 +22,7 @@ class NewBet(QWidget):
 		self.btnCancel.clicked.connect(self.cancel)
 		self.initData()
 		self.cmbRegion.activated.connect(self.setCompetition)
-		self.cmbSport.activated.connect(self.setCompetition)
+		self.cmbSport.activated.connect(self.setRegion)
 		self.cmbResult.activated.connect(self.updateProfit)
 		self.txtQuota.valueChanged.connect(self.updateProfit)
 		self.txtBet.valueChanged.connect(self.updateProfit)
@@ -48,18 +48,6 @@ class NewBet(QWidget):
 			name = i[1]
 			self.cmbSport.addItem(name)
 			self.sportIndexToId[index] = id
-			index += 1
-
-		# cmbRegion
-		data = bd.select("region", "name")
-
-		self.regionIndexToId = {}
-		index = 0
-		for i in data:
-			id = i[0]
-			name = i[1]
-			self.cmbRegion.addItem(name)
-			self.regionIndexToId[index] = id
 			index += 1
 
 		# cmbBookie
@@ -101,7 +89,7 @@ class NewBet(QWidget):
 		bd.close()
 
 		# cmbCompetition
-		self.setCompetition()
+		self.setRegion()
 
 	def setCompetition(self):
 		self.cmbCompetition.clear()
@@ -124,6 +112,50 @@ class NewBet(QWidget):
 			index += 1
 
 		bd.close()
+
+	def setRegion(self):
+		self.btnAccept.setDisabled(False)
+		self.cmbRegion.clear()
+		bd = Bbdd()
+
+		idSport = self.sportIndexToId.get(self.cmbSport.currentIndex())
+
+		where = " sport=" + str(idSport)
+
+		data = bd.select("competition", None, where, "region")
+
+		if len(data) > 0:
+			sData = "("
+			j= 0
+			for i in data:
+				if j == len(data)-1:
+					sData += str(i[0]) + ")"
+				else:
+					sData += str(i[0]) + ", "
+				j+=1
+
+			where = " id in "+sData
+			dataRegion = bd.select("region", "name", where)
+
+			if len(dataRegion) < 1:
+				print("222")
+				self.btnAccept.setDisabled(True)
+				bd.close()
+			else:
+				self.regionIndexToId = {}
+				index = 0
+				for i in dataRegion:
+					id = i[0]
+					name = i[1]
+					self.cmbRegion.addItem(name)
+					self.regionIndexToId[index] = id
+					index += 1
+				bd.close()
+				self.setCompetition()
+
+		else:
+			self.btnAccept.setDisabled(True)
+			bd.close()
 
 	def close(self):
 		self.mainWindows.setCentralWidget(Bets(self.mainWindows))

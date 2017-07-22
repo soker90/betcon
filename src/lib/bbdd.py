@@ -72,7 +72,6 @@ class Bbdd:
 
 		self.cursor.execute(query)
 		data = self.cursor.fetchall()
-
 		return data
 
 	def executeQuery(self, query):
