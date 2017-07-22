@@ -21,6 +21,9 @@ from edit_bet import EditBet
 from edit_bookie import EditBookie
 from edit_competition import EditCompetition
 from edit_tipster import EditTipster
+from edit_market import EditMarket
+from edit_region import EditRegion
+from edit_sport import EditSport
 from stats import Stats
 from banks import Banks
 from new_bank import NewBank
