@@ -33,6 +33,7 @@ class StatsSport(QWidget):
 		for i in data:
 			item = QTreeWidgetItem(i)
 			item = paint_row(item, i[4])
+
 			items.append(item)
 		self.treeTotal.addTopLevelItems(items)
 

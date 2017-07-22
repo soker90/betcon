@@ -62,11 +62,6 @@
      </column>
      <column>
       <property name="text">
-       <string>Deporte</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
        <string>Apuestas</string>
       </property>
      </column>
@@ -83,11 +78,6 @@
      <column>
       <property name="text">
        <string>Beneficios</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Stake</string>
       </property>
      </column>
      <column>
@@ -113,11 +103,6 @@
      </column>
      <column>
       <property name="text">
-       <string>Deporte</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
        <string>Apuestas</string>
       </property>
      </column>
@@ -134,11 +119,6 @@
      <column>
       <property name="text">
        <string>Beneficios</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Stake</string>
       </property>
      </column>
      <column>

@@ -44,10 +44,11 @@ class Bets(QWidget):
 			tipster = bd.getValue(i[10], "tipster")
 			stake = i[11]
 			one = i[12]
-			profit = i[13]
-			bet = i[14]
-			quota = i[15]
-			result = i[16]
+			result = i[13]
+			profit = i[14]
+			bet = i[15]
+			quota = i[16]
+
 			item = QTreeWidgetItem([str(index), str(id), str(date), str(sport), str(competition), str(region), player1,
 									player2, pick, bookie, market, tipster, stake, one, bet, quota, result, profit])
 

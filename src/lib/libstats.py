@@ -106,7 +106,7 @@ class LibStats:
 			      '("Acertada", "Medio Acertada") and b1.sport=bet.sport and b1.date LIKE "' + date + '%") as acierto, ' \
 			      '(SELECT count(*) from bet as b1 WHERE b1.result in ("Fallada", "Medio Fallada") and ' \
 			      'b1.sport=bet.sport and b1.date LIKE "' + date + '%") as fallo, (SELECT SUM(REPLACE(profit,",",".")) ' \
-			      'from bet as b1 WHERE b1.result <> "Pendiente" and b1.sport=bet.sport) as prof, count(*), ' \
+			      'from bet as b1 WHERE b1.result <> "Pendiente" and b1.sport=bet.sport and b1.date LIKE "' + date + '%") as prof, count(*), ' \
 			      'SUM(REPLACE(bet,",",".")), avg(stake), avg(quota) from bet, sport ' \
 			      'WHERE bet.sport=sport.id and bet.date LIKE "' + date + '%" GROUP BY bet.sport'
 		else:
@@ -135,6 +135,7 @@ class LibStats:
 			row.append(str(win) + "%")
 			row.append(str(i[5]))  # Money bet
 			row.append(str(i[3]))  # Profit
+
 			row.append(str(i[6]))  # Average Stake
 			row.append(str(i[7]))  # Average Quota
 			data.append(row)
@@ -229,6 +230,47 @@ class LibStats:
 			row.append(str(i[4]))  # Profit
 			row.append(str(i[7]))  # Average Stake
 			row.append(str(i[8]))  # Average Quota
+			data.append(row)
+
+		return data
+
+	@staticmethod
+	def getStake(year=None, month=None):
+		if year is not None:
+			date = str(year) + "-" + str(month)
+			sql = 'select bet.stake, (SELECT count(*) from bet as b1 WHERE b1.result in ' \
+			      '("Acertada", "Medio Acertada") and b1.stake=bet.stake and b1.date LIKE "' + date + '%") as acierto, ' \
+			      '(SELECT count(*) from bet as b1 WHERE b1.result in ("Fallada", "Medio Fallada") and ' \
+			      'b1.stake=bet.stake and b1.date LIKE "' + date + '%") as fallo, (SELECT SUM(REPLACE(profit,",",".")) ' \
+			      'from bet as b1 WHERE b1.result <> "Pendiente" and b1.stake=bet.stake and b1.date LIKE "' + date + '%") as prof, count(*), ' \
+			      'SUM(REPLACE(bet,",",".")), avg(quota) from bet WHERE bet.date LIKE "' + date + '%" GROUP BY bet.stake'
+		else:
+			sql = 'select bet.stake, (SELECT count(*) from bet as b1 WHERE b1.result in ("Acertada", "Medio Acertada")' \
+			      ' and b1.stake = bet.stake) as acierto, (SELECT count(*) from bet as b1 WHERE b1.result in ' \
+			      '("Fallada", "Medio Fallada") and b1.stake = bet.stake) as fallo, ' \
+			      '(SELECT SUM(REPLACE(profit,",",".")) from bet as b1 WHERE b1.result <> "Pendiente" and' \
+			      ' b1.stake = bet.stake) as prof, count(*), SUM(REPLACE(bet,",",".")), ' \
+			      'avg(quota) from bet GROUP BY bet.stake'
+
+		bd = Bbdd()
+		datasql = bd.executeQuery(sql)
+		bd.close()
+
+		data = []
+		for i in datasql:
+			row = []
+			row.append(i[0])  # Stake
+			row.append(str(i[4]))  # Number of bets
+			try:
+				win = i[1] / (i[1] + i[2])  # Percentage of win bet
+			except ZeroDivisionError:
+				win = 0
+			win = win * 100
+			win = round(win, 2)
+			row.append(str(win) + "%")
+			row.append(str(i[5]))  # Money bet
+			row.append(str(i[3]))  # Profit
+			row.append(str(i[6]))  # Average Quota
 			data.append(row)
 
 		return data
