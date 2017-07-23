@@ -256,7 +256,7 @@ class EditBet(QWidget):
 		columns = ["date", "sport", "competition", "region", "player1", "player2", "pick", "bookie", "market",
 		           "tipster", "stake", "one", "result", "profit", "bet", "quota"]
 
-		bbdd.update(columns, data, "bet", self.id)
+		bbdd.update(columns, data, "bet", "id="+self.id)
 		bbdd.close()
 
 		QMessageBox.information(self, "Modificada", "Apuesta modificada.")

@@ -33,7 +33,7 @@ class Bbdd:
 			return -1
 		return 0
 
-	def update(self, columns, values, table, id):
+	def update(self, columns, values, table, where=None):
 
 		sentence = " "
 		for i in range(len(columns)):
@@ -41,8 +41,7 @@ class Bbdd:
 
 		sentence = sentence[:-2]
 
-		query = "UPDATE " + table + " SET " + sentence + " WHERE id=" + id + ";"
-		print(query)
+		query = "UPDATE " + table + " SET " + sentence + " WHERE " + where + ";"
 		try:
 			self.cursor.execute(query)
 			self.bd.commit()
@@ -82,6 +81,16 @@ class Bbdd:
 
 	def count(self, table, where=None):
 		query = "SELECT count(*) FROM " + table
+		if where:
+			query += " WHERE " + where
+
+		self.cursor.execute(query)
+		data = self.cursor.fetchall()
+
+		return data[0][0]
+
+	def sum(self, table, field, where=None):
+		query = "SELECT sum(" + field + ") FROM " + table
 		if where:
 			query += " WHERE " + where
 

@@ -39,7 +39,7 @@ class Bookie:
 	def update(self):
 		if not self.isEmpty():
 			bd = Bbdd()
-			msg = bd.update(["name"], [self.name], "bookie", self.id)
+			msg = bd.update(["name"], [self.name], "bookie", "id="+self.id)
 			bd.close()
 			if msg != 0:
 				msg = "Se ha producido un error al actualizar la BBDD"
@@ -70,3 +70,10 @@ class Bookie:
 			msg = "Se ha producido un error al actualizar la BBDD"
 		return msg
 
+	@staticmethod
+	def sumAll(where=None):
+		bd = Bbdd()
+		data = bd.sum("movement", "money", where)
+
+		bd.close()
+		return data

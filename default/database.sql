@@ -119,8 +119,15 @@ CREATE TABLE bank
     bank REAL
 );
 
-INSERT INTO bank (name, bank) VALUES ('CC', 0.0);
-INSERT INTO bank (name, bank) VALUES ('Paypal', 0.0);
-INSERT INTO bank (name, bank) VALUES ('Skrill', 0.0);
+INSERT INTO bank (id, name, bank) VALUES (1, 'Banco', 0.0);
+INSERT INTO bank (id, name, bank) VALUES (2, 'Paypal', 0.0);
+INSERT INTO bank (id, name, bank) VALUES (3, 'Skrill', 0.0);
 
-
+CREATE TABLE movement
+(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    date DATE,
+    account INTEGER,
+    bookie INTEGER,
+    money REAL
+);

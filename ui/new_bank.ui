@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>856</width>
-    <height>521</height>
+    <width>770</width>
+    <height>459</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -25,6 +25,9 @@
          </property>
         </widget>
        </item>
+       <item row="0" column="1">
+        <widget class="QDateEdit" name="txtDate"/>
+       </item>
        <item row="1" column="0">
         <widget class="QLabel" name="label">
          <property name="text">
@@ -33,24 +36,10 @@
         </widget>
        </item>
        <item row="1" column="1">
-        <widget class="QComboBox" name="cmbRegion">
+        <widget class="QComboBox" name="cmbBookie">
          <property name="editable">
           <bool>false</bool>
          </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="QComboBox" name="cmbSport">
-         <item>
-          <property name="text">
-           <string>Ingreso en la casa</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Transferencia a la cuenta</string>
-          </property>
-         </item>
         </widget>
        </item>
        <item row="2" column="0">
@@ -60,7 +49,64 @@
          </property>
         </widget>
        </item>
+       <item row="2" column="1">
+        <widget class="QComboBox" name="cmbType">
+         <item>
+          <property name="text">
+           <string>Depósito en casa</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Retirada a cuenta</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>Cuenta</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QComboBox" name="cmbAccount">
+         <item>
+          <property name="text">
+           <string>Banco</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Paypal</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Skrill</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="label_4">
+         <property name="text">
+          <string>Importe</string>
+         </property>
+        </widget>
+       </item>
        <item row="4" column="1">
+        <widget class="QDoubleSpinBox" name="txtMoney">
+         <property name="decimals">
+          <number>3</number>
+         </property>
+         <property name="maximum">
+          <double>999999.989999999990687</double>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="1">
         <layout class="QGridLayout" name="gridLayout_2">
          <item row="2" column="3">
           <widget class="QPushButton" name="btnAccept">
@@ -131,35 +177,6 @@
           </spacer>
          </item>
         </layout>
-       </item>
-       <item row="0" column="1">
-        <widget class="QDateEdit" name="dateEdit"/>
-       </item>
-       <item row="3" column="0">
-        <widget class="QLabel" name="label_3">
-         <property name="text">
-          <string>Cuenta</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="1">
-        <widget class="QComboBox" name="comboBox">
-         <item>
-          <property name="text">
-           <string>Banco</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Paypal</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Skrill</string>
-          </property>
-         </item>
-        </widget>
        </item>
       </layout>
      </item>

@@ -137,7 +137,7 @@ class Main(QMainWindow):
 
 	def newBank(self):
 		self.setCentralWidget(NewBank(self))
-		self.enableTools()
+		self.enableTools("bank")
 
 	# Edit Buttons
 
@@ -209,8 +209,9 @@ class Main(QMainWindow):
 			if type is "bank":
 				self.toolBank.setVisible(True)
 
-	def enableActions(self):
-		self.aEdit.setEnabled(True)
+	def enableActions(self, edit=True):
+		if edit:
+			self.aEdit.setEnabled(True)
 		self.aRemove.setEnabled(True)
 
 

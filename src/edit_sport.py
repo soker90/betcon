@@ -37,7 +37,7 @@ class EditSport(QWidget):
 		columns = ["name"]
 
 		bbdd = Bbdd()
-		bbdd.update(columns, data, "sport", self.id)
+		bbdd.update(columns, data, "sport", "id="+self.id)
 		bbdd.close()
 
 		QMessageBox.information(self, "Actualizado", "Deporte actualizado.")

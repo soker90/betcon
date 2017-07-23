@@ -37,7 +37,7 @@ class EditTipster(QWidget):
         columns = ["name"]
 
         bbdd = Bbdd()
-        bbdd.update(columns, data, "tipster", self.id)
+        bbdd.update(columns, data, "tipster", "id="+self.id)
         bbdd.close()
 
         QMessageBox.information(self, "Actualizado", "Tipster actualizado.")
