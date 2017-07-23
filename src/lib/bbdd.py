@@ -42,7 +42,7 @@ class Bbdd:
 		sentence = sentence[:-2]
 
 		query = "UPDATE " + table + " SET " + sentence + " WHERE id=" + id + ";"
-
+		print(query)
 		try:
 			self.cursor.execute(query)
 			self.bd.commit()

@@ -133,6 +133,18 @@
    <addaction name="aStatsMarket"/>
    <addaction name="aStatsStake"/>
   </widget>
+  <widget class="QToolBar" name="toolBank">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="aAddMoney"/>
+  </widget>
   <action name="aNew">
    <property name="text">
     <string>Nueva</string>
@@ -315,6 +327,11 @@
   <action name="actionAcerca_de">
    <property name="text">
     <string>Acerca de</string>
+   </property>
+  </action>
+  <action name="aAddMoney">
+   <property name="text">
+    <string>Añadir/Retirar Fondos</string>
    </property>
   </action>
  </widget>

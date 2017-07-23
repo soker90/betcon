@@ -33,6 +33,7 @@ from stats_market import StatsMarket
 from stats_region import StatsRegion
 from stats_sport import StatsSport
 from stats_stake import StatsStake
+from add_money import AddMoney
 
 
 class Main(QMainWindow):
@@ -60,6 +61,8 @@ class Main(QMainWindow):
 		self.aStatsRegion.triggered.connect(self.statsRegion)
 		self.aStatsSport.triggered.connect(self.statsSport)
 		self.aStatsStake.triggered.connect(self.statsStake)
+
+		self.aAddMoney.triggered.connect(self.addMoney)
 
 		self.setCentralWidget(Bets(self))
 
@@ -99,7 +102,7 @@ class Main(QMainWindow):
 
 	def banks(self):
 		self.setCentralWidget(Banks(self))
-		self.enableTools()
+		self.enableTools("bank")
 
 	# ToolSecundary
 	# New Buttons
@@ -186,19 +189,25 @@ class Main(QMainWindow):
 	def statsStake(self):
 		self.setCentralWidget(StatsStake(self))
 
+	# Bank
 
+	def addMoney(self):
+		self.setCentralWidget(AddMoney(self))
 
 	#Auxiliary Functions
 
 	def enableTools(self, type=None):
-		if not type:
+		self.toolBank.setVisible(False)
+		if type is "stats":
+			self.toolSecondary.setVisible(False)
+			self.toolStat.setVisible(True)
+		else:
 			self.toolSecondary.setVisible(True)
 			self.toolStat.setVisible(False)
 			self.aEdit.setEnabled(False)
 			self.aRemove.setEnabled(False)
-		elif type is "stats":
-			self.toolSecondary.setVisible(False)
-			self.toolStat.setVisible(True)
+			if type is "bank":
+				self.toolBank.setVisible(True)
 
 	def enableActions(self):
 		self.aEdit.setEnabled(True)

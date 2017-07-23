@@ -128,35 +128,35 @@
         </widget>
        </item>
        <item row="0" column="1">
-        <widget class="QLineEdit" name="lineEdit_19">
+        <widget class="QLineEdit" name="txtBookie">
          <property name="readOnly">
           <bool>true</bool>
          </property>
         </widget>
        </item>
        <item row="1" column="1">
-        <widget class="QLineEdit" name="lineEdit_20">
+        <widget class="QLineEdit" name="txtCc">
          <property name="readOnly">
           <bool>true</bool>
          </property>
         </widget>
        </item>
        <item row="2" column="1">
-        <widget class="QLineEdit" name="lineEdit_21">
+        <widget class="QLineEdit" name="txtPaypal">
          <property name="readOnly">
           <bool>true</bool>
          </property>
         </widget>
        </item>
        <item row="3" column="1">
-        <widget class="QLineEdit" name="lineEdit_22">
+        <widget class="QLineEdit" name="txtSkrill">
          <property name="readOnly">
           <bool>true</bool>
          </property>
         </widget>
        </item>
        <item row="4" column="1">
-        <widget class="QLineEdit" name="lineEdit_23">
+        <widget class="QLineEdit" name="txtTotal">
          <property name="readOnly">
           <bool>true</bool>
          </property>
@@ -174,7 +174,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QTreeWidget" name="treeMain">
+    <widget class="QTreeWidget" name="treeBookie">
      <property name="enabled">
       <bool>true</bool>
      </property>
@@ -212,11 +212,6 @@
        <string>Bank</string>
       </property>
      </column>
-     <item>
-      <property name="text">
-       <string>ddd</string>
-      </property>
-     </item>
     </widget>
    </item>
    <item>
@@ -227,7 +222,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QTreeWidget" name="treeWidget">
+    <widget class="QTreeWidget" name="treeMovement">
      <attribute name="headerDefaultSectionSize">
       <number>200</number>
      </attribute>
