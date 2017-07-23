@@ -42,6 +42,7 @@ class Bookies(QWidget):
         self.mainWindows.editBookie(self.itemSelected)
 
     def deleteItem(self):
+        # TODO Eliminar apuestas y bank que dependan de las casas
         resultado = QMessageBox.question(self, "Eliminar", "¿Estas seguro que desas eliminarlo?",
                                          QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
         if resultado == QMessageBox.Yes:

@@ -148,7 +148,7 @@
      <item row="2" column="1">
       <widget class="QDoubleSpinBox" name="txtMoney">
        <property name="maximum">
-        <double>999999.989999999990687</double>
+        <double>999999999.990000009536743</double>
        </property>
       </widget>
      </item>

@@ -46,6 +46,7 @@ class Tipsters(QWidget):
         self.mainWindows.editTipster(self.itemSelected)
 
     def deleteItem(self):
+        # TODO Eliminar apuestas asociadas
         resultado = QMessageBox.question(self, "Eliminar", "¿Estas seguro que desas eliminarlo?",
                                          QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
         if resultado == QMessageBox.Yes:
