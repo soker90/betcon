@@ -1,5 +1,5 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox, QComboBox, QGridLayout, QAction
+from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox, QDialog, QGridLayout, QAction
 from PyQt5 import uic
 from PyQt5.QtCore import Qt
 from bets import Bets
@@ -39,6 +39,7 @@ from new_bonus import NewBonus
 from edit_bonus import EditBonus
 
 
+
 class Main(QMainWindow):
 	def __init__(self):
 		QMainWindow.__init__(self)
@@ -71,6 +72,7 @@ class Main(QMainWindow):
 
 		self.aAddMoney.triggered.connect(self.addMoney)
 		self.aClose.triggered.connect(self.close)
+		self.aAbout.triggered.connect(self.about)
 
 		self.setCentralWidget(Bets(self))
 
@@ -246,6 +248,16 @@ class Main(QMainWindow):
 			event.accept()
 		else:
 			event.ignore()
+
+
+	def about(self):
+		about = About()
+		about.exec_()
+
+class About(QDialog):
+	def __init__(self):
+		QDialog.__init__(self)
+		uic.loadUi("../ui/about.ui", self)
 
 
 app = QApplication(sys.argv)

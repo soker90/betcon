@@ -56,27 +56,13 @@
     </property>
     <addaction name="aClose"/>
    </widget>
-   <widget class="QMenu" name="menuNuevo">
-    <property name="title">
-     <string>Nuevo</string>
-    </property>
-    <addaction name="actionApuesta"/>
-    <addaction name="actionMovimiento"/>
-    <addaction name="actionRegi_n"/>
-    <addaction name="actionCompetici_n"/>
-    <addaction name="actionDeporte"/>
-    <addaction name="actionCasa"/>
-    <addaction name="actionMercado"/>
-    <addaction name="actionTipster"/>
-   </widget>
    <widget class="QMenu" name="menuAyuda">
     <property name="title">
      <string>Ayuda</string>
     </property>
-    <addaction name="actionAcerca_de"/>
+    <addaction name="aAbout"/>
    </widget>
    <addaction name="menuArchivo"/>
-   <addaction name="menuNuevo"/>
    <addaction name="menuAyuda"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -325,7 +311,7 @@
     <string>Tipster</string>
    </property>
   </action>
-  <action name="actionAcerca_de">
+  <action name="aAbout">
    <property name="text">
     <string>Acerca de</string>
    </property>
