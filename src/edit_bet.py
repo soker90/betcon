@@ -1,7 +1,6 @@
 import sys, datetime
 from PyQt5.QtWidgets import QLineEdit, QMessageBox, QWidget, QComboBox, QAction, QPushButton, QShortcut
 from PyQt5 import uic
-from PyQt5.QtCore import QDateTime, QVariant
 from bets import Bets
 from PyQt5.QtCore import QDateTime
 from decimal import Decimal

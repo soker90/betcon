@@ -77,3 +77,16 @@ class Bookie:
 
 		bd.close()
 		return data
+
+	@staticmethod
+	def sumBonus(where=None):
+		bd = Bbdd()
+		if where:
+			where = "free='True' and " + where
+		else:
+			where = "free='True' "
+
+		data = bd.sum("bonus", "money", where)
+
+		bd.close()
+		return data

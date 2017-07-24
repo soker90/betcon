@@ -52,14 +52,16 @@ class NewBonus(QWidget):
 		bbdd = Bbdd()
 
 		# dtDate
-		data.append(self.txtDate.dateTime().toPyDateTime())
+		data.append(self.txtDate.date().toPyDate())
 
 		# cmbBookie
 		idBookie = self.bookieIndexToId.get(self.cmbBookie.currentIndex())
 		data.append(idBookie)
 
 		data.append(str(str_to_float(self.txtMoney.text())))
-		data.append(self.chkFree.isChecked())
+
+		free = self.chkFree.isChecked()
+		data.append(str(bool(free)))
 
 		columns = ["date", "bookie", "money", "free"]
 

@@ -32,5 +32,11 @@ def key_from_value(dic, value):
 	key = list(dic.keys())[list(dic.values()).index(value)]
 	return key
 
+def str_to_bool(s):
+	if s == 'True':
+		return True
+	else:
+		return False
+
 
 

@@ -4,6 +4,7 @@ from PyQt5 import uic
 
 sys.path.append("./lib")
 from bbdd import Bbdd
+from func_aux import str_to_bool
 
 
 class Bonus(QWidget):
@@ -31,7 +32,7 @@ class Bonus(QWidget):
 			date = i[1]
 			bookie = bd.getValue(i[2], "bookie")
 			money = i[3]
-			free = "Sí" if i[4] else "No"
+			free = "Sí" if str_to_bool(i[4]) else "No"
 			item = QTreeWidgetItem([str(date), str(id), str(bookie), str(money), str(free)])
 			items.append(item)
 

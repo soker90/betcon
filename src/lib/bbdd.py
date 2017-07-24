@@ -96,8 +96,11 @@ class Bbdd:
 
 		self.cursor.execute(query)
 		data = self.cursor.fetchall()
+		sum = data[0][0]
+		if sum is None:
+			sum = 0.0
 
-		return data[0][0]
+		return sum
 
 	def getValue(self, id, table, field=None):
 		if not field:

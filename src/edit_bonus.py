@@ -1,10 +1,11 @@
 import sys
 from PyQt5.QtWidgets import QMessageBox, QWidget, QComboBox
 from PyQt5 import uic
+from PyQt5.QtCore import QDate
 sys.path.append("./lib")
 from bbdd import Bbdd
 from bonus import Bonus
-from func_aux import str_to_float
+from func_aux import str_to_float, str_to_bool
 
 class EditBonus(QWidget):
 	def __init__(self, mainWindows, id):
@@ -14,30 +15,38 @@ class EditBonus(QWidget):
 		self.btnAccept.clicked.connect(self.accept)
 		self.btnCancel.clicked.connect(self.cancel)
 		self.mainWindows.setWindowTitle("Modificar Bonus | Betcon")
-		self.initData()
+
 		self.id = id
 		self.initData()
 
 	def initData(self):
 		bd = Bbdd()
 
-		where = str(self.id)
+		where = "id=" + str(self.id)
 		# date
-		#dataBonus = bd.select("bonus", None, where)
-		#date = QDate.fromString(dataBonus[1], "yyyy-MM-dd")
-		#self.txtDate.setDate(date)
+		dataBonus = bd.select("bonus", None, where)[0]
+		date = QDate.fromString(dataBonus[1], "yyyy-MM-dd")
+		self.txtDate.setDate(date)
 
 		# cmbBookie
 		data = bd.select("bookie", "name")
 
 		self.bookieIndexToId = {}
-		index = 0
+		index, idCmb = 0, 0
 		for i in data:
 			id = i[0]
+			if dataBonus[2] == id:
+				idCmb = index
 			name = i[1]
 			self.cmbBookie.addItem(name)
 			self.bookieIndexToId[index] = id
 			index += 1
+
+		self.cmbBookie.setCurrentIndex(idCmb)
+
+		self.txtMoney.setValue(dataBonus[3])
+
+		self.chkFree.setChecked(str_to_bool(dataBonus[4]))
 
 		bd.close()
 
@@ -53,18 +62,20 @@ class EditBonus(QWidget):
 		bbdd = Bbdd()
 
 		# dtDate
-		data.append(self.txtDate.dateTime().toPyDateTime())
+		data.append(self.txtDate.date().toPyDate())
 
 		# cmbBookie
 		idBookie = self.bookieIndexToId.get(self.cmbBookie.currentIndex())
 		data.append(idBookie)
 
 		data.append(str(str_to_float(self.txtMoney.text())))
-		data.append(self.chkFree.isChecked())
+
+		free = self.chkFree.isChecked()
+		data.append(free)
 
 		columns = ["date", "bookie", "money", "free"]
 
-		bbdd.update(columns, data, "bonus", self.id)
+		bbdd.update(columns, data, "bonus", "id="+self.id)
 
 		QMessageBox.information(self, "Actualizado", "Bono actualizado.")
 

@@ -195,6 +195,9 @@
          <property name="buttonSymbols">
           <enum>QAbstractSpinBox::NoButtons</enum>
          </property>
+         <property name="maximum">
+          <double>999999.989999999990687</double>
+         </property>
         </widget>
        </item>
        <item row="4" column="0">
@@ -208,6 +211,9 @@
         <widget class="QDoubleSpinBox" name="txtOne">
          <property name="buttonSymbols">
           <enum>QAbstractSpinBox::NoButtons</enum>
+         </property>
+         <property name="maximum">
+          <double>999999.989999999990687</double>
          </property>
         </widget>
        </item>
@@ -242,6 +248,9 @@
         <widget class="QDoubleSpinBox" name="txtQuota">
          <property name="buttonSymbols">
           <enum>QAbstractSpinBox::NoButtons</enum>
+         </property>
+         <property name="maximum">
+          <double>999999.989999999990687</double>
          </property>
         </widget>
        </item>

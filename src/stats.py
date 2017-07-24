@@ -4,6 +4,9 @@ from PyQt5 import uic
 from libstats import LibStats
 from datetime import datetime
 
+sys.path.append("./lib")
+from bookie import Bookie
+
 
 
 class Stats(QWidget):

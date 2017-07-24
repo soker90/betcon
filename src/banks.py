@@ -27,10 +27,12 @@ class Banks(QWidget):
         self.txtTakeOut.setText(str(Bookie.sumAll("money<0")))
         bookies = Bookie.sumAll()
         self.txtBookie.setText(str(bookies))
+        bonus = Bookie.sumBonus()
+        self.txtBonus.setText(str(bonus))
 
         bd = Bbdd()
 
-        profits = bd.sum("bet", "profit")
+        profits = bd.sum("bet", "profit") + bonus
         self.txtProfit.setText(str(profits))
         bets = bd.sum("bet", "bet")
         yields = "{0:.2f}%".format((profits/bets)*100)
@@ -39,37 +41,40 @@ class Banks(QWidget):
         # CC
         cc = bd.select("bank", None, "id=1", "bank")
         cc = cc[0][0]
-        self.txtCc.setText(str(cc))
+        self.txtCc.setText(str(cc+bonus))
 
         # Paypal
         paypal = bd.select("bank", None, "id=2", "bank")
         paypal = paypal[0][0]
         self.txtPaypal.setText(str(paypal))
 
-        # CC
+        # SKRILL
         skrill = bd.select("bank", None, "id=3", "bank")
         skrill = skrill[0][0]
         self.txtSkrill.setText(str(skrill))
 
-        self.txtTotal.setText(str(cc+paypal+skrill))
+        self.txtTotal.setText(str(cc+paypal+skrill+bonus))
 
     def initTree(self):
-        bd = Bbdd()
+
         self.treeBookie.clear()
         data = Bookie.selectAll()
 
         items = []
         for i in data:
-            bank = bd.sum("movement", "money", "bookie=" + str(i.id))
-            bank = str(0.0) if bank is None else str(bank)
-            item = QTreeWidgetItem([i.name, bank])
+            bank = Bookie.sumAll("bookie=" + str(i.id))
+            bank = 0.0 if bank is None else bank
+            bonus = Bookie.sumBonus("bookie=" + str(i.id))
+            bonus = 0.0 if bonus is None else bonus
+            bank += bonus
+            item = QTreeWidgetItem([i.name, str(bank)])
             items.append(item)
 
         self.treeBookie.addTopLevelItems(items)
 
         self.treeMovement.clear()
 
-
+        bd = Bbdd()
         data = bd.select("movement", "date DESC")
 
         items = []
