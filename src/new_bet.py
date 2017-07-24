@@ -28,6 +28,7 @@ class NewBet(QWidget):
 		self.txtBet.valueChanged.connect(self.updateProfit)
 
 	# self.txtQuota.activated.connect(self.setCompetition)
+	# TODO Al seleccionar un deporte solo salgan las regiones con una competicion de ese deporte
 
 
 

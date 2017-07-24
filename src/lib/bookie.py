@@ -71,6 +71,15 @@ class Bookie:
 		return msg
 
 	@staticmethod
+	def deleteWhere(table, where):
+		bd = Bbdd()
+		msg = bd.deleteWhere(table, where)
+		bd.close()
+		if msg != 0:
+			msg = "Se ha producido un error al actualizar la BBDD"
+		return msg
+
+	@staticmethod
 	def sumAll(where=None):
 		bd = Bbdd()
 		data = bd.sum("movement", "money", where)

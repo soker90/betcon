@@ -46,12 +46,12 @@ class Tipsters(QWidget):
         self.mainWindows.editTipster(self.itemSelected)
 
     def deleteItem(self):
-        # TODO Eliminar apuestas asociadas
-        resultado = QMessageBox.question(self, "Eliminar", "¿Estas seguro que desas eliminarlo?",
+        resultado = QMessageBox.question(self, "Eliminar", "¿Estas seguro que desas eliminar este tipster y todas las apuestas asociadas?",
                                          QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
         if resultado == QMessageBox.Yes:
             bd = Bbdd()
             bd.delete("tipster", self.itemSelected)
+            bd.deleteWhere("bet", "tipster=" + str(self.itemSelected))
             self.mainWindows.setCentralWidget(Tipsters(self.mainWindows))
             self.mainWindows.enableTools()
 

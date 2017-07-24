@@ -59,6 +59,16 @@ class Bbdd:
 			return -1
 		return 0
 
+	def deleteWhere(self, table, where):
+		try:
+			query = "DELETE FROM " + table + " WHERE " + where + ";"
+			self.cursor.execute(query)
+			self.bd.commit()
+		except Exception as e:
+			print("Error delete BBDD: {0}".format(e))
+			return -1
+		return 0
+
 	def select(self, table, order_by=None, where=None, select=None):
 		if not select:
 			select = "*"

@@ -47,11 +47,11 @@ class Competitions(QWidget):
 		self.mainWindows.editCompetition(self.itemSelected)
 
 	def deleteItem(self):
-		# TODO Eliminar apuestas que dependan de las casas
-		resultado = QMessageBox.question(self, "Eliminar", "¿Estas seguro que desas eliminarlo?", QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+		resultado = QMessageBox.question(self, "Eliminar", "¿Estas seguro que desas eliminar la competición y las apuestas asociadas?", QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
 		if resultado == QMessageBox.Yes:
 			bd = Bbdd()
 			bd.delete("competition", self.itemSelected)
+			bd.deleteWhere("bet", "competition=" + str(self.itemSelected))
 			self.mainWindows.setCentralWidget(Competitions(self.mainWindows))
 			self.mainWindows.enableTools()
 

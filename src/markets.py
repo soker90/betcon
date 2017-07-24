@@ -46,11 +46,12 @@ class Markets(QWidget):
 		self.mainWindows.editMarket(self.itemSelected)
 
 	def deleteItem(self):
-		# TODO Eliminar apuestas asociadas
-		resultado = QMessageBox.question(self, "Eliminar", "¿Estas seguro que desas eliminarlo?", QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+		resultado = QMessageBox.question(self, "Eliminar", "¿Estas seguro que desas eliminar el mercado y las apuestas asociadas?",
+		                                 QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
 		if resultado == QMessageBox.Yes:
 			bd = Bbdd()
 			bd.delete("market", self.itemSelected)
+			bd.deleteWhere("bet", "market=" + str(self.itemSelected))
 			self.mainWindows.setCentralWidget(Markets(self.mainWindows))
 			self.mainWindows.enableTools()
 

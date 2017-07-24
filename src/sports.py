@@ -47,12 +47,13 @@ class Sports(QWidget):
         self.mainWindows.editSport(self.itemSelected)
 
     def deleteItem(self):
-        # TODO Eliminar apuestas y competiciones asociadas
-        resultado = QMessageBox.question(self, "Eliminar", "¿Estas seguro que desas eliminarlo?",
+        resultado = QMessageBox.question(self, "Eliminar", "¿Estas seguro que desas eliminar el deporte y sus competiciones y apuestas asociadas?",
                                          QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
         if resultado == QMessageBox.Yes:
             bd = Bbdd()
             bd.delete("sport", self.itemSelected)
+            bd.deleteWhere("competition", "sport="+str(self.itemSelected))
+            bd.deleteWhere("bet", "sport=" + str(self.itemSelected))
             self.mainWindows.setCentralWidget(Sports(self.mainWindows))
             self.mainWindows.enableTools()
 

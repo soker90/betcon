@@ -47,12 +47,13 @@ class Regions(QWidget):
 		self.mainWindows.editRegion(self.itemSelected)
 
 	def deleteItem(self):
-		# TODO Eliminar apuestas y competiciones asociadas
-		resultado = QMessageBox.question(self, "Eliminar", "¿Estas seguro que desas eliminarlo?",
+		resultado = QMessageBox.question(self, "Eliminar", "¿Estas seguro que desas eliminar la región y sus competiciones y apuestas asociadas?",
 										 QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
 		if resultado == QMessageBox.Yes:
 			bd = Bbdd()
 			bd.delete("region", self.itemSelected)
+			bd.deleteWhere("competition", "region=" + str(self.itemSelected))
+			bd.deleteWhere("bet", "region=" + str(self.itemSelected))
 			self.mainWindows.setCentralWidget(Regions(self.mainWindows))
 			self.mainWindows.enableTools()
 
