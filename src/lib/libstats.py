@@ -305,7 +305,14 @@ class LibStats:
 		bd.close()
 		bonus = Bookie.sumBonus("date LIKE '" + date + "%'")
 		datasql = datasql[0]
+		if bonus is None:
+			bonus = 0
+
+		if datasql[0] is None:
+			return [0, 0, 0, 0, 0, "0%", 0, 0, 0, 0, 0, "0%", 0]
+
 		yi = "{0:.2f}%".format(round(((datasql[3]+bonus)/datasql[0])*100, 2))
+
 		aciertos = "{0:.2f}%".format(round((datasql[7] / datasql[6]) * 100, 2))
 		data = [datasql[0], datasql[1]+bonus, datasql[2], datasql[3]+bonus, datasql[4], yi, datasql[5], datasql[6], datasql[7],
 				datasql[8], datasql[9], aciertos, datasql[10]]

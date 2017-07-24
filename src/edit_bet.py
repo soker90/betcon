@@ -16,7 +16,7 @@ class EditBet(QWidget):
 		QWidget.__init__(self)
 		uic.loadUi("../ui/new_bet.ui", self)
 		self.mainWindows = mainWindows
-		self.mainWindows.setWindowTitle("Modificar Apuesta | Betcon")
+		self.mainWindows.setWindowTitle("Modificar Apuesta | Betcon v" + mainWindows.version)
 		self.btnAccept.clicked.connect(self.accept)
 		self.btnCancel.clicked.connect(self.cancel)
 		self.id = id

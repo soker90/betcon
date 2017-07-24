@@ -17,7 +17,7 @@ class NewBet(QWidget):
 		QWidget.__init__(self)
 		uic.loadUi("../ui/new_bet.ui", self)
 		self.mainWindows = mainWindows
-		self.mainWindows.setWindowTitle("Nueva Apuesta | Betcon")
+		self.mainWindows.setWindowTitle("Nueva Apuesta | Betcon v" + mainWindows.version)
 		self.btnAccept.clicked.connect(self.accept)
 		self.btnCancel.clicked.connect(self.cancel)
 		self.initData()
@@ -28,7 +28,6 @@ class NewBet(QWidget):
 		self.txtBet.valueChanged.connect(self.updateProfit)
 
 	# self.txtQuota.activated.connect(self.setCompetition)
-	# TODO Al seleccionar un deporte solo salgan las regiones con una competicion de ese deporte
 
 
 
@@ -112,6 +111,11 @@ class NewBet(QWidget):
 			self.competitionIndexToId[index] = id
 			index += 1
 
+		if index == 0:
+			self.btnAccept.setDisabled(True)
+		else:
+			self.btnAccept.setDisabled(False)
+
 		bd.close()
 
 	def setRegion(self):
@@ -124,6 +128,7 @@ class NewBet(QWidget):
 		where = " sport=" + str(idSport)
 
 		data = bd.select("competition", None, where, "region")
+		dataRegion = ""
 
 		if len(data) > 0:
 			sData = "("
@@ -139,7 +144,6 @@ class NewBet(QWidget):
 			dataRegion = bd.select("region", "name", where)
 
 			if len(dataRegion) < 1:
-				print("222")
 				self.btnAccept.setDisabled(True)
 				bd.close()
 			else:
@@ -157,6 +161,11 @@ class NewBet(QWidget):
 		else:
 			self.btnAccept.setDisabled(True)
 			bd.close()
+
+		if len(data) == 0 or len(dataRegion):
+			self.btnAccept.setDisabled(True)
+		else:
+			self.btnAccept.setDisabled(False)
 
 	def close(self):
 		self.mainWindows.setCentralWidget(Bets(self.mainWindows))

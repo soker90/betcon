@@ -12,7 +12,7 @@ class NewRegion(QWidget):
 		self.mainWindows = mainWindows
 		self.btnAccept.clicked.connect(self.accept)
 		self.btnCancel.clicked.connect(self.cancel)
-		self.mainWindows.setWindowTitle("Nueva Región | Betcon")
+		self.mainWindows.setWindowTitle("Nueva Región | Betcon v" + mainWindows.version)
 		self.txtRegion.returnPressed.connect(self.btnAccept.click)
 
 	def close(self):

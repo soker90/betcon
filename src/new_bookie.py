@@ -13,7 +13,7 @@ class NewBookie(QWidget):
         self.mainWindows = mainWindows
         self.btnAccept.clicked.connect(self.accept)
         self.btnCancel.clicked.connect(self.cancel)
-        self.mainWindows.setWindowTitle("Nueva Casa | Betcon")
+        self.mainWindows.setWindowTitle("Nueva Casa | Betcon v" + mainWindows.version)
         self.txtName.returnPressed.connect(self.btnAccept.click)
 
     def close(self):

@@ -10,7 +10,7 @@ class StatsRegion(QWidget):
         QWidget.__init__(self)
         uic.loadUi("../ui/stats_region.ui", self)
         self.mainWindows = mainWindows
-        self.mainWindows.setWindowTitle("Estadisticas Regiones | Betcon")
+        self.mainWindows.setWindowTitle("Estadisticas Regiones | Betcon v" + mainWindows.version)
         try:
             self.initData()
         except Exception:

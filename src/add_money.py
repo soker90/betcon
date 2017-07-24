@@ -13,7 +13,7 @@ class AddMoney(QWidget):
 		uic.loadUi("../ui/add_money.ui", self)
 		self.mainWindows = mainWindows
 		mainWindows.aNew.triggered.connect(mainWindows.newBank)
-		self.mainWindows.setWindowTitle("Añadir fondos | Betcon")
+		self.mainWindows.setWindowTitle("Añadir fondos | Betcon v" + mainWindows.version)
 		self.btnAccept.clicked.connect(self.accept)
 		self.btnCancel.clicked.connect(self.cancel)
 		#self.txtMoney.returnPressed.connect(self.btnAccept.click)

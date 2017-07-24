@@ -13,7 +13,7 @@ class Banks(QWidget):
         uic.loadUi("../ui/banks.ui", self)
         self.mainWindows = mainWindows
         mainWindows.aNew.triggered.connect(mainWindows.newBank)
-        self.mainWindows.setWindowTitle("Bank | Betcon")
+        self.mainWindows.setWindowTitle("Bank | Betcon v" + mainWindows.version)
         self.treeMovement.itemSelectionChanged.connect(self.changeItem)
         self.initData()
         self.initTree()
@@ -35,7 +35,10 @@ class Banks(QWidget):
         profits = bd.sum("bet", "profit") + bonus
         self.txtProfit.setText(str(profits))
         bets = bd.sum("bet", "bet")
-        yields = "{0:.2f}%".format((profits/bets)*100)
+        try:
+            yields = "{0:.2f}%".format((profits/bets)*100)
+        except ZeroDivisionError:
+            yields = "0.0%"
         self.txtYield.setText(yields)
 
         # CC

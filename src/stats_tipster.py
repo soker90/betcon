@@ -11,7 +11,7 @@ class StatsTipster(QWidget):
         QWidget.__init__(self)
         uic.loadUi("../ui/stats_tipster.ui", self)
         self.mainWindows = mainWindows
-        self.mainWindows.setWindowTitle("Estadisticas Tipsters | Betcon")
+        self.mainWindows.setWindowTitle("Estadisticas Tipsters | Betcon v" + mainWindows.version)
         try:
             self.initData()
         except Exception:

@@ -14,7 +14,7 @@ class Stats(QWidget):
 		QWidget.__init__(self)
 		uic.loadUi("../ui/stats.ui", self)
 		self.mainWindows = mainWindows
-		self.mainWindows.setWindowTitle("Estadisticas | Betcon")
+		self.mainWindows.setWindowTitle("Estadisticas | Betcon v" + mainWindows.version)
 
 		self.initData()
 

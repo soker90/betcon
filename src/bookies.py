@@ -12,7 +12,7 @@ class Bookies(QWidget):
 		uic.loadUi("../ui/bookies.ui", self)
 		self.mainWindows = mainWindows
 		mainWindows.aNew.triggered.connect(mainWindows.newBookie)
-		self.mainWindows.setWindowTitle("Casas de apuestas | Betcon")
+		self.mainWindows.setWindowTitle("Casas de apuestas | Betcon v" + mainWindows.version)
 		self.treeMain.header().hideSection(1)
 		self.initTree()
 		self.treeMain.itemSelectionChanged.connect(self.changeItem)
@@ -47,6 +47,7 @@ class Bookies(QWidget):
 		if resultado == QMessageBox.Yes:
 			err = Bookie.delete(self.itemSelected)
 			Bookie.deleteWhere("bet", "bookie=" + str(self.itemSelected))
+			Bookie.deleteWhere("bonus", "bookie=" + str(self.itemSelected))
 			if err != 0:
 				QMessageBox.critical(self, "Error", "Se ha producido un error al borrar la casa")
 

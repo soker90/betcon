@@ -10,7 +10,7 @@ class StatsStake(QWidget):
         QWidget.__init__(self)
         uic.loadUi("../ui/stats_stake.ui", self)
         self.mainWindows = mainWindows
-        self.mainWindows.setWindowTitle("Estadisticas Stake | Betcon")
+        self.mainWindows.setWindowTitle("Estadisticas Stake | Betcon v" + mainWindows.version)
         try:
             self.initData()
         except Exception:

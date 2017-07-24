@@ -14,7 +14,7 @@ class EditBonus(QWidget):
 		self.mainWindows = mainWindows
 		self.btnAccept.clicked.connect(self.accept)
 		self.btnCancel.clicked.connect(self.cancel)
-		self.mainWindows.setWindowTitle("Modificar Bonus | Betcon")
+		self.mainWindows.setWindowTitle("Modificar Bonus | Betcon v" + mainWindows.version)
 
 		self.id = id
 		self.initData()

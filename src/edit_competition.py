@@ -12,7 +12,7 @@ class EditCompetition(QWidget):
 		self.mainWindows = mainWindows
 		self.btnAccept.clicked.connect(self.accept)
 		self.btnCancel.clicked.connect(self.cancel)
-		self.mainWindows.setWindowTitle("Modificar Competición | Betcon")
+		self.mainWindows.setWindowTitle("Modificar Competición | Betcon v" + mainWindows.version)
 		self.txtName.returnPressed.connect(self.btnAccept.click)
 
 		self.id = id

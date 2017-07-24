@@ -44,8 +44,11 @@ class Main(QMainWindow):
 		QMainWindow.__init__(self)
 		uic.loadUi("../ui/wmain.ui", self)
 		self.showMaximized()
-		self.setWindowTitle("Inicio | Betcon")
 		self.enableTools()
+
+		archivo = open("version.txt")
+		self.version = archivo.readline()
+		self.setWindowTitle("Inicio | Betcon v" + self.version)
 
 		self.aInicio.triggered.connect(self.home)
 		self.aRegion.triggered.connect(self.regions)
@@ -67,8 +70,11 @@ class Main(QMainWindow):
 		self.aStatsStake.triggered.connect(self.statsStake)
 
 		self.aAddMoney.triggered.connect(self.addMoney)
+		self.aClose.triggered.connect(self.close)
 
 		self.setCentralWidget(Bets(self))
+
+
 
 	#ToolPrimary
 

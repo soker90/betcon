@@ -14,7 +14,7 @@ class Bets(QWidget):
 		uic.loadUi("../ui/bets.ui", self)
 		self.mainWindows = mainWindows
 		mainWindows.aNew.triggered.connect(mainWindows.newBet)
-		self.mainWindows.setWindowTitle("Inicio | Betcon")
+		self.mainWindows.setWindowTitle("Inicio | Betcon v" + mainWindows.version)
 		self.treeMain.header().hideSection(1)
 		self.initTree()
 		self.treeMain.itemSelectionChanged.connect(self.changeItem)

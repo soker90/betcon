@@ -15,7 +15,7 @@ class NewBonus(QWidget):
 		self.mainWindows = mainWindows
 		self.btnAccept.clicked.connect(self.accept)
 		self.btnCancel.clicked.connect(self.cancel)
-		self.mainWindows.setWindowTitle("Nuevo Bonus | Betcon")
+		self.mainWindows.setWindowTitle("Nuevo Bonus | Betcon v" + mainWindows.version)
 		self.initData()
 
 	def initData(self):
