@@ -92,6 +92,7 @@
    </attribute>
    <addaction name="aInicio"/>
    <addaction name="aBank"/>
+   <addaction name="aBonus"/>
    <addaction name="aStat"/>
    <addaction name="separator"/>
    <addaction name="aRegion"/>
@@ -332,6 +333,11 @@
   <action name="aAddMoney">
    <property name="text">
     <string>Añadir/Retirar Fondos</string>
+   </property>
+  </action>
+  <action name="aBonus">
+   <property name="text">
+    <string>Bonos</string>
    </property>
   </action>
  </widget>

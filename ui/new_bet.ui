@@ -149,6 +149,13 @@
        <item row="5" column="1">
         <widget class="QLineEdit" name="txtPlayer2"/>
        </item>
+       <item row="8" column="1">
+        <widget class="QCheckBox" name="checkBox">
+         <property name="text">
+          <string>Apuesta Gratuita</string>
+         </property>
+        </widget>
+       </item>
       </layout>
      </item>
      <item>

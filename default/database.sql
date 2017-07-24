@@ -131,3 +131,12 @@ CREATE TABLE movement
     bookie INTEGER,
     money REAL
 );
+
+CREATE TABLE bonus
+(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    date DATE,
+    bookie INTEGER,
+    money REAL,
+    free BOOLEAN
+);

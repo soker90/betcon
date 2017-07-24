@@ -167,6 +167,20 @@ class EditBet(QWidget):
 		profit = bd.getValue(self.id, "bet", "profit")
 		self.txtProfit.setValue(profit)
 
+		result = bd.getValue(self.id, "bet", "result")
+
+		idResutl = {
+			"Pendiente": 0,
+			"Acertada": 1,
+			"Fallada": 2,
+			"Nula": 3,
+			"Medio Acertada": 4,
+			"Medio Fallada": 5,
+			"Retirada": 6
+		}[result]
+
+		self.cmbResult.setCurrentIndex(idResutl)
+
 		bd.close()
 
 		# cmbCompetition

@@ -26,6 +26,7 @@ from edit_region import EditRegion
 from edit_sport import EditSport
 from stats import Stats
 from banks import Banks
+from bonus import Bonus
 from new_bank import NewBank
 from stats_tipster import StatsTipster
 from stats_bookie import StatsBookie
@@ -34,6 +35,8 @@ from stats_region import StatsRegion
 from stats_sport import StatsSport
 from stats_stake import StatsStake
 from add_money import AddMoney
+from new_bonus import NewBonus
+from edit_bonus import EditBonus
 
 
 class Main(QMainWindow):
@@ -53,6 +56,7 @@ class Main(QMainWindow):
 		self.aTipster.triggered.connect(self.tipsters)
 		self.aStat.triggered.connect(self.stats)
 		self.aBank.triggered.connect(self.banks)
+		self.aBonus.triggered.connect(self.bonus)
 
 		self.aStatsGeneral.triggered.connect(self.stats)
 		self.aStatsTipster.triggered.connect(self.statsTipster)
@@ -104,6 +108,10 @@ class Main(QMainWindow):
 		self.setCentralWidget(Banks(self))
 		self.enableTools("bank")
 
+	def bonus(self):
+		self.setCentralWidget(Bonus(self))
+		self.enableTools()
+
 	# ToolSecundary
 	# New Buttons
 
@@ -139,6 +147,10 @@ class Main(QMainWindow):
 		self.setCentralWidget(NewBank(self))
 		self.enableTools("bank")
 
+	def newBonus(self):
+		self.setCentralWidget(NewBonus(self))
+		self.enableTools()
+
 	# Edit Buttons
 
 	def editBet(self, id):
@@ -167,6 +179,10 @@ class Main(QMainWindow):
 
 	def editTipster(self, id):
 		self.setCentralWidget(EditTipster(self, id))
+		self.enableTools()
+
+	def editBonus(self, id):
+		self.setCentralWidget(EditBonus(self, id))
 		self.enableTools()
 
 	# Stats
