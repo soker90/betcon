@@ -17,7 +17,7 @@ class Banks(QWidget):
         self.treeMovement.itemSelectionChanged.connect(self.changeItem)
         self.initData()
         self.initTree()
-        #self.treeMovement.header().hideSection(1)
+        self.treeMovement.header().hideSection(1)
         self.mainWindows.aRemove.triggered.connect(self.deleteItem)
 
         self.itemSelected = -1

@@ -14,7 +14,7 @@ class Bonus(QWidget):
 		self.mainWindows = mainWindows
 		mainWindows.aNew.triggered.connect(mainWindows.newBonus)
 		self.mainWindows.setWindowTitle("Bonos | Betcon v" + mainWindows.version)
-		#self.treeMain.header().hideSection(1)
+		self.treeMain.header().hideSection(1)
 		self.initTree()
 
 		self.treeMain.itemSelectionChanged.connect(self.changeItem)
