@@ -1,12 +1,11 @@
-import sys, datetime
-from PyQt5.QtWidgets import QLineEdit, QMessageBox, QWidget, QComboBox, QAction, QPushButton, QShortcut
+import sys, os, inspect
+from PyQt5.QtWidgets import QMessageBox, QWidget
 from PyQt5 import uic
 from bets import Bets
 from PyQt5.QtCore import QDateTime
-from decimal import Decimal
 from locale import *
-
-sys.path.append("./lib")
+directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
+sys.path.append(directory + "/lib")
 from bbdd import Bbdd
 from func_aux import str_to_float
 
@@ -14,7 +13,7 @@ from func_aux import str_to_float
 class EditBet(QWidget):
 	def __init__(self, mainWindows, id):
 		QWidget.__init__(self)
-		uic.loadUi("../ui/new_bet.ui", self)
+		uic.loadUi(directory + "/../ui/new_bet.ui", self)
 		self.mainWindows = mainWindows
 		self.mainWindows.setWindowTitle("Modificar Apuesta | Betcon v" + mainWindows.version)
 		self.btnAccept.clicked.connect(self.accept)

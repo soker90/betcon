@@ -1,15 +1,15 @@
-import sys
+import sys, os, inspect
 from PyQt5.QtWidgets import QMessageBox, QWidget, QTreeWidgetItem
 from PyQt5 import uic
-
-sys.path.append("./lib")
+directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
+sys.path.append(directory + "/lib")
 from bbdd import Bbdd
 
 
 class Regions(QWidget):
 	def __init__(self, mainWindows):
 		QWidget.__init__(self)
-		uic.loadUi("../ui/regions.ui", self)
+		uic.loadUi(directory + "/../ui/regions.ui", self)
 		self.mainWindows = mainWindows
 		mainWindows.aNew.triggered.connect(mainWindows.newRegion)
 		self.mainWindows.setWindowTitle("Regiones | Betcon v" + mainWindows.version)

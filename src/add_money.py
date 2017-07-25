@@ -1,8 +1,9 @@
-import sys
-from PyQt5.QtWidgets import QMessageBox, QWidget, QTreeWidgetItem
+import sys, os, inspect
+from PyQt5.QtWidgets import QMessageBox, QWidget
 from PyQt5 import uic
+directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
+sys.path.append(directory + "/lib")
 from banks import Banks
-sys.path.append("./lib")
 from func_aux import str_to_float
 from bbdd import Bbdd
 
@@ -10,7 +11,7 @@ from bbdd import Bbdd
 class AddMoney(QWidget):
 	def __init__(self, mainWindows):
 		QWidget.__init__(self)
-		uic.loadUi("../ui/add_money.ui", self)
+		uic.loadUi(directory + "/../ui/add_money.ui", self)
 		self.mainWindows = mainWindows
 		mainWindows.aNew.triggered.connect(mainWindows.newBank)
 		self.mainWindows.setWindowTitle("Añadir fondos | Betcon v" + mainWindows.version)

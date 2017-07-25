@@ -1,14 +1,15 @@
-import sys
+import sys, os, inspect
+directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
+sys.path.append(directory + "/lib")
 from PyQt5.QtWidgets import QMessageBox, QWidget
 from PyQt5 import uic
-sys.path.append("./lib")
 from bbdd import Bbdd
 from tipsters import Tipsters
 
 class EditTipster(QWidget):
     def __init__(self, mainWindows, id):
         QWidget.__init__(self)
-        uic.loadUi("../ui/new_tipster.ui", self)
+        uic.loadUi(directory + "/../ui/new_tipster.ui", self)
         self.mainWindows = mainWindows
         self.btnAccept.clicked.connect(self.accept)
         self.btnCancel.clicked.connect(self.cancel)

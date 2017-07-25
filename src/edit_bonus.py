@@ -1,8 +1,9 @@
-import sys
+import sys, os, inspect
 from PyQt5.QtWidgets import QMessageBox, QWidget, QComboBox
 from PyQt5 import uic
 from PyQt5.QtCore import QDate
-sys.path.append("./lib")
+directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
+sys.path.append(directory + "/lib")
 from bbdd import Bbdd
 from bonus import Bonus
 from func_aux import str_to_float, str_to_bool
@@ -10,7 +11,7 @@ from func_aux import str_to_float, str_to_bool
 class EditBonus(QWidget):
 	def __init__(self, mainWindows, id):
 		QWidget.__init__(self)
-		uic.loadUi("../ui/new_bonus.ui", self)
+		uic.loadUi(directory + "/../ui/new_bonus.ui", self)
 		self.mainWindows = mainWindows
 		self.btnAccept.clicked.connect(self.accept)
 		self.btnCancel.clicked.connect(self.cancel)

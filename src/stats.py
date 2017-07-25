@@ -1,18 +1,15 @@
-import sys
+import sys, os, inspect
 from PyQt5.QtWidgets import QMessageBox, QWidget, QTreeWidgetItem
 from PyQt5 import uic
+directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
+sys.path.append(directory + "/lib")
 from libstats import LibStats
 from datetime import datetime
-
-sys.path.append("./lib")
-from bookie import Bookie
-
-
 
 class Stats(QWidget):
 	def __init__(self, mainWindows):
 		QWidget.__init__(self)
-		uic.loadUi("../ui/stats.ui", self)
+		uic.loadUi(directory + "/../ui/stats.ui", self)
 		self.mainWindows = mainWindows
 		self.mainWindows.setWindowTitle("Estadisticas | Betcon v" + mainWindows.version)
 

@@ -1,6 +1,8 @@
-import sys
-from PyQt5.QtWidgets import QMessageBox, QWidget, QTreeWidgetItem
+import sys, os, inspect
+from PyQt5.QtWidgets import QWidget, QTreeWidgetItem
 from PyQt5 import uic
+directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
+sys.path.append(directory + "/lib")
 from libstats import LibStats
 from func_aux import paint_row, key_from_value
 
@@ -9,7 +11,7 @@ from func_aux import paint_row, key_from_value
 class StatsTipster(QWidget):
     def __init__(self, mainWindows):
         QWidget.__init__(self)
-        uic.loadUi("../ui/stats_tipster.ui", self)
+        uic.loadUi(directory + "/../ui/stats_tipster.ui", self)
         self.mainWindows = mainWindows
         self.mainWindows.setWindowTitle("Estadisticas Tipsters | Betcon v" + mainWindows.version)
         try:
