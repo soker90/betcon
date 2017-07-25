@@ -312,9 +312,11 @@ class LibStats:
 			return [0, 0, 0, 0, 0, "0%", 0, 0, 0, 0, 0, "0%", 0]
 
 		yi = "{0:.2f}%".format(round(((datasql[3]+bonus)/datasql[0])*100, 2))
+		quota = float("{0:.2f}".format(datasql[5], 2))
+		bet = float("{0:.2f}".format(datasql[10], 2))
 
 		aciertos = "{0:.2f}%".format(round((datasql[7] / datasql[6]) * 100, 2))
-		data = [datasql[0], datasql[1]+bonus, datasql[2], datasql[3]+bonus, datasql[4], yi, datasql[5], datasql[6], datasql[7],
-				datasql[8], datasql[9], aciertos, datasql[10]]
+		data = [datasql[0], datasql[1]+bonus, datasql[2], datasql[3]+bonus, datasql[4], yi, quota, datasql[6], datasql[7],
+				datasql[8], datasql[9], aciertos, bet]
 
 		return data
