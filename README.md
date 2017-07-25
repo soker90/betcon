@@ -5,7 +5,9 @@ Betcon es una aplicación para sistemas GNU/Linux para la gestión de apuestas d
 ### Descargas
 
 #### ArchLinux
-Próximamente
+```bash
+yaourt -S betcon
+```
 
 #### Ubuntu
 Próximamente
