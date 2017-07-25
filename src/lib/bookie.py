@@ -83,6 +83,12 @@ class Bookie:
 	def sumAll(where=None):
 		bd = Bbdd()
 		data = bd.sum("movement", "money", where)
+		if where is None:
+			profit = bd.sum("bet", "profit")
+			data += profit
+		elif where[0] == "b":
+			profit = bd.sum("bet", "profit", where)
+			data += profit
 
 		bd.close()
 		return data

@@ -150,7 +150,7 @@
         <widget class="QLineEdit" name="txtPlayer2"/>
        </item>
        <item row="8" column="1">
-        <widget class="QCheckBox" name="checkBox">
+        <widget class="QCheckBox" name="chkFree">
          <property name="text">
           <string>Apuesta Gratuita</string>
          </property>

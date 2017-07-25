@@ -26,6 +26,7 @@ class NewBet(QWidget):
 		self.cmbResult.activated.connect(self.updateProfit)
 		self.txtQuota.valueChanged.connect(self.updateProfit)
 		self.txtBet.valueChanged.connect(self.updateProfit)
+		self.chkFree.clicked.connect(self.freeBet)
 
 	# self.txtQuota.activated.connect(self.setCompetition)
 
@@ -233,16 +234,33 @@ class NewBet(QWidget):
 		quota = self.txtQuota.value()
 		bet = self.txtBet.value()
 
-		profit = {
-			0: lambda quota: -1,  # Pendiente
-			1: lambda quota: quota - 1,  # Acertada
-			2: lambda quota: -1,  # Fallada
-			3: lambda quota: 0,  # Nula
-			4: lambda quota: (quota - 1) * 0.5,  # Medio Acertada
-			5: lambda quota: (quota - 1) * -0.5,  # Medio Fallada
-			6: lambda quota: 0  # Retirada
-		}[result](float(quota))
+		if self.chkFree.isChecked():
+			profit = {
+				0: lambda quota: 0,  # Pendiente
+				1: lambda quota: quota - 1,  # Acertada
+				2: lambda quota: 0,  # Fallada
+				3: lambda quota: 0,  # Nula
+				4: lambda quota: (quota - 1) * 0.5,  # Medio Acertada
+				5: lambda quota: 0,  # Medio Fallada
+				6: lambda quota: 0  # Retirada
+			}[result](float(quota))
+		else:
+			profit = {
+				0: lambda quota: -1,  # Pendiente
+				1: lambda quota: quota - 1,  # Acertada
+				2: lambda quota: -1,  # Fallada
+				3: lambda quota: 0,  # Nula
+				4: lambda quota: (quota - 1) * 0.5,  # Medio Acertada
+				5: lambda quota: (quota - 1) * -0.5,  # Medio Fallada
+				6: lambda quota: 0  # Retirada
+			}[result](float(quota))
 
 		profit *= bet
 
 		self.txtProfit.setValue(profit)
+
+	def freeBet(self):
+		if(self.chkFree.isChecked()):
+			self.txtProfit.setEnabled(False)
+		else:
+			self.txtProfit.setEnabled(True)
