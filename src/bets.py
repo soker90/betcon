@@ -1,9 +1,10 @@
-import sys
+import sys, os, inspect
 from PyQt5.QtWidgets import QWidget, QTreeWidgetItem, QMessageBox
 from PyQt5.QtGui import QBrush
 from PyQt5.QtCore import Qt
 from PyQt5 import uic
-sys.path.append("./lib")
+directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
+sys.path.append(directory + "/lib")
 from bbdd import Bbdd
 from func_aux import str_to_float
 
@@ -11,7 +12,7 @@ from func_aux import str_to_float
 class Bets(QWidget):
 	def __init__(self, mainWindows):
 		QWidget.__init__(self)
-		uic.loadUi("../ui/bets.ui", self)
+		uic.loadUi(directory + "/../ui/bets.ui", self)
 		self.mainWindows = mainWindows
 		mainWindows.aNew.triggered.connect(mainWindows.newBet)
 		self.mainWindows.setWindowTitle("Inicio | Betcon v" + mainWindows.version)

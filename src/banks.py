@@ -1,7 +1,8 @@
-import sys
+import sys, os, inspect
 from PyQt5.QtWidgets import QMessageBox, QWidget, QTreeWidgetItem
 from PyQt5 import uic
-sys.path.append("./lib")
+directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
+sys.path.append(directory + "/lib")
 from bbdd import Bbdd
 from bookie import Bookie
 
@@ -10,7 +11,7 @@ from bookie import Bookie
 class Banks(QWidget):
     def __init__(self, mainWindows):
         QWidget.__init__(self)
-        uic.loadUi("../ui/banks.ui", self)
+        uic.loadUi(directory + "/../ui/banks.ui", self)
         self.mainWindows = mainWindows
         mainWindows.aNew.triggered.connect(mainWindows.newBank)
         self.mainWindows.setWindowTitle("Bank | Betcon v" + mainWindows.version)

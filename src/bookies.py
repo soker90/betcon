@@ -1,15 +1,14 @@
-import sys
+import sys, os, inspect
 from PyQt5.QtWidgets import QMessageBox, QWidget, QTreeWidgetItem
 from PyQt5 import uic
-
-sys.path.append("./lib")
+directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
 from bookie import Bookie
 
 
 class Bookies(QWidget):
 	def __init__(self, mainWindows):
 		QWidget.__init__(self)
-		uic.loadUi("../ui/bookies.ui", self)
+		uic.loadUi(directory + "/../ui/bookies.ui", self)
 		self.mainWindows = mainWindows
 		mainWindows.aNew.triggered.connect(mainWindows.newBookie)
 		self.mainWindows.setWindowTitle("Casas de apuestas | Betcon v" + mainWindows.version)

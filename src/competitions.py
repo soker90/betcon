@@ -1,15 +1,16 @@
-import sys
+import sys, os, inspect
 from PyQt5.QtWidgets import QMessageBox, QWidget, QTreeWidgetItem
 from PyQt5 import uic
+directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
+sys.path.append(directory + "/lib")
 
-sys.path.append("./lib")
 from bbdd import Bbdd
 
 
 class Competitions(QWidget):
 	def __init__(self, mainWindows):
 		QWidget.__init__(self)
-		uic.loadUi("../ui/competitions.ui", self)
+		uic.loadUi(directory + "/../ui/competitions.ui", self)
 		self.mainWindows = mainWindows
 		self.treeMain.header().hideSection(1)
 		mainWindows.aNew.triggered.connect(mainWindows.newCompetition)

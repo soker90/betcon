@@ -1,21 +1,21 @@
-import sys
+import sys, os, inspect
 from datetime import datetime
 from PyQt5.QtWidgets import QLineEdit, QMessageBox, QWidget, QComboBox, QAction, QPushButton, QShortcut
 from PyQt5 import uic
 from PyQt5.QtCore import QDateTime, QVariant
+directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
+sys.path.append(directory + "/lib")
 from bets import Bets
 from decimal import Decimal
 from func_aux import str_to_float
 
-
-sys.path.append("./lib")
 from bbdd import Bbdd
 
 
 class NewBet(QWidget):
 	def __init__(self, mainWindows):
 		QWidget.__init__(self)
-		uic.loadUi("../ui/new_bet.ui", self)
+		uic.loadUi(directory + "/../ui/new_bet.ui", self)
 		self.mainWindows = mainWindows
 		self.mainWindows.setWindowTitle("Nueva Apuesta | Betcon v" + mainWindows.version)
 		self.btnAccept.clicked.connect(self.accept)

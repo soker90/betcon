@@ -1,14 +1,15 @@
-import sys
+import sys, os, inspect
 from PyQt5.QtWidgets import QMessageBox, QWidget
 from PyQt5 import uic
-sys.path.append("./lib")
+directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
+sys.path.append(directory + "/lib")
 from bbdd import Bbdd
 from regions import Regions
 
 class EditRegion(QWidget):
 	def __init__(self, mainWindows, id):
 		QWidget.__init__(self)
-		uic.loadUi("../ui/new_region.ui", self)
+		uic.loadUi(directory + "/../ui/new_region.ui", self)
 		self.mainWindows = mainWindows
 		self.btnAccept.clicked.connect(self.accept)
 		self.btnCancel.clicked.connect(self.cancel)

@@ -1,10 +1,11 @@
-import sys
+import sys, os, inspect
+directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
 from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox, QDialog, QGridLayout, QAction
 from PyQt5 import uic
-from PyQt5.QtCore import Qt
+sys.path.append(directory)
 from bets import Bets
 from new_bet import NewBet
-sys.path.append("./lib")
+sys.path.append(directory + "/lib")
 from regions import Regions
 from new_region import NewRegion
 from competitions import Competitions
@@ -39,15 +40,14 @@ from new_bonus import NewBonus
 from edit_bonus import EditBonus
 
 
-
 class Main(QMainWindow):
 	def __init__(self):
 		QMainWindow.__init__(self)
-		uic.loadUi("../ui/wmain.ui", self)
+		uic.loadUi(directory + "/../ui/wmain.ui", self)
 		self.showMaximized()
 		self.enableTools()
 
-		archivo = open("version.txt")
+		archivo = open(directory+"/version.txt")
 		self.version = archivo.readline()
 		self.setWindowTitle("Inicio | Betcon v" + self.version)
 

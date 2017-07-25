@@ -1,5 +1,4 @@
 import sys
-sys.path.append("./lib")
 from bbdd import Bbdd
 
 class Bookie:

@@ -1,8 +1,8 @@
-import sys
+import sys, os, inspect
 from PyQt5.QtWidgets import QMessageBox, QWidget, QTreeWidgetItem
 from PyQt5 import uic
-
-sys.path.append("./lib")
+directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
+sys.path.append(directory + "/lib")
 from bbdd import Bbdd
 from func_aux import str_to_bool
 
@@ -10,7 +10,7 @@ from func_aux import str_to_bool
 class Bonus(QWidget):
 	def __init__(self, mainWindows):
 		QWidget.__init__(self)
-		uic.loadUi("../ui/bonus.ui", self)
+		uic.loadUi(directory + "/../ui/bonus.ui", self)
 		self.mainWindows = mainWindows
 		mainWindows.aNew.triggered.connect(mainWindows.newBonus)
 		self.mainWindows.setWindowTitle("Bonos | Betcon v" + mainWindows.version)

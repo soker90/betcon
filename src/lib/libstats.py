@@ -1,4 +1,3 @@
-import sys, os
 from bbdd import Bbdd
 from bookie import Bookie
 
