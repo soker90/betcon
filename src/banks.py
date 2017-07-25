@@ -56,7 +56,7 @@ class Banks(QWidget):
         skrill = skrill[0][0]
         self.txtSkrill.setText(str(skrill))
 
-        self.txtTotal.setText(str(cc+paypal+skrill+bonus))
+        self.txtTotal.setText(str(cc+paypal+skrill+bonus+bookies))
 
     def initTree(self):
 
