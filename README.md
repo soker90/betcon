@@ -21,6 +21,7 @@ git clone https://github.com/soker90/Betcon.git
 #### Apuestas
 
 ![bets](images/1.png)
+
 ![bets](images/2.png)
 
 #### Bank
@@ -33,11 +34,17 @@ git clone https://github.com/soker90/Betcon.git
 #### Estadisticas
 
 ![bets](images/5.png)
+
 ![bets](images/6.png)
+
 ![bets](images/7.png)
+
 ![bets](images/8.png)
+
 ![bets](images/9.png)
+
 ![bets](images/10.png)
+
 ![bets](images/11.png)
 
 #### Regiones
