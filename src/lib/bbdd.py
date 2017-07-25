@@ -1,4 +1,4 @@
-import sys, sqlite3, os
+import sys, sqlite3, os, inspect
 from os.path import expanduser
 
 
@@ -10,6 +10,10 @@ class Bbdd:
 		exist = False
 		if self.isExist():
 			exist = True
+		else:
+			self.directoryFull = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
+			os.makedirs(self.directory)
+
 		self.bd = sqlite3.connect(self.directory + self.name)
 		self.cursor = self.bd.cursor()
 
@@ -130,7 +134,7 @@ class Bbdd:
 			return False
 
 	def initDatabase(self):
-		query = open('../default/database.sql', 'r').read()
+		query = open(self.directoryFull + '/../../default/database.sql', 'r').read()
 		self.cursor.executescript(query)
 		self.bd.commit()
 
