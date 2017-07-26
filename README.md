@@ -12,6 +12,11 @@ yaourt -S betcon
 #### Debian/Ubuntu
 [Descarga](https://github.com/soker90/betcon/releases/download/1.2.3/betcon_1.2.3-2_all.deb)
 
+#### Instalar desde código fuente
+```
+make install
+```
+
 #### Código fuente
 
 ```
