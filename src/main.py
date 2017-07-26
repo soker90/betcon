@@ -257,7 +257,7 @@ class Main(QMainWindow):
 class About(QDialog):
 	def __init__(self):
 		QDialog.__init__(self)
-		uic.loadUi("../ui/about.ui", self)
+		uic.loadUi(directory + "/../ui/about.ui", self)
 
 
 app = QApplication(sys.argv)
