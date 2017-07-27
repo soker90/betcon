@@ -1,6 +1,6 @@
 ## Betcon
 
-Betcon es una aplicación para sistemas GNU/Linux para la gestión de apuestas deportivas. Betcon tiene licencia GPLv3.
+Betcon es una aplicación para sistemas GNU/Linux y Windows para la gestión de apuestas deportivas. Betcon tiene licencia GPLv3.
 
 ### Descargas
 
@@ -28,6 +28,9 @@ make install
 ```
 git clone https://github.com/soker90/Betcon.git
 ```
+
+#### Windows
+[Descarga](https://github.com/soker90/betcon/releases/download/1.2.4/Betcon-1.2.4-Windows.exe)
 
 ### Capturas de pantalla
 
