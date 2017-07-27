@@ -13,7 +13,7 @@ yaourt -S betcon
 [Descarga](https://github.com/soker90/betcon/releases/download/1.2.3/betcon_1.2.3-2_all.deb)
 
 #### Instalar desde código fuente
-Antes de instalara, segúrate de tener instaladas las dependencias:
+Antes de instalar, asegúrate de tener instaladas las dependencias:
 * Python3
 * PyQt5
 * SQLite3
