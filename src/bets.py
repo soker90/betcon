@@ -51,7 +51,8 @@ class Bets(QWidget):
 			quota = i[16]
 
 			item = QTreeWidgetItem([str(index), str(id), str(date), str(sport), str(competition), str(region), player1,
-									player2, pick, bookie, market, tipster, stake, one, bet, quota, result, profit])
+									player2, pick, bookie, market, tipster, str(stake), str(one), str(bet), str(quota),
+									str(result), str(profit)])
 
 			profit = str_to_float(profit)
 

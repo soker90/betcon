@@ -24,17 +24,17 @@ class Banks(QWidget):
         self.itemSelected = -1
 
     def initData(self):
-        self.txtDeposit.setText(str(Bookie.sumAll("money>0")))
-        self.txtTakeOut.setText(str(Bookie.sumAll("money<0")))
+        self.txtDeposit.setText("{0:.2f}".format(Bookie.sumAll("money>0")))
+        self.txtTakeOut.setText("{0:.2f}".format(Bookie.sumAll("money<0")))
         bookies = Bookie.sumAll()
-        self.txtBookie.setText(str(bookies))
+        self.txtBookie.setText("{0:.2f}".format(bookies))
         bonus = Bookie.sumBonus()
-        self.txtBonus.setText(str(bonus))
+        self.txtBonus.setText("{0:.2f}".format(bonus))
 
         bd = Bbdd()
 
         profits = bd.sum("bet", "profit") + bonus
-        self.txtProfit.setText(str(profits))
+        self.txtProfit.setText("{0:.2f}".format(profits))
         bets = bd.sum("bet", "bet")
         try:
             yields = "{0:.2f}%".format((profits/bets)*100)
@@ -45,19 +45,20 @@ class Banks(QWidget):
         # CC
         cc = bd.select("bank", None, "id=1", "bank")
         cc = cc[0][0]
-        self.txtCc.setText(str(cc+bonus))
+        self.txtCc.setText("{0:.2f}".format(cc+bonus))
 
         # Paypal
         paypal = bd.select("bank", None, "id=2", "bank")
         paypal = paypal[0][0]
-        self.txtPaypal.setText(str(paypal))
+        self.txtPaypal.setText("{0:.2f}".format(paypal))
 
         # SKRILL
         skrill = bd.select("bank", None, "id=3", "bank")
         skrill = skrill[0][0]
-        self.txtSkrill.setText(str(skrill))
+        self.txtSkrill.setText("{0:.2f}".format(skrill))
 
-        self.txtTotal.setText(str(cc+paypal+skrill+bonus+bookies))
+        total = "{0:.2f}".format(cc+paypal+skrill+bonus+bookies)
+        self.txtTotal.setText(total)
 
     def initTree(self):
 
@@ -71,7 +72,7 @@ class Banks(QWidget):
             bonus = Bookie.sumBonus("bookie=" + str(i.id))
             bonus = 0.0 if bonus is None else bonus
             bank += bonus
-            item = QTreeWidgetItem([i.name, str(bank)])
+            item = QTreeWidgetItem([i.name, "{0:.2f}".format(bank)])
             items.append(item)
 
         self.treeBookie.addTopLevelItems(items)

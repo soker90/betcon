@@ -38,6 +38,8 @@ from stats_stake import StatsStake
 from add_money import AddMoney
 from new_bonus import NewBonus
 from edit_bonus import EditBonus
+from new_tipster_month import NewTipsterMonth
+from tipsters_month import TipstersMonth
 
 
 class Main(QMainWindow):
@@ -61,6 +63,7 @@ class Main(QMainWindow):
 		self.aStat.triggered.connect(self.stats)
 		self.aBank.triggered.connect(self.banks)
 		self.aBonus.triggered.connect(self.bonus)
+		self.aTipsterMonth.triggered.connect(self.tipstersMonth)
 
 		self.aStatsGeneral.triggered.connect(self.stats)
 		self.aStatsTipster.triggered.connect(self.statsTipster)
@@ -106,7 +109,11 @@ class Main(QMainWindow):
 
 	def tipsters(self):
 		self.setCentralWidget(Tipsters(self))
-		self.enableTools()
+		self.enableTools("tipster")
+
+	def tipstersMonth(self):
+		self.setCentralWidget(TipstersMonth(self))
+		self.enableTools("tipster")
 
 	def stats(self):
 		self.setCentralWidget(Stats(self))
@@ -149,7 +156,11 @@ class Main(QMainWindow):
 
 	def newTipster(self):
 		self.setCentralWidget(NewTipster(self))
-		self.enableTools()
+		self.enableTools("tipster")
+
+	def newTipsterMonth(self):
+		self.setCentralWidget(NewTipsterMonth(self))
+		self.enableTools("tipster")
 
 	def newBank(self):
 		self.setCentralWidget(NewBank(self))
@@ -222,6 +233,7 @@ class Main(QMainWindow):
 
 	def enableTools(self, type=None):
 		self.toolBank.setVisible(False)
+		self.toolTipster.setVisible(False)
 		if type is "stats":
 			self.toolSecondary.setVisible(False)
 			self.toolStat.setVisible(True)
@@ -232,6 +244,8 @@ class Main(QMainWindow):
 			self.aRemove.setEnabled(False)
 			if type is "bank":
 				self.toolBank.setVisible(True)
+			if type is "tipster":
+				self.toolTipster.setVisible(True)
 
 	def enableActions(self, edit=True):
 		if edit:

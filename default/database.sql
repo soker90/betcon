@@ -9,14 +9,14 @@ CREATE TABLE bet
     player2 VARCHAR(150),
     pick VARCHAR(150),
     bookie INTEGER,
-    market VARCHAR(50),
-    tipster VARCHAR(50),
+    market INTEGER,
+    tipster INTEGER,
     stake REAL,
     one REAL,
     result VARCHAR(50),
     profit REAL,
     bet REAL,
-    quota FLOAT
+    quota REAL
 );
 
 
