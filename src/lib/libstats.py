@@ -314,6 +314,12 @@ class LibStats:
 		quota = float("{0:.2f}".format(datasql[5], 2))
 		bet = float("{0:.2f}".format(datasql[10], 2))
 
+		if datasql[1] is None:
+			datasql[1] = 0.0
+
+		if datasql[3] is None:
+			datasql[3] = 0.0
+
 		aciertos = "{0:.2f}%".format(round((datasql[7] / datasql[6]) * 100, 2))
 		data = [datasql[0], datasql[1]+bonus, datasql[2], datasql[3]+bonus, datasql[4], yi, quota, datasql[6], datasql[7],
 				datasql[8], datasql[9], aciertos, bet]

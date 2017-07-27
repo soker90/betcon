@@ -125,6 +125,7 @@ class EditBet(QWidget):
 		self.cmbMarket.setCurrentIndex(idCmb)
 
 		# cmbTipster
+		# TODO Revisar
 		data = bd.select("tipster", "name")
 
 		index, idCmb = 0, 0
