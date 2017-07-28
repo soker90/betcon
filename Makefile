@@ -4,6 +4,7 @@ install:
 	mkdir -p /usr/share/betcon/default/
 	cp -r src /usr/share/betcon/
 	cp -r ui /usr/share/betcon/
+	cp -r resources/images /usr/share/betcon/
 	cp default/database.sql /usr/share/betcon/default/
 	cp resources/betcon.desktop /usr/share/applications/
 	cp resources/icon.png /usr/share/pixmaps/betcon.png
