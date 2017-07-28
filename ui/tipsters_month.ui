@@ -18,27 +18,27 @@
     <widget class="QTreeWidget" name="treeMain">
      <column>
       <property name="text">
-       <string notr="true"/>
-      </property>
-     </column>
-     <column>
-      <property name="text">
        <string>index</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>Nombre</string>
+       <string>Año</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>Coste</string>
+       <string>Mes</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>Beneficio de apuestas</string>
+       <string>Tipster</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Importe</string>
       </property>
      </column>
     </widget>

@@ -1,6 +1,6 @@
 import sys, os, inspect
-from PyQt5.QtWidgets import QWidget, QTreeWidgetItem, QMessageBox
-from PyQt5.QtGui import QBrush
+from PyQt5.QtWidgets import QWidget, QTreeWidgetItem, QMessageBox, QTreeWidget
+from PyQt5.QtGui import QBrush, QPixmap, QFont
 from PyQt5.QtCore import Qt
 from PyQt5 import uic
 directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
@@ -23,6 +23,7 @@ class Bets(QWidget):
 		self.mainWindows.aRemove.triggered.connect(self.deleteItem)
 
 		self.itemSelected = -1
+		self.indexSelected = -1
 
 	def initTree(self):
 		bd = Bbdd()
@@ -34,13 +35,12 @@ class Bets(QWidget):
 			index += 1
 			id = i[0]
 			date = i[1]
-			sport = bd.getValue(i[2], "sport")
 			competition = bd.getValue(i[3], "competition")
 			region = bd.getValue(i[4], "region")
 			player1 = i[5]
 			player2 = i[6]
 			pick = i[7]
-			bookie = bd.getValue(i[8], "bookie")
+			#bookie = bd.getValue(i[8], "bookie")
 			market = bd.getValue(i[9], "market")
 			tipster = bd.getValue(i[10], "tipster")
 			stake = i[11]
@@ -50,8 +50,9 @@ class Bets(QWidget):
 			bet = str(i[15])
 			quota = i[16]
 
-			item = QTreeWidgetItem([str(index), str(id), str(date), str(sport), str(competition), str(region), player1,
-									player2, pick, bookie, market, tipster, stake, one, bet, quota, result, profit])
+			item = QTreeWidgetItem([str(index), str(id), str(date), "", str(competition), str(region), player1,
+									player2, pick, "", market, tipster, str(stake), str(one), str(bet), str(quota),
+									str(result), str(profit)])
 
 			profit = str_to_float(profit)
 
@@ -69,6 +70,18 @@ class Bets(QWidget):
 					for j in range(18):
 						item.setBackground(j, QBrush(Qt.cyan))
 
+			if os.path.isfile(directory + "/../resources/sports/" + str(i[2]) + ".png"):
+				item.setBackground(3, QBrush(QPixmap(directory + "/../resources/sports/" + str(i[2]) + ".png")))
+			else:
+				sport = bd.getValue(i[2], "sport")
+				item.setText(3, sport)
+
+			if os.path.isfile(directory + "/../resources/bookies/" + str(i[8]) + ".png"):
+				item.setBackground(9, QBrush(QPixmap(directory + "/../resources/bookies/" + str(i[8]) + ".png")))
+			else:
+				bookie = bd.getValue(i[8], "bookie")
+				item.setText(9, bookie)
+
 			items.append(item)
 
 		self.treeMain.addTopLevelItems(items)
@@ -76,7 +89,23 @@ class Bets(QWidget):
 		bd.close()
 
 	def changeItem(self):
+
+		if self.itemSelected != -1:
+			self.treeMain.topLevelItem(self.indexSelected).setText(3, "")
+			self.treeMain.topLevelItem(self.indexSelected).setText(9, "")
+
 		self.itemSelected = self.treeMain.currentItem().text(1)
+		self.indexSelected = int(self.treeMain.currentItem().text(0)) - 1
+
+		bd = Bbdd()
+		sport = bd.getValue(self.treeMain.currentItem().text(1), "bet", "sport")
+		sport = bd.getValue(sport, "sport")
+		self.treeMain.currentItem().setText(3, sport)
+
+		bookie = bd.getValue(self.treeMain.currentItem().text(1), "bet", "bookie")
+		bookie = bd.getValue(bookie, "bookie")
+		self.treeMain.currentItem().setText(9, bookie)
+		bd.close()
 		self.mainWindows.enableActions()
 
 	def editItem(self):

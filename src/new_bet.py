@@ -210,15 +210,15 @@ class NewBet(QWidget):
 		idTipster = self.tipsterIndexToId.get(self.cmbTipster.currentIndex())
 		data.append(idTipster)
 
-		data.append(self.txtStake.text())
-		data.append(self.txtOne.text())
+		data.append(str(str_to_float(self.txtStake.text())))
+		data.append(str(str_to_float(self.txtOne.text())))
 
 		# cmbResult
 		data.append(self.cmbResult.currentText())
 
 		data.append(str(str_to_float(self.txtProfit.text())))
 		data.append(str(str_to_float(self.txtBet.text())))
-		data.append(self.txtQuota.text())
+		data.append(str(str_to_float(self.txtQuota.text())))
 
 		columns = ["date", "sport", "competition", "region", "player1", "player2", "pick", "bookie", "market",
 		           "tipster", "stake", "one", "result", "profit", "bet", "quota"]

@@ -132,6 +132,18 @@
    </attribute>
    <addaction name="aAddMoney"/>
   </widget>
+  <widget class="QToolBar" name="toolTipster">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="aTipsterMonth"/>
+  </widget>
   <action name="aNew">
    <property name="text">
     <string>Nueva</string>
@@ -324,6 +336,11 @@
   <action name="aBonus">
    <property name="text">
     <string>Bonos</string>
+   </property>
+  </action>
+  <action name="aTipsterMonth">
+   <property name="text">
+    <string>Historial de pagos</string>
    </property>
   </action>
  </widget>

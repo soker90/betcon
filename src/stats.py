@@ -5,6 +5,8 @@ directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspe
 sys.path.append(directory + "/lib")
 from libstats import LibStats
 from datetime import datetime
+from func_aux import key_from_value
+
 
 class Stats(QWidget):
 	def __init__(self, mainWindows):
@@ -14,11 +16,29 @@ class Stats(QWidget):
 		self.mainWindows.setWindowTitle("Estadisticas | Betcon v" + mainWindows.version)
 
 		self.initData()
-
+		self.cmbYear.activated.connect(self.updateMonths)
+		self.cmbMonth.activated.connect(self.updateStats)
 
 	def initData(self):
-		year = datetime.now().strftime('%Y')
-		month = datetime.now().strftime('%m')
+		self.years, self.months = LibStats.getYears()
+		self.cmbYear.addItems(self.years.keys())
+
+		firstKey = next(iter(self.years))
+		self.cmbMonth.addItems(self.getMonths(firstKey))
+
+		self.updateMonths()
+
+	def updateMonths(self):
+		year = self.cmbYear.currentText()
+		self.cmbMonth.clear()
+		self.cmbMonth.addItems(self.getMonths(year))
+		self.updateStats()
+
+	def updateStats(self):
+		year = self.cmbYear.currentText()
+		sMonth = self.cmbMonth.currentText()
+		month = key_from_value(self.months, sMonth)
+
 		data = LibStats.getMonth(year, month)
 		self.txtApostado.setText(str(data[0]))
 		self.txtGanancias.setText(str(data[1]))
@@ -33,4 +53,14 @@ class Stats(QWidget):
 		self.txtNulos.setText(str(data[10]))
 		self.txtAcierto.setText(str(data[11]))
 		self.txtApuestaMedia.setText(str(data[12]))
+
+
+	def getMonths(self, year):
+		sMonths = []
+		for i in self.years[year]:
+			sMonths.append(self.months[i])
+		return sMonths
+
+
+
 

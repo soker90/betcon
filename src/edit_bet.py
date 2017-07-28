@@ -108,7 +108,7 @@ class EditBet(QWidget):
 		# cmbMarket
 		data = bd.select("market", "name")
 
-		index, idCmb = 0, 0
+		index, idCmb = 0, -1
 		idBd = bd.getValue(self.id, "bet", "market")
 
 		self.marketIndexToId = {}
@@ -147,11 +147,11 @@ class EditBet(QWidget):
 
 		# txtStake
 		stake = bd.getValue(self.id, "bet", "stake")
-		self.txtStake.setValue(atof(stake))
+		self.txtStake.setValue(stake)
 
 		# txtOne
 		one = bd.getValue(self.id, "bet", "one")
-		self.txtOne.setValue(atof(one))
+		self.txtOne.setValue(one)
 
 		# txtBet
 		bet = bd.getValue(self.id, "bet", "bet")
@@ -159,7 +159,7 @@ class EditBet(QWidget):
 
 		# txtQuota
 		quota = bd.getValue(self.id, "bet", "quota")
-		self.txtQuota.setValue(atof(quota))
+		self.txtQuota.setValue(quota)
 
 		# txtProfit
 		profit = bd.getValue(self.id, "bet", "profit")
@@ -255,15 +255,15 @@ class EditBet(QWidget):
 		idTipster = self.tipsterIndexToId.get(self.cmbTipster.currentIndex())
 		data.append(idTipster)
 
-		data.append(self.txtStake.text())
-		data.append(self.txtOne.text())
+		data.append(str(str_to_float(self.txtStake.text())))
+		data.append(str(str_to_float(self.txtOne.text())))
 
 		# cmbResult
 		data.append(self.cmbResult.currentText())
 
 		data.append(str_to_float(self.txtProfit.text()))
 		data.append(str_to_float(self.txtBet.text()))
-		data.append(self.txtQuota.text())
+		data.append(str(str_to_float(self.txtQuota.text())))
 
 		columns = ["date", "sport", "competition", "region", "player1", "player2", "pick", "bookie", "market",
 		           "tipster", "stake", "one", "result", "profit", "bet", "quota"]

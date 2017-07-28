@@ -32,8 +32,12 @@ class Tipsters(QWidget):
             index += 1
             id = i[0]
             name = i[1]
-            item = QTreeWidgetItem([str(index), str(id), name])
+            cost = bd.sum("tipster_month", "money", "tipster=" + str(id))
+            profit = bd.sum("bet", "profit", "tipster=" + str(id))
+            profit = "{0:.2f}".format(profit)
+            item = QTreeWidgetItem([str(index), str(id), name, str(cost), str(profit)])
             items.append(item)
+
 
         self.treeMain.addTopLevelItems(items)
 
