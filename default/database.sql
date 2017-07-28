@@ -27,17 +27,23 @@ CREATE TABLE sport
 );
 
 INSERT INTO sport (id, name) VALUES (1, '');
-INSERT INTO sport (name) VALUES ('Baloncesto');
-INSERT INTO sport (name) VALUES ('Balonmano');
-INSERT INTO sport (name) VALUES ('Béisbol');
-INSERT INTO sport (name) VALUES ('Boxeo');
-INSERT INTO sport (name) VALUES ('Críquet');
-INSERT INTO sport (name) VALUES ('Fútbol');
-INSERT INTO sport (name) VALUES ('Fútbol Americano');
-INSERT INTO sport (name) VALUES ('Golf');
-INSERT INTO sport (name) VALUES ('Tenis');
-INSERT INTO sport (name) VALUES ('Tenis de mesa');
-INSERT INTO sport (name) VALUES ('Voleibol');
+INSERT INTO sport (id, name) VALUES (2, 'Baloncesto');
+INSERT INTO sport (id, name) VALUES (3, 'Balonmano');
+INSERT INTO sport (id, name) VALUES (4, 'Béisbol');
+INSERT INTO sport (id, name) VALUES (5, 'Boxeo');
+INSERT INTO sport (id, name) VALUES (6, 'Críquet');
+INSERT INTO sport (id, name) VALUES (7, 'Fútbol');
+INSERT INTO sport (id, name) VALUES (8, 'Fútbol Americano');
+INSERT INTO sport (id, name) VALUES (9, 'Futbol Sala');
+INSERT INTO sport (id, name) VALUES (10, 'Golf');
+INSERT INTO sport (id, name) VALUES (11, 'Hockey');
+INSERT INTO sport (id, name) VALUES (12, 'Hockey sobre hielo');
+INSERT INTO sport (id, name) VALUES (13, 'Rugby');
+INSERT INTO sport (id, name) VALUES (14, 'Squash');
+INSERT INTO sport (id, name) VALUES (15, 'Tenis');
+INSERT INTO sport (id, name) VALUES (16, 'Tenis de mesa');
+INSERT INTO sport (id, name) VALUES (17, 'Voleibol');
+INSERT INTO sport (id, name) VALUES (18, 'Voley playa');
 
 
 CREATE TABLE region
@@ -68,6 +74,12 @@ INSERT INTO competition (id, name, region, sport) VALUES (9, '', 1, 9);
 INSERT INTO competition (id, name, region, sport) VALUES (10, '', 1, 10);
 INSERT INTO competition (id, name, region, sport) VALUES (11, '', 1, 11);
 INSERT INTO competition (id, name, region, sport) VALUES (12, '', 1, 12);
+INSERT INTO competition (id, name, region, sport) VALUES (13, '', 1, 13);
+INSERT INTO competition (id, name, region, sport) VALUES (14, '', 1, 14);
+INSERT INTO competition (id, name, region, sport) VALUES (15, '', 1, 15);
+INSERT INTO competition (id, name, region, sport) VALUES (16, '', 1, 16);
+INSERT INTO competition (id, name, region, sport) VALUES (17, '', 1, 17);
+INSERT INTO competition (id, name, region, sport) VALUES (18, '', 1, 18);
 
 CREATE TABLE bookie
 (
