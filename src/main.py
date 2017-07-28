@@ -277,6 +277,14 @@ class About(QDialog):
 	def __init__(self):
 		QDialog.__init__(self)
 		uic.loadUi(directory + "/../ui/about.ui", self)
+		archivo = open(directory + "/version.txt")
+		version = archivo.readline()
+		self.setWindowTitle("Acerca de")
+		self.txtText.setHtml("<p style='text-align: center;'><br>Betcon v" + version + "<p/>" \
+		                     "<p style='text-align: center;'>Web: https://soker90.github.io/betcon/<p/>" \
+		                     "<p style='text-align: center;'>Creado por Eduardo Parra Mazuecos<p/>" \
+		                     "<p style='text-align: center;'>Contacto: eduparra90@gmail.com</p>" \
+		                     "<p style='text-align: center;'>Licencia GPLv3<p/>")
 
 
 app = QApplication(sys.argv)
