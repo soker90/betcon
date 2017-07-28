@@ -140,3 +140,13 @@ CREATE TABLE bonus
     money REAL,
     free BOOLEAN
 );
+
+create table tipster_month
+(
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	month INTEGER,
+	year INTEGER,
+	tipster INTEGER,
+	money REAL
+);
+
