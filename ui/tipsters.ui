@@ -31,6 +31,16 @@
        <string>Nombre</string>
       </property>
      </column>
+     <column>
+      <property name="text">
+       <string>Coste</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Beneficio de apuestas</string>
+      </property>
+     </column>
     </widget>
    </item>
   </layout>

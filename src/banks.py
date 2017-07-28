@@ -33,8 +33,10 @@ class Banks(QWidget):
 
         bd = Bbdd()
 
+        tipsters = bd.sum("tipster_month", "money")
+        self.txtTipster.setText(str(tipsters))
         profits = bd.sum("bet", "profit") + bonus
-        self.txtProfit.setText("{0:.2f}".format(profits))
+        self.txtProfit.setText("{0:.2f}".format(profits - tipsters))
         bets = bd.sum("bet", "bet")
         try:
             yields = "{0:.2f}%".format((profits/bets)*100)

@@ -7,8 +7,8 @@ from bbdd import Bbdd
 from tipsters_month import TipstersMonth
 from func_aux import str_to_float
 
-class NewTipsterMonth(QWidget):
-	def __init__(self, mainWindows):
+class EditTipsterMonth(QWidget):
+	def __init__(self, mainWindows, id):
 		QWidget.__init__(self)
 		uic.loadUi(directory + "/../ui/new_tipster_month.ui", self)
 		self.mainWindows = mainWindows
@@ -16,20 +16,33 @@ class NewTipsterMonth(QWidget):
 		self.btnCancel.clicked.connect(self.cancel)
 		self.mainWindows.setWindowTitle("Nuevo Pago Tipster | Betcon v" + mainWindows.version)
 
+		self.id = id
 		self.initData()
+
 
 	def initData(self):
 		bd = Bbdd()
-		data = bd.select("tipster", "name")
+
+		data = bd.select("tipster_month", None, "id=" + str(self.id))[0]
+		dataCmb = bd.select("tipster", "name")
 
 		self.tipsterIndexToId = {}
-		index = 0
-		for i in data:
+		index, idCmb = 0, 0
+		idBd = data[3]
+		for i in dataCmb:
 			id = i[0]
+			if id == idBd:
+				idCmb = index
 			name = i[1]
 			self.cmbTipster.addItem(name)
 			self.tipsterIndexToId[index] = id
 			index += 1
+
+		self.cmbTipster.setCurrentIndex(idCmb)
+
+		self.txtYear.setValue(data[2])
+		self.cmbMonth.setCurrentIndex(data[1])
+		self.txtMoney.setValue(data[4])
 
 		bd.close()
 
@@ -48,10 +61,10 @@ class NewTipsterMonth(QWidget):
 		columns = ["month", "year", "tipster", "money"]
 
 		bbdd = Bbdd()
-		bbdd.insert(columns, data, "tipster_month")
+		bbdd.update(columns, data, "tipster_month")
 		bbdd.close()
 
-		QMessageBox.information(self, "Añadido", "Nuevo pago de tipster añadido.")
+		QMessageBox.information(self, "Actualizado", "Pago de tipster añadido.")
 
 		self.close()
 

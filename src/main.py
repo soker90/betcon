@@ -40,6 +40,7 @@ from new_bonus import NewBonus
 from edit_bonus import EditBonus
 from new_tipster_month import NewTipsterMonth
 from tipsters_month import TipstersMonth
+from edit_tipster_month import EditTipsterMonth
 
 
 class Main(QMainWindow):
@@ -199,6 +200,10 @@ class Main(QMainWindow):
 	def editTipster(self, id):
 		self.setCentralWidget(EditTipster(self, id))
 		self.enableTools()
+
+	def editTipsterMonth(self, id):
+		self.setCentralWidget(EditTipsterMonth(self, id))
+		self.enableTools("tipster")
 
 	def editBonus(self, id):
 		self.setCentralWidget(EditBonus(self, id))
