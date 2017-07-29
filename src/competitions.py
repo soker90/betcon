@@ -12,6 +12,7 @@ class Competitions(QWidget):
 		QWidget.__init__(self)
 		uic.loadUi(directory + "/../ui/competitions.ui", self)
 		self.mainWindows = mainWindows
+		mainWindows.diconnectActions()
 		self.treeMain.header().hideSection(1)
 		mainWindows.aNew.triggered.connect(mainWindows.newCompetition)
 		self.mainWindows.setWindowTitle("Competiciones | Betcon v" + mainWindows.version)

@@ -14,6 +14,7 @@ class Bets(QWidget):
 		QWidget.__init__(self)
 		uic.loadUi(directory + "/../ui/bets.ui", self)
 		self.mainWindows = mainWindows
+		mainWindows.diconnectActions()
 		mainWindows.aNew.triggered.connect(mainWindows.newBet)
 		self.mainWindows.setWindowTitle("Inicio | Betcon v" + mainWindows.version)
 		self.treeMain.header().hideSection(1)

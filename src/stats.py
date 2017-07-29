@@ -23,10 +23,13 @@ class Stats(QWidget):
 		self.years, self.months = LibStats.getYears()
 		self.cmbYear.addItems(self.years.keys())
 
-		firstKey = next(iter(self.years))
-		self.cmbMonth.addItems(self.getMonths(firstKey))
+		try:
+			firstKey = next(iter(self.years))
+			self.cmbMonth.addItems(self.getMonths(firstKey))
 
-		self.updateMonths()
+			self.updateMonths()
+		except:
+			self.setEnabled(False)
 
 	def updateMonths(self):
 		year = self.cmbYear.currentText()

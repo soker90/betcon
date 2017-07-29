@@ -10,6 +10,7 @@ class Bookies(QWidget):
 		QWidget.__init__(self)
 		uic.loadUi(directory + "/../ui/bookies.ui", self)
 		self.mainWindows = mainWindows
+		mainWindows.diconnectActions()
 		mainWindows.aNew.triggered.connect(mainWindows.newBookie)
 		self.mainWindows.setWindowTitle("Casas de apuestas | Betcon v" + mainWindows.version)
 		self.treeMain.header().hideSection(1)

@@ -11,6 +11,7 @@ class Regions(QWidget):
 		QWidget.__init__(self)
 		uic.loadUi(directory + "/../ui/regions.ui", self)
 		self.mainWindows = mainWindows
+		mainWindows.diconnectActions()
 		mainWindows.aNew.triggered.connect(mainWindows.newRegion)
 		self.mainWindows.setWindowTitle("Regiones | Betcon v" + mainWindows.version)
 		self.treeMain.header().hideSection(1)

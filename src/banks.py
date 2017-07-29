@@ -13,6 +13,7 @@ class Banks(QWidget):
         QWidget.__init__(self)
         uic.loadUi(directory + "/../ui/banks.ui", self)
         self.mainWindows = mainWindows
+        mainWindows.diconnectActions()
         mainWindows.aNew.triggered.connect(mainWindows.newBank)
         self.mainWindows.setWindowTitle("Bank | Betcon v" + mainWindows.version)
         self.treeMovement.itemSelectionChanged.connect(self.changeItem)
