@@ -378,6 +378,27 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>dtDate</tabstop>
+  <tabstop>cmbSport</tabstop>
+  <tabstop>cmbRegion</tabstop>
+  <tabstop>cmbCompetition</tabstop>
+  <tabstop>txtPlayer1</tabstop>
+  <tabstop>txtPlayer2</tabstop>
+  <tabstop>txtPick</tabstop>
+  <tabstop>cmbResult</tabstop>
+  <tabstop>cmbBookie</tabstop>
+  <tabstop>cmbMarket</tabstop>
+  <tabstop>cmbTipster</tabstop>
+  <tabstop>txtStake</tabstop>
+  <tabstop>txtOne</tabstop>
+  <tabstop>txtBet</tabstop>
+  <tabstop>txtQuota</tabstop>
+  <tabstop>txtProfit</tabstop>
+  <tabstop>chkFree</tabstop>
+  <tabstop>btnAccept</tabstop>
+  <tabstop>btnCancel</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
