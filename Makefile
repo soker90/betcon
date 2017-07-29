@@ -2,9 +2,11 @@ all: install
 
 install:
 	mkdir -p /usr/share/betcon/default/
+	mkdir -p /usr/share/betcon/resources/
 	cp -r src /usr/share/betcon/
 	cp -r ui /usr/share/betcon/
-	cp -r resources/images /usr/share/betcon/
+	cp -r resources/bookies /usr/share/betcon/resources/
+	cp -r resources/sports /usr/share/betcon/resources/
 	cp default/database.sql /usr/share/betcon/default/
 	cp resources/betcon.desktop /usr/share/applications/
 	cp resources/icon.png /usr/share/pixmaps/betcon.png
