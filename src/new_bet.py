@@ -260,7 +260,4 @@ class NewBet(QWidget):
 		self.txtProfit.setValue(profit)
 
 	def freeBet(self):
-		if(self.chkFree.isChecked()):
-			self.txtProfit.setEnabled(False)
-		else:
-			self.txtProfit.setEnabled(True)
+		self.updateProfit()
