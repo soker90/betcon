@@ -7,7 +7,7 @@ directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspe
 sys.path.append(directory + "/lib")
 from bets import Bets
 from decimal import Decimal
-from func_aux import str_to_float
+from func_aux import str_to_float, str_to_bool
 
 from bbdd import Bbdd
 
@@ -219,9 +219,10 @@ class NewBet(QWidget):
 		data.append(str(str_to_float(self.txtProfit.text())))
 		data.append(str(str_to_float(self.txtBet.text())))
 		data.append(str(str_to_float(self.txtQuota.text())))
+		data.append(1 if self.chkFree.isChecked() else 0)
 
 		columns = ["date", "sport", "competition", "region", "player1", "player2", "pick", "bookie", "market",
-		           "tipster", "stake", "one", "result", "profit", "bet", "quota"]
+		           "tipster", "stake", "one", "result", "profit", "bet", "quota", "free"]
 
 		bbdd.insert(columns, data, "bet")
 		bbdd.close()

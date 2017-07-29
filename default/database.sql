@@ -16,7 +16,8 @@ CREATE TABLE bet
     result VARCHAR(50),
     profit REAL,
     bet REAL,
-    quota REAL
+    quota REAL,
+    free BOOLEAN
 );
 
 

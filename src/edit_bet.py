@@ -3,11 +3,10 @@ from PyQt5.QtWidgets import QMessageBox, QWidget
 from PyQt5 import uic
 from bets import Bets
 from PyQt5.QtCore import QDateTime
-from locale import *
 directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
 sys.path.append(directory + "/lib")
 from bbdd import Bbdd
-from func_aux import str_to_float
+from func_aux import str_to_float, str_to_bool
 
 
 class EditBet(QWidget):
@@ -55,24 +54,6 @@ class EditBet(QWidget):
 
 		self.cmbSport.setCurrentIndex(idCmb)
 
-		# cmbRegion
-		data = bd.select("region", "name")
-
-		index, idCmb = 0, 0
-		idBd = bd.getValue(self.id, "bet", "region")
-
-		self.regionIndexToId = {}
-		index = 0
-		for i in data:
-			id = i[0]
-			if id == idBd:
-				idCmb = index
-			name = i[1]
-			self.cmbRegion.addItem(name)
-			self.regionIndexToId[index] = id
-			index += 1
-
-		self.cmbRegion.setCurrentIndex(idCmb)
 
 		# cmbBookie
 		data = bd.select("bookie", "name")
@@ -143,8 +124,6 @@ class EditBet(QWidget):
 
 		self.cmbTipster.setCurrentIndex(idCmb)
 
-		setlocale(LC_NUMERIC, '')
-
 		# txtStake
 		stake = bd.getValue(self.id, "bet", "stake")
 		self.txtStake.setValue(stake)
@@ -179,10 +158,60 @@ class EditBet(QWidget):
 
 		self.cmbResult.setCurrentIndex(idResutl)
 
+		freeBet = bd.getValue(self.id, "bet", "free")
+		print(freeBet)
+		self.chkFree.setChecked(freeBet)
+
 		bd.close()
 
-		# cmbCompetition
-		self.setCompetition()
+		self.setRegion()
+
+	def setRegion(self):
+		self.btnAccept.setDisabled(False)
+		self.cmbRegion.clear()
+		bd = Bbdd()
+
+		idSport = self.sportIndexToId.get(self.cmbSport.currentIndex())
+
+		where = " sport=" + str(idSport)
+
+		data = bd.select("competition", None, where, "region")
+		dataRegion = ""
+
+		if len(data) > 0:
+			sData = "("
+			j= 0
+			for i in data:
+				if j == len(data)-1:
+					sData += str(i[0]) + ")"
+				else:
+					sData += str(i[0]) + ", "
+				j+=1
+
+			where = " id in "+sData
+			dataRegion = bd.select("region", "name", where)
+
+			if len(dataRegion) < 1:
+				self.btnAccept.setDisabled(True)
+				bd.close()
+			else:
+				self.regionIndexToId = {}
+				index, idCmb = 0, 0
+				idBd = bd.getValue(self.id, "bet", "region")
+				for i in dataRegion:
+					id = i[0]
+					if id == idBd:
+						idCmb = index
+					name = i[1]
+					self.cmbRegion.addItem(name)
+					self.regionIndexToId[index] = id
+					index += 1
+				self.cmbRegion.setCurrentIndex(idCmb)
+				bd.close()
+				self.setCompetition()
+
+
+
 
 	def setCompetition(self):
 		self.cmbCompetition.clear()
@@ -209,9 +238,16 @@ class EditBet(QWidget):
 			self.competitionIndexToId[index] = id
 			index += 1
 
+		if index == 0:
+			self.btnAccept.setDisabled(True)
+		else:
+			self.btnAccept.setDisabled(False)
+
+
 		self.cmbCompetition.setCurrentIndex(idCmb)
 
 		bd.close()
+
 
 	def close(self):
 		self.mainWindows.setCentralWidget(Bets(self.mainWindows))
@@ -261,12 +297,14 @@ class EditBet(QWidget):
 		# cmbResult
 		data.append(self.cmbResult.currentText())
 
-		data.append(str_to_float(self.txtProfit.text()))
-		data.append(str_to_float(self.txtBet.text()))
+		print(self.txtBet.text())
+		data.append(str(str_to_float(self.txtProfit.text())))
+		data.append(str(str_to_float(self.txtBet.text())))
 		data.append(str(str_to_float(self.txtQuota.text())))
+		data.append(1 if self.chkFree.isChecked() else 0)
 
 		columns = ["date", "sport", "competition", "region", "player1", "player2", "pick", "bookie", "market",
-		           "tipster", "stake", "one", "result", "profit", "bet", "quota"]
+		           "tipster", "stake", "one", "result", "profit", "bet", "quota", "free"]
 
 		bbdd.update(columns, data, "bet", "id="+self.id)
 		bbdd.close()
@@ -279,16 +317,30 @@ class EditBet(QWidget):
 		quota = self.txtQuota.value()
 		bet = self.txtBet.value()
 
-		profit = {
-			0: lambda quota: -1,  # Pendiente
-			1: lambda quota: quota - 1,  # Acertada
-			2: lambda quota: -1,  # Fallada
-			3: lambda quota: 0,  # Nula
-			4: lambda quota: (quota - 1) * 0.5,  # Medio Acertada
-			5: lambda quota: (quota - 1) * -0.5,  # Medio Fallada
-			6: lambda quota: 0  # Retirada
-		}[result](float(quota))
+		if self.chkFree.isChecked():
+			profit = {
+				0: lambda quota: 0,  # Pendiente
+				1: lambda quota: quota - 1,  # Acertada
+				2: lambda quota: 0,  # Fallada
+				3: lambda quota: 0,  # Nula
+				4: lambda quota: (quota - 1) * 0.5,  # Medio Acertada
+				5: lambda quota: 0,  # Medio Fallada
+				6: lambda quota: 0  # Retirada
+			}[result](float(quota))
+		else:
+			profit = {
+				0: lambda quota: -1,  # Pendiente
+				1: lambda quota: quota - 1,  # Acertada
+				2: lambda quota: -1,  # Fallada
+				3: lambda quota: 0,  # Nula
+				4: lambda quota: (quota - 1) * 0.5,  # Medio Acertada
+				5: lambda quota: (quota - 1) * -0.5,  # Medio Fallada
+				6: lambda quota: 0  # Retirada
+			}[result](float(quota))
 
 		profit *= bet
 
 		self.txtProfit.setValue(profit)
+
+	def freeBet(self):
+		self.updateProfit()
