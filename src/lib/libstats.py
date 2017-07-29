@@ -320,9 +320,7 @@ class LibStats:
 		data2 = 0.0 if datasql[2] is None else "{0:.2f}".format(round(datasql[2], 2))
 		data3 = 0.0 if datasql[3] is None else "{0:.2f}".format(round(datasql[3] + bonus, 2))
 		data4 = 0.0 if datasql[4] is None else "{0:.2f}".format(round(datasql[4], 2))
-		data6 = "{0:.2f}".format(round(datasql[6], 2))
-		data7 = "{0:.2f}".format(round(datasql[7], 2))
-		data = [data0, data1, data2, data3, data4, yi, quota, data6, data7,
+		data = [data0, data1, data2, data3, data4, yi, quota, datasql[6], datasql[7],
 				datasql[8], datasql[9], aciertos, bet]
 
 		return data
