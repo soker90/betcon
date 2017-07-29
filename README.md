@@ -8,15 +8,19 @@ Betcon es una aplicación para sistemas GNU/Linux y Windows para la gestión de 
 ```bash
 yaourt -S betcon
 ```
-
-#### Debian/Ubuntu
+#### Ubuntu
+```
+sudo add-apt-repository ppa:soker/betcon
+sudo apt-get update
+sudo apt-get install betcon
+```
+#### Debian
 [Descarga](https://github.com/soker90/betcon/releases/download/1.3.5.1/betcon_1.3.5-1_all.deb)
 
 #### Instalar desde código fuente
 Antes de instalar, asegúrate de tener instaladas las dependencias:
 * Python3
 * PyQt5
-* SQLite3
 
 Para instalar:
 ```
