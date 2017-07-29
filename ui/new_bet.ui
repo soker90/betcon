@@ -230,7 +230,7 @@
           <enum>QAbstractSpinBox::NoButtons</enum>
          </property>
          <property name="minimum">
-          <double>-999999.989999999990687</double>
+          <double>0.000000000000000</double>
          </property>
          <property name="maximum">
           <double>999999.989999999990687</double>
@@ -248,6 +248,9 @@
         <widget class="QDoubleSpinBox" name="txtQuota">
          <property name="buttonSymbols">
           <enum>QAbstractSpinBox::NoButtons</enum>
+         </property>
+         <property name="decimals">
+          <number>4</number>
          </property>
          <property name="maximum">
           <double>999999.989999999990687</double>
