@@ -258,9 +258,18 @@ class Main(QMainWindow):
 		self.aRemove.setEnabled(True)
 
 	def diconnectActions(self):
-		self.aNew.triggered.disconnect()
-		self.aEdit.triggered.disconnect()
-		self.aRemove.triggered.disconnect()
+		try:
+			self.aNew.triggered.disconnect()
+		except:
+			pass
+		try:
+			self.aEdit.triggered.disconnect()
+		except:
+			pass
+		try:
+			self.aRemove.triggered.disconnect()
+		except:
+			pass
 
 
 	#Events
