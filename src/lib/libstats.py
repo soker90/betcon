@@ -270,7 +270,7 @@ class LibStats:
 			if i[3] is None:
 				continue
 			row = []
-			row.append(i[0])  # Stake
+			row.append(str(i[0]))  # Stake
 			row.append(str(i[4]))  # Number of bets
 			try:
 				win = i[1] / (i[1] + i[2])  # Percentage of win bet
