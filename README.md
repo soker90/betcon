@@ -87,7 +87,7 @@ git clone https://github.com/soker90/Betcon.git
 
 
 ### Contacto
-Puedes contactarme en [eduparra90@gmail.com](mailto:eduparra90@gmail.com) o en [@soker90](http://twitter.com/soker90).
+Puedes contactarme en [eduparra90@gmail.com](mailto:eduparra90@gmail.com) o en [@eduparra90](http://twitter.com/eduparra90).
 
 
 
