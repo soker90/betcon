@@ -13,12 +13,11 @@ class StatsStake(QWidget):
         uic.loadUi(directory + "/../ui/stats_stake.ui", self)
         self.mainWindows = mainWindows
         self.mainWindows.setWindowTitle("Estadisticas Stake | Betcon v" + mainWindows.version)
-        '''try:
+        try:
             self.initData()
         except Exception:
             print("Error al intentar cargar los datos.")
-            self.setEnabled(False)'''
-        self.initData()
+            self.setEnabled(False)
 
         self.cmbYear.activated.connect(self.updateMonths)
         self.cmbMonth.activated.connect(self.updateTree)
