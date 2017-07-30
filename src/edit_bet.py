@@ -24,6 +24,7 @@ class EditBet(QWidget):
 		self.cmbResult.activated.connect(self.updateProfit)
 		self.txtQuota.valueChanged.connect(self.updateProfit)
 		self.txtBet.valueChanged.connect(self.updateProfit)
+		self.chkFree.clicked.connect(self.freeBet)
 
 	# self.txtQuota.activated.connect(self.setCompetition)
 
