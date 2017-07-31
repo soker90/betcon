@@ -28,9 +28,9 @@ class Banks(QWidget):
         self.txtDeposit.setText("{0:.2f}".format(Bookie.sumAll("money>0")))
         self.txtTakeOut.setText("{0:.2f}".format(Bookie.sumAll("money<0")))
         bookies = Bookie.sumAll()
-        self.txtBookie.setText("{0:.2f}".format(bookies))
         bonus = Bookie.sumBonus()
         self.txtBonus.setText("{0:.2f}".format(bonus))
+        self.txtBookie.setText("{0:.2f}".format(bookies + bonus))
 
         bd = Bbdd()
 
@@ -48,7 +48,7 @@ class Banks(QWidget):
         # CC
         cc = bd.select("bank", None, "id=1", "bank")
         cc = cc[0][0]
-        self.txtCc.setText("{0:.2f}".format(cc+bonus))
+        self.txtCc.setText("{0:.2f}".format(cc))
 
         # Paypal
         paypal = bd.select("bank", None, "id=2", "bank")
