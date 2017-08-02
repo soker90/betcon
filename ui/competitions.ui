@@ -16,9 +16,12 @@
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QTreeWidget" name="treeMain">
+     <property name="sortingEnabled">
+      <bool>true</bool>
+     </property>
      <column>
       <property name="text">
-       <string notr="true"> </string>
+       <string notr="true"/>
       </property>
      </column>
      <column>
