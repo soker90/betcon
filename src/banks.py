@@ -5,6 +5,7 @@ directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspe
 sys.path.append(directory + "/lib")
 from bbdd import Bbdd
 from bookie import Bookie
+from datetime import datetime, date
 
 
 
@@ -88,7 +89,8 @@ class Banks(QWidget):
         items = []
         for i in data:
             id = i[0]
-            date = i[1]
+            sDate = datetime.strptime(i[1], "%d/%m/%y")
+            sDate = date.strftime(sDate, "%Y/%m/%d")
             account = i[2]
             if account == 1:
                 account = "Banco"
@@ -104,7 +106,7 @@ class Banks(QWidget):
                 type = "Depósito en casa"
 
 
-            item = QTreeWidgetItem([str(date), str(id), bookie, type, str(account), str(money)])
+            item = QTreeWidgetItem([str(sDate), str(id), bookie, type, str(account), str(money)])
 
             items.append(item)
 
