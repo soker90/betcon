@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>545</width>
-    <height>430</height>
+    <width>806</width>
+    <height>625</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -34,6 +34,42 @@
      <column>
       <property name="text">
        <string>Tipster</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Importe</string>
+      </property>
+     </column>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="lblConjunta">
+     <property name="text">
+      <string>Conjuntas</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QTreeWidget" name="treeConjunta">
+     <column>
+      <property name="text">
+       <string>index</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Año</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Mes</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Nombre</string>
       </property>
      </column>
      <column>

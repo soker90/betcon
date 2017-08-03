@@ -105,7 +105,6 @@ class Banks(QWidget):
             else:
                 type = "Depósito en casa"
 
-
             item = QTreeWidgetItem([str(sDate), str(id), bookie, type, str(account), str(money)])
 
             items.append(item)

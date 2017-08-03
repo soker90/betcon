@@ -1,6 +1,9 @@
-import sys, os, inspect
+import inspect
+import os
+import sys
+
 directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
-from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox, QDialog, QGridLayout, QAction
+from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox, QDialog
 from PyQt5 import uic
 sys.path.append(directory)
 from bets import Bets
@@ -41,6 +44,7 @@ from edit_bonus import EditBonus
 from new_tipster_month import NewTipsterMonth
 from tipsters_month import TipstersMonth
 from edit_tipster_month import EditTipsterMonth
+from src.new_conjunta import NewConjunta
 
 
 class Main(QMainWindow):
@@ -78,6 +82,8 @@ class Main(QMainWindow):
 		self.aClose.triggered.connect(self.close)
 		self.aAbout.triggered.connect(self.about)
 
+		self.aNewConjunta.triggered.connect(self.newConjunta)
+
 		self.setCentralWidget(Bets(self))
 
 
@@ -114,7 +120,7 @@ class Main(QMainWindow):
 
 	def tipstersMonth(self):
 		self.setCentralWidget(TipstersMonth(self))
-		self.enableTools("tipster")
+		self.enableTools("tipster_money")
 
 	def stats(self):
 		self.setCentralWidget(Stats(self))
@@ -234,11 +240,16 @@ class Main(QMainWindow):
 	def addMoney(self):
 		self.setCentralWidget(AddMoney(self))
 
+	# Conjunta
+	def newConjunta(self):
+		self.setCentralWidget(NewConjunta(self))
+
 	#Auxiliary Functions
 
 	def enableTools(self, type=None):
 		self.toolBank.setVisible(False)
 		self.toolTipster.setVisible(False)
+		self.toolConjunta.setVisible(False)
 		if type is "stats":
 			self.toolSecondary.setVisible(False)
 			self.toolStat.setVisible(True)
@@ -251,11 +262,18 @@ class Main(QMainWindow):
 				self.toolBank.setVisible(True)
 			if type is "tipster":
 				self.toolTipster.setVisible(True)
+			if type is "tipster_money":
+				self.toolTipster.setVisible(True)
+				self.toolConjunta.setVisible(True)
 
 	def enableActions(self, edit=True):
 		if edit:
 			self.aEdit.setEnabled(True)
 		self.aRemove.setEnabled(True)
+
+	def enableActionConjunta(self, enable):
+		self.aEditConjunta.setEnabled(enable)
+		self.aDeleteConjunta.setEnabled(enable)
 
 	def diconnectActions(self):
 		try:
