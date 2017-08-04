@@ -19,6 +19,8 @@ class Bbdd:
 
 		if not exist:
 			self.initDatabase()
+		else:
+			self.updateDatabase()
 
 
 	def insert(self, columns, values, table):
@@ -138,11 +140,21 @@ class Bbdd:
 		self.cursor.executescript(query)
 		self.bd.commit()
 
-	def updateDatabase(self, table):
-		if table is "conjunta":
-			pass
-		if table is "conjunta_tipster":
-			pass
+	def updateDatabase(self):
+		try:
+			query = "create table IF NOT EXISTS conjunta (id INTEGER primary key autoincrement, name VARCHAR(30),	month INTEGER," \
+					"year INTEGER, 	money REAL );"
+
+			self.cursor.executescript(query)
+			self.bd.commit()
+
+			query = "create table IF NOT EXISTS conjunta_tipster (conjunta INTEGER, tipster INTEGER, " \
+					"constraint conjunta_tipster_conjunta_tipster_pk primary key (conjunta, tipster));"
+
+			self.cursor.executescript(query)
+			self.bd.commit()
+		except Exception as e:
+			print("Error en BBDD: {0}".format(e))
 
 
 	def close(self):

@@ -32,7 +32,7 @@ class Tipsters(QWidget):
         for i in data:
             data2 = bd.select("conjunta_tipster", None, "conjunta=" + str(i[0]))
             if len(data2) > 1:
-                money_tipster = i[4]/(len(data2) - 1)
+                money_tipster = i[4]/len(data2)
                 for j in data2:
                     try:
                         money[j[1]] += money_tipster
