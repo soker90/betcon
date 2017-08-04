@@ -237,6 +237,9 @@
    </item>
    <item>
     <widget class="QTreeWidget" name="treeMovement">
+     <property name="sortingEnabled">
+      <bool>true</bool>
+     </property>
      <attribute name="headerDefaultSectionSize">
       <number>200</number>
      </attribute>

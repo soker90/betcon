@@ -5,6 +5,7 @@ directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspe
 sys.path.append(directory + "/lib")
 from bbdd import Bbdd
 from bookie import Bookie
+from datetime import datetime, date
 
 
 
@@ -28,16 +29,17 @@ class Banks(QWidget):
         self.txtDeposit.setText("{0:.2f}".format(Bookie.sumAll("money>0")))
         self.txtTakeOut.setText("{0:.2f}".format(Bookie.sumAll("money<0")))
         bookies = Bookie.sumAll()
-        self.txtBookie.setText("{0:.2f}".format(bookies))
         bonus = Bookie.sumBonus()
         self.txtBonus.setText("{0:.2f}".format(bonus))
+        self.txtBookie.setText("{0:.2f}".format(bookies + bonus))
 
         bd = Bbdd()
 
         tipsters = bd.sum("tipster_month", "money")
-        self.txtTipster.setText(str(tipsters))
+        conjuntas = bd.sum("conjunta", "money")
+        self.txtTipster.setText(str(tipsters + conjuntas))
         profits = bd.sum("bet", "profit") + bonus
-        self.txtProfit.setText("{0:.2f}".format(profits - tipsters))
+        self.txtProfit.setText("{0:.2f}".format(profits - tipsters - conjuntas))
         bets = bd.sum("bet", "bet")
         try:
             yields = "{0:.2f}%".format((profits/bets)*100)
@@ -48,7 +50,7 @@ class Banks(QWidget):
         # CC
         cc = bd.select("bank", None, "id=1", "bank")
         cc = cc[0][0]
-        self.txtCc.setText("{0:.2f}".format(cc+bonus))
+        self.txtCc.setText("{0:.2f}".format(cc))
 
         # Paypal
         paypal = bd.select("bank", None, "id=2", "bank")
@@ -88,7 +90,8 @@ class Banks(QWidget):
         items = []
         for i in data:
             id = i[0]
-            date = i[1]
+            sDate = datetime.strptime(i[1], "%d/%m/%y")
+            sDate = date.strftime(sDate, "%Y/%m/%d")
             account = i[2]
             if account == 1:
                 account = "Banco"
@@ -103,8 +106,7 @@ class Banks(QWidget):
             else:
                 type = "Depósito en casa"
 
-
-            item = QTreeWidgetItem([str(date), str(id), bookie, type, str(account), str(money)])
+            item = QTreeWidgetItem([str(sDate), str(id), bookie, type, str(account), str(money)])
 
             items.append(item)
 

@@ -24,9 +24,9 @@ class EditBet(QWidget):
 		self.cmbResult.activated.connect(self.updateProfit)
 		self.txtQuota.valueChanged.connect(self.updateProfit)
 		self.txtBet.valueChanged.connect(self.updateProfit)
-
-	# self.txtQuota.activated.connect(self.setCompetition)
-
+		self.chkFree.clicked.connect(self.freeBet)
+		self.txtStake.valueChanged.connect(self.updateBet)
+		self.txtOne.valueChanged.connect(self.updateBet)
 
 
 	def initData(self):
@@ -344,3 +344,9 @@ class EditBet(QWidget):
 
 	def freeBet(self):
 		self.updateProfit()
+
+	def updateBet(self):
+		if self.txtStake.text() != "0,00" and self.txtOne.text() != "0,00":
+			bet = str_to_float(self.txtStake.text()) * str_to_float(self.txtOne.text())
+			self.txtBet.setValue(bet)
+

@@ -138,6 +138,12 @@ class Bbdd:
 		self.cursor.executescript(query)
 		self.bd.commit()
 
+	def updateDatabase(self, table):
+		if table is "conjunta":
+			pass
+		if table is "conjunta_tipster":
+			pass
+
 
 	def close(self):
 		self.cursor.close()

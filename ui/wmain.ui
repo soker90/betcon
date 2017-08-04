@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1009</width>
+    <width>949</width>
     <height>678</height>
    </rect>
   </property>
@@ -46,7 +46,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1009</width>
+     <width>949</width>
      <height>23</height>
     </rect>
    </property>
@@ -143,6 +143,20 @@
     <bool>false</bool>
    </attribute>
    <addaction name="aTipsterMonth"/>
+  </widget>
+  <widget class="QToolBar" name="toolConjunta">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="aNewConjunta"/>
+   <addaction name="aEditConjunta"/>
+   <addaction name="aDeleteConjunta"/>
   </widget>
   <action name="aNew">
    <property name="text">
@@ -341,6 +355,21 @@
   <action name="aTipsterMonth">
    <property name="text">
     <string>Historial de pagos</string>
+   </property>
+  </action>
+  <action name="aNewConjunta">
+   <property name="text">
+    <string>Nueva Conjunta</string>
+   </property>
+  </action>
+  <action name="aEditConjunta">
+   <property name="text">
+    <string>Editar Conjunta</string>
+   </property>
+  </action>
+  <action name="aDeleteConjunta">
+   <property name="text">
+    <string>Eliminar Conjunta</string>
    </property>
   </action>
  </widget>

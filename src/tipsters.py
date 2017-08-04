@@ -25,6 +25,21 @@ class Tipsters(QWidget):
 
     def initTree(self):
         bd = Bbdd()
+        money = {}
+
+        data = bd.select("conjunta")
+
+        for i in data:
+            data2 = bd.select("conjunta_tipster", None, "conjunta=" + str(i[0]))
+            if len(data2) > 1:
+                money_tipster = i[4]/(len(data2) - 1)
+                for j in data2:
+                    try:
+                        money[j[1]] += money_tipster
+                    except:
+                        money[j[1]] = money_tipster
+
+
         data = bd.select("tipster", "name")
 
         index = 0
@@ -34,9 +49,12 @@ class Tipsters(QWidget):
             id = i[0]
             name = i[1]
             cost = bd.sum("tipster_month", "money", "tipster=" + str(id))
+            if id in money.keys():
+                cost += money[id]
+            cost = "{0:.2f}".format(cost)
             profit = bd.sum("bet", "profit", "tipster=" + str(id))
             profit = "{0:.2f}".format(profit)
-            item = QTreeWidgetItem([str(index), str(id), name, str(cost), str(profit)])
+            item = QTreeWidgetItem([str(index), str(id), name, cost, profit])
             items.append(item)
 
 
