@@ -6,45 +6,46 @@ directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspe
 from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox, QDialog
 from PyQt5 import uic
 sys.path.append(directory)
-from bets import Bets
-from new_bet import NewBet
+from src.bets import Bets
+from src.new_bet import NewBet
 sys.path.append(directory + "/lib")
-from regions import Regions
-from new_region import NewRegion
-from competitions import Competitions
-from new_competition import NewCompetition
-from sports import Sports
-from new_sport import NewSport
-from bookies import Bookies
-from new_bookie import NewBookie
-from markets import Markets
-from new_market import NewMarket
-from tipsters import Tipsters
-from new_tipster import NewTipster
-from edit_bet import EditBet
-from edit_bookie import EditBookie
-from edit_competition import EditCompetition
-from edit_tipster import EditTipster
-from edit_market import EditMarket
-from edit_region import EditRegion
-from edit_sport import EditSport
-from stats import Stats
-from banks import Banks
-from bonus import Bonus
-from new_bank import NewBank
-from stats_tipster import StatsTipster
-from stats_bookie import StatsBookie
-from stats_market import StatsMarket
-from stats_region import StatsRegion
-from stats_sport import StatsSport
-from stats_stake import StatsStake
-from add_money import AddMoney
-from new_bonus import NewBonus
-from edit_bonus import EditBonus
-from new_tipster_month import NewTipsterMonth
-from tipsters_month import TipstersMonth
-from edit_tipster_month import EditTipsterMonth
+from src.regions import Regions
+from src.new_region import NewRegion
+from src.competitions import Competitions
+from src.new_competition import NewCompetition
+from src.sports import Sports
+from src.new_sport import NewSport
+from src.bookies import Bookies
+from src.new_bookie import NewBookie
+from src.markets import Markets
+from src.new_market import NewMarket
+from src.tipsters import Tipsters
+from src.new_tipster import NewTipster
+from src.edit_bet import EditBet
+from src.edit_bookie import EditBookie
+from src.edit_competition import EditCompetition
+from src.edit_tipster import EditTipster
+from src.edit_market import EditMarket
+from src.edit_region import EditRegion
+from src.edit_sport import EditSport
+from src.stats import Stats
+from src.banks import Banks
+from src.bonus import Bonus
+from src.new_bank import NewBank
+from src.stats_tipster import StatsTipster
+from src.stats_bookie import StatsBookie
+from src.stats_market import StatsMarket
+from src.stats_region import StatsRegion
+from src.stats_sport import StatsSport
+from src.stats_stake import StatsStake
+from src.add_money import AddMoney
+from src.new_bonus import NewBonus
+from src.edit_bonus import EditBonus
+from src.new_tipster_month import NewTipsterMonth
+from src.tipsters_month import TipstersMonth
+from src.edit_tipster_month import EditTipsterMonth
 from src.new_conjunta import NewConjunta
+from src.edit_conjunta import EditConjunta
 
 
 class Main(QMainWindow):
@@ -243,6 +244,10 @@ class Main(QMainWindow):
 	# Conjunta
 	def newConjunta(self):
 		self.setCentralWidget(NewConjunta(self))
+
+	def editConjunta(self, id):
+		self.setCentralWidget(EditConjunta(self, id))
+		self.enableActionConjunta(False)
 
 	#Auxiliary Functions
 

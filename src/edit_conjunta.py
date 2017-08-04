@@ -7,8 +7,8 @@ from bbdd import Bbdd
 from tipsters_month import TipstersMonth
 from func_aux import str_to_float
 
-class NewConjunta(QWidget):
-	def __init__(self, mainWindows):
+class EditConjunta(QWidget):
+	def __init__(self, mainWindows, id):
 		QWidget.__init__(self)
 		uic.loadUi(directory + "/../ui/new_conjunta.ui", self)
 		self.mainWindows = mainWindows
@@ -16,13 +16,32 @@ class NewConjunta(QWidget):
 		self.btnCancel.clicked.connect(self.cancel)
 		self.btnAdd.clicked.connect(self.add)
 		self.btnDel.clicked.connect(self.delete)
-		self.mainWindows.setWindowTitle("Nueva Conjunta | Betcon v" + mainWindows.version)
+		self.mainWindows.setWindowTitle("Actualizar Conjunta | Betcon v" + mainWindows.version)
 
+		self.id = id
 		self.selected = [0, 1]
 		self.initData()
 
 
 	def initData(self):
+
+		bd = Bbdd()
+		data = bd.select("conjunta", None, "id=" + str(self.id))[0]
+
+		self.txtName.setText(data[1])
+		self.txtYear.setValue(data[3])
+		self.cmbMonth.setCurrentIndex(data[2])
+		self.txtMoney.setValue(data[4])
+
+
+		data = bd.select("conjunta_tipster", None, "conjunta=" + str(self.id), "tipster")
+
+		for i in data:
+			self.selected.append(i[0])
+		bd.close()
+		self.updateData()
+
+	def updateData(self):
 
 		bd = Bbdd()
 
@@ -62,14 +81,14 @@ class NewConjunta(QWidget):
 		columns = ["month", "year", "name", "money"]
 
 		bbdd = Bbdd()
-		bbdd.insert(columns, data, "conjunta")
+		bbdd.update(columns, data, "conjunta", "id=" + str(self.id))
 
-		id = bbdd.select("conjunta", None, None, "max(id)")[0][0]
+		bbdd.deleteWhere("conjunta_tipster", "conjunta=" + str(self.id))
 
 		for i in self.selected:
 			if i in (0, 1):
 				continue
-			bbdd.insert(["conjunta", "tipster"], [id, i], "conjunta_tipster")
+			bbdd.insert(["conjunta", "tipster"], [self.id, i], "conjunta_tipster")
 
 		bbdd.close()
 
@@ -81,11 +100,11 @@ class NewConjunta(QWidget):
 	def add(self):
 		idTipster = self.tipsterIndexToId.get(self.listFree.currentRow())
 		self.selected.append(idTipster)
-		self.initData()
+		self.updateData()
 
 	def delete(self):
 		idTipster = self.selectedIndexToId.get(self.listSelected.currentRow())
 		self.selected.remove(idTipster)
-		self.initData()
+		self.updateData()
 
 

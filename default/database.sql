@@ -163,3 +163,21 @@ create table tipster_month
 	money REAL
 );
 
+create table conjunta
+(
+	id INTEGER
+		primary key
+		 autoincrement,
+	name VARCHAR(30),
+	month INTEGER,
+	year INTEGER,
+	money REAL
+);
+
+create table conjunta_tipster
+(
+	conjunta INTEGER,
+	tipster INTEGER,
+	constraint conjunta_tipster_conjunta_tipster_pk
+		primary key (conjunta, tipster)
+);

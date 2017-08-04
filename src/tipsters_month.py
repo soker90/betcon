@@ -25,6 +25,8 @@ class TipstersMonth(QWidget):
 		self.mainWindows.aEdit.triggered.connect(self.editItem)
 		self.mainWindows.aRemove.triggered.connect(self.deleteItem)
 		self.mainWindows.enableActionConjunta(False)
+		self.mainWindows.aEditConjunta.triggered.connect(self.editConjunta)
+		self.mainWindows.aDeleteConjunta.triggered.connect(self.deleteConjunta)
 		self.itemSelected = -1
 		self.itemConjunta = -1
 
@@ -75,13 +77,29 @@ class TipstersMonth(QWidget):
 	def editItem(self):
 		self.mainWindows.editTipsterMonth(self.itemSelected)
 
+	def editConjunta(self):
+		self.mainWindows.editConjunta(self.itemConjunta)
+
 	def deleteItem(self):
 		resultado = QMessageBox.question(self, "Eliminar",
-		                                 "¿Estas seguro que desas eliminar este tipster y todas las apuestas asociadas?",
+		                                 "¿Estas seguro que desas eliminar este pago?",
 		                                 QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
 		if resultado == QMessageBox.Yes:
 			bd = Bbdd()
 			bd.delete("tipster_month", self.itemSelected)
 			self.mainWindows.setCentralWidget(TipstersMonth(self.mainWindows))
-			self.mainWindows.enableTools("tipster")
+			self.mainWindows.enableTools("tipster_money")
 			bd.close()
+
+	def deleteConjunta(self):
+		resultado = QMessageBox.question(self, "Eliminar",
+		                                 "¿Estás seguro que desas eliminar esta conjunta?",
+		                                 QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+		if resultado == QMessageBox.Yes:
+			bd = Bbdd()
+			bd.delete("conjunta", str(self.itemConjunta))
+			bd.deleteWhere("conjunta_tipster","conjunta=" + str(self.itemConjunta))
+			self.mainWindows.setCentralWidget(TipstersMonth(self.mainWindows))
+			self.mainWindows.enableTools("tipster_money")
+			bd.close()
+
