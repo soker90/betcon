@@ -85,6 +85,11 @@ git clone https://github.com/soker90/Betcon.git
 #### Tipsters
 ![bets](images/17.png)
 
+#### Historial de pago de Tipsters
+![bets](images/18.png)
+
+#### Conjuntas de Tipsters
+![bets](images/19.png)
 
 ### Contacto
 Puedes contactarme en [eduparra90@gmail.com](mailto:eduparra90@gmail.com) o en [@eduparra90](http://twitter.com/eduparra90).
