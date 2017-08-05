@@ -15,7 +15,7 @@ sudo apt-get update
 sudo apt-get install betcon
 ```
 #### Debian
-[Descarga](https://github.com/soker90/betcon/releases/download/1.3.5.1/betcon_1.3.5-1_all.deb)
+[Descarga](http://ppa.launchpad.net/soker/betcon/ubuntu/pool/main/b/betcon/betcon_1.4.2.1-0ubuntu1_all.deb)
 
 #### Instalar desde código fuente
 Antes de instalar, asegúrate de tener instaladas las dependencias:
