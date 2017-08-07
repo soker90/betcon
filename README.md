@@ -34,7 +34,7 @@ git clone https://github.com/soker90/Betcon.git
 ```
 
 #### Windows
-[Descarga](https://github.com/soker90/betcon/releases/download/1.3.5.1/betcon_1.3.5-1-Windows.exe)
+[Descarga](https://github.com/soker90/betcon/releases/download/1.4.2/betcon_1.4.2-Windows.exe)
 
 ### Capturas de pantalla
 
