@@ -3,7 +3,7 @@ import os
 import sys
 
 directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
-from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox, QDialog
+from PyQt5.QtWidgets import QMainWindow, QMessageBox, QDialog
 from PyQt5 import uic
 from PyQt5.Qt import QIcon
 sys.path.append(directory)
@@ -329,8 +329,3 @@ class About(QDialog):
 		                     "<p style='text-align: center;'>Contacto: eduparra90@gmail.com</p>" \
 		                     "<p style='text-align: center;'>Licencia GPLv3<p/>")
 
-
-app = QApplication(sys.argv)
-_main = Main()
-_main.show()
-app.exec_()
