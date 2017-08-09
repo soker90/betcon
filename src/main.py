@@ -5,6 +5,7 @@ import sys
 directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
 from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox, QDialog
 from PyQt5 import uic
+from PyQt5.Qt import QIcon
 sys.path.append(directory)
 from bets import Bets
 from new_bet import NewBet
@@ -58,6 +59,11 @@ class Main(QMainWindow):
 		archivo = open(directory+"/version.txt")
 		self.version = archivo.readline()
 		self.setWindowTitle("Inicio | Betcon v" + self.version)
+		if os.path.isfile("/usr/share/pixmaps/betcon.png"):
+			image = "/usr/share/pixmaps/betcon.png"
+		else:
+			image = directory + '/../resources/icon.png'
+		self.setWindowIcon(QIcon(image))
 
 		self.aInicio.triggered.connect(self.home)
 		self.aRegion.triggered.connect(self.regions)

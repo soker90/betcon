@@ -1,2 +1,2 @@
 #!/bin/sh
-python3 "/usr/share/betcon/src/main.py" "$@"
+python3 "/usr/share/betcon/src/Betcon" "$@"
