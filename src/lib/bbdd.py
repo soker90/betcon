@@ -1,4 +1,4 @@
-import sys, sqlite3, os, inspect
+import sys, sqlite3, os, inspect, codecs
 from os.path import expanduser
 
 
@@ -147,7 +147,7 @@ class Bbdd:
 			return False
 
 	def initDatabase(self):
-		query = open(self.directoryFull + '/../../default/database.sql', 'r').read()
+		query = codecs.open(self.directoryFull + '/../../default/database.sql', 'r', 'utf8').read()
 		self.cursor.executescript(query)
 		self.bd.commit()
 
