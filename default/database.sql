@@ -96,6 +96,13 @@ INSERT INTO bookie(name) VALUES ('Bwin');
 INSERT INTO bookie(name) VALUES ('888sport');
 INSERT INTO bookie(name) VALUES ('William Hill');
 INSERT INTO bookie(name) VALUES ('Luckia');
+INSERT INTO bookie(name) VALUES ('Marca Apuestas');
+INSERT INTO bookie(name) VALUES ('Paf');
+INSERT INTO bookie(name) VALUES ('Interwetten');
+INSERT INTO bookie(name) VALUES ('Wanabet');
+INSERT INTO bookie(name) VALUES ('Codere');
+INSERT INTO bookie(name) VALUES ('Suertia');
+INSERT INTO bookie(name) VALUES ('Circus');
 
 CREATE  TABLE market
 (
