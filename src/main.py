@@ -93,8 +93,7 @@ class Main(QMainWindow):
 
 		self.aNewConjunta.triggered.connect(self.newConjunta)
 		self.aExport.triggered.connect(self.export)
-
-		self.aImport.setEnabled(False)
+		self.aImport.triggered.connect(self.imports)
 
 		self.setCentralWidget(Bets(self))
 
@@ -323,6 +322,17 @@ class Main(QMainWindow):
 			ods = Ods(file[0])
 			ods.export()
 			QMessageBox.information(self, "Exportado", "Datos exportados", QMessageBox.Ok)
+
+	def imports(self):
+		file = QFileDialog.getOpenFileName(None, "Importar datos", expanduser("~/"), "*.ods")
+		if file[0] != '':
+			ods = Ods(file[0])
+			err = ods.imports()
+			if err:
+				QMessageBox.warning(self, "Error", err, QMessageBox.Ok)
+			else:
+				QMessageBox.information(self, "Importado", "Datos importados", QMessageBox.Ok)
+		self.setCentralWidget(Bets(self))
 
 
 	def about(self):
