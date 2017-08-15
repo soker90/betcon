@@ -36,60 +36,6 @@ git clone https://github.com/soker90/Betcon.git
 #### Windows
 [Descarga](https://github.com/soker90/betcon/releases/download/1.4.2/betcon_1.4.2-Windows.exe)
 
-### Capturas de pantalla
-
-#### Apuestas
-
-![bets](images/1.png)
-
-![bets](images/2.png)
-
-#### Bank
-
-![bets](images/3.png)
-
-#### Bonos
-![bets](images/4.png)
-
-#### Estadisticas
-
-![bets](images/5.png)
-
-![bets](images/6.png)
-
-![bets](images/7.png)
-
-![bets](images/8.png)
-
-![bets](images/9.png)
-
-![bets](images/10.png)
-
-![bets](images/11.png)
-
-#### Regiones
-![bets](images/12.png)
-
-#### Competiciones
-![bets](images/13.png)
-
-#### Deportes
-![bets](images/14.png)
-
-#### Casas de apuestas
-![bets](images/15.png)
-
-#### Mercados
-![bets](images/16.png)
-
-#### Tipsters
-![bets](images/17.png)
-
-#### Historial de pago de Tipsters
-![bets](images/18.png)
-
-#### Conjuntas de Tipsters
-![bets](images/19.png)
 
 ### Contacto
 Puedes contactarme en [eduparra90@gmail.com](mailto:eduparra90@gmail.com) o en [@eduparra90](http://twitter.com/eduparra90).

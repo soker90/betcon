@@ -1,0 +1,8 @@
+---
+layout: project
+title:  "Crear apuesta"
+categories:
+- project
+img: apuesta_nueva.jpg
+thumb: apuesta_nueva_thumb.jpg
+---

@@ -1,0 +1,8 @@
+---
+layout: project
+title:  "Bank"
+categories:
+- project
+img: bank.jpg
+thumb: bank_thumb.jpg
+---

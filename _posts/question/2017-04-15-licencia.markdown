@@ -1,0 +1,9 @@
+---
+layout: question
+title:  "¿Que licencia tiene la aplicación?"
+date:   2017-08-15 16:54:46
+author: Eduardo
+categories:
+- question
+---
+GPLv3.

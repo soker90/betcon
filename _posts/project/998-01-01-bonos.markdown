@@ -1,0 +1,8 @@
+---
+layout: project
+title:  "Bonos"
+categories:
+- project
+img: bonos.jpg
+thumb: bonos_thumb.jpg
+---

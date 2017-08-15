@@ -1,1 +1,74 @@
-theme: jekyll-theme-architect
+### GENERAL SETTINGS ###
+
+# Site settings
+title: BETCON
+description: "Betcon es una aplicación para sistemas GNU/Linux y Windows para la gestión de apuestas deportivas."
+analytics: UA-50546869-2
+baseurl: "/solid-jekyll" #important: start with /
+url: "https://soker90.github.io/solid-jekyll/"
+
+# Build settings
+markdown: kramdown
+permalink: /:categories/:title
+excerpt_separator: <!--more--> #use this in posts to define how long the excerpt of the post (that is shown on the Blog page) is
+
+colors:  #in hex code if not noted else
+  primary: "#4caf50" #"#F70031"
+  primary_rgb: "76, 175, 80" #"247,0,49" #rgb of the primary. Needed in some places for the transparency effect.
+  secondary: "#384452" #"#33004D"
+  link: "#1b5e20"
+  link_hover: "#81c784"
+  footer_heading: "#ffffff"
+  footer_content: "#bfc9d3"
+  
+  
+### CONTACT SETTINGS ###
+
+# Social networks usernames. Many more available: google-plus, flickr, linkedin, etc). Shown in footer.
+social:
+  - title: twitter
+    url: "https://twitter.com/eduparra90"
+  - title: github
+    url: "https://github.com/soker90/Betcon"
+
+# Postal address (add as many lines as necessary). Shown in footer and on Contact page.
+address:
+  - lines:
+    -
+    -
+    -
+email: eduparra90@gmail.com
+web: www.eduardoparra.es
+tel:
+
+
+### GENERAL DATA FOR VARIOUS LOCATIONS ###
+    
+# Members information. Shown on About page.
+members:
+  - name: Eduardo Parra Mazuecos
+    position: Desarrollador
+    img: team01.jpg
+    social:
+      - title: envelope #use for email address
+        url: mailto:eduparra90@gmail.com
+      - title: twitter
+        url: http://twitter.com/eduparra90
+    
+# Clients information. Shown on Home and About pages.
+clients:
+  - name: Python
+    img: python.png
+  - name: Qt
+    img: qt.png
+  - name: SQLite
+    img: sqlite.png
+    
+# Short text about your company. Shown in footer on every page and also separately on Home and Contact page.
+about: "Betcon es una aplicación para sistemas GNU/Linux y Windows pensada para llevar el control de las apuestas y el bank, ademas de mostrar estadisticas útiles sobre ellas y sobre los tipsters."
+
+# Testimonial content. Shown on Home and About page. 
+testimonial:
+    message: "Betcon es una aplicación para sistemas GNU/Linux y Windows pensada para llevar el control de las apuestas y el bank, ademas de mostrar estadisticas útiles sobre ellas y sobre los tipsters."
+#    author: Marcel Newman
+#    position: WEB DESIGNER - BLACKTIE.CO

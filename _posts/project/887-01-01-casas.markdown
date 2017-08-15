@@ -1,0 +1,8 @@
+---
+layout: project
+title:  "Casas de apuestas"
+categories:
+- project
+img: casas.jpg
+thumb: casas_thumb.jpg
+---

@@ -1,0 +1,8 @@
+---
+layout: project
+title:  "Gestor de apuestas"
+categories:
+- project
+img: apuestas.jpg
+thumb: apuestas_thumb.jpg
+---

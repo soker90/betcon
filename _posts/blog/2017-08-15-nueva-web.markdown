@@ -1,0 +1,15 @@
+---
+layout: post
+title: "¡Estrenamos web!"
+date: 2017-08-15 21:00:00
+author: Eduardo
+categories:
+- blog
+- noticias
+img: post01.jpg
+thumb: post01_thumb.jpg
+---
+
+Estrenamos una nueva web con un diseño moderno, desde el que poder seguir las novedades de Betcon.
+
+Si quieres seguir todas las novedades y saber cuando sale una nueva versión suscríbete por RSS o correo electrónico y no te perderás nada.

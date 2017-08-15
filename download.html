@@ -1,0 +1,47 @@
+---
+layout: download
+title: Descarga
+permalink: /download/
+---
+
+<div class="container mtb">
+    <div class="row">
+        <div class="col-lg-10">
+            <a id="Linux"></a>
+            <h2>GNU/Linux</h2><br/>
+            <h4>ArchLinux</h4>
+            <pre><code>~$ yaourt -Sy betcon</code></pre>
+            <div class="spacing"></div>
+            <h4>Ubuntu</h4>
+            <pre><code>~# add-apt-repository ppa:soker/betcon
+~# apt-get update
+~# sudo apt-get install betcon</code></pre>
+            <div class="spacing"></div>
+            <h4>Debian</h4>
+            <pre><code>~# apt-key adv --keyserver keyserver.ubuntu.com --recv-keys FA4746D8
+~# echo 'deb http://ppa.launchpad.net/soker/betcon/ubuntu xenial main #Betcon' >> /etc/apt/sources.list
+~# apt-get update
+~# sudo apt-get install betcon</code></pre>
+            <div class="spacing"></div>
+
+            <h4>Desde el código fuente</h4>
+            <p>Antes de instalar, asegúrate de tener instaladas las dependencias:</p>
+            <ul>
+                <li>Python3</li>
+                <li>PyQt5</li>
+            </ul>
+
+            <p>Una vez satisfechas, instala con:</p>
+            <pre><code>~# make install</code></pre>
+            <div class="spacing"></div>
+            <a id="Windows"></a>
+            <h2>Windows</h2>
+            <p><a href="https://github.com/soker90/betcon/releases/download/1.4.2/betcon_1.4.2-Windows.exe">Descarga</a></p>
+            <div class="spacing"></div>
+            <a id="Source"></a>
+            <h2>Código Fuente</h2>
+            <pre><code>git clone https://github.com/soker90/Betcon.git</code></pre>
+            <div class="spacing"></div>
+        </div>
+    </div><! --/row -->
+</div><! --/container -->
