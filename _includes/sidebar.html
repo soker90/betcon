@@ -8,9 +8,17 @@
     <div class="spacing"></div> -->
     <h4>Subscribete</h4>
     <div class="hline"></div>
-        <p>
-            <p class="rss-subscribe">Subscríbete a las nuevas entradas<a href="{{ "/feed.xml" | prepend: site.baseurl }}">a través de RSS</a>.</p>
-        </p>
+    <p>
+        <p class="rss-subscribe">Subscríbete a las nuevas entradas<a href="http://feeds.feedburner.com/Betcon">a través de RSS</a>.</p>
+        <form style="border:1px solid #ccc;padding:3px;text-align:center;" action="https://feedburner.google.com/fb/a/mailverify"
+              method="post" target="popupwindow" onsubmit="window.open('https://feedburner.google.com/fb/a/mailverify?uri=Betcon', 'popupwindow', 'scrollbars=yes,width=550,height=520');
+              return true"><p>Suscríbete a través del email:</p>
+            <p><input type="text" style="width:140px" name="email"/></p>
+            <input type="hidden" value="Betcon" name="uri"/>
+            <input type="hidden" name="loc" value="es_ES"/>
+            <input type="submit" value="Subscribe" />
+        </form>
+    </p>
     <div class="spacing"></div>
     <h4>Categorías</h4>
     <div class="hline"></div>
