@@ -1,11 +1,11 @@
 ### GENERAL SETTINGS ###
 
 # Site settings
-title: BETCON
+title: Betcon
 description: "Betcon es una aplicación para sistemas GNU/Linux y Windows para la gestión de apuestas deportivas."
 analytics: UA-50546869-2
-baseurl: "/solid-jekyll" #important: start with /
-url: "https://soker90.github.io/solid-jekyll/"
+baseurl: "/betcon" #important: start with /
+url: "https://soker90.github.io/betcon/"
 
 # Build settings
 markdown: kramdown
