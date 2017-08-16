@@ -45,6 +45,7 @@ INSERT INTO sport (id, name) VALUES (15, 'Tenis');
 INSERT INTO sport (id, name) VALUES (16, 'Tenis de mesa');
 INSERT INTO sport (id, name) VALUES (17, 'Voleibol');
 INSERT INTO sport (id, name) VALUES (18, 'Voley playa');
+INSERT INTO sport (id, name) VALUES (19, 'Caballos');
 
 
 CREATE TABLE region
@@ -81,6 +82,7 @@ INSERT INTO competition (id, name, region, sport) VALUES (15, '', 1, 15);
 INSERT INTO competition (id, name, region, sport) VALUES (16, '', 1, 16);
 INSERT INTO competition (id, name, region, sport) VALUES (17, '', 1, 17);
 INSERT INTO competition (id, name, region, sport) VALUES (18, '', 1, 18);
+INSERT INTO competition (id, name, region, sport) VALUES (19, '', 1, 19);
 
 CREATE TABLE bookie
 (
