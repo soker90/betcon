@@ -1,9 +1,9 @@
 ---
 layout: question
-title:  "¿Que licencia tiene la aplicación?"
-date:   2017-08-15 16:54:46
+title:  "¿Habrá versión para Android?"
+date:   2017-08-16 10:00:00
 author: Eduardo
 categories:
 - question
 ---
-GPLv3.
+Sí, pero aún no hay fecha, posiblemente tarde unos meses.
