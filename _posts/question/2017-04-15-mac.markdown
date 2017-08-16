@@ -6,4 +6,4 @@ author: Eduardo
 categories:
 - question
 ---
-En principio si se instala las dependencias se debería poder ejecutar en Mac. No hay versión específica porque no dispongo de Mac y no podría probarla.
+En principio, si se instala las dependencias se debería poder ejecutar en Mac. No hay versión específica porque no dispongo de Mac y no podría probarla.
