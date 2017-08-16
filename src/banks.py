@@ -90,7 +90,10 @@ class Banks(QWidget):
         items = []
         for i in data:
             id = i[0]
-            sDate = datetime.strptime(i[1], "%d/%m/%y")
+            try:
+                sDate = datetime.strptime(i[1], "%d/%m/%y")
+            except:
+                sDate = datetime.strptime(i[1], "%d/%m/%Y") #Fix for Windows
             sDate = date.strftime(sDate, "%Y/%m/%d")
             account = i[2]
             if account == 1:
