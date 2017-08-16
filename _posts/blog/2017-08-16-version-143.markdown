@@ -1,0 +1,13 @@
+---
+layout: post
+title: "Nueva versión 1.4.3"
+date: 2017-08-16 19:12:00
+author: Eduardo
+categories:
+- blog
+- versiones
+img: post02.jpg
+thumb: post01_thumb.jpg
+---
+
+Nueva versión que soluciona el fallo que bloqueaba el apartado del bank al añadir un movimiento en Windows.
