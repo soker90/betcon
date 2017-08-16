@@ -69,6 +69,6 @@ about: "Betcon es una aplicación para sistemas GNU/Linux y Windows pensada para
 
 # Testimonial content. Shown on Home and About page. 
 testimonial:
-    message: "Betcon es una aplicación para sistemas GNU/Linux y Windows pensada para llevar el control de las apuestas y el bank, ademas de mostrar estadisticas útiles sobre ellas y sobre los tipsters."
+    message: "Betcon es una aplicación para sistemas GNU/Linux y Windows pensada para llevar el control de las apuestas y el bank, ademas de mostrar estadisticas útiles sobre ellas y sobre los tipsters. Betcon es Software Libre con licencia GPLv3."
 #    author: Marcel Newman
 #    position: WEB DESIGNER - BLACKTIE.CO
