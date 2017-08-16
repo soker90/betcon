@@ -7,7 +7,7 @@ categories:
 - blog
 - versiones
 img: post02.jpg
-thumb: post01_thumb.jpg
+thumb: post02_thumb.jpg
 ---
 
 Nueva versión que soluciona el fallo que bloqueaba el apartado del bank al añadir un movimiento en Windows.
