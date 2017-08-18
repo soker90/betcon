@@ -1,0 +1,8 @@
+import sys
+from PyQt5.QtWidgets import QApplication
+from main import Main
+
+app = QApplication(sys.argv)
+_main = Main()
+_main.show()
+app.exec_()
