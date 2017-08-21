@@ -190,3 +190,16 @@ create table conjunta_tipster
 	constraint conjunta_tipster_conjunta_tipster_pk
 		primary key (conjunta, tipster)
 );
+
+create table combined
+(
+	id INTEGER primary key autoincrement,
+	date DATETIME,
+	sport INTEGER,
+	competition INTEGER,
+	region INTEGER,
+	player1 VARCHAR(150),
+	player2 VARCHAR(150),
+	pick VARCHAR(150),
+	result VARCHAR(50)
+);
