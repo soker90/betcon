@@ -104,6 +104,14 @@ class NewBet(QWidget):
 		#Combined
 		self.contComb = 0
 		self.dates = []
+		self.sports = []
+		self.regions = []
+		self.competitions = []
+		self.players1 = []
+		self.players2 = []
+		self.picks = []
+		self.results = []
+		self.buttons = []
 
 	def setCompetition(self):
 		self.cmbCompetition.clear()
@@ -284,9 +292,43 @@ class NewBet(QWidget):
 
 	def addCombined(self):
 		self.dates.append(QDateTimeEdit())
-		#self.pnlDate.addItem(self.dates[self.contComb], 0, 0)
+		sDate = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+		date = QDateTime.fromString(sDate, "yyyy-MM-dd hh:mm:ss")
+		self.dates[self.contComb].setDateTime(date)
+		self.dates[self.contComb].setMaximumSize(120, 50)
+		self.pnlDate.addWidget(self.dates[self.contComb])
+
+		self.sports.append(QComboBox())
+		self.sports[self.contComb].setModel(self.cmbSport.model())
+		self.pnlSport.addWidget(self.sports[self.contComb])
+
+		self.regions.append(QComboBox())
+		self.pnlRegion.addWidget(self.regions[self.contComb])
+
+		self.competitions.append(QComboBox())
+		self.pnlCompetition.addWidget(self.competitions[self.contComb])
+		self.players1.append(QLineEdit())
+		self.players1[self.contComb].setMaximumSize(200, 50)
+		self.pnlPlayer1.addWidget(self.players1[self.contComb])
+		self.players2.append(QLineEdit())
+		self.players2[self.contComb].setMaximumSize(200, 50)
+		self.pnlPlayer2.addWidget(self.players2[self.contComb])
+		self.picks.append(QLineEdit())
+		self.picks[self.contComb].setMaximumSize(200, 50)
+		self.pnlPick.addWidget(self.picks[self.contComb])
+		self.results.append(QComboBox())
+		self.pnlResult.addWidget(self.results[self.contComb])
+		self.buttons.append(QPushButton())
+		self.buttons[self.contComb].setText("X")
+		self.buttons[self.contComb].setStyleSheet("color:red; font-weight: bold;")
+		self.buttons[self.contComb].setMaximumSize(50, 50)
+		i = self.contComb
+		self.buttons[self.contComb].clicked.connect(lambda: self.removeRow(i))
+		self.pnlButton.addWidget(self.buttons[self.contComb])
 
 		self.contComb += 1
+		if self.contComb == 10:
+			self.btnAdd.setEnabled(False)
 
 	def setCombinedVisible(self, visible):
 		self.btnAdd.setVisible(visible)
@@ -304,4 +346,46 @@ class NewBet(QWidget):
 			self.setCombinedVisible(True)
 		else:
 			self.setCombinedVisible(False)
+
+	def removeRow(self, index):
+		# TODO: FIX THIS!!
+		obj1 = self.dates.pop(index)
+		self.pnlDate.removeWidget(obj1)
+		obj1.setVisible(False)
+		obj2 = self.sports.pop(index)
+		self.pnlSport.removeWidget(obj2)
+		obj2.setVisible(False)
+		obj3 = self.regions.pop(index)
+		self.pnlRegion.removeWidget(obj3)
+		obj3.setVisible(False)
+		obj4 = self.competitions.pop(index)
+		self.pnlCompetition.removeWidget(obj4)
+		obj4.setVisible(False)
+		obj5 = self.players1.pop(index)
+		self.pnlPlayer1.removeWidget(obj5)
+		obj5.setVisible(False)
+		obj6 = self.players2.pop(index)
+		self.pnlPlayer2.removeWidget(obj6)
+		obj6.setVisible(False)
+		obj7 = self.picks.pop(index)
+		self.pnlPick.removeWidget(obj7)
+		obj7.setVisible(False)
+		obj8 = self.results.pop(index)
+		self.pnlResult.removeWidget(obj8)
+		obj8.setVisible(False)
+		obj9 = self.buttons.pop(index)
+		self.pnlButton.removeWidget(obj9)
+		obj9.setVisible(False)
+
+		self.contComb -= 1
+
+		for i in range(self.contComb):
+			self.pnlButton.removeWidget(self.buttons[i])
+			self.buttons[i].disconnect()
+			self.buttons[i].clicked.connect(lambda: self.removeRow(i))
+			self.pnlButton.addWidget(self.buttons[i])
+
+		if self.contComb == 9:
+			self.btnAdd.setEnabled(True)
+
 
