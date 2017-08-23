@@ -1,6 +1,6 @@
 import sys, os, inspect
 from datetime import datetime
-from PyQt5.QtWidgets import QLineEdit, QMessageBox, QWidget, QComboBox, QAction, QPushButton, QShortcut
+from PyQt5.QtWidgets import QLineEdit, QMessageBox, QWidget, QComboBox, QAction, QPushButton, QShortcut, QHBoxLayout, QLayout, QDateTimeEdit
 from PyQt5 import uic
 from PyQt5.QtCore import QDateTime, QVariant
 directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
@@ -20,17 +20,24 @@ class NewBet(QWidget):
 		self.mainWindows.setWindowTitle("Nueva Apuesta | Betcon v" + mainWindows.version)
 		self.btnAccept.clicked.connect(self.accept)
 		self.btnCancel.clicked.connect(self.cancel)
+		self.btnAdd.clicked.connect(self.addCombined)
 		self.initData()
 		self.cmbRegion.activated.connect(self.setCompetition)
 		self.cmbSport.activated.connect(self.setRegion)
 		self.cmbResult.activated.connect(self.updateProfit)
+		self.cmbMarket.activated.connect(self.combined)
 		self.txtQuota.valueChanged.connect(self.updateProfit)
 		self.txtBet.valueChanged.connect(self.updateProfit)
 		self.chkFree.clicked.connect(self.freeBet)
 		self.txtStake.valueChanged.connect(self.updateBet)
 		self.txtOne.valueChanged.connect(self.updateBet)
 
+		#self.setPnlVisible(self.pnlDate, False)
+		self.combined()
+
+
 	# self.txtQuota.activated.connect(self.setCompetition)
+
 
 
 
@@ -94,6 +101,10 @@ class NewBet(QWidget):
 		# cmbCompetition
 		self.setRegion()
 
+		#Combined
+		self.contComb = 0
+		self.dates = []
+
 	def setCompetition(self):
 		self.cmbCompetition.clear()
 		bd = Bbdd()
@@ -120,6 +131,7 @@ class NewBet(QWidget):
 			self.btnAccept.setDisabled(False)
 
 		bd.close()
+
 
 	def setRegion(self):
 		self.btnAccept.setDisabled(False)
@@ -269,4 +281,27 @@ class NewBet(QWidget):
 		if self.txtStake.text() != "0,00" and self.txtOne.text() != "0,00":
 			bet = str_to_float(self.txtStake.text()) * str_to_float(self.txtOne.text())
 			self.txtBet.setValue(bet)
+
+	def addCombined(self):
+		self.dates.append(QDateTimeEdit())
+		#self.pnlDate.addItem(self.dates[self.contComb], 0, 0)
+
+		self.contComb += 1
+
+	def setCombinedVisible(self, visible):
+		self.btnAdd.setVisible(visible)
+		self.lblDate.setVisible(visible)
+		self.lblSport.setVisible(visible)
+		self.lblRegion.setVisible(visible)
+		self.lblCompetition.setVisible(visible)
+		self.lblPlayer1.setVisible(visible)
+		self.lblPlayer2.setVisible(visible)
+		self.lblResult.setVisible(visible)
+		self.lblPick.setVisible(visible)
+
+	def combined(self):
+		if self.cmbMarket.currentText() == "Combinada":
+			self.setCombinedVisible(True)
+		else:
+			self.setCombinedVisible(False)
 
