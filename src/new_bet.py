@@ -113,6 +113,9 @@ class NewBet(QWidget):
 		self.results = []
 		self.buttons = []
 
+		self.regionIndexToIdCmb = []
+		self.competitionIndexToIdCmb = []
+
 	def setCompetition(self):
 		self.cmbCompetition.clear()
 		bd = Bbdd()
@@ -300,9 +303,13 @@ class NewBet(QWidget):
 
 		self.sports.append(QComboBox())
 		self.sports[self.contComb].setModel(self.cmbSport.model())
+		self.regionIndexToIdCmb.append({})
+		self.sports[self.contComb].activated.connect(lambda: self.setRegionComb(self.contComb - 1))
 		self.pnlSport.addWidget(self.sports[self.contComb])
 
 		self.regions.append(QComboBox())
+		self.competitionIndexToIdCmb.append({})
+		self.regions[self.contComb].activated.connect(lambda: self.setCompetitionComb(self.contComb - 1))
 		self.pnlRegion.addWidget(self.regions[self.contComb])
 
 		self.competitions.append(QComboBox())
@@ -387,5 +394,82 @@ class NewBet(QWidget):
 
 		if self.contComb == 9:
 			self.btnAdd.setEnabled(True)
+
+	def setCompetitionComb(self, index_cmb):
+		self.competitions[index_cmb].clear()
+		bd = Bbdd()
+
+		idRegion = self.regionIndexToIdCmb[index_cmb].get(self.regions[index_cmb].currentIndex())
+		idSport = self.sportIndexToId.get(self.sports[index_cmb].currentIndex())
+
+		where = "region=" + str(idRegion) + " AND sport=" + str(idSport)
+
+		data = bd.select("competition", "name", where)
+
+		index = 0
+		self.competitionIndexToId[index_cmb] = {}
+		for i in data:
+			id = i[0]
+			name = i[1]
+			self.competitions[index_cmb].addItem(name)
+			self.competitionIndexToId[index] = id
+			index += 1
+
+		if index == 0:
+			self.btnAccept.setDisabled(True)
+		else:
+			self.btnAccept.setDisabled(False)
+
+		bd.close()
+
+
+	def setRegionComb(self, index_cmb):
+		self.btnAccept.setDisabled(False)
+		self.regions[index_cmb].clear()
+		bd = Bbdd()
+
+		idSport = self.sportIndexToId.get(self.sports[index_cmb].currentIndex())
+
+		where = " sport=" + str(idSport)
+
+		data = bd.select("competition", None, where, "region")
+		dataRegion = ""
+
+		if len(data) > 0:
+			sData = "("
+			j= 0
+			for i in data:
+				if j == len(data)-1:
+					sData += str(i[0]) + ")"
+				else:
+					sData += str(i[0]) + ", "
+				j+=1
+
+			where = " id in "+sData
+			dataRegion = bd.select("region", "name", where)
+
+			if len(dataRegion) < 1:
+				self.btnAccept.setDisabled(True)
+				bd.close()
+			else:
+				self.regionIndexToIdCmb[index_cmb] = {}
+				index = 0
+				for i in dataRegion:
+					id = i[0]
+					name = i[1]
+					self.regions[index_cmb].addItem(name)
+					self.regionIndexToIdCmb[index_cmb][index] = id
+					index += 1
+				bd.close()
+				self.setCompetitionComb(index_cmb)
+
+		else:
+			self.btnAccept.setDisabled(True)
+			bd.close()
+
+		if len(data) == 0 or len(dataRegion):
+			self.btnAccept.setDisabled(True)
+		else:
+			self.btnAccept.setDisabled(False)
 
 
