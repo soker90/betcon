@@ -1,9 +1,10 @@
 import inspect
 import os
 import sys
+from os.path import expanduser
 
 directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
-from PyQt5.QtWidgets import QMainWindow, QMessageBox, QDialog
+from PyQt5.QtWidgets import QMainWindow, QMessageBox, QDialog, QFileDialog
 from PyQt5 import uic
 from PyQt5.Qt import QIcon
 sys.path.append(directory)
@@ -47,6 +48,7 @@ from tipsters_month import TipstersMonth
 from edit_tipster_month import EditTipsterMonth
 from new_conjunta import NewConjunta
 from edit_conjunta import EditConjunta
+from ods import Ods
 
 
 class Main(QMainWindow):
@@ -90,6 +92,8 @@ class Main(QMainWindow):
 		self.aAbout.triggered.connect(self.about)
 
 		self.aNewConjunta.triggered.connect(self.newConjunta)
+		self.aExport.triggered.connect(self.export)
+		self.aImport.triggered.connect(self.imports)
 
 		self.setCentralWidget(Bets(self))
 
@@ -311,10 +315,30 @@ class Main(QMainWindow):
 		else:
 			event.ignore()
 
+	# Import/Export
+	def export(self):
+		file = QFileDialog.getSaveFileName(None, "Exportar datos", expanduser("~/") + "betcon.ods", "*.ods")
+		if file[0] != '':
+			ods = Ods(file[0])
+			ods.export()
+			QMessageBox.information(self, "Exportado", "Datos exportados", QMessageBox.Ok)
+
+	def imports(self):
+		file = QFileDialog.getOpenFileName(None, "Importar datos", expanduser("~/"), "*.ods")
+		if file[0] != '':
+			ods = Ods(file[0])
+			err = ods.imports()
+			if err:
+				QMessageBox.warning(self, "Error", err, QMessageBox.Ok)
+			else:
+				QMessageBox.information(self, "Importado", "Datos importados", QMessageBox.Ok)
+		self.setCentralWidget(Bets(self))
+
 
 	def about(self):
 		about = About()
 		about.exec_()
+
 
 class About(QDialog):
 	def __init__(self):

@@ -45,6 +45,7 @@ INSERT INTO sport (id, name) VALUES (15, 'Tenis');
 INSERT INTO sport (id, name) VALUES (16, 'Tenis de mesa');
 INSERT INTO sport (id, name) VALUES (17, 'Voleibol');
 INSERT INTO sport (id, name) VALUES (18, 'Voley playa');
+INSERT INTO sport (id, name) VALUES (19, 'Caballos');
 
 
 CREATE TABLE region
@@ -81,6 +82,7 @@ INSERT INTO competition (id, name, region, sport) VALUES (15, '', 1, 15);
 INSERT INTO competition (id, name, region, sport) VALUES (16, '', 1, 16);
 INSERT INTO competition (id, name, region, sport) VALUES (17, '', 1, 17);
 INSERT INTO competition (id, name, region, sport) VALUES (18, '', 1, 18);
+INSERT INTO competition (id, name, region, sport) VALUES (19, '', 1, 19);
 
 CREATE TABLE bookie
 (
@@ -96,6 +98,13 @@ INSERT INTO bookie(name) VALUES ('Bwin');
 INSERT INTO bookie(name) VALUES ('888sport');
 INSERT INTO bookie(name) VALUES ('William Hill');
 INSERT INTO bookie(name) VALUES ('Luckia');
+INSERT INTO bookie(name) VALUES ('Marca Apuestas');
+INSERT INTO bookie(name) VALUES ('Paf');
+INSERT INTO bookie(name) VALUES ('Interwetten');
+INSERT INTO bookie(name) VALUES ('Wanabet');
+INSERT INTO bookie(name) VALUES ('Codere');
+INSERT INTO bookie(name) VALUES ('Suertia');
+INSERT INTO bookie(name) VALUES ('Circus');
 
 CREATE  TABLE market
 (
@@ -180,4 +189,18 @@ create table conjunta_tipster
 	tipster INTEGER,
 	constraint conjunta_tipster_conjunta_tipster_pk
 		primary key (conjunta, tipster)
+);
+
+create table combined
+(
+	id INTEGER primary key autoincrement,
+  bet INTEGER,
+	date DATETIME,
+	sport INTEGER,
+	competition INTEGER,
+	region INTEGER,
+	player1 VARCHAR(150),
+	player2 VARCHAR(150),
+	pick VARCHAR(150),
+	result VARCHAR(50)
 );

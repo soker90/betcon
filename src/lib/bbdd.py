@@ -1,4 +1,4 @@
-import sys, sqlite3, os, inspect
+import sys, sqlite3, os, inspect, codecs
 from os.path import expanduser
 
 
@@ -12,7 +12,8 @@ class Bbdd:
 			exist = True
 		else:
 			self.directoryFull = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
-			os.makedirs(self.directory)
+			if not os.path.exists(self.directory):
+				os.makedirs(self.directory)
 
 		self.bd = sqlite3.connect(self.directory + self.name)
 		self.cursor = self.bd.cursor()
@@ -30,7 +31,6 @@ class Bbdd:
 		else:
 			columns = str(tuple(columns))
 		query = "INSERT INTO " + table + columns + " VALUES(%s);" % aux
-
 		try:
 			self.cursor.execute(query, values)
 			self.bd.commit()
@@ -118,16 +118,37 @@ class Bbdd:
 
 		return sum
 
-	def getValue(self, id, table, field=None):
-		if not field:
-			field = "name"
-
-		query = "SELECT " + field + " FROM " + table + " WHERE id=" + str(id)
+	def max(self, table, field, where=None):
+		query = "SELECT max(" + field + ") FROM " + table
+		if where:
+			query += " WHERE " + where
 
 		self.cursor.execute(query)
 		data = self.cursor.fetchone()
 
 		return data[0]
+
+	def getValue(self, id, table, field=None):
+		if not field:
+			field = "name"
+
+		query = "SELECT " + field + " FROM " + table + " WHERE id=" + str(id)
+		self.cursor.execute(query)
+		data = self.cursor.fetchone()
+
+		return data[0]
+
+	def getId(self, value, table, field=None):
+		if not field:
+			field = "name"
+
+		query = "SELECT id FROM " + table + " WHERE " + field +"=" + str(value)
+		self.cursor.execute(query)
+		data = self.cursor.fetchone()
+		if data is None:
+			return None
+		else:
+			return data[0]
 
 	def isExist(self):
 		if os.path.isfile(self.directory + self.name):
@@ -136,7 +157,7 @@ class Bbdd:
 			return False
 
 	def initDatabase(self):
-		query = open(self.directoryFull + '/../../default/database.sql', 'r').read()
+		query = codecs.open(self.directoryFull + '/../../default/database.sql', 'r', 'utf8').read()
 		self.cursor.executescript(query)
 		self.bd.commit()
 
@@ -150,6 +171,16 @@ class Bbdd:
 
 			query = "create table IF NOT EXISTS conjunta_tipster (conjunta INTEGER, tipster INTEGER, " \
 					"constraint conjunta_tipster_conjunta_tipster_pk primary key (conjunta, tipster));"
+
+			self.cursor.executescript(query)
+			self.bd.commit()
+		except Exception as e:
+			print("Error en BBDD: {0}".format(e))
+
+		try:
+			query = "create table IF NOT EXISTS combined (id INTEGER primary key autoincrement, bet INTEGER, date DATETIME," \
+					"sport INTEGER, competition INTEGER, region INTEGER, player1 VARCHAR(150), player2 VARCHAR(150)," \
+					"pick VARCHAR(150),	result VARCHAR(50));"
 
 			self.cursor.executescript(query)
 			self.bd.commit()

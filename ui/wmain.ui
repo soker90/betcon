@@ -41,30 +41,6 @@
     </property>
    </layout>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>949</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <widget class="QMenu" name="menuArchivo">
-    <property name="title">
-     <string>Archivo</string>
-    </property>
-    <addaction name="aClose"/>
-   </widget>
-   <widget class="QMenu" name="menuAyuda">
-    <property name="title">
-     <string>Ayuda</string>
-    </property>
-    <addaction name="aAbout"/>
-   </widget>
-   <addaction name="menuArchivo"/>
-   <addaction name="menuAyuda"/>
-  </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QToolBar" name="toolPrimary">
    <property name="windowTitle">
@@ -157,6 +133,33 @@
    <addaction name="aNewConjunta"/>
    <addaction name="aEditConjunta"/>
    <addaction name="aDeleteConjunta"/>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>949</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuArchivo">
+    <property name="title">
+     <string>Archivo</string>
+    </property>
+    <addaction name="aImport"/>
+    <addaction name="aExport"/>
+    <addaction name="separator"/>
+    <addaction name="aClose"/>
+   </widget>
+   <widget class="QMenu" name="menuAyuda">
+    <property name="title">
+     <string>Ayuda</string>
+    </property>
+    <addaction name="aAbout"/>
+   </widget>
+   <addaction name="menuArchivo"/>
+   <addaction name="menuAyuda"/>
   </widget>
   <action name="aNew">
    <property name="text">
@@ -370,6 +373,16 @@
   <action name="aDeleteConjunta">
    <property name="text">
     <string>Eliminar Conjunta</string>
+   </property>
+  </action>
+  <action name="aImport">
+   <property name="text">
+    <string>Importar de ods</string>
+   </property>
+  </action>
+  <action name="aExport">
+   <property name="text">
+    <string>Exportar a ods</string>
    </property>
   </action>
  </widget>
