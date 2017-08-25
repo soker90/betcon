@@ -118,6 +118,16 @@ class Bbdd:
 
 		return sum
 
+	def max(self, table, field, where=None):
+		query = "SELECT count(" + field + ") FROM " + table
+		if where:
+			query += " WHERE " + where
+
+		self.cursor.execute(query)
+		data = self.cursor.fetchone()
+
+		return data[0]
+
 	def getValue(self, id, table, field=None):
 		if not field:
 			field = "name"
@@ -161,6 +171,16 @@ class Bbdd:
 
 			query = "create table IF NOT EXISTS conjunta_tipster (conjunta INTEGER, tipster INTEGER, " \
 					"constraint conjunta_tipster_conjunta_tipster_pk primary key (conjunta, tipster));"
+
+			self.cursor.executescript(query)
+			self.bd.commit()
+		except Exception as e:
+			print("Error en BBDD: {0}".format(e))
+
+		try:
+			query = "create table IF NOT EXISTS combined (id INTEGER primary key autoincrement, bet INTEGER, date DATETIME," \
+					"sport INTEGER, competition INTEGER, region INTEGER, player1 VARCHAR(150), player2 VARCHAR(150)," \
+					"pick VARCHAR(150),	result VARCHAR(50));"
 
 			self.cursor.executescript(query)
 			self.bd.commit()

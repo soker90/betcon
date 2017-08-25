@@ -250,6 +250,30 @@ class NewBet(QWidget):
 		           "tipster", "stake", "one", "result", "profit", "bet", "quota", "free"]
 
 		bbdd.insert(columns, data, "bet")
+
+		id_bet = bbdd.max("bet", "id")
+
+		if self.cmbMarket.currentText() == "Combinada":
+			columns = ["bet", "date", "sport", "competition", "region", "player1", "player2", "pick", "result"]
+
+			for i in range(self.contComb):
+				data = []
+				data.append(id_bet)
+				data.append(self.dates[i].dateTime().toPyDateTime())
+				idSport = self.sportIndexToId.get(self.sports[i].currentIndex())
+				data.append(idSport)
+				idCompetition = self.competitionIndexToIdCmb[i].get(self.competitions[i].currentIndex())
+				data.append(idCompetition)
+				idRegion = self.regionIndexToIdCmb[i].get(self.regions[i].currentIndex())
+				data.append(idRegion)
+				data.append(self.players1[i].text())
+				data.append(self.players2[i].text())
+				data.append(self.picks[i].text())
+				data.append(self.results[i].currentText())
+				bbdd.insert(columns, data, "combined")
+
+
+
 		bbdd.close()
 
 		QMessageBox.information(self, "Añadida", "Nueva apuesta añadida.")
@@ -324,6 +348,7 @@ class NewBet(QWidget):
 		self.picks[self.contComb].setMaximumSize(200, 50)
 		self.pnlPick.addWidget(self.picks[self.contComb])
 		self.results.append(QComboBox())
+		self.results[self.contComb].addItems(["Pendiente", "Acertada", "Fallada", "Nula", "Medio Acertada", "Medio Fallada", "Retirada"])
 		self.pnlResult.addWidget(self.results[self.contComb])
 		self.buttons.append(QPushButton())
 		self.buttons[self.contComb].setText("X")
@@ -347,6 +372,16 @@ class NewBet(QWidget):
 		self.lblPlayer2.setVisible(visible)
 		self.lblResult.setVisible(visible)
 		self.lblPick.setVisible(visible)
+		for i in range(self.contComb):
+			self.dates[i].setVisible(visible)
+			self.sports[i].setVisible(visible)
+			self.competitions[i].setVisible(visible)
+			self.regions[i].setVisible(visible)
+			self.players1[i].setVisible(visible)
+			self.players2[i].setVisible(visible)
+			self.picks[i].setVisible(visible)
+			self.results[i].setVisible(visible)
+			self.buttons[i].setVisible(visible)
 
 	def combined(self):
 		if self.cmbMarket.currentText() == "Combinada":
@@ -407,12 +442,12 @@ class NewBet(QWidget):
 		data = bd.select("competition", "name", where)
 
 		index = 0
-		self.competitionIndexToId[index_cmb] = {}
+		self.competitionIndexToIdCmb[index_cmb] = {}
 		for i in data:
 			id = i[0]
 			name = i[1]
 			self.competitions[index_cmb].addItem(name)
-			self.competitionIndexToId[index] = id
+			self.competitionIndexToIdCmb[index_cmb][index] = id
 			index += 1
 
 		if index == 0:

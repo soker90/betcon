@@ -194,6 +194,7 @@ create table conjunta_tipster
 create table combined
 (
 	id INTEGER primary key autoincrement,
+  bet INTEGER,
 	date DATETIME,
 	sport INTEGER,
 	competition INTEGER,
