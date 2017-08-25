@@ -80,13 +80,20 @@ class EditBet(QWidget):
 
 		self.cmbBookie.setCurrentIndex(idCmb)
 
+		self.players = bd.executeQuery(
+			"SELECT player1 AS player FROM bet UNION SELECT player2 AS player FROM bet ORDER BY player")
+		self.players = [row[0] for row in self.players]
+
+		self.txtPlayer1.addItems(self.players)
+		self.txtPlayer2.addItems(self.players)
+
 		# txtPlayer1
 		player1 = bd.getValue(self.id, "bet", "player1")
-		self.txtPlayer1.setText(player1)
+		self.txtPlayer1.setCurrentText(player1)
 
 		# txtPlayer2
 		player2 = bd.getValue(self.id, "bet", "player2")
-		self.txtPlayer2.setText(player2)
+		self.txtPlayer2.setCurrentText(player2)
 
 		# txtPick
 		pick = bd.getValue(self.id, "bet", "pick")
@@ -167,6 +174,7 @@ class EditBet(QWidget):
 		freeBet = bd.getValue(self.id, "bet", "free")
 		print(freeBet)
 		self.chkFree.setChecked(freeBet)
+
 
 		bd.close()
 
@@ -296,8 +304,8 @@ class EditBet(QWidget):
 		idRegion = self.regionIndexToId.get(self.cmbRegion.currentIndex())
 		data.append(idRegion)
 
-		data.append(self.txtPlayer1.text())
-		data.append(self.txtPlayer2.text())
+		data.append(self.txtPlayer1.currentText())
+		data.append(self.txtPlayer2.currentText())
 		data.append(self.txtPick.text())
 
 		# cmbBookie
@@ -343,8 +351,8 @@ class EditBet(QWidget):
 				data.append(idCompetition)
 				idRegion = self.regionIndexToIdCmb[i].get(self.regions[i].currentIndex())
 				data.append(idRegion)
-				data.append(self.players1[i].text())
-				data.append(self.players2[i].text())
+				data.append(self.players1[i].currentText())
+				data.append(self.players2[i].currentText())
 				data.append(self.picks[i].text())
 				data.append(self.results[i].currentText())
 				bbdd.insert(columns, data, "combined")
@@ -413,10 +421,14 @@ class EditBet(QWidget):
 
 		self.competitions.append(QComboBox())
 		self.pnlCompetition.addWidget(self.competitions[self.contComb])
-		self.players1.append(QLineEdit())
+		self.players1.append(QComboBox())
+		self.players1[self.contComb].setEditable(True)
+		self.players1[self.contComb].addItems(self.players)
 		self.players1[self.contComb].setMaximumSize(200, 50)
 		self.pnlPlayer1.addWidget(self.players1[self.contComb])
-		self.players2.append(QLineEdit())
+		self.players2.append(QComboBox())
+		self.players2[self.contComb].setEditable(True)
+		self.players2[self.contComb].addItems(self.players)
 		self.players2[self.contComb].setMaximumSize(200, 50)
 		self.pnlPlayer2.addWidget(self.players2[self.contComb])
 		self.picks.append(QLineEdit())
@@ -598,8 +610,8 @@ class EditBet(QWidget):
 			self.setCompetitionComb(i)
 			competition = key_from_value(self.competitionIndexToIdCmb[i], bet[4])
 			self.competitions[i].setCurrentIndex(competition)
-			self.players1[i].setText(bet[6])
-			self.players2[i].setText(bet[7])
+			self.players1[i].setCurrentText(bet[6])
+			self.players2[i].setCurrentText(bet[7])
 			self.picks[i].setText(bet[8])
 
 			result = {
