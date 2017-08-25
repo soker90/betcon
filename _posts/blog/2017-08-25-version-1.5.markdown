@@ -15,13 +15,13 @@ He liberado una nueva versión que añade entre otras cosas la importación y ex
 Lista completa de cambios:
 
 ```
-1. Added export data to ods
-2. Added import data from ods
-3. New bookies
-4. Fixes for Windows
-5. Added horsey image
-6. Improvements Combined
-7. Autocomplete of players in bets
+1. Añadida exportación de apuestas a ods
+2. Añadida importación de datos desde ods
+3. Nuevas casas de apuestas
+4. Correcciones para Windows
+5. Soporte inicial para carreras de caballos
+6. Mejoradas apuestas combinadas
+7. Autocompletado de equipos en las apuestas
 ```
 
 Ya está disponible para descargar en los repositorios de AUR y próximamente estará para Ubuntu y Windows
