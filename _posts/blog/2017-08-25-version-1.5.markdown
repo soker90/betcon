@@ -1,0 +1,27 @@
+---
+layout: post
+title: "Nueva versión 1.5"
+date: 2017-08-25 21:00:00
+author: Eduardo
+categories:
+- blog
+- versiones
+img: post03.jpg
+thumb: post03_thumb.jpg
+---
+
+He liberado una nueva versión que añade entre otras cosas la importación y exportación de apuestas a hojas de cálculo, y se ha mejorado la gestión de apuestas combinadas, pudiendo ahora introducir cada una de las apuestas de forma independiente.
+
+Lista completa de cambios:
+
+```
+1. Added export data to ods
+2. Added import data from ods
+3. New bookies
+4. Fixes for Windows
+5. Added horsey image
+6. Improvements Combined
+7. Autocomplete of players in bets
+```
+
+Ya está disponible para descargar en los repositorios de AUR y próximamente estará para Ubuntu y Windows
