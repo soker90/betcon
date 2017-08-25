@@ -478,7 +478,7 @@ class NewBet(QWidget):
 					sData += str(i[0]) + ")"
 				else:
 					sData += str(i[0]) + ", "
-				j+=1
+				j += 1
 
 			where = " id in "+sData
 			dataRegion = bd.select("region", "name", where)

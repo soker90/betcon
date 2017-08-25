@@ -119,7 +119,7 @@ class Bbdd:
 		return sum
 
 	def max(self, table, field, where=None):
-		query = "SELECT count(" + field + ") FROM " + table
+		query = "SELECT max(" + field + ") FROM " + table
 		if where:
 			query += " WHERE " + where
 
