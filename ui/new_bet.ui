@@ -524,6 +524,8 @@
   <tabstop>cmbSport</tabstop>
   <tabstop>cmbRegion</tabstop>
   <tabstop>cmbCompetition</tabstop>
+  <tabstop>txtPlayer1</tabstop>
+  <tabstop>txtPlayer2</tabstop>
   <tabstop>txtPick</tabstop>
   <tabstop>cmbResult</tabstop>
   <tabstop>cmbBookie</tabstop>
@@ -534,8 +536,9 @@
   <tabstop>txtBet</tabstop>
   <tabstop>txtQuota</tabstop>
   <tabstop>txtProfit</tabstop>
-  <tabstop>chkFree</tabstop>
   <tabstop>btnAccept</tabstop>
+  <tabstop>chkFree</tabstop>
+  <tabstop>btnAdd</tabstop>
   <tabstop>btnCancel</tabstop>
  </tabstops>
  <resources/>
