@@ -147,6 +147,8 @@
     <property name="title">
      <string>Archivo</string>
     </property>
+    <addaction name="aSettings"/>
+    <addaction name="separator"/>
     <addaction name="aImport"/>
     <addaction name="aExport"/>
     <addaction name="separator"/>
@@ -383,6 +385,14 @@
   <action name="aExport">
    <property name="text">
     <string>Exportar a ods</string>
+   </property>
+  </action>
+  <action name="aSettings">
+   <property name="text">
+    <string>Opciones</string>
+   </property>
+   <property name="toolTip">
+    <string>Opciones</string>
    </property>
   </action>
  </widget>

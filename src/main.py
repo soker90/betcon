@@ -49,6 +49,7 @@ from edit_tipster_month import EditTipsterMonth
 from new_conjunta import NewConjunta
 from edit_conjunta import EditConjunta
 from ods import Ods
+from settings import Settings
 
 
 class Main(QMainWindow):
@@ -90,6 +91,7 @@ class Main(QMainWindow):
 		self.aAddMoney.triggered.connect(self.addMoney)
 		self.aClose.triggered.connect(self.close)
 		self.aAbout.triggered.connect(self.about)
+		self.aSettings.triggered.connect(self.settings)
 
 		self.aNewConjunta.triggered.connect(self.newConjunta)
 		self.aExport.triggered.connect(self.export)
@@ -259,6 +261,10 @@ class Main(QMainWindow):
 		self.setCentralWidget(EditConjunta(self, id))
 		self.enableActionConjunta(False)
 
+	def settings(self):
+		self.setCentralWidget(Settings(self))
+		self.enableTools("settings")
+
 	#Auxiliary Functions
 
 	def enableTools(self, type=None):
@@ -268,6 +274,8 @@ class Main(QMainWindow):
 		if type is "stats":
 			self.toolSecondary.setVisible(False)
 			self.toolStat.setVisible(True)
+		elif type is "settings":
+			self.toolSecondary.setVisible(False)
 		else:
 			self.toolSecondary.setVisible(True)
 			self.toolStat.setVisible(False)
