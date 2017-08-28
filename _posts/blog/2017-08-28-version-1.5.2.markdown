@@ -1,0 +1,22 @@
+---
+layout: post
+title: "Nueva versión 1.5.2"
+date: 2017-08-28 12:40:00
+author: Eduardo
+categories:
+- blog
+- versiones
+img: post04.jpg
+thumb: post04_thumb.jpg
+---
+
+Esta versión unicamente añade correcciones.
+
+Lista completa de cambios:
+
+```
+1. Añadido E-Sports como deporte
+2. Correcciones en las apuestas combinadas
+```
+
+Ya está disponible para descargar en los repositorios de AUR y en mi repositorio de Launchapad, próximamente estará para Windows
