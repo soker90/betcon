@@ -261,7 +261,7 @@ class NewBet(QWidget):
 		if self.cmbMarket.currentText() == "Combinada":
 			columns = ["bet", "date", "sport", "competition", "region", "player1", "player2", "pick", "result"]
 
-			for i in range(self.contComb):
+			for i in range(0, self.contComb):
 				data = []
 				data.append(id_bet)
 				data.append(self.dates[i].dateTime().toPyDateTime())
@@ -333,12 +333,13 @@ class NewBet(QWidget):
 		self.sports.append(QComboBox())
 		self.sports[self.contComb].setModel(self.cmbSport.model())
 		self.regionIndexToIdCmb.append({})
-		self.sports[self.contComb].activated.connect(lambda: self.setRegionComb(self.contComb - 1))
+		cont = self.contComb
+		self.sports[self.contComb].activated.connect(lambda: self.setRegionComb(cont))
 		self.pnlSport.addWidget(self.sports[self.contComb])
 
 		self.regions.append(QComboBox())
 		self.competitionIndexToIdCmb.append({})
-		self.regions[self.contComb].activated.connect(lambda: self.setCompetitionComb(self.contComb - 1))
+		self.regions[self.contComb].activated.connect(lambda: self.setCompetitionComb(cont))
 		self.pnlRegion.addWidget(self.regions[self.contComb])
 
 		self.competitions.append(QComboBox())
@@ -363,8 +364,7 @@ class NewBet(QWidget):
 		self.buttons[self.contComb].setText("X")
 		self.buttons[self.contComb].setStyleSheet("color:red; font-weight: bold;")
 		self.buttons[self.contComb].setMaximumSize(50, 50)
-		i = self.contComb
-		self.buttons[self.contComb].clicked.connect(lambda: self.removeRow(i))
+		self.buttons[self.contComb].clicked.connect(lambda: self.removeRow(cont))
 		self.pnlButton.addWidget(self.buttons[self.contComb])
 
 		self.contComb += 1
@@ -448,21 +448,24 @@ class NewBet(QWidget):
 
 		where = "region=" + str(idRegion) + " AND sport=" + str(idSport)
 
-		data = bd.select("competition", "name", where)
+		try:
+			data = bd.select("competition", "name", where)
 
-		index = 0
-		self.competitionIndexToIdCmb[index_cmb] = {}
-		for i in data:
-			id = i[0]
-			name = i[1]
-			self.competitions[index_cmb].addItem(name)
-			self.competitionIndexToIdCmb[index_cmb][index] = id
-			index += 1
+			index = 0
+			self.competitionIndexToIdCmb[index_cmb] = {}
+			for i in data:
+				id = i[0]
+				name = i[1]
+				self.competitions[index_cmb].addItem(name)
+				self.competitionIndexToIdCmb[index_cmb][index] = id
+				index += 1
 
-		if index == 0:
+			if index == 0:
+				self.btnAccept.setDisabled(True)
+			else:
+				self.btnAccept.setDisabled(False)
+		except:
 			self.btnAccept.setDisabled(True)
-		else:
-			self.btnAccept.setDisabled(False)
 
 		bd.close()
 

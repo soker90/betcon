@@ -92,6 +92,7 @@ class Main(QMainWindow):
 		self.aClose.triggered.connect(self.close)
 		self.aAbout.triggered.connect(self.about)
 		self.aSettings.triggered.connect(self.settings)
+		self.aSettings.setEnabled(False)
 
 		self.aNewConjunta.triggered.connect(self.newConjunta)
 		self.aExport.triggered.connect(self.export)
