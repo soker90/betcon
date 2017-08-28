@@ -19,4 +19,4 @@ Lista completa de cambios:
 2. Correcciones en las apuestas combinadas
 ```
 
-Ya está disponible para descargar en los repositorios de AUR y en mi repositorio de Launchapad, próximamente estará para Windows
+Ya está disponible para descargar en los repositorios de [AUR](https://aur.archlinux.org/packages/betcon/) y en el [repositorio de Launchpad](https://launchpad.net/~soker/+archive/ubuntu/betcon), próximamente estará para Windows.
