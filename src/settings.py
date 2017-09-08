@@ -1,4 +1,6 @@
 import sys, os, inspect
+from builtins import print
+
 from PyQt5.QtWidgets import QWidget
 from PyQt5 import uic
 directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
@@ -12,6 +14,10 @@ class Settings(QWidget):
 		self.mainWindows = mainWindows
 		mainWindows.diconnectActions()
 		self.mainWindows.setWindowTitle("Opciones | Betcon v" + mainWindows.version)
-		file = LibYaml()
-		config = file.load()
+		config = LibYaml()
+		self.txtPorcentage.setValue(config.stake["porcentage"])
+		self.cmbOne.setCurrentIndex(config.stake["type"])
+		self.txtStake.setValue(config.stake["stake"])
+		if config.stake["type"] != 2:
+			self.txtStake.setEnabled(False)
 
