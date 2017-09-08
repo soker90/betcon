@@ -26,6 +26,9 @@ sudo apt-get install betcon
 Antes de instalar, asegúrate de tener instaladas las dependencias:
 * Python3
 * PyQt5
+* SQLite3
+* [Pyexcel-ods]('https://github.com/pyexcel/pyexcel-ods')
+* PyYAML
 
 Para instalar:
 ```
