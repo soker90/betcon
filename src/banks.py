@@ -77,6 +77,8 @@ class Banks(QWidget):
             bonus = Bookie.sumBonus("bookie=" + str(i.id))
             bonus = 0.0 if bonus is None else bonus
             bank += bonus
+            if 0.01 > bank > -0.01:
+                continue
             item = QTreeWidgetItem([i.name, "{0:.2f}".format(bank)])
             items.append(item)
 
@@ -93,7 +95,7 @@ class Banks(QWidget):
             try:
                 sDate = datetime.strptime(i[1], "%d/%m/%y")
             except:
-                sDate = datetime.strptime(i[1], "%d/%m/%Y") #Fix for Windows
+                sDate = datetime.strptime(i[1], "%d/%m/%Y")  # Fix for Windows
             sDate = date.strftime(sDate, "%Y/%m/%d")
             account = i[2]
             if account == 1:
