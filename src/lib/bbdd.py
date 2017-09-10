@@ -205,9 +205,19 @@ class Bbdd:
 
 			try:
 				query = "create table IF NOT EXISTS variable (key VARCHAR(20) primary key, 	value VARCHAR(100));"
-				query += " INSERT INTO variable VALUES ('version', '1.6');"
 
 				self.cursor.executescript(query)
+				self.bd.commit()
+			except Exception as e:
+				print("Error en BBDD: {0}".format(e))
+
+			try:
+				version = self.select("variable", None, "key='version'", "value")
+				if not version:
+					query = " INSERT INTO variable VALUES ('version', 1.6);"
+				elif float(version[0][0]) < 1.6:
+					pass  # For the future
+				self.cursor.execute(query)
 				self.bd.commit()
 			except Exception as e:
 				print("Error en BBDD: {0}".format(e))
