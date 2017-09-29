@@ -1,0 +1,24 @@
+---
+layout: post
+title: "Nueva versión 1.6"
+date: 2017-09-29 23:07:00
+author: Eduardo
+categories:
+- blog
+- versiones
+img: post05.jpg
+thumb: post05_thumb.jpg
+---
+
+Como principal novedad, en esta versión se puede establecer un Stake 1 fijo o variable.
+
+Lista completa de cambios:
+
+```
+1. Mejoras para el mantenimiento
+2. Ya no se muestran las casa con 0€ en la pestaña de Bank
+3. Se ha añadido en opciones la posibilidad de fijar un Stake 1 o establecer un porcentaje del bank
+4. Corregido el fallo por el que a veces no se detectaba la región y no se habilitaba el botón de aceptar en nuevas apuestas
+5. Diversas mejoras
+
+```
