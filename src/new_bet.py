@@ -10,6 +10,8 @@ from decimal import Decimal
 from func_aux import str_to_float, str_to_bool
 
 from bbdd import Bbdd
+from bookie import Bookie
+from libyaml import LibYaml
 
 
 class NewBet(QWidget):
@@ -120,6 +122,7 @@ class NewBet(QWidget):
 
 		self.regionIndexToIdCmb = []
 		self.competitionIndexToIdCmb = []
+		self.calcStake()
 
 	def setCompetition(self):
 		self.cmbCompetition.clear()
@@ -193,7 +196,7 @@ class NewBet(QWidget):
 			self.btnAccept.setDisabled(True)
 			bd.close()
 
-		if len(data) == 0 or len(dataRegion):
+		if len(data) == 0 or len(dataRegion) == 0:
 			self.btnAccept.setDisabled(True)
 		else:
 			self.btnAccept.setDisabled(False)
@@ -518,5 +521,30 @@ class NewBet(QWidget):
 			self.btnAccept.setDisabled(True)
 		else:
 			self.btnAccept.setDisabled(False)
+
+	def calcStake(self):
+		self.config = LibYaml()
+		if self.config.stake["type"] == 0:
+			bd = Bbdd()
+			bookies = Bookie.sumAll()
+			bonus = Bookie.sumBonus()
+
+			# CC
+			cc = bd.select("bank", None, "id=1", "bank")
+			cc = cc[0][0]
+
+			# Paypal
+			paypal = bd.select("bank", None, "id=2", "bank")
+			paypal = paypal[0][0]
+
+			# SKRILL
+			skrill = bd.select("bank", None, "id=3", "bank")
+			skrill = skrill[0][0]
+
+			total = "{0:.2f}".format(cc + paypal + skrill + bonus + bookies)
+			total = float(total) * (self.config.stake["percentage"] * 0.01)
+			self.txtOne.setValue(float(total))
+		else:
+			self.txtOne.setValue(self.config.stake["stake"])
 
 

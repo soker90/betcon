@@ -1,5 +1,7 @@
 import sys, sqlite3, os, inspect, codecs
 from os.path import expanduser
+from func_aux import str_to_float
+from decimal import Decimal
 
 
 class Bbdd:
@@ -21,7 +23,12 @@ class Bbdd:
 		if not exist:
 			self.initDatabase()
 		else:
-			self.updateDatabase()
+			try:
+				version = self.select("variable", None, "key = 'version'")[0][1]
+				self.updateDatabase(Decimal(version))
+			except:
+				self.updateDatabase(0)
+
 
 
 	def insert(self, columns, values, table):
@@ -161,31 +168,63 @@ class Bbdd:
 		self.cursor.executescript(query)
 		self.bd.commit()
 
-	def updateDatabase(self):
-		try:
-			query = "create table IF NOT EXISTS conjunta (id INTEGER primary key autoincrement, name VARCHAR(30),	month INTEGER," \
-					"year INTEGER, 	money REAL );"
 
-			self.cursor.executescript(query)
-			self.bd.commit()
+	def updateDatabase(self, version):
+		if version < 1.6:
+			try:
+				query = "create table IF NOT EXISTS conjunta (id INTEGER primary key autoincrement, name VARCHAR(30),	month INTEGER," \
+						"year INTEGER, 	money REAL );"
 
-			query = "create table IF NOT EXISTS conjunta_tipster (conjunta INTEGER, tipster INTEGER, " \
-					"constraint conjunta_tipster_conjunta_tipster_pk primary key (conjunta, tipster));"
+				self.cursor.executescript(query)
+				self.bd.commit()
 
-			self.cursor.executescript(query)
-			self.bd.commit()
-		except Exception as e:
-			print("Error en BBDD: {0}".format(e))
+				query = "create table IF NOT EXISTS conjunta_tipster (conjunta INTEGER, tipster INTEGER, " \
+						"constraint conjunta_tipster_conjunta_tipster_pk primary key (conjunta, tipster));"
 
-		try:
-			query = "create table IF NOT EXISTS combined (id INTEGER primary key autoincrement, bet INTEGER, date DATETIME," \
-					"sport INTEGER, competition INTEGER, region INTEGER, player1 VARCHAR(150), player2 VARCHAR(150)," \
-					"pick VARCHAR(150),	result VARCHAR(50));"
+				self.cursor.executescript(query)
+				self.bd.commit()
+			except Exception as e:
+				print("Error en BBDD: {0}".format(e))
 
-			self.cursor.executescript(query)
-			self.bd.commit()
-		except Exception as e:
-			print("Error en BBDD: {0}".format(e))
+			try:
+				query = "create table IF NOT EXISTS combined (id INTEGER primary key autoincrement, bet INTEGER, date DATETIME," \
+						"sport INTEGER, competition INTEGER, region INTEGER, player1 VARCHAR(150), player2 VARCHAR(150)," \
+						"pick VARCHAR(150),	result VARCHAR(50));"
+
+				self.cursor.executescript(query)
+				self.bd.commit()
+			except Exception as e:
+				print("Error en BBDD: {0}".format(e))
+
+			'''try:
+				query = "ALTER TABLE bookie ADD `country` VARCHAR(150) default 'España'"
+
+				self.cursor.execute(query)
+				self.bd.commit()
+			except Exception as e:
+				print("Error en BBDD: {0}".format(e))'''
+
+			try:
+				query = "create table IF NOT EXISTS variable (key VARCHAR(20) primary key, 	value VARCHAR(100));"
+
+				self.cursor.executescript(query)
+				self.bd.commit()
+			except Exception as e:
+				print("Error en BBDD: {0}".format(e))
+
+			try:
+				version = self.select("variable", None, "key='version'", "value")
+				if not version:
+					query = " INSERT INTO variable VALUES ('version', 1.6);"
+				elif float(version[0][0]) < 1.6:
+					pass  # For the future
+				self.cursor.execute(query)
+				self.bd.commit()
+			except Exception as e:
+				print("Error en BBDD: {0}".format(e))
+
+		if version == 1.6:
+			print("hi")
 
 
 	def close(self):

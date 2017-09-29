@@ -206,3 +206,11 @@ create table combined
 	pick VARCHAR(150),
 	result VARCHAR(50)
 );
+
+create table variable
+(
+	key VARCHAR(20) primary key,
+	value VARCHAR(100)
+);
+
+INSERT INTO variable VALUES ('version', '1.6');
