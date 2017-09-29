@@ -168,6 +168,7 @@ class Bbdd:
 		self.cursor.executescript(query)
 		self.bd.commit()
 
+
 	def updateDatabase(self, version):
 		if version < 1.6:
 			try:
