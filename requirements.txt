@@ -1,3 +1,0 @@
-pyexcel-ods
-PyYAML
-PyQt5
