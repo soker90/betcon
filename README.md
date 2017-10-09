@@ -45,7 +45,11 @@ git clone https://github.com/soker90/Betcon.git
 #### Windows
 [Descarga](https://github.com/soker90/betcon/releases)
 
-
+### Tests
+Para ejecutar los tests:
+```
+nosetests tests/
+```
 ### Contacto
 Puedes contactarme en [eduparra90@gmail.com](mailto:eduparra90@gmail.com) o en [@eduparra90](http://twitter.com/eduparra90).
 
