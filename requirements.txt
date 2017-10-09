@@ -1,0 +1,4 @@
+pyexcel-ods
+PyYAML
+PyQt5
+sqlite3
