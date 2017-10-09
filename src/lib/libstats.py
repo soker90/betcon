@@ -48,11 +48,11 @@ class LibStats:
 			except ZeroDivisionError:
 				win = 0
 			win = win * 100
-			row.append(str(win)+"%")
-			row.append(str(i[6]))  # Money bet
-			row.append(str(i[4]))  # Profit
-			row.append(str(i[7]))  # Average Stake
-			row.append(str(i[8]))  # Average Quota
+			row.append("{0:.2f}%".format(round((win), 2)))
+			row.append("{0:.2f}".format(round((i[6]), 2)))  # Money bet
+			row.append("{0:.2f}".format(round((i[4]), 2)))  # Profit
+			row.append("{0:.2f}".format(round((i[7]), 2)))  # Average Stake
+			row.append("{0:.2f}".format(round((i[8]), 2)))  # Average Quota
 			data.append(row)
 
 		return data
@@ -93,11 +93,11 @@ class LibStats:
 				win = 0
 			win = win * 100
 			win = round(win, 2)
-			row.append(str(win) + "%")
-			row.append(str(i[5]))  # Money bet
-			row.append(str(i[3]))  # Profit
-			row.append(str(i[6]))  # Average Stake
-			row.append(str(i[7]))  # Average Quota
+			row.append("{0:.2f}%".format(round((win), 2)))
+			row.append("{0:.2f}".format(round((i[5]), 2)))  # Money bet
+			row.append("{0:.2f}".format(round((i[3]), 2)))  # Profit
+			row.append("{0:.2f}".format(round((i[6]), 2)))  # Average Stake
+			row.append("{0:.2f}".format(round((i[7]), 2)))  # Average Quota
 			data.append(row)
 
 		return data
@@ -138,11 +138,11 @@ class LibStats:
 				win = 0
 			win = win * 100
 			win = round(win, 2)
-			row.append(str(win) + "%")
-			row.append(str(i[5]))  # Money bet
-			row.append(str(i[3]))  # Profit
-			row.append(str(i[6]))  # Average Stake
-			row.append(str(i[7]))  # Average Quota
+			row.append("{0:.2f}%".format(round(win, 2)))
+			row.append("{0:.2f}".format(round((i[5]), 2)))  # Money bet
+			row.append("{0:.2f}".format(round((i[3]), 2)))  # Profit
+			row.append("{0:.2f}".format(round((i[6]), 2)))  # Average Stake
+			row.append("{0:.2f}".format(round((i[7]), 2)))  # Average Quota
 			data.append(row)
 
 		return data
@@ -186,11 +186,11 @@ class LibStats:
 			except ZeroDivisionError:
 				win = 0
 			win = win * 100
-			row.append(str(win) + "%")
-			row.append(str(i[6]))  # Money bet
-			row.append(str(i[4]))  # Profit
-			row.append(str(i[7]))  # Average Stake
-			row.append(str(i[8]))  # Average Quota
+			row.append("{0:.2f}%".format(round(win, 2)))
+			row.append("{0:.2f}".format(round((i[6]), 2)))  # Money bet
+			row.append("{0:.2f}".format(round((i[4]), 2)))  # Profit
+			row.append("{0:.2f}".format(round((i[7]), 2)))  # Average Stake
+			row.append("{0:.2f}".format(round((i[8]), 2)))  # Average Quota
 			data.append(row)
 
 		return data
@@ -234,11 +234,11 @@ class LibStats:
 			except ZeroDivisionError:
 				win = 0
 			win = win * 100
-			row.append(str(win) + "%")
-			row.append(str(i[6]))  # Money bet
-			row.append(str(i[4]))  # Profit
-			row.append(str(i[7]))  # Average Stake
-			row.append(str(i[8]))  # Average Quota
+			row.append("{0:.2f}%".format(round(win, 2)))
+			row.append("{0:.2f}".format(round((i[6]), 2)))  # Money bet
+			row.append("{0:.2f}".format(round((i[4]), 2)))  # Profit
+			row.append("{0:.2f}".format(round((i[7]), 2)))  # Average Stake
+			row.append("{0:.2f}".format(round((i[8]), 2)))  # Average Quota
 			data.append(row)
 
 		return data
@@ -277,11 +277,10 @@ class LibStats:
 			except ZeroDivisionError:
 				win = 0
 			win = win * 100
-			win = round(win, 2)
-			row.append(str(win) + "%")
-			row.append(str(i[5]))  # Money bet
-			row.append(str(i[3]))  # Profit
-			row.append(str(i[6]))  # Average Quota
+			row.append("{0:.2f}%".format(round(win, 2)))
+			row.append("{0:.2f}".format(round((i[5]), 2)))  # Money bet
+			row.append("{0:.2f}".format(round((i[3]), 2)))  # Profit
+			row.append("{0:.2f}".format(round((i[6]), 2)))  # Average Quota
 			data.append(row)
 
 		return data
