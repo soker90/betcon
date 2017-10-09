@@ -5,7 +5,10 @@ python:
   - "pypy3"
   
 install:
-  - pip install hamcrest, pyexcel-ods, PyYAML, PyQt5
+  - pip install hamcrest
+  - pip install pyexcel-ods
+  - pip install PyYAML
+  - pip install PyQt5 
   
 script: 
   - nosetests tests
