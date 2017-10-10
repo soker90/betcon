@@ -19,6 +19,9 @@ uninstall:
 	rm /usr/share/pixmaps/betcon.png
 	rm /usr/bin/betcon
 
+test:
+	nosetests tests
+
 clean:
 	rm -rf src/__pycache__
 	rm -rf src/lib/__pycache__
