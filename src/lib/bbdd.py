@@ -1,6 +1,5 @@
 import sys, sqlite3, os, inspect, codecs
 from os.path import expanduser
-from func_aux import str_to_float
 from decimal import Decimal
 
 

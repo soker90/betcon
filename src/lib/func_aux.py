@@ -4,8 +4,8 @@ from PyQt5.QtCore import Qt
 
 
 def str_to_float(sValue):
-	setlocale(LC_NUMERIC, '')
-	value = atof(sValue)
+	#setlocale(LC_NUMERIC, '')
+	value = atof(sValue.replace(',', '.'))
 	return value
 
 

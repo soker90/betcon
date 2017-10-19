@@ -6,11 +6,16 @@ from bbdd import Bbdd
 
 
 class Ods:
-	def __init__(self, directory=expanduser("~/betcon.ods")):
+	def __init__(self, directory=expanduser("~/betcon.ods"), directory_bd = None):
 		self.directory = directory
+		self.directory_bd = directory_bd
 
 	def export(self):
-		bd = Bbdd()
+		if self.directory_bd is None:
+			bd = Bbdd()
+		else:
+			bd = Bbdd(self.directory_bd)
+
 		file = OrderedDict()
 		data = bd.select("bet")
 		dataOds = [["Fecha", "Deporte", "Competicion", "Región", "Local", "Visitante", "Pick", "Casa", "Mercado",
@@ -42,7 +47,11 @@ class Ods:
 		save_data(self.directory, file)
 
 	def imports(self):
-		bd = Bbdd()
+		if self.directory_bd is None:
+			bd = Bbdd()
+		else:
+			bd = Bbdd(self.directory_bd)
+
 		try:
 			data = get_data(self.directory)
 			data = data.popitem()[1]
