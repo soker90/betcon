@@ -5,17 +5,21 @@ directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspe
 sys.path.append(directory + "/lib")
 
 from bbdd import Bbdd
+from gettext import gettext as _
+import gettext
 
 
 class Competitions(QWidget):
 	def __init__(self, mainWindows):
 		QWidget.__init__(self)
 		uic.loadUi(directory + "/../ui/competitions.ui", self)
+		gettext.textdomain("betcon")
+		gettext.bindtextdomain("betcon", "../lang/mo")
 		self.mainWindows = mainWindows
 		mainWindows.diconnectActions()
 		self.treeMain.header().hideSection(1)
 		mainWindows.aNew.triggered.connect(mainWindows.newCompetition)
-		self.mainWindows.setWindowTitle("Competiciones | Betcon v" + mainWindows.version)
+		self.mainWindows.setWindowTitle(_("Competiciones") + " | Betcon v" + mainWindows.version)
 		self.initTree()
 		self.treeMain.itemSelectionChanged.connect(self.changeItem)
 		self.mainWindows.aEdit.triggered.connect(self.editItem)
@@ -49,7 +53,7 @@ class Competitions(QWidget):
 		self.mainWindows.editCompetition(self.itemSelected)
 
 	def deleteItem(self):
-		resultado = QMessageBox.question(self, "Eliminar", "¿Estas seguro que desas eliminar la competición y las apuestas asociadas?", QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+		resultado = QMessageBox.question(self, _("Eliminar"), _("¿Estás seguro que desas eliminar ") + _("la competición y las apuestas asociadas?"), QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
 		if resultado == QMessageBox.Yes:
 			bd = Bbdd()
 			bd.delete("competition", self.itemSelected)
