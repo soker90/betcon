@@ -12,14 +12,18 @@ from func_aux import str_to_float, str_to_bool
 from bbdd import Bbdd
 from bookie import Bookie
 from libyaml import LibYaml
+from gettext import gettext as _
+import gettext
 
 
 class NewBet(QWidget):
 	def __init__(self, mainWindows):
 		QWidget.__init__(self)
 		uic.loadUi(directory + "/../ui/new_bet.ui", self)
+		gettext.textdomain("betcon")
+		gettext.bindtextdomain("betcon", "../lang/mo")
 		self.mainWindows = mainWindows
-		self.mainWindows.setWindowTitle("Nueva Apuesta | Betcon v" + mainWindows.version)
+		self.mainWindows.setWindowTitle(_("New Bet") + " | Betcon v" + mainWindows.version)
 		self.btnAccept.clicked.connect(self.accept)
 		self.btnCancel.clicked.connect(self.cancel)
 		self.btnAdd.clicked.connect(self.addCombined)
@@ -284,7 +288,7 @@ class NewBet(QWidget):
 
 		bbdd.close()
 
-		QMessageBox.information(self, "Añadida", "Nueva apuesta añadida.")
+		QMessageBox.information(self, _("Added"), _("New bet added."))
 		self.close()
 
 	def updateProfit(self):

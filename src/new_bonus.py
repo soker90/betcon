@@ -8,15 +8,19 @@ from bonus import Bonus
 from datetime import datetime
 from PyQt5.QtCore import QDate
 from func_aux import str_to_float
+from gettext import gettext as _
+import gettext
 
 class NewBonus(QWidget):
 	def __init__(self, mainWindows):
 		QWidget.__init__(self)
 		uic.loadUi(directory + "/../ui/new_bonus.ui", self)
+		gettext.textdomain("betcon")
+		gettext.bindtextdomain("betcon", "../lang/mo")
 		self.mainWindows = mainWindows
 		self.btnAccept.clicked.connect(self.accept)
 		self.btnCancel.clicked.connect(self.cancel)
-		self.mainWindows.setWindowTitle("Nuevo Bonus | Betcon v" + mainWindows.version)
+		self.mainWindows.setWindowTitle(_("New Bonus") + " | Betcon v" + mainWindows.version)
 		self.initData()
 
 	def initData(self):
@@ -68,7 +72,7 @@ class NewBonus(QWidget):
 
 		bbdd.insert(columns, data, "bonus")
 
-		QMessageBox.information(self, "Añadido", "Nuevo bono añadido.")
+		QMessageBox.information(self, _("Added"), _("New bonus added."))
 
 		self.close()
 

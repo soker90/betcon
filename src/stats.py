@@ -6,14 +6,18 @@ sys.path.append(directory + "/lib")
 from libstats import LibStats
 from datetime import datetime
 from func_aux import key_from_value
+from gettext import gettext as _
+import gettext
 
 
 class Stats(QWidget):
 	def __init__(self, mainWindows):
 		QWidget.__init__(self)
 		uic.loadUi(directory + "/../ui/stats.ui", self)
+		gettext.textdomain("betcon")
+		gettext.bindtextdomain("betcon", "../lang/mo")
 		self.mainWindows = mainWindows
-		self.mainWindows.setWindowTitle("Estadisticas | Betcon v" + mainWindows.version)
+		self.mainWindows.setWindowTitle(_("Stats") + " | Betcon v" + mainWindows.version)
 
 		self.initData()
 		self.cmbYear.activated.connect(self.updateMonths)

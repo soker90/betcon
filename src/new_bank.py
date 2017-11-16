@@ -8,15 +8,19 @@ from banks import Banks
 from func_aux import str_to_float
 from datetime import datetime
 from PyQt5.QtCore import QDate
+from gettext import gettext as _
+import gettext
 
 class NewBank(QWidget):
 	def __init__(self, mainWindows):
 		QWidget.__init__(self)
 		uic.loadUi(directory + "/../ui/new_bank.ui", self)
+		gettext.textdomain("betcon")
+		gettext.bindtextdomain("betcon", "../lang/mo")
 		self.mainWindows = mainWindows
 		self.btnAccept.clicked.connect(self.accept)
 		self.btnCancel.clicked.connect(self.cancel)
-		self.mainWindows.setWindowTitle("Nuevo Movimiento | Betcon v" + mainWindows.version)
+		self.mainWindows.setWindowTitle(_("New Movement") + " | Betcon v" + mainWindows.version)
 		self.initData()
 
 	def initData(self):
@@ -74,6 +78,6 @@ class NewBank(QWidget):
 		bbdd.update(columns, data, "bank", "id="+str(account + 1))
 		bbdd.close()
 
-		QMessageBox.information(self, "Añadido", "Movimiento añadido.")
+		QMessageBox.information(self, _("Added"), _("Added movement."))
 		self.close()
 

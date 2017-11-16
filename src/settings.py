@@ -9,15 +9,19 @@ from libyaml import LibYaml
 from bets import Bets
 from func_aux import str_to_float
 from bookie import Bookie
+from gettext import gettext as _
+import gettext
 
 
 class Settings(QWidget):
 	def __init__(self, mainWindows):
 		QWidget.__init__(self)
 		uic.loadUi(directory + "/../ui/settings.ui", self)
+		gettext.textdomain("betcon")
+		gettext.bindtextdomain("betcon", "../lang/mo")
 		self.mainWindows = mainWindows
 		mainWindows.diconnectActions()
-		self.mainWindows.setWindowTitle("Opciones | Betcon v" + mainWindows.version)
+		self.mainWindows.setWindowTitle(_("Options") + " | Betcon v" + mainWindows.version)
 		self.btnAccept.clicked.connect(self.accept)
 		self.btnCancel.clicked.connect(self.cancel)
 		self.config = LibYaml()

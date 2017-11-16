@@ -6,15 +6,19 @@ sys.path.append(directory + "/lib")
 from bbdd import Bbdd
 from tipsters_month import TipstersMonth
 from func_aux import str_to_float
+from gettext import gettext as _
+import gettext
 
 class NewTipsterMonth(QWidget):
 	def __init__(self, mainWindows):
 		QWidget.__init__(self)
 		uic.loadUi(directory + "/../ui/new_tipster_month.ui", self)
+		gettext.textdomain("betcon")
+		gettext.bindtextdomain("betcon", "../lang/mo")
 		self.mainWindows = mainWindows
 		self.btnAccept.clicked.connect(self.accept)
 		self.btnCancel.clicked.connect(self.cancel)
-		self.mainWindows.setWindowTitle("Nuevo Pago Tipster | Betcon v" + mainWindows.version)
+		self.mainWindows.setWindowTitle(_("New Tipster Payment") + " | Betcon v" + mainWindows.version)
 
 		self.initData()
 
@@ -51,7 +55,7 @@ class NewTipsterMonth(QWidget):
 		bbdd.insert(columns, data, "tipster_month")
 		bbdd.close()
 
-		QMessageBox.information(self, "Añadido", "Nuevo pago de tipster añadido.")
+		QMessageBox.information(self, _("Added"), _("New tipster payment added."))
 
 		self.close()
 
