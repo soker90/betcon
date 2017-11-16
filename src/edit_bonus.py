@@ -7,15 +7,19 @@ sys.path.append(directory + "/lib")
 from bbdd import Bbdd
 from bonus import Bonus
 from func_aux import str_to_float, str_to_bool
+from gettext import gettext as _
+import gettext
 
 class EditBonus(QWidget):
 	def __init__(self, mainWindows, id):
 		QWidget.__init__(self)
 		uic.loadUi(directory + "/../ui/new_bonus.ui", self)
+		gettext.textdomain("betcon")
+		gettext.bindtextdomain("betcon", "../lang/mo")
 		self.mainWindows = mainWindows
 		self.btnAccept.clicked.connect(self.accept)
 		self.btnCancel.clicked.connect(self.cancel)
-		self.mainWindows.setWindowTitle("Modificar Bonus | Betcon v" + mainWindows.version)
+		self.mainWindows.setWindowTitle(_("Modificar Bonus") + " | Betcon v" + mainWindows.version)
 
 		self.id = id
 		self.initData()
@@ -78,7 +82,7 @@ class EditBonus(QWidget):
 
 		bbdd.update(columns, data, "bonus", "id="+self.id)
 
-		QMessageBox.information(self, "Actualizado", "Bono actualizado.")
+		QMessageBox.information(self, _("Actualizado"), _("Bono actualizado."))
 
 		self.close()
 

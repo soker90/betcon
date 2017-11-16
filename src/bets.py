@@ -7,16 +7,20 @@ directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspe
 sys.path.append(directory + "/lib")
 from bbdd import Bbdd
 from func_aux import str_to_float
+from gettext import gettext as _
+import gettext
 
 
 class Bets(QWidget):
 	def __init__(self, mainWindows):
 		QWidget.__init__(self)
 		uic.loadUi(directory + "/../ui/bets.ui", self)
+		gettext.textdomain("betcon")
+		gettext.bindtextdomain("betcon", "../lang/mo")
 		self.mainWindows = mainWindows
 		mainWindows.diconnectActions()
 		mainWindows.aNew.triggered.connect(mainWindows.newBet)
-		self.mainWindows.setWindowTitle("Inicio | Betcon v" + mainWindows.version)
+		self.mainWindows.setWindowTitle(_("Inicio") + " | Betcon v" + mainWindows.version)
 		self.treeMain.header().hideSection(1)
 		self.initTree()
 		self.treeMain.itemSelectionChanged.connect(self.changeItem)
@@ -113,7 +117,7 @@ class Bets(QWidget):
 		self.mainWindows.editBet(self.itemSelected)
 
 	def deleteItem(self):
-		resultado = QMessageBox.question(self, "Eliminar", "¿Estas seguro que desas eliminarlo?",
+		resultado = QMessageBox.question(self, _("Eliminar"), _("¿Estas seguro que desas eliminarlo?"),
 										 QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
 		if resultado == QMessageBox.Yes:
 			bd = Bbdd()

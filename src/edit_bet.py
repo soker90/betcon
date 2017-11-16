@@ -8,14 +8,18 @@ directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspe
 sys.path.append(directory + "/lib")
 from bbdd import Bbdd
 from func_aux import str_to_float, str_to_bool, key_from_value
+from gettext import gettext as _
+import gettext
 
 
 class EditBet(QWidget):
 	def __init__(self, mainWindows, id):
 		QWidget.__init__(self)
 		uic.loadUi(directory + "/../ui/new_bet.ui", self)
+		gettext.textdomain("betcon")
+		gettext.bindtextdomain("betcon", "../lang/mo")
 		self.mainWindows = mainWindows
-		self.mainWindows.setWindowTitle("Modificar Apuesta | Betcon v" + mainWindows.version)
+		self.mainWindows.setWindowTitle(_("Modificar Apuesta") + " | Betcon v" + mainWindows.version)
 		self.btnAccept.clicked.connect(self.accept)
 		self.btnCancel.clicked.connect(self.cancel)
 		self.btnAdd.clicked.connect(self.addCombined)
@@ -359,7 +363,7 @@ class EditBet(QWidget):
 
 		bbdd.close()
 
-		QMessageBox.information(self, "Modificada", "Apuesta modificada.")
+		QMessageBox.information(self, _("Modificada"), _("Apuesta modificada."))
 		self.close()
 
 	def updateProfit(self):

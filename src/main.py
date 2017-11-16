@@ -50,18 +50,22 @@ from new_conjunta import NewConjunta
 from edit_conjunta import EditConjunta
 from ods import Ods
 from settings import Settings
+from gettext import gettext as _
+import gettext
 
 
 class Main(QMainWindow):
 	def __init__(self):
 		QMainWindow.__init__(self)
 		uic.loadUi(directory + "/../ui/wmain.ui", self)
+		gettext.textdomain("betcon")
+		gettext.bindtextdomain("betcon", "../lang/mo")
 		self.showMaximized()
 		self.enableTools()
 
 		archivo = open(directory+"/version.txt")
 		self.version = archivo.readline()
-		self.setWindowTitle("Inicio | Betcon v" + self.version)
+		self.setWindowTitle(_("Inicio") + " | Betcon v" + self.version)
 		if os.path.isfile("/usr/share/pixmaps/betcon.png"):
 			image = "/usr/share/pixmaps/betcon.png"
 		else:
@@ -316,7 +320,7 @@ class Main(QMainWindow):
 	#Events
 
 	def closeEvent(self, event):
-		resultado = QMessageBox.question(self, "Salir", "¿Seguro que quieres salir de la aplicación?",
+		resultado = QMessageBox.question(self, _("Salir"), _("¿Seguro que quieres salir de la aplicación?"),
 										 QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
 		if resultado == QMessageBox.Yes:
 			event.accept()
@@ -325,21 +329,21 @@ class Main(QMainWindow):
 
 	# Import/Export
 	def export(self):
-		file = QFileDialog.getSaveFileName(None, "Exportar datos", expanduser("~/") + "betcon.ods", "*.ods")
+		file = QFileDialog.getSaveFileName(None, _("Exportar datos"), expanduser("~/") + "betcon.ods", "*.ods")
 		if file[0] != '':
 			ods = Ods(file[0])
 			ods.export()
-			QMessageBox.information(self, "Exportado", "Datos exportados", QMessageBox.Ok)
+			QMessageBox.information(self, _("Exportado"), _("Datos exportados"), QMessageBox.Ok)
 
 	def imports(self):
-		file = QFileDialog.getOpenFileName(None, "Importar datos", expanduser("~/"), "*.ods")
+		file = QFileDialog.getOpenFileName(None, _("Importar datos"), expanduser("~/"), "*.ods")
 		if file[0] != '':
 			ods = Ods(file[0])
 			err = ods.imports()
 			if err:
 				QMessageBox.warning(self, "Error", err, QMessageBox.Ok)
 			else:
-				QMessageBox.information(self, "Importado", "Datos importados", QMessageBox.Ok)
+				QMessageBox.information(self, _("Importado"), _("Datos importados"), QMessageBox.Ok)
 		self.setCentralWidget(Bets(self))
 
 
@@ -354,7 +358,7 @@ class About(QDialog):
 		uic.loadUi(directory + "/../ui/about.ui", self)
 		archivo = open(directory + "/version.txt")
 		version = archivo.readline()
-		self.setWindowTitle("Acerca de")
+		self.setWindowTitle(_("Acerca de"))
 		self.txtText.setHtml("<p style='text-align: center;'><br>Betcon v" + version + "<p/>" \
 		                     "<p style='text-align: center;'>Web: https://soker90.github.io/betcon/<p/>" \
 		                     "<p style='text-align: center;'>Creado por Eduardo Parra Mazuecos<p/>" \

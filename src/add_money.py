@@ -6,15 +6,19 @@ sys.path.append(directory + "/lib")
 from banks import Banks
 from func_aux import str_to_float
 from bbdd import Bbdd
+from gettext import gettext as _
+import gettext
 
 
 class AddMoney(QWidget):
 	def __init__(self, mainWindows):
 		QWidget.__init__(self)
 		uic.loadUi(directory + "/../ui/add_money.ui", self)
+		gettext.textdomain("betcon")
+		gettext.bindtextdomain("betcon", "../lang/mo")
 		self.mainWindows = mainWindows
 		mainWindows.aNew.triggered.connect(mainWindows.newBank)
-		self.mainWindows.setWindowTitle("Añadir fondos | Betcon v" + mainWindows.version)
+		self.mainWindows.setWindowTitle(_("Añadir fondos") + " | Betcon v" + mainWindows.version)
 		self.btnAccept.clicked.connect(self.accept)
 		self.btnCancel.clicked.connect(self.cancel)
 		#self.txtMoney.returnPressed.connect(self.btnAccept.click)
@@ -41,6 +45,6 @@ class AddMoney(QWidget):
 		bbdd.update(columns, data, "bank", "id="+str(account+1))
 		bbdd.close()
 
-		QMessageBox.information(self, "Añadido", "Fondos añadidos.")
+		QMessageBox.information(self, _("Añadido"), _("Fondos añadidos."))
 
 		self.close()
