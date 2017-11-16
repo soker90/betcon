@@ -18,117 +18,117 @@ msgstr ""
 
 #: src/add_money.py:21
 msgid "Añadir fondos"
-msgstr ""
+msgstr "Añadir fondos"
 
 #: src/add_money.py:48
 msgid "Añadido"
-msgstr ""
+msgstr "Añadido"
 
 #: src/add_money.py:48
 msgid "Fondos añadidos."
-msgstr ""
+msgstr "Fondos añadidos."
 
 #: src/banks.py:131 src/bets.py:120 src/bonus.py:56 src/bookies.py:48
 #: src/competitions.py:56
 msgid "Eliminar"
-msgstr ""
+msgstr "Eliminar"
 
 #: src/banks.py:131 src/bets.py:120 src/bonus.py:56
 msgid "¿Estas seguro que desas eliminarlo?"
-msgstr ""
+msgstr "¿Estas seguro que desas eliminarlo?"
 
 #: src/bets.py:23 src/main.py:68
 msgid "Inicio"
-msgstr ""
+msgstr "Inicio"
 
 #: src/bonus.py:21
 msgid "Bonos"
-msgstr ""
+msgstr "Bonos"
 
 #: src/bookies.py:18
 msgid "Casas de apuestas"
-msgstr ""
+msgstr "Casas de apuestas"
 
 #: src/bookies.py:48
 msgid "¿Estas seguro que desas eliminar la casa y las apuestas asociadas?"
-msgstr ""
+msgstr "¿Estas seguro que desas eliminar la casa y las apuestas asociadas?"
 
 #: src/bookies.py:55
 msgid "Error"
-msgstr ""
+msgstr "Error"
 
 #: src/bookies.py:55
 msgid "Se ha producido un error al borrar la casa"
-msgstr ""
+msgstr "Se ha producido un error al borrar la casa"
 
 #: src/competitions.py:22
 msgid "Competiciones"
-msgstr ""
+msgstr "Competiciones"
 
 #: src/competitions.py:56
 msgid "¿Estás seguro que desas eliminar "
-msgstr ""
+msgstr "¿Estás seguro que desas eliminar "
 
 #: src/competitions.py:56
 msgid "la competición y las apuestas asociadas?"
-msgstr ""
+msgstr "la competición y las apuestas asociadas?"
 
 #: src/edit_bet.py:22
 msgid "Modificar Apuesta"
-msgstr ""
+msgstr "Modificar Apuesta"
 
 #: src/edit_bet.py:366
 msgid "Modificada"
-msgstr ""
+msgstr "Modificada"
 
 #: src/edit_bet.py:366
 msgid "Apuesta modificada."
-msgstr ""
+msgstr "Apuesta modificada."
 
 #: src/edit_bonus.py:22
 msgid "Modificar Bonus"
-msgstr ""
+msgstr "Modificar Bonus"
 
 #: src/edit_bonus.py:85
 msgid "Actualizado"
-msgstr ""
+msgstr "Actualizado"
 
 #: src/edit_bonus.py:85
 msgid "Bono actualizado."
-msgstr ""
+msgstr "Bono actualizado."
 
 #: src/main.py:323
 msgid "Salir"
-msgstr ""
+msgstr "Salir"
 
 #: src/main.py:323
 msgid "¿Seguro que quieres salir de la aplicación?"
-msgstr ""
+msgstr "¿Seguro que quieres salir de la aplicación?"
 
 #: src/main.py:332
 msgid "Exportar datos"
-msgstr ""
+msgstr "Exportar datos"
 
 #: src/main.py:336
 msgid "Exportado"
-msgstr ""
+msgstr "Exportado"
 
 #: src/main.py:336
 msgid "Datos exportados"
-msgstr ""
+msgstr "Datos exportados"
 
 #: src/main.py:339
 msgid "Importar datos"
-msgstr ""
+msgstr "Importar datos"
 
 #: src/main.py:346
 msgid "Importado"
-msgstr ""
+msgstr "Importado"
 
 #: src/main.py:346
 msgid "Datos importados"
-msgstr ""
+msgstr "Datos importados"
 
 #: src/main.py:361
 msgid "Acerca de"
-msgstr ""
+msgstr "Acerca de"
