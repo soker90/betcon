@@ -5,15 +5,19 @@ directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspe
 sys.path.append(directory + "/lib")
 from bookies import Bookies
 from bookie import Bookie
+from gettext import gettext as _
+import gettext
 
 class EditBookie(QWidget):
     def __init__(self, mainWindows, id):
         QWidget.__init__(self)
         uic.loadUi(directory + "/../ui/new_bookie.ui", self)
+        gettext.textdomain("betcon")
+        gettext.bindtextdomain("betcon", "../lang/mo")
         self.mainWindows = mainWindows
         self.btnAccept.clicked.connect(self.accept)
         self.btnCancel.clicked.connect(self.cancel)
-        self.mainWindows.setWindowTitle("Modificar Casa | Betcon v" + mainWindows.version)
+        self.mainWindows.setWindowTitle(_("Modify Bookie") + " | Betcon v" + mainWindows.version)
         self.txtName.returnPressed.connect(self.btnAccept.click)
 
         self.item = Bookie()
@@ -35,9 +39,9 @@ class EditBookie(QWidget):
         err = self.item.update()
 
         if err == 0:
-            QMessageBox.information(self, "Actualizada", "Casa actualizada.")
+            QMessageBox.information(self, _("Updated"), _("Updated bookie."))
         else:
-            QMessageBox.critical(self, "Error", str(err))
+            QMessageBox.critical(self, _("Error"), str(err))
 
         self.close()
 

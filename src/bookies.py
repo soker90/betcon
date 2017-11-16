@@ -15,7 +15,7 @@ class Bookies(QWidget):
 		self.mainWindows = mainWindows
 		mainWindows.diconnectActions()
 		mainWindows.aNew.triggered.connect(mainWindows.newBookie)
-		self.mainWindows.setWindowTitle(_("Casas de apuestas") + " | Betcon v" + mainWindows.version)
+		self.mainWindows.setWindowTitle(_("Bookies") + " | Betcon v" + mainWindows.version)
 		self.treeMain.header().hideSection(1)
 		self.initTree()
 		self.treeMain.itemSelectionChanged.connect(self.changeItem)
@@ -45,14 +45,14 @@ class Bookies(QWidget):
 		self.mainWindows.editBookie(self.itemSelected)
 
 	def deleteItem(self):
-		resultado = QMessageBox.question(self, _("Eliminar"), _("¿Estas seguro que desas eliminar la casa y las apuestas asociadas?"),
+		resultado = QMessageBox.question(self, _("Remove"), _("Are you sure you want to eliminate the bookie and the associated bets?"),
 										 QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
 		if resultado == QMessageBox.Yes:
 			err = Bookie.delete(self.itemSelected)
 			Bookie.deleteWhere("bet", "bookie=" + str(self.itemSelected))
 			Bookie.deleteWhere("bonus", "bookie=" + str(self.itemSelected))
 			if err != 0:
-				QMessageBox.critical(self, _("Error"), _("Se ha producido un error al borrar la casa"))
+				QMessageBox.critical(self, _("Error"), _("There was an error deleting the house"))
 
 			self.mainWindows.setCentralWidget(Bookies(self.mainWindows))
 			self.mainWindows.enableTools()

@@ -6,17 +6,21 @@ sys.path.append(directory + "/lib")
 from bbdd import Bbdd
 from tipsters_month import TipstersMonth
 from func_aux import str_to_float
+from gettext import gettext as _
+import gettext
 
 class EditConjunta(QWidget):
 	def __init__(self, mainWindows, id):
 		QWidget.__init__(self)
 		uic.loadUi(directory + "/../ui/new_conjunta.ui", self)
+		gettext.textdomain("betcon")
+		gettext.bindtextdomain("betcon", "../lang/mo")
 		self.mainWindows = mainWindows
 		self.btnAccept.clicked.connect(self.accept)
 		self.btnCancel.clicked.connect(self.cancel)
 		self.btnAdd.clicked.connect(self.add)
 		self.btnDel.clicked.connect(self.delete)
-		self.mainWindows.setWindowTitle("Actualizar Conjunta | Betcon v" + mainWindows.version)
+		self.mainWindows.setWindowTitle(_("Update joint purchase") + " | Betcon v" + mainWindows.version)
 
 		self.id = id
 		self.selected = [0, 1]
@@ -93,7 +97,7 @@ class EditConjunta(QWidget):
 		bbdd.close()
 
 
-		QMessageBox.information(self, "Añadido", "Nueva conjunta añadida.")
+		QMessageBox.information(self, _("Added"), _("New joint purchase added."))
 
 		self.close()
 
