@@ -4,16 +4,20 @@ from PyQt5 import uic
 directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
 sys.path.append(directory + "/lib")
 from bbdd import Bbdd
+from gettext import gettext as _
+import gettext
 
 
 class Sports(QWidget):
     def __init__(self, mainWindows):
         QWidget.__init__(self)
         uic.loadUi(directory + "/../ui/sports.ui", self)
+        gettext.textdomain("betcon")
+        gettext.bindtextdomain("betcon", "../lang/mo")
         self.mainWindows = mainWindows
         mainWindows.diconnectActions()
         mainWindows.aNew.triggered.connect(mainWindows.newSport)
-        self.mainWindows.setWindowTitle("Deportes | Betcon v" + mainWindows.version)
+        self.mainWindows.setWindowTitle(_("Sports") + " | Betcon v" + mainWindows.version)
         self.treeMain.header().hideSection(1)
         self.initTree()
 
@@ -48,7 +52,8 @@ class Sports(QWidget):
         self.mainWindows.editSport(self.itemSelected)
 
     def deleteItem(self):
-        resultado = QMessageBox.question(self, "Eliminar", "¿Estas seguro que desas eliminar el deporte y sus competiciones y apuestas asociadas?",
+        resultado = QMessageBox.question(self, _("Remove"), _("Are you sure you want to eliminate the sport") +
+                                         _("and its associated competitions and bets?"),
                                          QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
         if resultado == QMessageBox.Yes:
             bd = Bbdd()

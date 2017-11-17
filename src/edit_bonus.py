@@ -19,7 +19,7 @@ class EditBonus(QWidget):
 		self.mainWindows = mainWindows
 		self.btnAccept.clicked.connect(self.accept)
 		self.btnCancel.clicked.connect(self.cancel)
-		self.mainWindows.setWindowTitle(_("Modificar Bonus") + " | Betcon v" + mainWindows.version)
+		self.mainWindows.setWindowTitle(_("Modify Bonus") + " | Betcon v" + mainWindows.version)
 
 		self.id = id
 		self.initData()
@@ -82,7 +82,7 @@ class EditBonus(QWidget):
 
 		bbdd.update(columns, data, "bonus", "id="+self.id)
 
-		QMessageBox.information(self, _("Actualizado"), _("Bono actualizado."))
+		QMessageBox.information(self, _("Updated"), _("Updated bonus."))
 
 		self.close()
 

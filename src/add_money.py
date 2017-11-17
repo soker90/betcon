@@ -18,7 +18,7 @@ class AddMoney(QWidget):
 		gettext.bindtextdomain("betcon", "../lang/mo")
 		self.mainWindows = mainWindows
 		mainWindows.aNew.triggered.connect(mainWindows.newBank)
-		self.mainWindows.setWindowTitle(_("Añadir fondos") + " | Betcon v" + mainWindows.version)
+		self.mainWindows.setWindowTitle(_("Add funds") + " | Betcon v" + mainWindows.version)
 		self.btnAccept.clicked.connect(self.accept)
 		self.btnCancel.clicked.connect(self.cancel)
 		#self.txtMoney.returnPressed.connect(self.btnAccept.click)
@@ -45,6 +45,6 @@ class AddMoney(QWidget):
 		bbdd.update(columns, data, "bank", "id="+str(account+1))
 		bbdd.close()
 
-		QMessageBox.information(self, _("Añadido"), _("Fondos añadidos."))
+		QMessageBox.information(self, _("Added"), _("Added funds."))
 
 		self.close()

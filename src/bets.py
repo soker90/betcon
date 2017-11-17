@@ -20,7 +20,7 @@ class Bets(QWidget):
 		self.mainWindows = mainWindows
 		mainWindows.diconnectActions()
 		mainWindows.aNew.triggered.connect(mainWindows.newBet)
-		self.mainWindows.setWindowTitle(_("Inicio") + " | Betcon v" + mainWindows.version)
+		self.mainWindows.setWindowTitle(_("Home") + " | Betcon v" + mainWindows.version)
 		self.treeMain.header().hideSection(1)
 		self.initTree()
 		self.treeMain.itemSelectionChanged.connect(self.changeItem)
@@ -117,7 +117,7 @@ class Bets(QWidget):
 		self.mainWindows.editBet(self.itemSelected)
 
 	def deleteItem(self):
-		resultado = QMessageBox.question(self, _("Eliminar"), _("¿Estas seguro que desas eliminarlo?"),
+		resultado = QMessageBox.question(self, _("Remove"), _("Are you sure you want to eliminate it?"),
 										 QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
 		if resultado == QMessageBox.Yes:
 			bd = Bbdd()

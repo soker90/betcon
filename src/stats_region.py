@@ -5,18 +5,22 @@ directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspe
 sys.path.append(directory + "/lib")
 from libstats import LibStats
 from func_aux import paint_row, key_from_value
+from gettext import gettext as _
+import gettext
 
 
 class StatsRegion(QWidget):
     def __init__(self, mainWindows):
         QWidget.__init__(self)
         uic.loadUi(directory + "/../ui/stats_region.ui", self)
+        gettext.textdomain("betcon")
+        gettext.bindtextdomain("betcon", "../lang/mo")
         self.mainWindows = mainWindows
-        self.mainWindows.setWindowTitle("Estadisticas Regiones | Betcon v" + mainWindows.version)
+        self.mainWindows.setWindowTitle(_("Stats Regions") + " | Betcon v" + mainWindows.version)
         try:
             self.initData()
         except Exception:
-            print("Error al intentar cargar los datos.")
+            print(_("Error trying to load the data."))
             self.setEnabled(False)
 
         self.cmbYear.activated.connect(self.updateMonths)

@@ -65,7 +65,7 @@ class Main(QMainWindow):
 
 		archivo = open(directory+"/version.txt")
 		self.version = archivo.readline()
-		self.setWindowTitle(_("Inicio") + " | Betcon v" + self.version)
+		self.setWindowTitle(_("Home") + " | Betcon v" + self.version)
 		if os.path.isfile("/usr/share/pixmaps/betcon.png"):
 			image = "/usr/share/pixmaps/betcon.png"
 		else:
@@ -320,7 +320,7 @@ class Main(QMainWindow):
 	#Events
 
 	def closeEvent(self, event):
-		resultado = QMessageBox.question(self, _("Salir"), _("¿Seguro que quieres salir de la aplicación?"),
+		resultado = QMessageBox.question(self, _("Quit"), _("Are you sure you want to exit the application?"),
 										 QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
 		if resultado == QMessageBox.Yes:
 			event.accept()
@@ -329,21 +329,21 @@ class Main(QMainWindow):
 
 	# Import/Export
 	def export(self):
-		file = QFileDialog.getSaveFileName(None, _("Exportar datos"), expanduser("~/") + "betcon.ods", "*.ods")
+		file = QFileDialog.getSaveFileName(None, _("Export data"), expanduser("~/") + "betcon.ods", "*.ods")
 		if file[0] != '':
 			ods = Ods(file[0])
 			ods.export()
-			QMessageBox.information(self, _("Exportado"), _("Datos exportados"), QMessageBox.Ok)
+			QMessageBox.information(self, _("Exported"), _("Exported data"), QMessageBox.Ok)
 
 	def imports(self):
-		file = QFileDialog.getOpenFileName(None, _("Importar datos"), expanduser("~/"), "*.ods")
+		file = QFileDialog.getOpenFileName(None, _("Import data"), expanduser("~/"), "*.ods")
 		if file[0] != '':
 			ods = Ods(file[0])
 			err = ods.imports()
 			if err:
 				QMessageBox.warning(self, "Error", err, QMessageBox.Ok)
 			else:
-				QMessageBox.information(self, _("Importado"), _("Datos importados"), QMessageBox.Ok)
+				QMessageBox.information(self, _("Imported"), _("Imported data"), QMessageBox.Ok)
 		self.setCentralWidget(Bets(self))
 
 
@@ -358,10 +358,10 @@ class About(QDialog):
 		uic.loadUi(directory + "/../ui/about.ui", self)
 		archivo = open(directory + "/version.txt")
 		version = archivo.readline()
-		self.setWindowTitle(_("Acerca de"))
+		self.setWindowTitle(_("About"))
 		self.txtText.setHtml("<p style='text-align: center;'><br>Betcon v" + version + "<p/>" \
 		                     "<p style='text-align: center;'>Web: https://soker90.github.io/betcon/<p/>" \
-		                     "<p style='text-align: center;'>Creado por Eduardo Parra Mazuecos<p/>" \
-		                     "<p style='text-align: center;'>Contacto: eduparra90@gmail.com</p>" \
-		                     "<p style='text-align: center;'>Licencia GPLv3<p/>")
+		                     "<p style='text-align: center;'>" + _("Created by") + " Eduardo Parra Mazuecos<p/>" \
+		                     "<p style='text-align: center;'>" + _("Contact") + ": eduparra90@gmail.com</p>" \
+		                     "<p style='text-align: center;'>" + _("License") +" GPLv3<p/>")
 

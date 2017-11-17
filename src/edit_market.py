@@ -5,15 +5,19 @@ directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspe
 sys.path.append(directory + "/lib")
 from bbdd import Bbdd
 from markets import Markets
+from gettext import gettext as _
+import gettext
 
 class EditMarket(QWidget):
     def __init__(self, mainWindows, id):
         QWidget.__init__(self)
         uic.loadUi(directory + "/../ui/new_bookie.ui", self)
+        gettext.textdomain("betcon")
+        gettext.bindtextdomain("betcon", "../lang/mo")
         self.mainWindows = mainWindows
         self.btnAccept.clicked.connect(self.accept)
         self.btnCancel.clicked.connect(self.cancel)
-        self.mainWindows.setWindowTitle("Modificar Mercado | Betcon v" + mainWindows.version)
+        self.mainWindows.setWindowTitle(_("Modify Market") + " | Betcon v" + mainWindows.version)
         self.txtName.returnPressed.connect(self.btnAccept.click)
 
         self.id = id
@@ -41,7 +45,7 @@ class EditMarket(QWidget):
         bbdd.update(columns, data, "market", "id="+self.id)
         bbdd.close()
 
-        QMessageBox.information(self, "Actualizado", "Mercado actualizado.")
+        QMessageBox.information(self, _("Updated"), _("Market updated."))
 
         self.close()
 

@@ -19,7 +19,7 @@ class EditBet(QWidget):
 		gettext.textdomain("betcon")
 		gettext.bindtextdomain("betcon", "../lang/mo")
 		self.mainWindows = mainWindows
-		self.mainWindows.setWindowTitle(_("Modificar Apuesta") + " | Betcon v" + mainWindows.version)
+		self.mainWindows.setWindowTitle(_("Modify Bet") + " | Betcon v" + mainWindows.version)
 		self.btnAccept.clicked.connect(self.accept)
 		self.btnCancel.clicked.connect(self.cancel)
 		self.btnAdd.clicked.connect(self.addCombined)

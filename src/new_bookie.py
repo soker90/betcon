@@ -6,15 +6,19 @@ sys.path.append(directory + "/lib")
 
 from bookies import Bookies
 from bookie import Bookie
+from gettext import gettext as _
+import gettext
 
 class NewBookie(QWidget):
     def __init__(self, mainWindows):
         QWidget.__init__(self)
         uic.loadUi(directory + "/../ui/new_bookie.ui", self)
+        gettext.textdomain("betcon")
+        gettext.bindtextdomain("betcon", "../lang/mo")
         self.mainWindows = mainWindows
         self.btnAccept.clicked.connect(self.accept)
         self.btnCancel.clicked.connect(self.cancel)
-        self.mainWindows.setWindowTitle("Nueva Casa | Betcon v" + mainWindows.version)
+        self.mainWindows.setWindowTitle(_("New Bookie") + " | Betcon v" + mainWindows.version)
         self.txtName.returnPressed.connect(self.btnAccept.click)
 
     def close(self):
@@ -30,9 +34,9 @@ class NewBookie(QWidget):
         err = bookie.insert()
 
         if err == 0:
-            QMessageBox.information(self, "Añadida", "Nueva casa añadida.")
+            QMessageBox.information(self, _("Added"), _("New bookie added."))
         else:
-            QMessageBox.critical(self, "Error", str(err))
+            QMessageBox.critical(self, _("Error"), str(err))
 
         self.close()
 

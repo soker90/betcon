@@ -111,9 +111,9 @@ class Banks(QWidget):
             bookie = bd.getValue(i[3], "bookie")
             money = i[4]
             if money < 0:
-                type = "Retirada en cuenta"
+                type = _("Withdrawal to the bank.")
             else:
-                type = "Depósito en casa"
+                type = _("Deposit at bookie")
 
             item = QTreeWidgetItem([str(sDate), str(id), bookie, type, str(account), str(money)])
 
@@ -128,7 +128,7 @@ class Banks(QWidget):
         self.mainWindows.enableActions(False)
 
     def deleteItem(self):
-        resultado = QMessageBox.question(self, _("Eliminar"), _("¿Estas seguro que desas eliminarlo?"),
+        resultado = QMessageBox.question(self, _("Remove"), _("Are you sure you want to eliminate it?"),
                                          QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
         if resultado == QMessageBox.Yes:
             bd = Bbdd()

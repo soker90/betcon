@@ -5,16 +5,20 @@ directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspe
 sys.path.append(directory + "/lib")
 
 from bbdd import Bbdd
+from gettext import gettext as _
+import gettext
 
 
 class Tipsters(QWidget):
     def __init__(self, mainWindows):
         QWidget.__init__(self)
         uic.loadUi(directory + "/../ui/tipsters.ui", self)
+        gettext.textdomain("betcon")
+        gettext.bindtextdomain("betcon", "../lang/mo")
         self.mainWindows = mainWindows
         mainWindows.diconnectActions()
         mainWindows.aNew.triggered.connect(mainWindows.newTipster)
-        self.mainWindows.setWindowTitle("Tipsters | Betcon v" + mainWindows.version)
+        self.mainWindows.setWindowTitle(_("Tipsters") + " | Betcon v" + mainWindows.version)
         self.treeMain.header().hideSection(1)
         self.initTree()
 
@@ -70,7 +74,8 @@ class Tipsters(QWidget):
         self.mainWindows.editTipster(self.itemSelected)
 
     def deleteItem(self):
-        resultado = QMessageBox.question(self, "Eliminar", "¿Estas seguro que desas eliminar este tipster y todas las apuestas asociadas?",
+        resultado = QMessageBox.question(self, _("Remove"),
+                                         _("Are you sure you want to eliminate this tipster and all associated bets?"),
                                          QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
         if resultado == QMessageBox.Yes:
             bd = Bbdd()

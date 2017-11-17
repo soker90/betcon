@@ -19,7 +19,7 @@ class Competitions(QWidget):
 		mainWindows.diconnectActions()
 		self.treeMain.header().hideSection(1)
 		mainWindows.aNew.triggered.connect(mainWindows.newCompetition)
-		self.mainWindows.setWindowTitle(_("Competiciones") + " | Betcon v" + mainWindows.version)
+		self.mainWindows.setWindowTitle(_("Competitions") + " | Betcon v" + mainWindows.version)
 		self.initTree()
 		self.treeMain.itemSelectionChanged.connect(self.changeItem)
 		self.mainWindows.aEdit.triggered.connect(self.editItem)
@@ -53,7 +53,8 @@ class Competitions(QWidget):
 		self.mainWindows.editCompetition(self.itemSelected)
 
 	def deleteItem(self):
-		resultado = QMessageBox.question(self, _("Eliminar"), _("¿Estás seguro que desas eliminar ") + _("la competición y las apuestas asociadas?"), QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+		resultado = QMessageBox.question(self, _("Remove"), _("Are you sure you want to eliminate ") +
+		                                 _("the competition and the associated bets?"), QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
 		if resultado == QMessageBox.Yes:
 			bd = Bbdd()
 			bd.delete("competition", self.itemSelected)
