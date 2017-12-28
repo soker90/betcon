@@ -32,6 +32,8 @@ social:
     url: "https://github.com/soker90/Betcon"
   - title: code-fork
     url: "https://launchpad.net/betcon"
+  - title: telegram
+    url: "https://t.me/betconApuestas"
 
 # Postal address (add as many lines as necessary). Shown in footer and on Contact page.
 address:
