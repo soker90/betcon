@@ -4,8 +4,8 @@
 title: Betcon
 description: "Betcon es una aplicación para sistemas GNU/Linux y Windows para la gestión de apuestas deportivas."
 analytics: UA-50546869-2
-baseurl: "/betcon" #important: start with /
-url: "https://soker90.github.io/betcon/"
+baseurl: "/" #important: start with /
+url: "https://betcon.eduardoparra.es/"
 
 # Build settings
 markdown: kramdown
