@@ -1,0 +1,16 @@
+---
+layout: post
+title: "Nueva canal de Telegram"
+date: 2017-09-29 23:07:00
+author: Eduardo
+categories:
+- blog
+- versiones
+img: post06.jpg
+thumb: post06_thumb.jpg
+---
+
+Si quieres enterarte de cuando sale una nueva versión de Betcon puedes suscribirte a las noticias a través del correo electrónico o por RSS.
+Y desde ahora, está disponible también un nuevo canal de telegram en el que seguir las noticias de Betcon.
+
+Puedes unirte en [Telegram](https://t.me/betconApuestas).
