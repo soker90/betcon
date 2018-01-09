@@ -363,7 +363,7 @@ class EditBet(QWidget):
 
 		bbdd.close()
 
-		QMessageBox.information(self, _("Modificada"), _("Apuesta modificada."))
+		QMessageBox.information(self, _("Modified"), _("Modified bet."))
 		self.close()
 
 	def updateProfit(self):
