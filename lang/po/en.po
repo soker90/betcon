@@ -1,15 +1,15 @@
 # Spanish translations for PACKAGE package
 # Traducciones al español para el paquete PACKAGE.
-# Copyright (C) 2017 THE PACKAGE'S COPYRIGHT HOLDER
+# Copyright (C) 2018 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#  <eduparra90@gmail.com>, 2017.
+#  <eduparra90@gmail.com>, 2018.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-16 23:35+0100\n"
-"PO-Revision-Date: 2017-11-16 23:36+0100\n"
+"POT-Creation-Date: 2018-01-09 23:36+0100\n"
+"PO-Revision-Date: 2018-01-09 23:37+0100\n"
 "Last-Translator:  <eduparra90@gmail.com>\n"
 "Language-Team: Spanish\n"
 "Language: es\n"
@@ -52,11 +52,11 @@ msgstr ""
 msgid "Are you sure you want to eliminate it?"
 msgstr ""
 
-#: src/bets.py:23 src/main.py:68
+#: src/bets.py:23 src/main.py:68 src/main.py:76
 msgid "Home"
 msgstr ""
 
-#: src/bonus.py:21
+#: src/bonus.py:21 src/main.py:94
 msgid "Bonus"
 msgstr ""
 
@@ -68,7 +68,7 @@ msgstr ""
 msgid "No"
 msgstr ""
 
-#: src/bookies.py:18
+#: src/bookies.py:18 src/main.py:84 src/main.py:103
 msgid "Bookies"
 msgstr ""
 
@@ -84,7 +84,7 @@ msgstr ""
 msgid "There was an error deleting the house"
 msgstr ""
 
-#: src/competitions.py:22
+#: src/competitions.py:22 src/main.py:80
 msgid "Competitions"
 msgstr ""
 
@@ -101,11 +101,11 @@ msgid "Modify Bet"
 msgstr ""
 
 #: src/edit_bet.py:366
-msgid "Modificada"
+msgid "Modified"
 msgstr ""
 
 #: src/edit_bet.py:366
-msgid "Apuesta modificada."
+msgid "Modified bet."
 msgstr ""
 
 #: src/edit_bonus.py:22
@@ -186,56 +186,144 @@ msgstr ""
 msgid "Updated tipster."
 msgstr ""
 
-#: src/main.py:323
+#: src/main.py:78 src/main.py:107 src/regions.py:21
+msgid "Regions"
+msgstr ""
+
+#: src/main.py:82 src/main.py:109 src/sports.py:20
+msgid "Sports"
+msgstr ""
+
+#: src/main.py:86 src/main.py:105 src/markets.py:20
+msgid "Markets"
+msgstr ""
+
+#: src/main.py:88 src/main.py:101 src/tipsters.py:21
+msgid "Tipsters"
+msgstr ""
+
+#: src/main.py:90 src/stats.py:20
+msgid "Stats"
+msgstr ""
+
+#: src/main.py:92
+msgid "Bank"
+msgstr ""
+
+#: src/main.py:96
+msgid "Payment history"
+msgstr ""
+
+#: src/main.py:99
+msgid "General"
+msgstr ""
+
+#: src/main.py:111
+msgid "Stake"
+msgstr ""
+
+#: src/main.py:114
+msgid "Add/Withdraw funds"
+msgstr ""
+
+#: src/main.py:116
+msgid "Close"
+msgstr ""
+
+#: src/main.py:118
+msgid "About..."
+msgstr ""
+
+#: src/main.py:120
+msgid "Settings"
+msgstr ""
+
+#: src/main.py:123
+msgid "New joint purchase"
+msgstr ""
+
+#: src/main.py:125
+msgid "Export"
+msgstr ""
+
+#: src/main.py:127
+msgid "Import"
+msgstr ""
+
+#: src/main.py:129
+msgid "New"
+msgstr ""
+
+#: src/main.py:130
+msgid "Edit"
+msgstr ""
+
+#: src/main.py:131
+msgid "Delete"
+msgstr ""
+
+#: src/main.py:133
+msgid "Edit joint purchase"
+msgstr ""
+
+#: src/main.py:134
+msgid "Import joint purchase"
+msgstr ""
+
+#: src/main.py:136
+msgid "File"
+msgstr ""
+
+#: src/main.py:137
+msgid "Help"
+msgstr ""
+
+#: src/main.py:358
 msgid "Quit"
 msgstr ""
 
-#: src/main.py:323
+#: src/main.py:358
 msgid "Are you sure you want to exit the application?"
 msgstr ""
 
-#: src/main.py:332
+#: src/main.py:367
 msgid "Export data"
 msgstr ""
 
-#: src/main.py:336
+#: src/main.py:371
 msgid "Exported"
 msgstr ""
 
-#: src/main.py:336
+#: src/main.py:371
 msgid "Exported data"
 msgstr ""
 
-#: src/main.py:339
+#: src/main.py:374
 msgid "Import data"
 msgstr ""
 
-#: src/main.py:346
+#: src/main.py:381
 msgid "Imported"
 msgstr ""
 
-#: src/main.py:346
+#: src/main.py:381
 msgid "Imported data"
 msgstr ""
 
-#: src/main.py:361
+#: src/main.py:396
 msgid "About"
 msgstr ""
 
-#: src/main.py:364
+#: src/main.py:399
 msgid "Created by"
 msgstr ""
 
-#: src/main.py:365
+#: src/main.py:400
 msgid "Contact"
 msgstr ""
 
-#: src/main.py:366
+#: src/main.py:401
 msgid "License"
-msgstr ""
-
-#: src/markets.py:20
-msgid "Markets"
 msgstr ""
 
 #: src/markets.py:55
@@ -314,20 +402,12 @@ msgstr ""
 msgid "New tipster added."
 msgstr ""
 
-#: src/regions.py:21
-msgid "Regions"
-msgstr ""
-
 #: src/regions.py:56
 msgid "Are you sure you want to eliminate the region "
 msgstr ""
 
 #: src/settings.py:24
 msgid "Options"
-msgstr ""
-
-#: src/sports.py:20
-msgid "Sports"
 msgstr ""
 
 #: src/sports.py:55
@@ -349,10 +429,6 @@ msgstr ""
 
 #: src/stats_market.py:19
 msgid "Stats of markets"
-msgstr ""
-
-#: src/stats.py:20
-msgid "Stats"
 msgstr ""
 
 #: src/stats_region.py:19
@@ -381,10 +457,6 @@ msgstr ""
 
 #: src/tipsters_month.py:100
 msgid "Are you sure you want to eliminate this purchase joint?"
-msgstr ""
-
-#: src/tipsters.py:21
-msgid "Tipsters"
 msgstr ""
 
 #: src/tipsters.py:78
