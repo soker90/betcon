@@ -41,7 +41,7 @@ class Banks(QWidget):
 
         tipsters = bd.sum("tipster_month", "money")
         conjuntas = bd.sum("conjunta", "money")
-        self.txtTipster.setText(str(tipsters + conjuntas))
+        self.txtTipster.setText("-" + str(tipsters + conjuntas))
         profits = bd.sum("bet", "profit") + bonus
         self.txtProfit.setText("{0:.2f}".format(profits - tipsters - conjuntas))
         bets = bd.sum("bet", "bet")
