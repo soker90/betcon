@@ -5,7 +5,7 @@ date: 2017-12-31 13:00:00
 author: Eduardo
 categories:
 - blog
-- versiones
+- noticias
 img: post06.jpg
 thumb: post06_thumb.jpg
 ---
