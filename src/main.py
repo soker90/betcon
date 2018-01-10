@@ -131,7 +131,7 @@ class Main(QMainWindow):
 		self.aRemove.setText(_("Delete"))
 
 		self.aEditConjunta.setText(_("Edit joint purchase"))
-		self.aDeleteConjunta.setText(_("Import joint purchase"))
+		self.aDeleteConjunta.setText(_("Delete joint purchase"))
 
 		self.menuArchivo.setTitle(_("File"))
 		self.menuAyuda.setTitle(_("Help"))
