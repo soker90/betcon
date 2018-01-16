@@ -38,11 +38,50 @@ class NewBet(QWidget):
 		self.txtStake.valueChanged.connect(self.updateBet)
 		self.txtOne.valueChanged.connect(self.updateBet)
 
+		self.translate()
+
 		#self.setPnlVisible(self.pnlDate, False)
 		self.combined()
 
 
 	# self.txtQuota.activated.connect(self.setCompetition)
+
+	def translate(self):
+
+		self.lblDate_2.setText(_("Date"))
+		self.lblDate.setText(_("Date"))
+		self.lblSport_2.setText(_("Sport"))
+		self.lblSport.setText(_("Sport"))
+		self.lblRegion_2.setText(_("Region"))
+		self.lblRegion.setText(_("Region"))
+		self.lblCompetition_2.setText(_("Competition"))
+		self.lblCompetition.setText(_("Competition"))
+		self.lblPlayer1.setText(_("Local"))
+		self.lblPlayer1_2.setText(_("Local"))
+		self.lblPlayer2_2.setText(_("Away"))
+		self.lblPlayer2.setText(_("Away"))
+		self.lblPick_2.setText(_("Pick"))
+		self.lblPick.setText(_("Pick"))
+		self.lblResult.setText(_("Result"))
+		self.lblResult_2.setText(_("Result"))
+
+		self.chkFree.setText(_("Free Bet"))
+		self.lblBookie.setText(_("Bookie"))
+		self.lblMarket.setText(_("Market"))
+		self.lblTipster.setText(_("Tipster"))
+		self.lblStake.setText(_("Stake"))
+		self.lblOne.setText(_("One"))
+		self.lblBet.setText(_("Bet"))
+		self.lblQuota.setText(_("Quota"))
+		self.lblProfit.setText(_("Profit"))
+
+		self.btnCancel.setText(_("Cancel"))
+		self.btnAccept.setText(_("Accept"))
+		self.btnAdd.setText(_("Add bet"))
+
+
+
+
 
 
 

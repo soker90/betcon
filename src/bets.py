@@ -1,7 +1,7 @@
 import sys, os, inspect
 from PyQt5.QtWidgets import QWidget, QTreeWidgetItem, QMessageBox, QTreeWidget
 from PyQt5.QtGui import QBrush, QPixmap, QFont
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QStringListModel
 from PyQt5 import uic
 directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
 sys.path.append(directory + "/lib")
@@ -29,6 +29,12 @@ class Bets(QWidget):
 
 		self.itemSelected = -1
 		self.indexSelected = -1
+
+		header = [" ", "index", _("Date"), _("Sport"), _("Competition"), _("Region"), _("Local Team"), _("Away Team"),
+		          _("Pick"), _("Bookie"), _("Market"), _("Tipster"), _("Stake"), _("Stake 1"), _("Bet"), _("Quota"),
+		          _("Result"), _("Profit")]
+
+		self.treeMain.setHeaderLabels(header)
 
 	def initTree(self):
 		bd = Bbdd()

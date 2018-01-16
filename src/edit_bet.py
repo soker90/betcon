@@ -10,6 +10,7 @@ from bbdd import Bbdd
 from func_aux import str_to_float, str_to_bool, key_from_value
 from gettext import gettext as _
 import gettext
+from new_bet import NewBet
 
 
 class EditBet(QWidget):
@@ -37,6 +38,7 @@ class EditBet(QWidget):
 
 		self.combined()
 		self.initCombined()
+		NewBet.translate(self)
 
 
 	def initData(self):

@@ -59,9 +59,15 @@
        <bold>true</bold>
       </font>
      </property>
+     <property name="sortingEnabled">
+      <bool>false</bool>
+     </property>
+     <attribute name="headerDefaultSectionSize">
+      <number>100</number>
+     </attribute>
      <column>
       <property name="text">
-       <string notr="true">  </string>
+       <string notr="true"/>
       </property>
      </column>
      <column>

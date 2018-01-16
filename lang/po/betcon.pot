@@ -1,5 +1,5 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# Copyright (C) 2017-2018 Eduardo Parra Mazuecos
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-10 12:16+0100\n"
+"POT-Creation-Date: 2018-01-16 22:59+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,7 +22,7 @@ msgid "Add funds"
 msgstr ""
 
 #: src/add_money.py:48 src/edit_conjunta.py:100 src/new_bank.py:81
-#: src/new_bet.py:291 src/new_bonus.py:75 src/new_bookie.py:37
+#: src/new_bet.py:330 src/new_bonus.py:75 src/new_bookie.py:37
 #: src/new_competition.py:76 src/new_conjunta.py:81 src/new_market.py:38
 #: src/new_region.py:38 src/new_sport.py:38 src/new_tipster_month.py:58
 #: src/new_tipster.py:38
@@ -41,18 +41,82 @@ msgstr ""
 msgid "Deposit at bookie"
 msgstr ""
 
-#: src/banks.py:131 src/bets.py:120 src/bonus.py:56 src/bookies.py:48
+#: src/banks.py:131 src/bets.py:126 src/bonus.py:56 src/bookies.py:48
 #: src/competitions.py:56 src/markets.py:54 src/regions.py:56 src/sports.py:55
 #: src/tipsters_month.py:88 src/tipsters_month.py:99 src/tipsters.py:77
 msgid "Remove"
 msgstr ""
 
-#: src/banks.py:131 src/bets.py:120 src/bonus.py:56
+#: src/banks.py:131 src/bets.py:126 src/bonus.py:56
 msgid "Are you sure you want to eliminate it?"
 msgstr ""
 
 #: src/bets.py:23 src/main.py:68 src/main.py:76
 msgid "Home"
+msgstr ""
+
+#: src/bets.py:33 src/new_bet.py:51 src/new_bet.py:52
+msgid "Date"
+msgstr ""
+
+#: src/bets.py:33 src/new_bet.py:53 src/new_bet.py:54
+msgid "Sport"
+msgstr ""
+
+#: src/bets.py:33 src/new_bet.py:57 src/new_bet.py:58
+msgid "Competition"
+msgstr ""
+
+#: src/bets.py:33 src/new_bet.py:55 src/new_bet.py:56
+msgid "Region"
+msgstr ""
+
+#: src/bets.py:33
+msgid "Local Team"
+msgstr ""
+
+#: src/bets.py:33
+msgid "Away Team"
+msgstr ""
+
+#: src/bets.py:34 src/new_bet.py:63 src/new_bet.py:64
+msgid "Pick"
+msgstr ""
+
+#: src/bets.py:34 src/new_bet.py:69
+msgid "Bookie"
+msgstr ""
+
+#: src/bets.py:34 src/new_bet.py:70
+msgid "Market"
+msgstr ""
+
+#: src/bets.py:34 src/new_bet.py:71
+msgid "Tipster"
+msgstr ""
+
+#: src/bets.py:34 src/main.py:111 src/new_bet.py:72
+msgid "Stake"
+msgstr ""
+
+#: src/bets.py:34
+msgid "Stake 1"
+msgstr ""
+
+#: src/bets.py:34 src/new_bet.py:74
+msgid "Bet"
+msgstr ""
+
+#: src/bets.py:34 src/new_bet.py:75
+msgid "Quota"
+msgstr ""
+
+#: src/bets.py:35 src/new_bet.py:65 src/new_bet.py:66
+msgid "Result"
+msgstr ""
+
+#: src/bets.py:35 src/new_bet.py:76
+msgid "Profit"
 msgstr ""
 
 #: src/bonus.py:21 src/main.py:94
@@ -95,15 +159,15 @@ msgstr ""
 msgid "the competition and the associated bets?"
 msgstr ""
 
-#: src/edit_bet.py:22
+#: src/edit_bet.py:23
 msgid "Modify Bet"
 msgstr ""
 
-#: src/edit_bet.py:366
+#: src/edit_bet.py:368
 msgid "Modified"
 msgstr ""
 
-#: src/edit_bet.py:366
+#: src/edit_bet.py:368
 msgid "Modified bet."
 msgstr ""
 
@@ -215,10 +279,6 @@ msgstr ""
 
 #: src/main.py:99
 msgid "General"
-msgstr ""
-
-#: src/main.py:111
-msgid "Stake"
 msgstr ""
 
 #: src/main.py:114
@@ -341,7 +401,35 @@ msgstr ""
 msgid "New Bet"
 msgstr ""
 
-#: src/new_bet.py:291
+#: src/new_bet.py:59 src/new_bet.py:60
+msgid "Local"
+msgstr ""
+
+#: src/new_bet.py:61 src/new_bet.py:62
+msgid "Away"
+msgstr ""
+
+#: src/new_bet.py:68
+msgid "Free Bet"
+msgstr ""
+
+#: src/new_bet.py:73
+msgid "One"
+msgstr ""
+
+#: src/new_bet.py:78
+msgid "Cancel"
+msgstr ""
+
+#: src/new_bet.py:79
+msgid "Accept"
+msgstr ""
+
+#: src/new_bet.py:80
+msgid "Add bet"
+msgstr ""
+
+#: src/new_bet.py:330
 msgid "New bet added."
 msgstr ""
 
