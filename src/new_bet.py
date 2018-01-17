@@ -81,11 +81,6 @@ class NewBet(QWidget):
 
 
 
-
-
-
-
-
 	def initData(self):
 		# dtDate
 		sDate = datetime.now().strftime('%Y-%m-%d %H:%M:%S')

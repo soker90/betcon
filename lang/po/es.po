@@ -8,15 +8,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-16 23:35+0100\n"
-"PO-Revision-Date: 2017-12-31 16:42+0000\n"
+"POT-Creation-Date: 2018-01-16 22:59+0100\n"
+"PO-Revision-Date: 2018-01-16 22:26+0000\n"
 "Last-Translator: Eduardo Parra <Unknown>\n"
 "Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2018-01-09 22:36+0000\n"
-"X-Generator: Launchpad (build 18521)\n"
+"X-Launchpad-Export-Date: 2018-01-17 22:12+0000\n"
+"X-Generator: Launchpad (build 18532)\n"
 "Language: es\n"
 
 #: src/add_money.py:21
@@ -24,7 +24,7 @@ msgid "Add funds"
 msgstr "Añadir fondos"
 
 #: src/add_money.py:48 src/edit_conjunta.py:100 src/new_bank.py:81
-#: src/new_bet.py:291 src/new_bonus.py:75 src/new_bookie.py:37
+#: src/new_bet.py:330 src/new_bonus.py:75 src/new_bookie.py:37
 #: src/new_competition.py:76 src/new_conjunta.py:81 src/new_market.py:38
 #: src/new_region.py:38 src/new_sport.py:38 src/new_tipster_month.py:58
 #: src/new_tipster.py:38
@@ -43,21 +43,85 @@ msgstr "Retirada en cuenta."
 msgid "Deposit at bookie"
 msgstr "Depósito en casa"
 
-#: src/banks.py:131 src/bets.py:120 src/bonus.py:56 src/bookies.py:48
+#: src/banks.py:131 src/bets.py:126 src/bonus.py:56 src/bookies.py:48
 #: src/competitions.py:56 src/markets.py:54 src/regions.py:56 src/sports.py:55
 #: src/tipsters_month.py:88 src/tipsters_month.py:99 src/tipsters.py:77
 msgid "Remove"
 msgstr "Eliminar"
 
-#: src/banks.py:131 src/bets.py:120 src/bonus.py:56
+#: src/banks.py:131 src/bets.py:126 src/bonus.py:56
 msgid "Are you sure you want to eliminate it?"
 msgstr "¿Estas seguro que desas eliminarlo?"
 
-#: src/bets.py:23 src/main.py:68
+#: src/bets.py:23 src/main.py:68 src/main.py:76
 msgid "Home"
 msgstr "Inicio"
 
-#: src/bonus.py:21
+#: src/bets.py:33 src/new_bet.py:51 src/new_bet.py:52
+msgid "Date"
+msgstr "Fecha"
+
+#: src/bets.py:33 src/new_bet.py:53 src/new_bet.py:54
+msgid "Sport"
+msgstr "Deporte"
+
+#: src/bets.py:33 src/new_bet.py:57 src/new_bet.py:58
+msgid "Competition"
+msgstr "Competición"
+
+#: src/bets.py:33 src/new_bet.py:55 src/new_bet.py:56
+msgid "Region"
+msgstr "Región"
+
+#: src/bets.py:33
+msgid "Local Team"
+msgstr "Local"
+
+#: src/bets.py:33
+msgid "Away Team"
+msgstr "Visitante"
+
+#: src/bets.py:34 src/new_bet.py:63 src/new_bet.py:64
+msgid "Pick"
+msgstr "Pick"
+
+#: src/bets.py:34 src/new_bet.py:69
+msgid "Bookie"
+msgstr "Casa"
+
+#: src/bets.py:34 src/new_bet.py:70
+msgid "Market"
+msgstr "Mercado"
+
+#: src/bets.py:34 src/new_bet.py:71
+msgid "Tipster"
+msgstr "Tipster"
+
+#: src/bets.py:34 src/main.py:111 src/new_bet.py:72
+msgid "Stake"
+msgstr "Stake"
+
+#: src/bets.py:34
+msgid "Stake 1"
+msgstr "Unidad"
+
+#: src/bets.py:34 src/new_bet.py:74
+msgid "Bet"
+msgstr "Apuesta"
+
+#: src/bets.py:34 src/new_bet.py:75
+msgid "Quota"
+msgstr "Cuota"
+
+#: src/bets.py:35 src/new_bet.py:65 src/new_bet.py:66
+msgid "Result"
+msgstr "Resultado"
+
+#: src/bets.py:35 src/new_bet.py:76
+msgid "Profit"
+msgstr "Beneficio"
+
+#: src/bonus.py:21 src/main.py:94
 msgid "Bonus"
 msgstr "Bonos"
 
@@ -69,7 +133,7 @@ msgstr "Sí"
 msgid "No"
 msgstr "No"
 
-#: src/bookies.py:18
+#: src/bookies.py:18 src/main.py:84 src/main.py:103
 msgid "Bookies"
 msgstr "Casas de apuestas"
 
@@ -86,7 +150,7 @@ msgstr "Error"
 msgid "There was an error deleting the house"
 msgstr "Se ha producido un error al borrar la casa"
 
-#: src/competitions.py:22
+#: src/competitions.py:22 src/main.py:80
 msgid "Competitions"
 msgstr "Competiciones"
 
@@ -98,16 +162,16 @@ msgstr "¿Estas seguro que desas eliminar "
 msgid "the competition and the associated bets?"
 msgstr "la competición y las apuestas asociadas?"
 
-#: src/edit_bet.py:22
+#: src/edit_bet.py:23
 msgid "Modify Bet"
 msgstr "Modificar Apuesta"
 
-#: src/edit_bet.py:366
-msgid "Modificada"
+#: src/edit_bet.py:368
+msgid "Modified"
 msgstr "Modificada"
 
-#: src/edit_bet.py:366
-msgid "Apuesta modificada."
+#: src/edit_bet.py:368
+msgid "Modified bet."
 msgstr "Apuesta modificada."
 
 #: src/edit_bonus.py:22
@@ -188,57 +252,141 @@ msgstr "Modificar Tipster"
 msgid "Updated tipster."
 msgstr "Tipster actualizado."
 
-#: src/main.py:323
+#: src/main.py:78 src/main.py:107 src/regions.py:21
+msgid "Regions"
+msgstr "Regiones"
+
+#: src/main.py:82 src/main.py:109 src/sports.py:20
+msgid "Sports"
+msgstr "Deportes"
+
+#: src/main.py:86 src/main.py:105 src/markets.py:20
+msgid "Markets"
+msgstr "Mercados"
+
+#: src/main.py:88 src/main.py:101 src/tipsters.py:21
+msgid "Tipsters"
+msgstr "Tipsters"
+
+#: src/main.py:90 src/stats.py:20
+msgid "Stats"
+msgstr "Estadísticas"
+
+#: src/main.py:92
+msgid "Bank"
+msgstr "Bank"
+
+#: src/main.py:96
+msgid "Payment history"
+msgstr "Historial de pagos"
+
+#: src/main.py:99
+msgid "General"
+msgstr "General"
+
+#: src/main.py:114
+msgid "Add/Withdraw funds"
+msgstr "Añadir/Retirar fondos"
+
+#: src/main.py:116
+msgid "Close"
+msgstr "Cerrar"
+
+#: src/main.py:118
+msgid "About..."
+msgstr "Acerca de..."
+
+#: src/main.py:120
+msgid "Settings"
+msgstr "Opciones"
+
+#: src/main.py:123
+msgid "New joint purchase"
+msgstr "Nueva conjunta"
+
+#: src/main.py:125
+msgid "Export"
+msgstr "Exportar"
+
+#: src/main.py:127
+msgid "Import"
+msgstr "Importar"
+
+#: src/main.py:129
+msgid "New"
+msgstr "Nuevo"
+
+#: src/main.py:130
+msgid "Edit"
+msgstr "Editar"
+
+#: src/main.py:131
+msgid "Delete"
+msgstr "Eliminar"
+
+#: src/main.py:133
+msgid "Edit joint purchase"
+msgstr "Editar conjunta"
+
+#: src/main.py:134
+msgid "Delete joint purchase"
+msgstr "Eliminar conjunta"
+
+#: src/main.py:136
+msgid "File"
+msgstr "Archivo"
+
+#: src/main.py:137
+msgid "Help"
+msgstr "Ayuda"
+
+#: src/main.py:358
 msgid "Quit"
 msgstr "Salir"
 
-#: src/main.py:323
+#: src/main.py:358
 msgid "Are you sure you want to exit the application?"
 msgstr "¿Seguro que quieres salir de la aplicación?"
 
-#: src/main.py:332
+#: src/main.py:367
 msgid "Export data"
 msgstr "Exportar datos"
 
-#: src/main.py:336
+#: src/main.py:371
 msgid "Exported"
 msgstr "Exportado"
 
-#: src/main.py:336
+#: src/main.py:371
 msgid "Exported data"
 msgstr "Datos exportados"
 
-#: src/main.py:339
+#: src/main.py:374
 msgid "Import data"
 msgstr "Importar datos"
 
-#: src/main.py:346
+#: src/main.py:381
 msgid "Imported"
 msgstr "Importado"
 
-#: src/main.py:346
+#: src/main.py:381
 msgid "Imported data"
 msgstr "Datos importados"
 
-#: src/main.py:361
+#: src/main.py:396
 msgid "About"
 msgstr "Acerca de"
 
-#: src/main.py:364
+#: src/main.py:399
 msgid "Created by"
 msgstr "Creado por"
 
-#: src/main.py:365
+#: src/main.py:400
 msgid "Contact"
 msgstr "Contacto"
 
-#: src/main.py:366
+#: src/main.py:401
 msgid "License"
 msgstr "Licencia"
-
-#: src/markets.py:20
-msgid "Markets"
-msgstr "Mercados"
 
 #: src/markets.py:55
 msgid ""
@@ -258,7 +406,35 @@ msgstr "Movimiento añadido."
 msgid "New Bet"
 msgstr "Nueva Apuesta"
 
-#: src/new_bet.py:291
+#: src/new_bet.py:59 src/new_bet.py:60
+msgid "Local"
+msgstr "Local"
+
+#: src/new_bet.py:61 src/new_bet.py:62
+msgid "Away"
+msgstr "Visitante"
+
+#: src/new_bet.py:68
+msgid "Free Bet"
+msgstr "Apuesta Gratuita"
+
+#: src/new_bet.py:73
+msgid "One"
+msgstr "Unidad"
+
+#: src/new_bet.py:78
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: src/new_bet.py:79
+msgid "Accept"
+msgstr "Aceptar"
+
+#: src/new_bet.py:80
+msgid "Add bet"
+msgstr "Añadir apuesta"
+
+#: src/new_bet.py:330
 msgid "New bet added."
 msgstr "Nueva apuesta añadida."
 
@@ -318,10 +494,6 @@ msgstr "Nuevo Tipster"
 msgid "New tipster added."
 msgstr "Nuevo tipster añadido."
 
-#: src/regions.py:21
-msgid "Regions"
-msgstr "Regiones"
-
 #: src/regions.py:56
 msgid "Are you sure you want to eliminate the region "
 msgstr "¿Estas seguro que desas eliminar la región "
@@ -329,10 +501,6 @@ msgstr "¿Estas seguro que desas eliminar la región "
 #: src/settings.py:24
 msgid "Options"
 msgstr "Opciones"
-
-#: src/sports.py:20
-msgid "Sports"
-msgstr "Deportes"
 
 #: src/sports.py:55
 msgid "Are you sure you want to eliminate the sport"
@@ -354,10 +522,6 @@ msgstr "Error al intentar cargar los datos."
 #: src/stats_market.py:19
 msgid "Stats of markets"
 msgstr "Estadísticas Mercados"
-
-#: src/stats.py:20
-msgid "Stats"
-msgstr "Estadísticas"
 
 #: src/stats_region.py:19
 msgid "Stats Regions"
@@ -386,10 +550,6 @@ msgstr "¿Estas seguro que desas eliminar este pago?"
 #: src/tipsters_month.py:100
 msgid "Are you sure you want to eliminate this purchase joint?"
 msgstr "¿Estás seguro que desas eliminar esta conjunta?"
-
-#: src/tipsters.py:21
-msgid "Tipsters"
-msgstr "Tipsters"
 
 #: src/tipsters.py:78
 msgid ""

@@ -1,18 +1,21 @@
-#, fuzzy
+# Kurdish translation for betcon
+# Copyright (c) 2018 Rosetta Contributors and Canonical Ltd 2018
+# This file is distributed under the same license as the betcon package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2018.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
+"Project-Id-Version: betcon\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2018-01-16 22:59+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2018-01-16 23:33+0000\n"
+"Last-Translator: Rokar ✌ <Unknown>\n"
+"Language-Team: Kurdish <ku@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2018-01-17 22:12+0000\n"
 "X-Generator: Launchpad (build 18532)\n"
-"Language: \n"
 
 #: src/add_money.py:21
 msgid "Add funds"
@@ -42,7 +45,7 @@ msgstr ""
 #: src/competitions.py:56 src/markets.py:54 src/regions.py:56 src/sports.py:55
 #: src/tipsters_month.py:88 src/tipsters_month.py:99 src/tipsters.py:77
 msgid "Remove"
-msgstr ""
+msgstr "Rake"
 
 #: src/banks.py:131 src/bets.py:126 src/bonus.py:56
 msgid "Are you sure you want to eliminate it?"
@@ -50,11 +53,11 @@ msgstr ""
 
 #: src/bets.py:23 src/main.py:68 src/main.py:76
 msgid "Home"
-msgstr ""
+msgstr "Destpêk"
 
 #: src/bets.py:33 src/new_bet.py:51 src/new_bet.py:52
 msgid "Date"
-msgstr ""
+msgstr "Roj"
 
 #: src/bets.py:33 src/new_bet.py:53 src/new_bet.py:54
 msgid "Sport"
@@ -66,7 +69,7 @@ msgstr ""
 
 #: src/bets.py:33 src/new_bet.py:55 src/new_bet.py:56
 msgid "Region"
-msgstr ""
+msgstr "Herêm"
 
 #: src/bets.py:33
 msgid "Local Team"
@@ -110,7 +113,7 @@ msgstr ""
 
 #: src/bets.py:35 src/new_bet.py:65 src/new_bet.py:66
 msgid "Result"
-msgstr ""
+msgstr "dawî"
 
 #: src/bets.py:35 src/new_bet.py:76
 msgid "Profit"
@@ -122,11 +125,11 @@ msgstr ""
 
 #: src/bonus.py:40
 msgid "Yes"
-msgstr ""
+msgstr "Erê"
 
 #: src/bonus.py:40
 msgid "No"
-msgstr ""
+msgstr "Na"
 
 #: src/bookies.py:18 src/main.py:84 src/main.py:103
 msgid "Bookies"
@@ -139,7 +142,7 @@ msgstr ""
 
 #: src/bookies.py:55 src/edit_bookie.py:44 src/new_bookie.py:39
 msgid "Error"
-msgstr ""
+msgstr "Çewtî"
 
 #: src/bookies.py:55
 msgid "There was an error deleting the house"
@@ -163,7 +166,7 @@ msgstr ""
 
 #: src/edit_bet.py:368
 msgid "Modified"
-msgstr ""
+msgstr "Guhertî"
 
 #: src/edit_bet.py:368
 msgid "Modified bet."
@@ -225,7 +228,7 @@ msgstr ""
 
 #: src/edit_sport.py:20 src/new_sport.py:20
 msgid "New Sport"
-msgstr ""
+msgstr "Werzîşa nû"
 
 #: src/edit_sport.py:48
 msgid "Updated sport."
@@ -253,7 +256,7 @@ msgstr ""
 
 #: src/main.py:82 src/main.py:109 src/sports.py:20
 msgid "Sports"
-msgstr ""
+msgstr "Werzîş"
 
 #: src/main.py:86 src/main.py:105 src/markets.py:20
 msgid "Markets"
@@ -265,7 +268,7 @@ msgstr ""
 
 #: src/main.py:90 src/stats.py:20
 msgid "Stats"
-msgstr ""
+msgstr "Statîstîk"
 
 #: src/main.py:92
 msgid "Bank"
@@ -277,7 +280,7 @@ msgstr ""
 
 #: src/main.py:99
 msgid "General"
-msgstr ""
+msgstr "Giştî"
 
 #: src/main.py:114
 msgid "Add/Withdraw funds"
@@ -285,15 +288,15 @@ msgstr ""
 
 #: src/main.py:116
 msgid "Close"
-msgstr ""
+msgstr "Bigire"
 
 #: src/main.py:118
 msgid "About..."
-msgstr ""
+msgstr "Der bare..."
 
 #: src/main.py:120
 msgid "Settings"
-msgstr ""
+msgstr "Mîheng"
 
 #: src/main.py:123
 msgid "New joint purchase"
@@ -301,23 +304,23 @@ msgstr ""
 
 #: src/main.py:125
 msgid "Export"
-msgstr ""
+msgstr "Veguhese derve"
 
 #: src/main.py:127
 msgid "Import"
-msgstr ""
+msgstr "Têxe"
 
 #: src/main.py:129
 msgid "New"
-msgstr ""
+msgstr "Nû"
 
 #: src/main.py:130
 msgid "Edit"
-msgstr ""
+msgstr "Sererast bike"
 
 #: src/main.py:131
 msgid "Delete"
-msgstr ""
+msgstr "Jê bibe"
 
 #: src/main.py:133
 msgid "Edit joint purchase"
@@ -329,15 +332,15 @@ msgstr ""
 
 #: src/main.py:136
 msgid "File"
-msgstr ""
+msgstr "Dosya"
 
 #: src/main.py:137
 msgid "Help"
-msgstr ""
+msgstr "Alîkarî"
 
 #: src/main.py:358
 msgid "Quit"
-msgstr ""
+msgstr "Derkeve"
 
 #: src/main.py:358
 msgid "Are you sure you want to exit the application?"
@@ -361,7 +364,7 @@ msgstr ""
 
 #: src/main.py:381
 msgid "Imported"
-msgstr ""
+msgstr "Yên hatine wergirtin"
 
 #: src/main.py:381
 msgid "Imported data"
@@ -369,19 +372,19 @@ msgstr ""
 
 #: src/main.py:396
 msgid "About"
-msgstr ""
+msgstr "Der barê"
 
 #: src/main.py:399
 msgid "Created by"
-msgstr ""
+msgstr "Afirandêr bo"
 
 #: src/main.py:400
 msgid "Contact"
-msgstr ""
+msgstr "Tekilî"
 
 #: src/main.py:401
 msgid "License"
-msgstr ""
+msgstr "Peyman"
 
 #: src/markets.py:55
 msgid ""
@@ -402,11 +405,11 @@ msgstr ""
 
 #: src/new_bet.py:59 src/new_bet.py:60
 msgid "Local"
-msgstr ""
+msgstr "Herêmî"
 
 #: src/new_bet.py:61 src/new_bet.py:62
 msgid "Away"
-msgstr ""
+msgstr "Li derve"
 
 #: src/new_bet.py:68
 msgid "Free Bet"
@@ -414,15 +417,15 @@ msgstr ""
 
 #: src/new_bet.py:73
 msgid "One"
-msgstr ""
+msgstr "Yek"
 
 #: src/new_bet.py:78
 msgid "Cancel"
-msgstr ""
+msgstr "Betal bike"
 
 #: src/new_bet.py:79
 msgid "Accept"
-msgstr ""
+msgstr "Bipejirîne"
 
 #: src/new_bet.py:80
 msgid "Add bet"
@@ -494,7 +497,7 @@ msgstr ""
 
 #: src/settings.py:24
 msgid "Options"
-msgstr ""
+msgstr "Vebijêrk"
 
 #: src/sports.py:55
 msgid "Are you sure you want to eliminate the sport"

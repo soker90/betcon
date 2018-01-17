@@ -395,8 +395,14 @@ class About(QDialog):
 		version = archivo.readline()
 		self.setWindowTitle(_("About"))
 		self.txtText.setHtml("<p style='text-align: center;'><br>Betcon v" + version + "<p/>" \
-		                     "<p style='text-align: center;'>Web: https://soker90.github.io/betcon/<p/>" \
+		                     "<p style='text-align: center;'>Web: http://betcon.eduardoparra.es/<p/>" \
 		                     "<p style='text-align: center;'>" + _("Created by") + " Eduardo Parra Mazuecos<p/>" \
 		                     "<p style='text-align: center;'>" + _("Contact") + ": eduparra90@gmail.com</p>" \
-		                     "<p style='text-align: center;'>" + _("License") +" GPLv3<p/>")
+			                 "<p style='text-align: center;'>" + _("License") +" GPLv3<p/>" \
+		                     "<p style='text-align: center;'>" + _("Translated by:") + "<p/>" \
+			                 "<p style='text-align: center;'>" + "English: Eduardo Parra Mazuecos. <p/>" \
+		                     "<p style='text-align: center;'>" + "Spanish: Eduardo Parra Mazuecos. <p/>" \
+		                     "<p style='text-align: center;'>" + "Brazilian Portuguese: Rodrigo Henrique. <p/>" \
+		                     "<p style='text-align: center;'>" + "German: Franz Lewin Wagner, Rokar. <p/>" \
+		                     "<p style='text-align: center;'>" + "Kurdish: Rokar. <p/>" )
 

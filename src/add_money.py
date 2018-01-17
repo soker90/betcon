@@ -22,6 +22,19 @@ class AddMoney(QWidget):
 		self.btnAccept.clicked.connect(self.accept)
 		self.btnCancel.clicked.connect(self.cancel)
 		#self.txtMoney.returnPressed.connect(self.btnAccept.click)
+		self.translate()
+
+	def translate(self):
+
+		self.lblAccount.setText(_("Account"))
+		self.lblType.setText(_("Type"))
+		self.lblAmount.setText(_("Amount"))
+
+		self.cmbAccount.addItems([_("Bank"), "Paypal", "Skrill"])
+		self.cmbType.addItems([_("Deposit"), _("Withdraw")])
+
+		self.btnCancel.setText(_("Cancel"))
+		self.btnAccept.setText(_("Accept"))
 
 	def close(self):
 			self.mainWindows.setCentralWidget(Banks(self.mainWindows))
