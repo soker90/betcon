@@ -1,59 +1,136 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-16 22:59+0100\n"
+"POT-Creation-Date: 2018-01-18 09:40+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2018-01-17 22:12+0000\n"
-"X-Generator: Launchpad (build 18532)\n"
 "Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
 
 #: src/add_money.py:21
 msgid "Add funds"
 msgstr ""
 
-#: src/add_money.py:48 src/edit_conjunta.py:100 src/new_bank.py:81
-#: src/new_bet.py:330 src/new_bonus.py:75 src/new_bookie.py:37
+#: src/add_money.py:29 src/banks.py:51
+msgid "Account"
+msgstr ""
+
+#: src/add_money.py:30 src/banks.py:51
+msgid "Type"
+msgstr ""
+
+#: src/add_money.py:31 src/banks.py:47 src/banks.py:51 src/bonus.py:33
+msgid "Amount"
+msgstr ""
+
+#: src/add_money.py:33 src/banks.py:41 src/main.py:92
+msgid "Bank"
+msgstr ""
+
+#: src/add_money.py:34
+msgid "Deposit"
+msgstr ""
+
+#: src/add_money.py:34
+msgid "Withdraw"
+msgstr ""
+
+#: src/add_money.py:36 src/new_bet.py:78
+msgid "Cancel"
+msgstr ""
+
+#: src/add_money.py:37 src/new_bet.py:79
+msgid "Accept"
+msgstr ""
+
+#: src/add_money.py:61 src/edit_conjunta.py:100 src/new_bank.py:81
+#: src/new_bet.py:325 src/new_bonus.py:75 src/new_bookie.py:37
 #: src/new_competition.py:76 src/new_conjunta.py:81 src/new_market.py:38
 #: src/new_region.py:38 src/new_sport.py:38 src/new_tipster_month.py:58
 #: src/new_tipster.py:38
 msgid "Added"
 msgstr ""
 
-#: src/add_money.py:48
+#: src/add_money.py:61
 msgid "Added funds."
 msgstr ""
 
-#: src/banks.py:114
+#: src/banks.py:35
+msgid "Deposits"
+msgstr ""
+
+#: src/banks.py:36
+msgid "Withdrawals"
+msgstr ""
+
+#: src/banks.py:37 src/main.py:88 src/main.py:101 src/tipsters.py:21
+msgid "Tipsters"
+msgstr ""
+
+#: src/banks.py:38
+msgid "Profits"
+msgstr ""
+
+#: src/banks.py:39
+msgid "Yield"
+msgstr ""
+
+#: src/banks.py:40 src/bookies.py:19 src/main.py:84 src/main.py:103
+msgid "Bookies"
+msgstr ""
+
+#: src/banks.py:42
+msgid "Total"
+msgstr ""
+
+#: src/banks.py:44
+msgid "In bookies"
+msgstr ""
+
+#: src/banks.py:45
+msgid "Movements"
+msgstr ""
+
+#: src/banks.py:47 src/banks.py:51 src/bets.py:34 src/bonus.py:33
+#: src/new_bet.py:69
+msgid "Bookie"
+msgstr ""
+
+#: src/banks.py:51 src/bets.py:33 src/bonus.py:33 src/new_bet.py:51
+#: src/new_bet.py:52
+msgid "Date"
+msgstr ""
+
+#: src/banks.py:138
 msgid "Withdrawal to the bank."
 msgstr ""
 
-#: src/banks.py:116
+#: src/banks.py:140
 msgid "Deposit at bookie"
 msgstr ""
 
-#: src/banks.py:131 src/bets.py:126 src/bonus.py:56 src/bookies.py:48
+#: src/banks.py:155 src/bets.py:126 src/bonus.py:64 src/bookies.py:56
 #: src/competitions.py:56 src/markets.py:54 src/regions.py:56 src/sports.py:55
 #: src/tipsters_month.py:88 src/tipsters_month.py:99 src/tipsters.py:77
 msgid "Remove"
 msgstr ""
 
-#: src/banks.py:131 src/bets.py:126 src/bonus.py:56
+#: src/banks.py:155 src/bets.py:126 src/bonus.py:64
 msgid "Are you sure you want to eliminate it?"
 msgstr ""
 
 #: src/bets.py:23 src/main.py:68 src/main.py:76
 msgid "Home"
-msgstr ""
-
-#: src/bets.py:33 src/new_bet.py:51 src/new_bet.py:52
-msgid "Date"
 msgstr ""
 
 #: src/bets.py:33 src/new_bet.py:53 src/new_bet.py:54
@@ -78,10 +155,6 @@ msgstr ""
 
 #: src/bets.py:34 src/new_bet.py:63 src/new_bet.py:64
 msgid "Pick"
-msgstr ""
-
-#: src/bets.py:34 src/new_bet.py:69
-msgid "Bookie"
 msgstr ""
 
 #: src/bets.py:34 src/new_bet.py:70
@@ -120,28 +193,31 @@ msgstr ""
 msgid "Bonus"
 msgstr ""
 
-#: src/bonus.py:40
+#: src/bonus.py:33
+msgid "Freed"
+msgstr ""
+
+#: src/bonus.py:48
 msgid "Yes"
 msgstr ""
 
-#: src/bonus.py:40
+#: src/bonus.py:48
 msgid "No"
 msgstr ""
 
-#: src/bookies.py:18 src/main.py:84 src/main.py:103
-msgid "Bookies"
+#: src/bookies.py:32
+msgid "Name"
 msgstr ""
 
-#: src/bookies.py:48
-msgid ""
-"Are you sure you want to eliminate the bookie and the associated bets?"
+#: src/bookies.py:56
+msgid "Are you sure you want to eliminate the bookie and the associated bets?"
 msgstr ""
 
-#: src/bookies.py:55 src/edit_bookie.py:44 src/new_bookie.py:39
+#: src/bookies.py:63 src/edit_bookie.py:44 src/new_bookie.py:39
 msgid "Error"
 msgstr ""
 
-#: src/bookies.py:55
+#: src/bookies.py:63
 msgid "There was an error deleting the house"
 msgstr ""
 
@@ -259,16 +335,8 @@ msgstr ""
 msgid "Markets"
 msgstr ""
 
-#: src/main.py:88 src/main.py:101 src/tipsters.py:21
-msgid "Tipsters"
-msgstr ""
-
 #: src/main.py:90 src/stats.py:20
 msgid "Stats"
-msgstr ""
-
-#: src/main.py:92
-msgid "Bank"
 msgstr ""
 
 #: src/main.py:96
@@ -383,9 +451,12 @@ msgstr ""
 msgid "License"
 msgstr ""
 
+#: src/main.py:402
+msgid "Translated by:"
+msgstr ""
+
 #: src/markets.py:55
-msgid ""
-"Are you sure you want to eliminate the market and the associated bets?"
+msgid "Are you sure you want to eliminate the market and the associated bets?"
 msgstr ""
 
 #: src/new_bank.py:23
@@ -416,19 +487,11 @@ msgstr ""
 msgid "One"
 msgstr ""
 
-#: src/new_bet.py:78
-msgid "Cancel"
-msgstr ""
-
-#: src/new_bet.py:79
-msgid "Accept"
-msgstr ""
-
 #: src/new_bet.py:80
 msgid "Add bet"
 msgstr ""
 
-#: src/new_bet.py:330
+#: src/new_bet.py:325
 msgid "New bet added."
 msgstr ""
 

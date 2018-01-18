@@ -26,6 +26,14 @@ class Bonus(QWidget):
 		self.mainWindows.aEdit.triggered.connect(self.editItem)
 		self.mainWindows.aRemove.triggered.connect(self.deleteItem)
 		self.itemSelected = -1
+		self.translate()
+
+	def translate(self):
+
+		header = [_("Date"), "index", _("Bookie"), _("Amount"), _("Freed")]
+
+		self.treeMain.setHeaderLabels(header)
+
 
 	def initTree(self):
 		bd = Bbdd()
