@@ -22,6 +22,21 @@ class NewBank(QWidget):
 		self.btnCancel.clicked.connect(self.cancel)
 		self.mainWindows.setWindowTitle(_("New Movement") + " | Betcon v" + mainWindows.version)
 		self.initData()
+		self.translate()
+
+	def translate(self):
+
+		self.lblDate.setText(_("Date"))
+		self.lblBookie.setText(_("Bookie"))
+		self.lblType.setText(_("Type"))
+		self.lblAccount.setText(_("Account"))
+		self.lblAmount.setText(_("Amount"))
+
+		self.cmbAccount.addItems([_("Bank"), "Paypal", "Skrill"])
+		self.cmbType.addItems([_("Deposit"), _("Withdraw")])
+
+		self.btnCancel.setText(_("Cancel"))
+		self.btnAccept.setText(_("Accept"))
 
 	def initData(self):
 		sDate = datetime.now().strftime('%Y-%m-%d')
