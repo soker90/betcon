@@ -285,7 +285,7 @@ class NewBet(QWidget):
 		data.append(str(str_to_float(self.txtOne.text())))
 
 		# cmbResult
-		data.append(self.cmbResult.currentText())
+		data.append(self.cmbResult.currentIndex())
 
 		data.append(str(str_to_float(self.txtProfit.text())))
 		data.append(str(str_to_float(self.txtBet.text())))
@@ -315,7 +315,7 @@ class NewBet(QWidget):
 				data.append(self.players1[i].currentText())
 				data.append(self.players2[i].currentText())
 				data.append(self.picks[i].text())
-				data.append(self.results[i].currentText())
+				data.append(self.results[i].currentIndex())
 				bbdd.insert(columns, data, "combined")
 
 

@@ -5,7 +5,7 @@ from gettext import gettext as _
 import gettext
 
 def str_to_float(sValue):
-	#setlocale(LC_NUMERIC, '')
+	setlocale(LC_NUMERIC, '')
 	value = atof(sValue.replace(',', '.'))
 	return value
 
@@ -58,8 +58,24 @@ def numberToMonth(index):
 		12: _("December")
 	}[index]
 
-
 	return month
 
+def numberToResult(index):
+	gettext.textdomain("betcon")
+	gettext.bindtextdomain("betcon", "../../lang/mo")
+
+	index = int(index)
+
+	result = {
+		0: _("Pending"),
+		1: _("Successful"),
+		2: _("Failed"),
+		3: _("Null"),
+		4: _("Half Successful"),
+		5: _("Half Failed"),
+		6: _("Cash out")
+	}[index]
+
+	return result
 
 

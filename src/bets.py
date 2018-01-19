@@ -6,7 +6,7 @@ from PyQt5 import uic
 directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
 sys.path.append(directory + "/lib")
 from bbdd import Bbdd
-from func_aux import str_to_float
+from func_aux import str_to_float, numberToResult
 from gettext import gettext as _
 import gettext
 
@@ -56,7 +56,7 @@ class Bets(QWidget):
 			tipster = bd.getValue(i[10], "tipster")
 			stake = i[11]
 			one = i[12]
-			result = i[13]
+			result = numberToResult(i[13])
 			profit = str(i[14])
 			bet = str(i[15])
 			quota = i[16]
@@ -66,8 +66,7 @@ class Bets(QWidget):
 									str(result), str(profit)])
 
 			profit = str_to_float(profit)
-
-			if result == "Pendiente":
+			if result == str(0):
 				for j in range(18):
 					item.setBackground(j, QBrush(Qt.yellow))
 			else:

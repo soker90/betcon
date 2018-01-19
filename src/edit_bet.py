@@ -165,20 +165,10 @@ class EditBet(QWidget):
 
 		result = bd.getValue(self.id, "bet", "result")
 
-		idResutl = {
-			"Pendiente": 0,
-			"Acertada": 1,
-			"Fallada": 2,
-			"Nula": 3,
-			"Medio Acertada": 4,
-			"Medio Fallada": 5,
-			"Retirada": 6
-		}[result]
-
-		self.cmbResult.setCurrentIndex(idResutl)
+		self.cmbResult.setCurrentIndex(int(result))
 
 		freeBet = bd.getValue(self.id, "bet", "free")
-		print(freeBet)
+
 		self.chkFree.setChecked(freeBet)
 
 
@@ -330,7 +320,7 @@ class EditBet(QWidget):
 		data.append(str(str_to_float(self.txtOne.text())))
 
 		# cmbResult
-		data.append(self.cmbResult.currentText())
+		data.append(self.cmbResult.currentIndex())
 
 		print(self.txtBet.text())
 		data.append(str(str_to_float(self.txtProfit.text())))

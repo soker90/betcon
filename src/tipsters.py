@@ -29,7 +29,7 @@ class Tipsters(QWidget):
         self.itemSelected = -1
 
     def translate(self):
-        header = [_("Name"), "index", _("Cost"), _("Profit of bets"), _("Balance")]
+        header = [_("Name"), "index", _("Cost"), _("Profit of the bets"), _("Balance")]
 
         self.treeMain.setHeaderLabels(header)
 

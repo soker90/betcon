@@ -212,18 +212,38 @@ class Bbdd:
 				print("Error en BBDD: {0}".format(e))
 
 			try:
-				version = self.select("variable", None, "key='version'", "value")
-				if not version:
+				versionUP = self.select("variable", None, "key='version'", "value")
+				if not versionUP:
 					query = " INSERT INTO variable VALUES ('version', 1.6);"
-				elif float(version[0][0]) < 1.6:
-					pass  # For the future
+					self.cursor.execute(query)
+					self.bd.commit()
+			except Exception as e:
+				print("Error en BBDD: {0}".format(e))
+
+		if version < 1.7:
+			try:
+				query = "UPDATE variable SET value=1.7 WHERE key='version';"
 				self.cursor.execute(query)
+				self.bd.commit()
+			except Exception as e:
+				print("Error en BBDD: {0}-".format(e))
+
+			try:
+				query = "UPDATE bet SET result=1 WHERE result='Acertada'; "
+				query += "UPDATE bet SET result=0 WHERE result='Pendiente'; "
+				query += "UPDATE bet SET result=2 WHERE result='Fallada'; "
+				query += "UPDATE bet SET result=3 WHERE result='Nula'; "
+				query += "UPDATE bet SET result=4 WHERE result='Medio Acertada'; "
+				query += "UPDATE bet SET result=5 WHERE result='Medio Fallada'; "
+				query += "UPDATE bet SET result=6 WHERE result='Retirada'; "
+				self.cursor.executescript(query)
 				self.bd.commit()
 			except Exception as e:
 				print("Error en BBDD: {0}".format(e))
 
-		if version == 1.6:
-			print("hi")
+
+
+
 
 
 	def close(self):
