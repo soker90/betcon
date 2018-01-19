@@ -22,6 +22,18 @@ class NewBonus(QWidget):
 		self.btnCancel.clicked.connect(self.cancel)
 		self.mainWindows.setWindowTitle(_("New Bonus") + " | Betcon v" + mainWindows.version)
 		self.initData()
+		self.translate()
+
+	def translate(self):
+
+		self.lblDate.setText(_("Date"))
+		self.lblBookie.setText(_("Bookie"))
+		self.lblAmount.setText(_("Amount"))
+
+		self.chkFree.setText(_("Freed"))
+
+		self.btnCancel.setText(_("Cancel"))
+		self.btnAccept.setText(_("Accept"))
 
 	def initData(self):
 		# date

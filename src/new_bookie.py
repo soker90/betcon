@@ -20,6 +20,15 @@ class NewBookie(QWidget):
         self.btnCancel.clicked.connect(self.cancel)
         self.mainWindows.setWindowTitle(_("New Bookie") + " | Betcon v" + mainWindows.version)
         self.txtName.returnPressed.connect(self.btnAccept.click)
+        self.translate()
+
+    def translate(self):
+
+        self.lblName.setText(_("Name"))
+        self.lblCountry.setText(_("Country"))
+
+        self.btnCancel.setText(_("Cancel"))
+        self.btnAccept.setText(_("Accept"))
 
     def close(self):
             self.mainWindows.setCentralWidget(Bookies(self.mainWindows))

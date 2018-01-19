@@ -1,6 +1,9 @@
 import sys, os, inspect
 from PyQt5.QtWidgets import QMessageBox, QWidget
 from PyQt5 import uic
+
+from new_tipster_month import NewTipsterMonth
+
 directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
 sys.path.append(directory + "/lib")
 from bbdd import Bbdd
@@ -21,7 +24,9 @@ class EditTipsterMonth(QWidget):
 		self.mainWindows.setWindowTitle(_("New Payment Tipster") + " | Betcon v" + mainWindows.version)
 
 		self.id = id
+		NewTipsterMonth.translate(self)
 		self.initData()
+
 
 
 	def initData(self):

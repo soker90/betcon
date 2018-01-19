@@ -26,6 +26,22 @@ class NewConjunta(QWidget):
 
 		self.selected = [0, 1]
 		self.initData()
+		self.translate()
+
+	def translate(self):
+
+		self.lblMonth.setText(_("Month"))
+		self.lblYear.setText(_("Year"))
+		self.lblName.setText(_("Name"))
+		self.lblAmount.setText(_("Amount"))
+		self.lblAvailable.setText(_("Available"))
+		self.lblSelected.setText(_("Selected"))
+
+		self.cmbMonth.addItems([_("January"), _("February"), _("March"), _("April"), _("May"), _("June"), _("July"),
+		                        _("August"), _("September"), _("October"), _("November"), _("December")])
+
+		self.btnCancel.setText(_("Cancel"))
+		self.btnAccept.setText(_("Accept"))
 
 	def initData(self):
 

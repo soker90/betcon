@@ -1,6 +1,9 @@
 import sys, os, inspect
 from PyQt5.QtWidgets import QMessageBox, QWidget
 from PyQt5 import uic
+
+from new_sport import NewSport
+
 directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
 sys.path.append(directory + "/lib")
 from bbdd import Bbdd
@@ -22,6 +25,7 @@ class EditSport(QWidget):
 
 		self.id = id
 		self.initData()
+		NewSport.translate(self)
 
 	def initData(self):
 		bd = Bbdd()

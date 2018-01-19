@@ -11,7 +11,7 @@ import gettext
 class NewMarket(QWidget):
     def __init__(self, mainWindows):
         QWidget.__init__(self)
-        uic.loadUi(directory + "/../ui/new_bookie.ui", self)
+        uic.loadUi(directory + "/../ui/new_market.ui", self)
         gettext.textdomain("betcon")
         gettext.bindtextdomain("betcon", "../lang/mo")
         self.mainWindows = mainWindows
@@ -19,6 +19,15 @@ class NewMarket(QWidget):
         self.btnCancel.clicked.connect(self.cancel)
         self.mainWindows.setWindowTitle(_("New Market") + " | Betcon v" + mainWindows.version)
         self.txtName.returnPressed.connect(self.btnAccept.click)
+        self.translate()
+
+    def translate(self):
+
+        self.lblName.setText(_("Name"))
+
+        self.btnCancel.setText(_("Cancel"))
+        self.btnAccept.setText(_("Accept"))
+
 
     def close(self):
             self.mainWindows.setCentralWidget(Markets(self.mainWindows))

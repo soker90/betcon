@@ -21,6 +21,19 @@ class NewTipsterMonth(QWidget):
 		self.mainWindows.setWindowTitle(_("New Tipster Payment") + " | Betcon v" + mainWindows.version)
 
 		self.initData()
+		self.translate()
+
+	def translate(self):
+		self.lblMonth.setText(_("Month"))
+		self.lblYear.setText(_("Year"))
+		self.lblTipster.setText(_("Tipster"))
+		self.lblAmount.setText(_("Amount"))
+
+		self.cmbMonth.addItems([_("January"), _("February"), _("March"), _("April"), _("May"), _("June"), _("July"),
+		                        _("August"), _("September"), _("October"), _("November"), _("December")])
+
+		self.btnCancel.setText(_("Cancel"))
+		self.btnAccept.setText(_("Accept"))
 
 	def initData(self):
 		bd = Bbdd()

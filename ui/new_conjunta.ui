@@ -17,7 +17,7 @@
    <item>
     <layout class="QFormLayout" name="formLayout_2">
      <item row="0" column="0">
-      <widget class="QLabel" name="label">
+      <widget class="QLabel" name="lblMonth">
        <property name="text">
         <string>Mes</string>
        </property>
@@ -28,84 +28,24 @@
        <property name="editable">
         <bool>false</bool>
        </property>
-       <item>
-        <property name="text">
-         <string>Enero</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Febrero</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Marzo</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Abril</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Mayo</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Junio</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Julio</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Agosto</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Septiembre</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Octubre</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Noviembre</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Diciembre</string>
-        </property>
-       </item>
       </widget>
      </item>
      <item row="1" column="0">
-      <widget class="QLabel" name="label_2">
+      <widget class="QLabel" name="lblYear">
        <property name="text">
         <string>Año</string>
        </property>
       </widget>
      </item>
      <item row="2" column="0">
-      <widget class="QLabel" name="label_3">
+      <widget class="QLabel" name="lblName">
        <property name="text">
         <string>Nombre</string>
        </property>
       </widget>
      </item>
      <item row="3" column="0">
-      <widget class="QLabel" name="label_4">
+      <widget class="QLabel" name="lblAmount">
        <property name="text">
         <string>Importe</string>
        </property>
@@ -214,7 +154,7 @@
        <item>
         <layout class="QVBoxLayout" name="verticalLayout_2">
          <item>
-          <widget class="QLabel" name="label_5">
+          <widget class="QLabel" name="lblAvailable">
            <property name="text">
             <string>Disponibles</string>
            </property>
@@ -258,7 +198,7 @@
        <item>
         <layout class="QVBoxLayout" name="verticalLayout_3">
          <item>
-          <widget class="QLabel" name="label_6">
+          <widget class="QLabel" name="lblSelected">
            <property name="text">
             <string>Seleccionados</string>
            </property>

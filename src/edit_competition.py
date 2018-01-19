@@ -1,6 +1,9 @@
 import sys, os, inspect
 from PyQt5.QtWidgets import QMessageBox, QWidget, QComboBox
 from PyQt5 import uic
+
+from new_competition import NewCompetition
+
 directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
 sys.path.append(directory + "/lib")
 from bbdd import Bbdd
@@ -22,6 +25,7 @@ class EditCompetition(QWidget):
 
 		self.id = id
 		self.initData()
+		NewCompetition.translate(self)
 
 	def initData(self):
 		bd = Bbdd()
