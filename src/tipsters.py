@@ -20,12 +20,18 @@ class Tipsters(QWidget):
         mainWindows.aNew.triggered.connect(mainWindows.newTipster)
         self.mainWindows.setWindowTitle(_("Tipsters") + " | Betcon v" + mainWindows.version)
         self.treeMain.header().hideSection(1)
+        self.translate()
         self.initTree()
 
         self.treeMain.itemSelectionChanged.connect(self.changeItem)
         self.mainWindows.aEdit.triggered.connect(self.editItem)
         self.mainWindows.aRemove.triggered.connect(self.deleteItem)
         self.itemSelected = -1
+
+    def translate(self):
+        header = [_("Name"), "index", _("Cost"), _("Profit of bets"), _("Balance")]
+
+        self.treeMain.setHeaderLabels(header)
 
     def initTree(self):
         bd = Bbdd()
@@ -46,19 +52,21 @@ class Tipsters(QWidget):
 
         data = bd.select("tipster", "name")
 
-        index = 0
         items = []
         for i in data:
-            index += 1
             id = i[0]
             name = i[1]
             cost = bd.sum("tipster_month", "money", "tipster=" + str(id))
             if id in money.keys():
                 cost += money[id]
-            cost = "{0:.2f}".format(cost)
+
             profit = bd.sum("bet", "profit", "tipster=" + str(id))
+            balance = profit - cost
+
+            cost = "{0:.2f}".format(cost)
             profit = "{0:.2f}".format(profit)
-            item = QTreeWidgetItem([str(index), str(id), name, cost, profit])
+            balance = "{0:.2f}".format(balance)
+            item = QTreeWidgetItem([name, str(id), cost, profit, balance])
             items.append(item)
 
 

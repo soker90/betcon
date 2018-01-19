@@ -1,7 +1,8 @@
 from locale import *
 from PyQt5.QtGui import QBrush
 from PyQt5.QtCore import Qt
-
+from gettext import gettext as _
+import gettext
 
 def str_to_float(sValue):
 	#setlocale(LC_NUMERIC, '')
@@ -39,20 +40,24 @@ def str_to_bool(s):
 		return False
 
 def numberToMonth(index):
+	gettext.textdomain("betcon")
+	gettext.bindtextdomain("betcon", "../../lang/mo")
+
 	month = {
-		1: "Enero",
-		2: "Febrero",
-		3: "Marzo",
-		4: "Abril",
-		5: "Mayo",
-		6: "Junio",
-		7: "Julio",
-		8: "Agosto",
-		9: "Septiembre",
-		10: "Octubre",
-		11: "Noviembre",
-		12: "Diciembre"
+		1: _("January"),
+		2: _("February"),
+		3: _("March"),
+		4: _("April"),
+		5: _("May"),
+		6: _("June"),
+		7: _("July"),
+		8: _("August"),
+		9: _("September"),
+		10: _("October"),
+		11: _("November"),
+		12: _("December")
 	}[index]
+
 
 	return month
 
