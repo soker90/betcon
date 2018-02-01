@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-01 20:14+0100\n"
+"POT-Creation-Date: 2018-02-01 21:00+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -567,51 +567,63 @@ msgstr ""
 msgid "Selected"
 msgstr ""
 
-#: src/new_conjunta.py:40 src/new_tipster_month.py:32
+#: src/new_conjunta.py:40 src/new_tipster_month.py:32 src/lib/func_aux.py:48
+#: src/lib/libstats.py:12
 msgid "January"
 msgstr ""
 
-#: src/new_conjunta.py:40 src/new_tipster_month.py:32
+#: src/new_conjunta.py:40 src/new_tipster_month.py:32 src/lib/func_aux.py:49
+#: src/lib/libstats.py:12
 msgid "February"
 msgstr ""
 
-#: src/new_conjunta.py:40 src/new_tipster_month.py:32
+#: src/new_conjunta.py:40 src/new_tipster_month.py:32 src/lib/func_aux.py:50
+#: src/lib/libstats.py:12
 msgid "March"
 msgstr ""
 
-#: src/new_conjunta.py:40 src/new_tipster_month.py:32
+#: src/new_conjunta.py:40 src/new_tipster_month.py:32 src/lib/func_aux.py:51
+#: src/lib/libstats.py:12
 msgid "April"
 msgstr ""
 
-#: src/new_conjunta.py:40 src/new_tipster_month.py:32
+#: src/new_conjunta.py:40 src/new_tipster_month.py:32 src/lib/func_aux.py:52
+#: src/lib/libstats.py:12
 msgid "May"
 msgstr ""
 
-#: src/new_conjunta.py:40 src/new_tipster_month.py:32
+#: src/new_conjunta.py:40 src/new_tipster_month.py:32 src/lib/func_aux.py:53
+#: src/lib/libstats.py:12
 msgid "June"
 msgstr ""
 
-#: src/new_conjunta.py:40 src/new_tipster_month.py:32
+#: src/new_conjunta.py:40 src/new_tipster_month.py:32 src/lib/func_aux.py:54
+#: src/lib/libstats.py:12
 msgid "July"
 msgstr ""
 
-#: src/new_conjunta.py:41 src/new_tipster_month.py:33
+#: src/new_conjunta.py:41 src/new_tipster_month.py:33 src/lib/func_aux.py:55
+#: src/lib/libstats.py:12
 msgid "August"
 msgstr ""
 
-#: src/new_conjunta.py:41 src/new_tipster_month.py:33
+#: src/new_conjunta.py:41 src/new_tipster_month.py:33 src/lib/func_aux.py:56
+#: src/lib/libstats.py:13
 msgid "September"
 msgstr ""
 
-#: src/new_conjunta.py:41 src/new_tipster_month.py:33
+#: src/new_conjunta.py:41 src/new_tipster_month.py:33 src/lib/func_aux.py:57
+#: src/lib/libstats.py:13
 msgid "October"
 msgstr ""
 
-#: src/new_conjunta.py:41 src/new_tipster_month.py:33
+#: src/new_conjunta.py:41 src/new_tipster_month.py:33 src/lib/func_aux.py:58
+#: src/lib/libstats.py:13
 msgid "November"
 msgstr ""
 
-#: src/new_conjunta.py:41 src/new_tipster_month.py:33
+#: src/new_conjunta.py:41 src/new_tipster_month.py:33 src/lib/func_aux.py:59
+#: src/lib/libstats.py:13
 msgid "December"
 msgstr ""
 
@@ -736,7 +748,7 @@ msgstr ""
 msgid "Losses"
 msgstr ""
 
-#: src/stats.py:36
+#: src/stats.py:36 src/lib/func_aux.py:18 src/lib/func_aux.py:69
 msgid "Pending"
 msgstr ""
 
@@ -752,7 +764,7 @@ msgstr ""
 msgid "Lost"
 msgstr ""
 
-#: src/stats.py:42
+#: src/stats.py:42 src/lib/func_aux.py:72
 msgid "Null"
 msgstr ""
 
@@ -807,4 +819,24 @@ msgstr ""
 #: src/tipsters.py:86
 msgid ""
 "Are you sure you want to eliminate this tipster and all associated bets?"
+msgstr ""
+
+#: src/lib/func_aux.py:70
+msgid "Successful"
+msgstr ""
+
+#: src/lib/func_aux.py:71
+msgid "Failed"
+msgstr ""
+
+#: src/lib/func_aux.py:73
+msgid "Half Successful"
+msgstr ""
+
+#: src/lib/func_aux.py:74
+msgid "Half Failed"
+msgstr ""
+
+#: src/lib/func_aux.py:75
+msgid "Cash out"
 msgstr ""

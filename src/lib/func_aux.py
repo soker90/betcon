@@ -4,6 +4,9 @@ from PyQt5.QtCore import Qt
 from gettext import gettext as _
 import gettext
 
+gettext.textdomain("betcon")
+gettext.bindtextdomain("betcon", "../../lang/mo")
+
 def str_to_float(sValue):
 	setlocale(LC_NUMERIC, '')
 	value = atof(sValue.replace(',', '.'))
@@ -12,7 +15,7 @@ def str_to_float(sValue):
 
 def paint_row(item, profit, result=None):
 	profit = str_to_float(profit)
-	if result == "Pendiente":
+	if result == _("Pending"):
 		for j in range(18):
 			item.setBackground(j, QBrush(Qt.yellow))
 	else:
@@ -40,8 +43,6 @@ def str_to_bool(s):
 		return False
 
 def numberToMonth(index):
-	gettext.textdomain("betcon")
-	gettext.bindtextdomain("betcon", "../../lang/mo")
 
 	month = {
 		1: _("January"),
@@ -61,8 +62,6 @@ def numberToMonth(index):
 	return month
 
 def numberToResult(index):
-	gettext.textdomain("betcon")
-	gettext.bindtextdomain("betcon", "../../lang/mo")
 
 	index = int(index)
 
