@@ -71,6 +71,9 @@
        </item>
        <item row="4" column="1">
         <widget class="QDoubleSpinBox" name="txtMoney">
+         <property name="locale">
+          <locale language="English" country="UnitedStates"/>
+         </property>
          <property name="decimals">
           <number>3</number>
          </property>

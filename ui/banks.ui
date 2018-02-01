@@ -27,6 +27,9 @@
        </item>
        <item row="0" column="1">
         <widget class="QLineEdit" name="txtDeposit">
+         <property name="locale">
+          <locale language="English" country="UnitedStates"/>
+         </property>
          <property name="readOnly">
           <bool>true</bool>
          </property>
@@ -41,6 +44,9 @@
        </item>
        <item row="2" column="1">
         <widget class="QLineEdit" name="txtBonus">
+         <property name="locale">
+          <locale language="English" country="UnitedStates"/>
+         </property>
          <property name="readOnly">
           <bool>true</bool>
          </property>
@@ -55,6 +61,9 @@
        </item>
        <item row="4" column="1">
         <widget class="QLineEdit" name="txtProfit">
+         <property name="locale">
+          <locale language="English" country="UnitedStates"/>
+         </property>
          <property name="readOnly">
           <bool>true</bool>
          </property>
@@ -69,6 +78,9 @@
        </item>
        <item row="5" column="1">
         <widget class="QLineEdit" name="txtYield">
+         <property name="locale">
+          <locale language="English" country="UnitedStates"/>
+         </property>
          <property name="readOnly">
           <bool>true</bool>
          </property>
@@ -83,6 +95,9 @@
        </item>
        <item row="1" column="1">
         <widget class="QLineEdit" name="txtTakeOut">
+         <property name="locale">
+          <locale language="English" country="UnitedStates"/>
+         </property>
          <property name="readOnly">
           <bool>true</bool>
          </property>
@@ -97,6 +112,9 @@
        </item>
        <item row="3" column="1">
         <widget class="QLineEdit" name="txtTipster">
+         <property name="locale">
+          <locale language="English" country="UnitedStates"/>
+         </property>
          <property name="readOnly">
           <bool>true</bool>
          </property>
@@ -143,6 +161,9 @@
        </item>
        <item row="0" column="1">
         <widget class="QLineEdit" name="txtBookie">
+         <property name="locale">
+          <locale language="English" country="UnitedStates"/>
+         </property>
          <property name="readOnly">
           <bool>true</bool>
          </property>
@@ -150,6 +171,9 @@
        </item>
        <item row="1" column="1">
         <widget class="QLineEdit" name="txtCc">
+         <property name="locale">
+          <locale language="English" country="UnitedStates"/>
+         </property>
          <property name="readOnly">
           <bool>true</bool>
          </property>
@@ -157,6 +181,9 @@
        </item>
        <item row="2" column="1">
         <widget class="QLineEdit" name="txtPaypal">
+         <property name="locale">
+          <locale language="English" country="UnitedStates"/>
+         </property>
          <property name="readOnly">
           <bool>true</bool>
          </property>
@@ -164,6 +191,9 @@
        </item>
        <item row="3" column="1">
         <widget class="QLineEdit" name="txtSkrill">
+         <property name="locale">
+          <locale language="English" country="UnitedStates"/>
+         </property>
          <property name="readOnly">
           <bool>true</bool>
          </property>
@@ -171,6 +201,9 @@
        </item>
        <item row="4" column="1">
         <widget class="QLineEdit" name="txtTotal">
+         <property name="locale">
+          <locale language="English" country="UnitedStates"/>
+         </property>
          <property name="readOnly">
           <bool>true</bool>
          </property>
@@ -191,6 +224,9 @@
     <widget class="QTreeWidget" name="treeBookie">
      <property name="enabled">
       <bool>true</bool>
+     </property>
+     <property name="locale">
+      <locale language="English" country="UnitedStates"/>
      </property>
      <property name="selectionMode">
       <enum>QAbstractItemView::NoSelection</enum>
@@ -237,6 +273,9 @@
    </item>
    <item>
     <widget class="QTreeWidget" name="treeMovement">
+     <property name="locale">
+      <locale language="English" country="UnitedStates"/>
+     </property>
      <property name="sortingEnabled">
       <bool>true</bool>
      </property>
