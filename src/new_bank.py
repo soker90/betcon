@@ -5,7 +5,6 @@ directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspe
 sys.path.append(directory + "/lib")
 from bbdd import Bbdd
 from banks import Banks
-from func_aux import str_to_float
 from datetime import datetime
 from PyQt5.QtCore import QDate
 from gettext import gettext as _
@@ -77,7 +76,6 @@ class NewBank(QWidget):
 			type = ""
 
 		money = type+str(self.txtMoney.text())
-		money = str_to_float(money)
 		data.append(money)
 
 		columns = ["date", "account", "bookie", "money"]

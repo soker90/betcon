@@ -8,7 +8,6 @@ directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspe
 sys.path.append(directory + "/lib")
 from bbdd import Bbdd
 from tipsters_month import TipstersMonth
-from func_aux import str_to_float
 from gettext import gettext as _
 import gettext
 
@@ -84,7 +83,7 @@ class EditConjunta(QWidget):
 		self.close()
 
 	def accept(self):
-		money = str(str_to_float(self.txtMoney.text()))
+		money = str(self.txtMoney.text())
 		data = [self.cmbMonth.currentIndex(), self.txtYear.text(), self.txtName.text(), money]
 		columns = ["month", "year", "name", "money"]
 

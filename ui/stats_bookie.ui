@@ -55,6 +55,9 @@
    </item>
    <item>
     <widget class="QTreeWidget" name="treeMonth">
+     <property name="locale">
+      <locale language="English" country="UnitedStates"/>
+     </property>
      <column>
       <property name="text">
        <string>Casa</string>
@@ -101,6 +104,9 @@
    </item>
    <item>
     <widget class="QTreeWidget" name="treeTotal">
+     <property name="locale">
+      <locale language="English" country="UnitedStates"/>
+     </property>
      <column>
       <property name="text">
        <string>Casa</string>

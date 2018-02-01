@@ -7,7 +7,6 @@ from bbdd import Bbdd
 from bonus import Bonus
 from datetime import datetime
 from PyQt5.QtCore import QDate
-from func_aux import str_to_float
 from gettext import gettext as _
 import gettext
 
@@ -75,7 +74,7 @@ class NewBonus(QWidget):
 		idBookie = self.bookieIndexToId.get(self.cmbBookie.currentIndex())
 		data.append(idBookie)
 
-		data.append(str(str_to_float(self.txtMoney.text())))
+		data.append(str(self.txtMoney.text()))
 
 		free = self.chkFree.isChecked()
 		data.append(str(bool(free)))

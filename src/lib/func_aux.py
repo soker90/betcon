@@ -1,4 +1,6 @@
 from locale import *
+from sre_compile import isstring
+
 from PyQt5.QtGui import QBrush
 from PyQt5.QtCore import Qt
 from gettext import gettext as _
@@ -14,8 +16,11 @@ def str_to_float(sValue):
 
 
 def paint_row(item, profit, result=None):
-	profit = str_to_float(profit)
-	if result == _("Pending"):
+	if isstring(profit):
+		profit = float(profit)
+
+	profit = float(profit)
+	if result == str(0):
 		for j in range(18):
 			item.setBackground(j, QBrush(Qt.yellow))
 	else:

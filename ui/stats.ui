@@ -55,6 +55,9 @@
          </item>
          <item row="0" column="1">
           <widget class="QLineEdit" name="txtApostado">
+           <property name="locale">
+            <locale language="English" country="UnitedStates"/>
+           </property>
            <property name="readOnly">
             <bool>true</bool>
            </property>
@@ -69,6 +72,9 @@
          </item>
          <item row="1" column="1">
           <widget class="QLineEdit" name="txtGanancias">
+           <property name="locale">
+            <locale language="English" country="UnitedStates"/>
+           </property>
            <property name="readOnly">
             <bool>true</bool>
            </property>
@@ -83,6 +89,9 @@
          </item>
          <item row="2" column="1">
           <widget class="QLineEdit" name="txtPerdidas">
+           <property name="locale">
+            <locale language="English" country="UnitedStates"/>
+           </property>
            <property name="readOnly">
             <bool>true</bool>
            </property>
@@ -97,6 +106,9 @@
          </item>
          <item row="3" column="1">
           <widget class="QLineEdit" name="txtBeneficio">
+           <property name="locale">
+            <locale language="English" country="UnitedStates"/>
+           </property>
            <property name="readOnly">
             <bool>true</bool>
            </property>
@@ -111,6 +123,9 @@
          </item>
          <item row="4" column="1">
           <widget class="QLineEdit" name="txtPendiente">
+           <property name="locale">
+            <locale language="English" country="UnitedStates"/>
+           </property>
            <property name="readOnly">
             <bool>true</bool>
            </property>
@@ -125,6 +140,9 @@
          </item>
          <item row="5" column="1">
           <widget class="QLineEdit" name="txtYield">
+           <property name="locale">
+            <locale language="English" country="UnitedStates"/>
+           </property>
            <property name="readOnly">
             <bool>true</bool>
            </property>
@@ -138,7 +156,11 @@
           </widget>
          </item>
          <item row="6" column="1">
-          <widget class="QLineEdit" name="txtCuota"/>
+          <widget class="QLineEdit" name="txtCuota">
+           <property name="locale">
+            <locale language="English" country="UnitedStates"/>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>
@@ -170,6 +192,9 @@
          </item>
          <item row="0" column="1">
           <widget class="QLineEdit" name="txtApuestas">
+           <property name="locale">
+            <locale language="English" country="UnitedStates"/>
+           </property>
            <property name="readOnly">
             <bool>true</bool>
            </property>
@@ -184,6 +209,9 @@
          </item>
          <item row="1" column="1">
           <widget class="QLineEdit" name="txtAciertos">
+           <property name="locale">
+            <locale language="English" country="UnitedStates"/>
+           </property>
            <property name="readOnly">
             <bool>true</bool>
            </property>
@@ -198,6 +226,9 @@
          </item>
          <item row="2" column="1">
           <widget class="QLineEdit" name="txtFallos">
+           <property name="locale">
+            <locale language="English" country="UnitedStates"/>
+           </property>
            <property name="readOnly">
             <bool>true</bool>
            </property>
@@ -212,6 +243,9 @@
          </item>
          <item row="3" column="1">
           <widget class="QLineEdit" name="txtNulos">
+           <property name="locale">
+            <locale language="English" country="UnitedStates"/>
+           </property>
            <property name="readOnly">
             <bool>true</bool>
            </property>
@@ -226,6 +260,9 @@
          </item>
          <item row="4" column="1">
           <widget class="QLineEdit" name="txtAcierto">
+           <property name="locale">
+            <locale language="English" country="UnitedStates"/>
+           </property>
            <property name="readOnly">
             <bool>true</bool>
            </property>
@@ -240,6 +277,9 @@
          </item>
          <item row="5" column="1">
           <widget class="QLineEdit" name="txtApuestaMedia">
+           <property name="locale">
+            <locale language="English" country="UnitedStates"/>
+           </property>
            <property name="readOnly">
             <bool>true</bool>
            </property>

@@ -6,8 +6,6 @@ from PyQt5.QtCore import QDateTime, QVariant
 directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
 sys.path.append(directory + "/lib")
 from bets import Bets
-from decimal import Decimal
-from func_aux import str_to_float, str_to_bool
 
 from bbdd import Bbdd
 from bookie import Bookie
@@ -281,15 +279,15 @@ class NewBet(QWidget):
 		idTipster = self.tipsterIndexToId.get(self.cmbTipster.currentIndex())
 		data.append(idTipster)
 
-		data.append(str(str_to_float(self.txtStake.text())))
-		data.append(str(str_to_float(self.txtOne.text())))
+		data.append(str(self.txtStake.text()))
+		data.append(str(self.txtOne.text()))
 
 		# cmbResult
 		data.append(self.cmbResult.currentIndex())
 
-		data.append(str(str_to_float(self.txtProfit.text())))
-		data.append(str(str_to_float(self.txtBet.text())))
-		data.append(str(str_to_float(self.txtQuota.text())))
+		data.append(str(self.txtProfit.text()))
+		data.append(str(self.txtBet.text()))
+		data.append(str(self.txtQuota.text()))
 		data.append(1 if self.chkFree.isChecked() else 0)
 
 		columns = ["date", "sport", "competition", "region", "player1", "player2", "pick", "bookie", "market",
@@ -359,8 +357,8 @@ class NewBet(QWidget):
 		self.updateProfit()
 
 	def updateBet(self):
-		if self.txtStake.text() != "0,00" and self.txtOne.text() != "0,00":
-			bet = str_to_float(self.txtStake.text()) * str_to_float(self.txtOne.text())
+		if self.txtStake.text() != "0.00" and self.txtOne.text() != "0.00":
+			bet = float(self.txtStake.text()) * float(self.txtOne.text())
 			self.txtBet.setValue(bet)
 
 	def addCombined(self):

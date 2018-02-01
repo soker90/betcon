@@ -7,7 +7,6 @@ sys.path.append(directory + "/lib")
 from bbdd import Bbdd
 from libyaml import LibYaml
 from bets import Bets
-from func_aux import str_to_float
 from bookie import Bookie
 from gettext import gettext as _
 import gettext
@@ -79,9 +78,13 @@ class Settings(QWidget):
 		self.close()
 
 	def accept(self):
-		self.config.stake["percentage"] = self.txtPercentage.text()[:-1]
+		percentage = self.txtPercentage.text()[:-1]
+		self.config.stake["percentage"] = float(percentage)
+
 		self.config.stake["type"] = self.cmbOne.currentIndex()
-		self.config.stake["stake"] = self.txtStake.text()[:-1]
+
+		stake = self.txtStake.text()[:-1]
+		self.config.stake["stake"] = float(stake)
 		self.config.save()
 		self.close()
 

@@ -4,7 +4,6 @@ from PyQt5 import uic
 directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
 sys.path.append(directory + "/lib")
 from banks import Banks
-from func_aux import str_to_float
 from bbdd import Bbdd
 from gettext import gettext as _
 import gettext
@@ -49,7 +48,7 @@ class AddMoney(QWidget):
 		else:
 			type="-"
 
-		data = ["'+bank"+type+"'"+str(str_to_float(self.txtMoney.text()))]
+		data = ["'+bank"+type+"'"+str(self.txtMoney.text())]
 		columns = ["bank"]
 
 		account = self.cmbAccount.currentIndex()

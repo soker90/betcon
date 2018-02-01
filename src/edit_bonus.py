@@ -9,7 +9,7 @@ directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspe
 sys.path.append(directory + "/lib")
 from bbdd import Bbdd
 from bonus import Bonus
-from func_aux import str_to_float, str_to_bool
+from func_aux import str_to_bool
 from gettext import gettext as _
 import gettext
 
@@ -77,7 +77,7 @@ class EditBonus(QWidget):
 		idBookie = self.bookieIndexToId.get(self.cmbBookie.currentIndex())
 		data.append(idBookie)
 
-		data.append(str(str_to_float(self.txtMoney.text())))
+		data.append(str(self.txtMoney.text()))
 
 		free = self.chkFree.isChecked()
 		data.append(free)

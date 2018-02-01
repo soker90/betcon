@@ -5,7 +5,7 @@ from src.lib.libyaml import LibYaml
 
 
 class TestLibYaml(TestCase):
-	lib = LibYaml("/tmp/tests.yml")
+	lib = LibYaml("/tmp/test.yml")
 
 	def test_load(self):
 		config = {'stake': {'percentage': 1.0, 'stake': 0, 'type': 1}}
@@ -21,7 +21,7 @@ class TestLibYaml(TestCase):
 
 	def tearDown(self):
 		import os
-		os.remove('/tmp/tests.yml')
+		os.remove('/tmp/test.yml')
 
 
 

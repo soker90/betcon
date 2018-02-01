@@ -6,7 +6,7 @@ from PyQt5 import uic
 directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
 sys.path.append(directory + "/lib")
 from bbdd import Bbdd
-from func_aux import str_to_float, numberToResult
+from func_aux import numberToResult, paint_row
 from gettext import gettext as _
 import gettext
 
@@ -52,33 +52,21 @@ class Bets(QWidget):
 			player2 = i[6]
 			pick = i[7]
 			#bookie = bd.getValue(i[8], "bookie")
-			market = bd.getValue(i[9], "market")
-			tipster = bd.getValue(i[10], "tipster")
+			market = bd.getValue(i[9], "market")  # TODO Preload in dictionary
+			tipster = bd.getValue(i[10], "tipster")  # TODO Preload in dictionary
 			stake = i[11]
 			one = i[12]
 			result = numberToResult(i[13])
-			profit = str(i[14])
-			bet = str(i[15])
+			profit = i[14]
+			bet = i[15]
 			quota = i[16]
 
 			item = QTreeWidgetItem([str(index), str(id), str(date), "", str(competition), str(region), player1,
 									player2, pick, "", market, tipster, str(stake), str(one), str(bet), str(quota),
 									str(result), str(profit)])
 
-			profit = str_to_float(profit)
-			if result == str(0):
-				for j in range(18):
-					item.setBackground(j, QBrush(Qt.yellow))
-			else:
-				if profit < 0:
-					for j in range(18):
-						item.setBackground(j, QBrush(Qt.red))
-				elif profit > 0:
-					for j in range(18):
-						item.setBackground(j, QBrush(Qt.green))
-				else:
-					for j in range(18):
-						item.setBackground(j, QBrush(Qt.cyan))
+			item = paint_row(item, profit, result)
+
 
 			if os.path.isfile(directory + "/../resources/sports/" + str(i[2]) + ".png"):
 				item.setBackground(3, QBrush(QPixmap(directory + "/../resources/sports/" + str(i[2]) + ".png")))

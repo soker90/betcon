@@ -8,7 +8,6 @@ directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspe
 sys.path.append(directory + "/lib")
 from bbdd import Bbdd
 from tipsters_month import TipstersMonth
-from func_aux import str_to_float
 from gettext import gettext as _
 import gettext
 
@@ -65,7 +64,7 @@ class EditTipsterMonth(QWidget):
 	def accept(self):
 		idTipster = self.tipsterIndexToId.get(self.cmbTipster.currentIndex())
 		print(idTipster)
-		money = str(str_to_float(self.txtMoney.text()))
+		money = str(self.txtMoney.text())
 		data = [self.cmbMonth.currentIndex(), self.txtYear.text(), idTipster, money]
 		columns = ["month", "year", "tipster", "money"]
 

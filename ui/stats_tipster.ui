@@ -55,6 +55,9 @@
    </item>
    <item>
     <widget class="QTreeWidget" name="treeMonth">
+     <property name="locale">
+      <locale language="English" country="UnitedStates"/>
+     </property>
      <column>
       <property name="text">
        <string>Tipster</string>
@@ -106,6 +109,9 @@
    </item>
    <item>
     <widget class="QTreeWidget" name="treeTotal">
+     <property name="locale">
+      <locale language="English" country="UnitedStates"/>
+     </property>
      <property name="selectionMode">
       <enum>QAbstractItemView::SingleSelection</enum>
      </property>
