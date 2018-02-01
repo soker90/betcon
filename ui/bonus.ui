@@ -16,6 +16,9 @@
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QTreeWidget" name="treeMain">
+     <attribute name="headerDefaultSectionSize">
+      <number>150</number>
+     </attribute>
      <column>
       <property name="text">
        <string>Fecha</string>

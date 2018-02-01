@@ -7,7 +7,6 @@ from bbdd import Bbdd
 from bonus import Bonus
 from datetime import datetime
 from PyQt5.QtCore import QDate
-from func_aux import str_to_float
 from gettext import gettext as _
 import gettext
 
@@ -22,6 +21,18 @@ class NewBonus(QWidget):
 		self.btnCancel.clicked.connect(self.cancel)
 		self.mainWindows.setWindowTitle(_("New Bonus") + " | Betcon v" + mainWindows.version)
 		self.initData()
+		self.translate()
+
+	def translate(self):
+
+		self.lblDate.setText(_("Date"))
+		self.lblBookie.setText(_("Bookie"))
+		self.lblAmount.setText(_("Amount"))
+
+		self.chkFree.setText(_("Freed"))
+
+		self.btnCancel.setText(_("Cancel"))
+		self.btnAccept.setText(_("Accept"))
 
 	def initData(self):
 		# date
@@ -63,7 +74,7 @@ class NewBonus(QWidget):
 		idBookie = self.bookieIndexToId.get(self.cmbBookie.currentIndex())
 		data.append(idBookie)
 
-		data.append(str(str_to_float(self.txtMoney.text())))
+		data.append(str(self.txtMoney.text()))
 
 		free = self.chkFree.isChecked()
 		data.append(str(bool(free)))

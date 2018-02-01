@@ -17,14 +17,14 @@
    <item>
     <layout class="QFormLayout" name="formLayout_2">
      <item row="0" column="0">
-      <widget class="QLabel" name="label_8">
+      <widget class="QLabel" name="lblAccount">
        <property name="text">
         <string>Cuenta</string>
        </property>
       </widget>
      </item>
      <item row="1" column="0">
-      <widget class="QLabel" name="label">
+      <widget class="QLabel" name="lblType">
        <property name="text">
         <string>Tipo</string>
        </property>
@@ -35,20 +35,10 @@
        <property name="editable">
         <bool>false</bool>
        </property>
-       <item>
-        <property name="text">
-         <string>Ingreso</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Retirada</string>
-        </property>
-       </item>
       </widget>
      </item>
      <item row="2" column="0">
-      <widget class="QLabel" name="label_2">
+      <widget class="QLabel" name="lblAmount">
        <property name="text">
         <string>Cantidad</string>
        </property>
@@ -127,26 +117,13 @@
       </layout>
      </item>
      <item row="0" column="1">
-      <widget class="QComboBox" name="cmbAccount">
-       <item>
-        <property name="text">
-         <string>Banco</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Paypal</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Skrill</string>
-        </property>
-       </item>
-      </widget>
+      <widget class="QComboBox" name="cmbAccount"/>
      </item>
      <item row="2" column="1">
       <widget class="QDoubleSpinBox" name="txtMoney">
+       <property name="locale">
+        <locale language="English" country="UnitedStates"/>
+       </property>
        <property name="maximum">
         <double>999999999.990000009536743</double>
        </property>

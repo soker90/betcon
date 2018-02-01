@@ -22,6 +22,7 @@ class TipstersMonth(QWidget):
 		self.mainWindows.setWindowTitle(_("Tipsters - Payment history") + " | Betcon v" + mainWindows.version)
 		self.treeMain.header().hideSection(0)
 		self.treeConjunta.header().hideSection(0)
+		self.translate()
 		self.initTree()
 
 		self.treeMain.itemSelectionChanged.connect(self.changeItem)
@@ -33,6 +34,14 @@ class TipstersMonth(QWidget):
 		self.mainWindows.aDeleteConjunta.triggered.connect(self.deleteConjunta)
 		self.itemSelected = -1
 		self.itemConjunta = -1
+
+	def translate(self):
+
+		header = ["index", _("Year"), _("Month"), _("Tipster"), _("Cost")]
+
+		self.treeMain.setHeaderLabels(header)
+		self.treeConjunta.setHeaderLabels(header)
+		self.lblConjunta.setText(_("Joint purchase"))
 
 	def initTree(self):
 		bd = Bbdd()

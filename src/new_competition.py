@@ -21,6 +21,16 @@ class NewCompetition(QWidget):
 		self.mainWindows.setWindowTitle(_("New Competition") + " | Betcon v" + mainWindows.version)
 		self.txtName.returnPressed.connect(self.btnAccept.click)
 		self.initData()
+		self.translate()
+
+	def translate(self):
+
+		self.lblName.setText(_("Name"))
+		self.lblRegion.setText(_("Region"))
+		self.lblSport.setText(_("Sport"))
+
+		self.btnCancel.setText(_("Cancel"))
+		self.btnAccept.setText(_("Accept"))
 
 	def initData(self):
 		# cmbRegion

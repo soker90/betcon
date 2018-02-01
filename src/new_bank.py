@@ -5,7 +5,6 @@ directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspe
 sys.path.append(directory + "/lib")
 from bbdd import Bbdd
 from banks import Banks
-from func_aux import str_to_float
 from datetime import datetime
 from PyQt5.QtCore import QDate
 from gettext import gettext as _
@@ -22,6 +21,21 @@ class NewBank(QWidget):
 		self.btnCancel.clicked.connect(self.cancel)
 		self.mainWindows.setWindowTitle(_("New Movement") + " | Betcon v" + mainWindows.version)
 		self.initData()
+		self.translate()
+
+	def translate(self):
+
+		self.lblDate.setText(_("Date"))
+		self.lblBookie.setText(_("Bookie"))
+		self.lblType.setText(_("Type"))
+		self.lblAccount.setText(_("Account"))
+		self.lblAmount.setText(_("Amount"))
+
+		self.cmbAccount.addItems([_("Bank"), "Paypal", "Skrill"])
+		self.cmbType.addItems([_("Deposit"), _("Withdraw")])
+
+		self.btnCancel.setText(_("Cancel"))
+		self.btnAccept.setText(_("Accept"))
 
 	def initData(self):
 		sDate = datetime.now().strftime('%Y-%m-%d')
@@ -62,7 +76,6 @@ class NewBank(QWidget):
 			type = ""
 
 		money = type+str(self.txtMoney.text())
-		money = str_to_float(money)
 		data.append(money)
 
 		columns = ["date", "account", "bookie", "money"]

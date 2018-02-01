@@ -1,6 +1,9 @@
 import sys, os, inspect
 from PyQt5.QtWidgets import QMessageBox, QWidget
 from PyQt5 import uic
+
+from new_region import NewRegion
+
 directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
 sys.path.append(directory + "/lib")
 from bbdd import Bbdd
@@ -22,6 +25,7 @@ class EditRegion(QWidget):
 
 		self.id = id
 		self.initData()
+		NewRegion.translate(self)
 
 	def initData(self):
 		bd = Bbdd()

@@ -16,6 +16,9 @@
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QTreeWidget" name="treeMain">
+     <property name="locale">
+      <locale language="English" country="UnitedStates"/>
+     </property>
      <column>
       <property name="text">
        <string>index</string>
@@ -52,6 +55,9 @@
    </item>
    <item>
     <widget class="QTreeWidget" name="treeConjunta">
+     <property name="locale">
+      <locale language="English" country="UnitedStates"/>
+     </property>
      <column>
       <property name="text">
        <string>index</string>

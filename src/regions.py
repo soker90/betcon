@@ -1,6 +1,6 @@
 import sys, os, inspect
 from PyQt5.QtWidgets import QMessageBox, QWidget, QTreeWidgetItem
-from PyQt5 import uic
+from PyQt5 import uic, QtCore
 
 directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
 sys.path.append(directory + "/lib")
@@ -26,22 +26,27 @@ class Regions(QWidget):
 		self.mainWindows.aEdit.triggered.connect(self.editItem)
 		self.mainWindows.aRemove.triggered.connect(self.deleteItem)
 		self.itemSelected = -1
+		self.translate()
+
+	def translate(self):
+		header = [_("Name"), "index", _("Competitions")]
+
+		self.treeMain.setHeaderLabels(header)
 
 	def initTree(self):
 		bd = Bbdd()
 		data = bd.select("region", "name")
 
-		index = 0
 		items = []
 		for i in data:
-			index += 1
 			id = i[0]
 			name = i[1]
 			competitions = bd.count("competition", "region=" + str(id))
-			item = QTreeWidgetItem([str(index), str(id), name, str(competitions)])
+			item = QTreeWidgetItem([name, str(id), str(competitions)])
 			items.append(item)
 
 		self.treeMain.addTopLevelItems(items)
+		self.treeMain.sortByColumn(0, QtCore.Qt.AscendingOrder)
 
 		bd.close()
 

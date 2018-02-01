@@ -1,12 +1,17 @@
 from bbdd import Bbdd
 from bookie import Bookie
+from gettext import gettext as _
+import gettext
 
 class LibStats:
 	@staticmethod
 	def getYears():
+		gettext.textdomain("betcon")
+		gettext.bindtextdomain("betcon", "../../lang/mo")
 		years = Bbdd.getYearMonth("bet")
-		months = {"01": "Enero", "02": "Febrero", "03": "Marzo", "04": "Abril", "05": "Mayo", "06": "Junio", "07": "Julio", "08": "Agosto",
-				  "09": "Septiembre", "10": "Octubre", "11": "Noviembre", "12": "Diciembre"}
+		months = {"01": _("January"), "02": _("February"), "03": _("March"), "04": _("April"), "05": _("May"), "06": _("June"), "07": _("July"), "08": _("August"),
+				  "09": _("September"), "10": _("October"), "11": _("November"), "12": _("December")}
+
 		return years, months
 
 	@staticmethod

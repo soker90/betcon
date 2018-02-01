@@ -1,6 +1,9 @@
 import sys, os, inspect
 from PyQt5.QtWidgets import QMessageBox, QWidget
 from PyQt5 import uic
+
+from new_bookie import NewBookie
+
 directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
 sys.path.append(directory + "/lib")
 from bookies import Bookies
@@ -24,6 +27,7 @@ class EditBookie(QWidget):
         self.item.setId(id)
 
         self.initData()
+        NewBookie.translate(self)
 
     def initData(self):
         self.txtName.setText(self.item.name)

@@ -17,6 +17,7 @@ class StatsMarket(QWidget):
         gettext.bindtextdomain("betcon", "../lang/mo")
         self.mainWindows = mainWindows
         self.mainWindows.setWindowTitle(_("Stats of markets") + " | Betcon v" + mainWindows.version)
+        self.translate()
         try:
             self.initData()
         except Exception:
@@ -25,6 +26,19 @@ class StatsMarket(QWidget):
 
         self.cmbYear.activated.connect(self.updateMonths)
         self.cmbMonth.activated.connect(self.updateTree)
+
+
+    def translate(self):
+
+        header = [_("Market"), _("Sport"), _("Bets"), _("Success"), _("Money Bet"), _("Profit"), _("Stake"), _("Quota")]
+
+        self.treeMonth.setHeaderLabels(header)
+        self.treeTotal.setHeaderLabels(header)
+
+        self.lblYear.setText(_("Year"))
+        self.lblMonth.setText(_("Month"))
+        self.lblTotalMonth.setText(_("Total of the month"))
+        self.lblTotal.setText(_("Totals"))
 
     def initData(self):
         self.years, self.months = LibStats.getYears()

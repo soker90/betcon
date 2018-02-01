@@ -6,7 +6,6 @@ directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspe
 sys.path.append(directory + "/lib")
 from bbdd import Bbdd
 from tipsters_month import TipstersMonth
-from func_aux import str_to_float
 from gettext import gettext as _
 import gettext
 
@@ -26,6 +25,22 @@ class NewConjunta(QWidget):
 
 		self.selected = [0, 1]
 		self.initData()
+		self.translate()
+
+	def translate(self):
+
+		self.lblMonth.setText(_("Month"))
+		self.lblYear.setText(_("Year"))
+		self.lblName.setText(_("Name"))
+		self.lblAmount.setText(_("Amount"))
+		self.lblAvailable.setText(_("Available"))
+		self.lblSelected.setText(_("Selected"))
+
+		self.cmbMonth.addItems([_("January"), _("February"), _("March"), _("April"), _("May"), _("June"), _("July"),
+		                        _("August"), _("September"), _("October"), _("November"), _("December")])
+
+		self.btnCancel.setText(_("Cancel"))
+		self.btnAccept.setText(_("Accept"))
 
 	def initData(self):
 
@@ -62,7 +77,7 @@ class NewConjunta(QWidget):
 		self.close()
 
 	def accept(self):
-		money = str(str_to_float(self.txtMoney.text()))
+		money = str(self.txtMoney.text())
 		data = [self.cmbMonth.currentIndex(), self.txtYear.text(), self.txtName.text(), money]
 		columns = ["month", "year", "name", "money"]
 

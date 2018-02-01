@@ -28,6 +28,30 @@ class Banks(QWidget):
         self.mainWindows.aRemove.triggered.connect(self.deleteItem)
 
         self.itemSelected = -1
+        self.translate()
+
+    def translate(self):
+
+        self.lblDeposits.setText(_("Deposits"))
+        self.lblWithdrawals.setText(_("Withdrawals"))
+        self.lblTipsters.setText(_("Tipsters"))
+        self.lblProfits.setText(_("Profits"))
+        self.lblYield.setText(_("Yield"))
+        self.lblBookies.setText(_("Bookies"))
+        self.lblBank.setText(_("Bank"))
+        self.lblTotal.setText(_("Total"))
+
+        self.lblBookiesLong.setText(_("In bookies"))
+        self.lblMovements.setText(_("Movements"))
+
+        header = [_("Bookie"), _("Amount")]
+
+        self.treeBookie.setHeaderLabels(header)
+
+        header = [_("Date"), "index",  _("Bookie"), _("Type"), _("Account"), _("Amount")]
+
+        self.treeMovement.setHeaderLabels(header)
+
 
     def initData(self):
         self.txtDeposit.setText("{0:.2f}".format(Bookie.sumAll("money>0")))
@@ -41,7 +65,7 @@ class Banks(QWidget):
 
         tipsters = bd.sum("tipster_month", "money")
         conjuntas = bd.sum("conjunta", "money")
-        self.txtTipster.setText(str(tipsters + conjuntas))
+        self.txtTipster.setText("-" + str(tipsters + conjuntas))
         profits = bd.sum("bet", "profit") + bonus
         self.txtProfit.setText("{0:.2f}".format(profits - tipsters - conjuntas))
         bets = bd.sum("bet", "bet")

@@ -7,9 +7,10 @@ from PyQt5.QtCore import QDateTime
 directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
 sys.path.append(directory + "/lib")
 from bbdd import Bbdd
-from func_aux import str_to_float, str_to_bool, key_from_value
+from func_aux import str_to_bool, key_from_value
 from gettext import gettext as _
 import gettext
+from new_bet import NewBet
 
 
 class EditBet(QWidget):
@@ -37,6 +38,7 @@ class EditBet(QWidget):
 
 		self.combined()
 		self.initCombined()
+		NewBet.translate(self)
 
 
 	def initData(self):
@@ -163,20 +165,10 @@ class EditBet(QWidget):
 
 		result = bd.getValue(self.id, "bet", "result")
 
-		idResutl = {
-			"Pendiente": 0,
-			"Acertada": 1,
-			"Fallada": 2,
-			"Nula": 3,
-			"Medio Acertada": 4,
-			"Medio Fallada": 5,
-			"Retirada": 6
-		}[result]
-
-		self.cmbResult.setCurrentIndex(idResutl)
+		self.cmbResult.setCurrentIndex(int(result))
 
 		freeBet = bd.getValue(self.id, "bet", "free")
-		print(freeBet)
+
 		self.chkFree.setChecked(freeBet)
 
 
@@ -324,16 +316,16 @@ class EditBet(QWidget):
 		idTipster = self.tipsterIndexToId.get(self.cmbTipster.currentIndex())
 		data.append(idTipster)
 
-		data.append(str(str_to_float(self.txtStake.text())))
-		data.append(str(str_to_float(self.txtOne.text())))
+		data.append(str(self.txtStake.text()))
+		data.append(str(self.txtOne.text()))
 
 		# cmbResult
-		data.append(self.cmbResult.currentText())
+		data.append(self.cmbResult.currentIndex())
 
 		print(self.txtBet.text())
-		data.append(str(str_to_float(self.txtProfit.text())))
-		data.append(str(str_to_float(self.txtBet.text())))
-		data.append(str(str_to_float(self.txtQuota.text())))
+		data.append(str(self.txtProfit.text()))
+		data.append(str(self.txtBet.text()))
+		data.append(str(self.txtQuota.text()))
 		data.append(1 if self.chkFree.isChecked() else 0)
 
 		columns = ["date", "sport", "competition", "region", "player1", "player2", "pick", "bookie", "market",
@@ -363,7 +355,7 @@ class EditBet(QWidget):
 
 		bbdd.close()
 
-		QMessageBox.information(self, _("Modificada"), _("Apuesta modificada."))
+		QMessageBox.information(self, _("Modified"), _("Modified bet."))
 		self.close()
 
 	def updateProfit(self):
@@ -400,8 +392,8 @@ class EditBet(QWidget):
 		self.updateProfit()
 
 	def updateBet(self):
-		if self.txtStake.text() != "0,00" and self.txtOne.text() != "0,00":
-			bet = str_to_float(self.txtStake.text()) * str_to_float(self.txtOne.text())
+		if self.txtStake.text() != "0.00" and self.txtOne.text() != "0.00":
+			bet = float(self.txtStake.text()) * float(self.txtOne.text())
 			self.txtBet.setValue(bet)
 
 	def addCombined(self):

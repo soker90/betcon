@@ -1,4 +1,7 @@
 import sys, os, inspect
+
+from new_tipster import NewTipster
+
 directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
 sys.path.append(directory + "/lib")
 from PyQt5.QtWidgets import QMessageBox, QWidget
@@ -22,6 +25,7 @@ class EditTipster(QWidget):
 
         self.id = id
         self.initData()
+        NewTipster.translate(self)
 
     def initData(self):
         bd = Bbdd()

@@ -20,28 +20,17 @@
       <layout class="QHBoxLayout" name="horizontalLayout"/>
      </item>
      <item row="1" column="0">
-      <widget class="QLabel" name="label_3">
+      <widget class="QLabel" name="lblCalculate">
        <property name="text">
         <string>Calculo del Stake 1</string>
        </property>
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QComboBox" name="cmbOne">
-       <item>
-        <property name="text">
-         <string>Calculada</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Fija</string>
-        </property>
-       </item>
-      </widget>
+      <widget class="QComboBox" name="cmbOne"/>
      </item>
      <item row="2" column="0">
-      <widget class="QLabel" name="label_2">
+      <widget class="QLabel" name="lblPercentage">
        <property name="text">
         <string>Porcentaje Stake 1</string>
        </property>
@@ -51,6 +40,12 @@
       <layout class="QHBoxLayout" name="horizontalLayout_2">
        <item>
         <widget class="QDoubleSpinBox" name="txtPercentage">
+         <property name="locale">
+          <locale language="English" country="UnitedStates"/>
+         </property>
+         <property name="inputMethodHints">
+          <set>Qt::ImhFormattedNumbersOnly</set>
+         </property>
          <property name="suffix">
           <string>%</string>
          </property>
@@ -72,7 +67,7 @@
       </layout>
      </item>
      <item row="3" column="0">
-      <widget class="QLabel" name="label_4">
+      <widget class="QLabel" name="lblStake">
        <property name="text">
         <string>Stake 1</string>
        </property>
@@ -80,6 +75,9 @@
      </item>
      <item row="3" column="1">
       <widget class="QDoubleSpinBox" name="txtStake">
+       <property name="locale">
+        <locale language="English" country="UnitedStates"/>
+       </property>
        <property name="suffix">
         <string>€</string>
        </property>

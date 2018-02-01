@@ -18,10 +18,31 @@ class Stats(QWidget):
 		gettext.bindtextdomain("betcon", "../lang/mo")
 		self.mainWindows = mainWindows
 		self.mainWindows.setWindowTitle(_("Stats") + " | Betcon v" + mainWindows.version)
+		self.translate()
 
 		self.initData()
 		self.cmbYear.activated.connect(self.updateMonths)
 		self.cmbMonth.activated.connect(self.updateStats)
+
+	def translate(self):
+
+		self.lblYear.setText(_("Year"))
+		self.lblMonth.setText(_("Month"))
+		self.lblBalance.setText(_("Balance of the bets of the month"))
+		self.lblBet.setText(_("Money Bet"))
+		self.lblWinnings.setText(_("Winnings"))
+		self.lblLosses.setText(_("Losses"))
+		self.lblProfits.setText(_("Profits"))
+		self.lblPending.setText(_("Pending"))
+		self.lblYield.setText(_("Yield"))
+		self.lblQuota.setText(_("Average Quota"))
+		self.lblBets.setText(_("Bets"))
+		self.lblWon.setText(_("Won"))
+		self.lblLost.setText(_("Lost"))
+		self.lblNull.setText(_("Null"))
+		self.lblSuccess.setText(_("Success"))
+		self.lblAverageBet.setText(_("Average Bet"))
+
 
 	def initData(self):
 		self.years, self.months = LibStats.getYears()

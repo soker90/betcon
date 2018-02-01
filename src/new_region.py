@@ -19,6 +19,13 @@ class NewRegion(QWidget):
 		self.btnCancel.clicked.connect(self.cancel)
 		self.mainWindows.setWindowTitle(_("New Region") + " | Betcon v" + mainWindows.version)
 		self.txtRegion.returnPressed.connect(self.btnAccept.click)
+		self.translate()
+
+	def translate(self):
+		self.lblName.setText(_("Name"))
+
+		self.btnCancel.setText(_("Cancel"))
+		self.btnAccept.setText(_("Accept"))
 
 	def close(self):
 			self.mainWindows.setCentralWidget(Regions(self.mainWindows))
