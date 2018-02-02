@@ -5,6 +5,8 @@ directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspe
 sys.path.append(directory + "/lib")
 from libstats import LibStats
 from func_aux import paint_row, key_from_value
+from gettext import gettext as _
+import gettext
 
 
 
@@ -12,16 +14,31 @@ class StatsTipster(QWidget):
     def __init__(self, mainWindows):
         QWidget.__init__(self)
         uic.loadUi(directory + "/../ui/stats_tipster.ui", self)
+        gettext.textdomain("betcon")
+        gettext.bindtextdomain("betcon", "../lang/mo")
         self.mainWindows = mainWindows
-        self.mainWindows.setWindowTitle("Estadisticas Tipsters | Betcon v" + mainWindows.version)
+        self.mainWindows.setWindowTitle(_("Stats Tipsters") + " | Betcon v" + mainWindows.version)
+        self.translate()
         try:
             self.initData()
         except Exception:
-            print("Error al intentar cargar los datos.")
+            print(_("Error trying to load the data."))
             self.setEnabled(False)
 
         self.cmbYear.activated.connect(self.updateMonths)
         self.cmbMonth.activated.connect(self.updateTree)
+
+    def translate(self):
+
+        header = [_("Tipster"), _("Sport"), _("Bets"), _("Success"), _("Money Bet"), _("Profit"), _("Stake"), _("Quota")]
+
+        self.treeMonth.setHeaderLabels(header)
+        self.treeTotal.setHeaderLabels(header)
+
+        self.lblYear.setText(_("Year"))
+        self.lblMonth.setText(_("Month"))
+        self.lblTotalMonth.setText(_("Total of the month"))
+        self.lblTotal.setText(_("Totals"))
 
 
     def initData(self):

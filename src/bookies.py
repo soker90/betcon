@@ -1,6 +1,7 @@
 import sys, os, inspect
 from PyQt5.QtWidgets import QMessageBox, QWidget, QTreeWidgetItem
-from PyQt5 import uic
+from PyQt5 import uic, QtCore
+
 directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
 from bookie import Bookie
 from gettext import gettext as _
@@ -24,17 +25,24 @@ class Bookies(QWidget):
 
 		self.itemSelected = -1
 
+		self.translate()
+
+	def translate(self):
+
+		header = [_("Name"), "index"]
+
+		self.treeMain.setHeaderLabels(header)
+
 	def initTree(self):
 		data = Bookie.selectAll()
 
-		index = 0
 		items = []
 		for i in data:
-			index += 1
-			item = QTreeWidgetItem([str(index), str(i.id), i.name])
+			item = QTreeWidgetItem([i.name, str(i.id)])
 			items.append(item)
 
 		self.treeMain.addTopLevelItems(items)
+		self.treeMain.sortByColumn(0, QtCore.Qt.AscendingOrder)
 
 
 	def changeItem(self):

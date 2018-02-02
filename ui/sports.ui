@@ -16,19 +16,20 @@
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QTreeWidget" name="treeMain">
+     <property name="sortingEnabled">
+      <bool>true</bool>
+     </property>
+     <attribute name="headerDefaultSectionSize">
+      <number>300</number>
+     </attribute>
      <column>
       <property name="text">
-       <string notr="true"/>
+       <string>Nombre</string>
       </property>
      </column>
      <column>
       <property name="text">
        <string>index</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Nombre</string>
       </property>
      </column>
      <column>

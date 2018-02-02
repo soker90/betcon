@@ -65,7 +65,7 @@ class Main(QMainWindow):
 
 		archivo = open(directory+"/version.txt")
 		self.version = archivo.readline()
-		self.setWindowTitle(_("Inicio") + " | Betcon v" + self.version)
+		self.setWindowTitle(_("Home") + " | Betcon v" + self.version)
 		if os.path.isfile("/usr/share/pixmaps/betcon.png"):
 			image = "/usr/share/pixmaps/betcon.png"
 		else:
@@ -73,33 +73,68 @@ class Main(QMainWindow):
 		self.setWindowIcon(QIcon(image))
 
 		self.aInicio.triggered.connect(self.home)
+		self.aInicio.setText(_("Home"))
 		self.aRegion.triggered.connect(self.regions)
+		self.aRegion.setText(_("Regions"))
 		self.aCompetition.triggered.connect(self.competitions)
+		self.aCompetition.setText(_("Competitions"))
 		self.aSport.triggered.connect(self.sports)
+		self.aSport.setText(_("Sports"))
 		self.aBookie.triggered.connect(self.bookies)
+		self.aBookie.setText(_("Bookies"))
 		self.aMarket.triggered.connect(self.markets)
+		self.aMarket.setText(_("Markets"))
 		self.aTipster.triggered.connect(self.tipsters)
+		self.aTipster.setText(_("Tipsters"))
 		self.aStat.triggered.connect(self.stats)
+		self.aStat.setText(_("Stats"))
 		self.aBank.triggered.connect(self.banks)
+		self.aBank.setText(_("Bank"))
 		self.aBonus.triggered.connect(self.bonus)
+		self.aBonus.setText(_("Bonus"))
 		self.aTipsterMonth.triggered.connect(self.tipstersMonth)
+		self.aTipsterMonth.setText(_("Payment history"))
 
 		self.aStatsGeneral.triggered.connect(self.stats)
+		self.aStatsGeneral.setText(_("General"))
 		self.aStatsTipster.triggered.connect(self.statsTipster)
+		self.aStatsTipster.setText(_("Tipsters"))
 		self.aStatsBookie.triggered.connect(self.statsBookie)
+		self.aStatsBookie.setText(_("Bookies"))
 		self.aStatsMarket.triggered.connect(self.statsMarket)
+		self.aStatsMarket.setText(_("Markets"))
 		self.aStatsRegion.triggered.connect(self.statsRegion)
+		self.aStatsRegion.setText(_("Regions"))
 		self.aStatsSport.triggered.connect(self.statsSport)
+		self.aStatsSport.setText(_("Sports"))
 		self.aStatsStake.triggered.connect(self.statsStake)
+		self.aStatsStake.setText(_("Stake"))
 
 		self.aAddMoney.triggered.connect(self.addMoney)
+		self.aAddMoney.setText(_("Add/Withdraw funds"))
 		self.aClose.triggered.connect(self.close)
+		self.aClose.setText(_("Close"))
 		self.aAbout.triggered.connect(self.about)
+		self.aAbout.setText(_("About..."))
 		self.aSettings.triggered.connect(self.settings)
+		self.aSettings.setText(_("Settings"))
 
 		self.aNewConjunta.triggered.connect(self.newConjunta)
+		self.aNewConjunta.setText(_("New joint purchase"))
 		self.aExport.triggered.connect(self.export)
+		self.aExport.setText(_("Export"))
 		self.aImport.triggered.connect(self.imports)
+		self.aImport.setText(_("Import"))
+
+		self.aNew.setText(_("New"))
+		self.aEdit.setText(_("Edit"))
+		self.aRemove.setText(_("Delete"))
+
+		self.aEditConjunta.setText(_("Edit joint purchase"))
+		self.aDeleteConjunta.setText(_("Delete joint purchase"))
+
+		self.menuArchivo.setTitle(_("File"))
+		self.menuAyuda.setTitle(_("Help"))
 
 		self.setCentralWidget(Bets(self))
 
@@ -320,7 +355,7 @@ class Main(QMainWindow):
 	#Events
 
 	def closeEvent(self, event):
-		resultado = QMessageBox.question(self, _("Salir"), _("¿Seguro que quieres salir de la aplicación?"),
+		resultado = QMessageBox.question(self, _("Quit"), _("Are you sure you want to exit the application?"),
 										 QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
 		if resultado == QMessageBox.Yes:
 			event.accept()
@@ -329,21 +364,21 @@ class Main(QMainWindow):
 
 	# Import/Export
 	def export(self):
-		file = QFileDialog.getSaveFileName(None, _("Exportar datos"), expanduser("~/") + "betcon.ods", "*.ods")
+		file = QFileDialog.getSaveFileName(None, _("Export data"), expanduser("~/") + "betcon.ods", "*.ods")
 		if file[0] != '':
 			ods = Ods(file[0])
 			ods.export()
-			QMessageBox.information(self, _("Exportado"), _("Datos exportados"), QMessageBox.Ok)
+			QMessageBox.information(self, _("Exported"), _("Exported data"), QMessageBox.Ok)
 
 	def imports(self):
-		file = QFileDialog.getOpenFileName(None, _("Importar datos"), expanduser("~/"), "*.ods")
+		file = QFileDialog.getOpenFileName(None, _("Import data"), expanduser("~/"), "*.ods")
 		if file[0] != '':
 			ods = Ods(file[0])
 			err = ods.imports()
 			if err:
 				QMessageBox.warning(self, "Error", err, QMessageBox.Ok)
 			else:
-				QMessageBox.information(self, _("Importado"), _("Datos importados"), QMessageBox.Ok)
+				QMessageBox.information(self, _("Imported"), _("Imported data"), QMessageBox.Ok)
 		self.setCentralWidget(Bets(self))
 
 
@@ -358,10 +393,16 @@ class About(QDialog):
 		uic.loadUi(directory + "/../ui/about.ui", self)
 		archivo = open(directory + "/version.txt")
 		version = archivo.readline()
-		self.setWindowTitle(_("Acerca de"))
+		self.setWindowTitle(_("About"))
 		self.txtText.setHtml("<p style='text-align: center;'><br>Betcon v" + version + "<p/>" \
-		                     "<p style='text-align: center;'>Web: https://soker90.github.io/betcon/<p/>" \
-		                     "<p style='text-align: center;'>Creado por Eduardo Parra Mazuecos<p/>" \
-		                     "<p style='text-align: center;'>Contacto: eduparra90@gmail.com</p>" \
-		                     "<p style='text-align: center;'>Licencia GPLv3<p/>")
+		                     "<p style='text-align: center;'>Web: http://betcon.eduardoparra.es/<p/>" \
+		                     "<p style='text-align: center;'>" + _("Created by") + " Eduardo Parra Mazuecos<p/>" \
+		                     "<p style='text-align: center;'>" + _("Contact") + ": eduparra90@gmail.com</p>" \
+			                 "<p style='text-align: center;'>" + _("License") +" GPLv3<p/>" \
+		                     "<p style='text-align: center;'>" + _("Translated by:") + "<p/>" \
+			                 "<p style='text-align: center;'>" + "English: Eduardo Parra Mazuecos. <p/>" \
+		                     "<p style='text-align: center;'>" + "Spanish: Eduardo Parra Mazuecos. <p/>" \
+		                     "<p style='text-align: center;'>" + "Brazilian Portuguese: Rodrigo Henrique. <p/>" \
+		                     "<p style='text-align: center;'>" + "German: Franz Lewin Wagner, Rokar. <p/>" \
+		                     "<p style='text-align: center;'>" + "Kurdish: Rokar. <p/>" )
 

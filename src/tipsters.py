@@ -5,23 +5,33 @@ directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspe
 sys.path.append(directory + "/lib")
 
 from bbdd import Bbdd
+from gettext import gettext as _
+import gettext
 
 
 class Tipsters(QWidget):
     def __init__(self, mainWindows):
         QWidget.__init__(self)
         uic.loadUi(directory + "/../ui/tipsters.ui", self)
+        gettext.textdomain("betcon")
+        gettext.bindtextdomain("betcon", "../lang/mo")
         self.mainWindows = mainWindows
         mainWindows.diconnectActions()
         mainWindows.aNew.triggered.connect(mainWindows.newTipster)
-        self.mainWindows.setWindowTitle("Tipsters | Betcon v" + mainWindows.version)
+        self.mainWindows.setWindowTitle(_("Tipsters") + " | Betcon v" + mainWindows.version)
         self.treeMain.header().hideSection(1)
+        self.translate()
         self.initTree()
 
         self.treeMain.itemSelectionChanged.connect(self.changeItem)
         self.mainWindows.aEdit.triggered.connect(self.editItem)
         self.mainWindows.aRemove.triggered.connect(self.deleteItem)
         self.itemSelected = -1
+
+    def translate(self):
+        header = [_("Name"), "index", _("Cost"), _("Profit of the bets"), _("Balance")]
+
+        self.treeMain.setHeaderLabels(header)
 
     def initTree(self):
         bd = Bbdd()
@@ -42,19 +52,21 @@ class Tipsters(QWidget):
 
         data = bd.select("tipster", "name")
 
-        index = 0
         items = []
         for i in data:
-            index += 1
             id = i[0]
             name = i[1]
             cost = bd.sum("tipster_month", "money", "tipster=" + str(id))
             if id in money.keys():
                 cost += money[id]
-            cost = "{0:.2f}".format(cost)
+
             profit = bd.sum("bet", "profit", "tipster=" + str(id))
+            balance = profit - cost
+
+            cost = "{0:.2f}".format(cost)
             profit = "{0:.2f}".format(profit)
-            item = QTreeWidgetItem([str(index), str(id), name, cost, profit])
+            balance = "{0:.2f}".format(balance)
+            item = QTreeWidgetItem([name, str(id), cost, profit, balance])
             items.append(item)
 
 
@@ -70,7 +82,8 @@ class Tipsters(QWidget):
         self.mainWindows.editTipster(self.itemSelected)
 
     def deleteItem(self):
-        resultado = QMessageBox.question(self, "Eliminar", "¿Estas seguro que desas eliminar este tipster y todas las apuestas asociadas?",
+        resultado = QMessageBox.question(self, _("Remove"),
+                                         _("Are you sure you want to eliminate this tipster and all associated bets?"),
                                          QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
         if resultado == QMessageBox.Yes:
             bd = Bbdd()

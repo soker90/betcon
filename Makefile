@@ -20,7 +20,7 @@ uninstall:
 	rm /usr/bin/betcon
 
 test:
-	nosetests tests
+	nosetests test
 
 clean:
 	rm -rf src/__pycache__

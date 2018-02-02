@@ -5,16 +5,27 @@ directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspe
 sys.path.append(directory + "/lib")
 from bbdd import Bbdd
 from regions import Regions
+from gettext import gettext as _
+import gettext
 
 class NewRegion(QWidget):
 	def __init__(self, mainWindows):
 		QWidget.__init__(self)
 		uic.loadUi(directory + "/../ui/new_region.ui", self)
+		gettext.textdomain("betcon")
+		gettext.bindtextdomain("betcon", "../lang/mo")
 		self.mainWindows = mainWindows
 		self.btnAccept.clicked.connect(self.accept)
 		self.btnCancel.clicked.connect(self.cancel)
-		self.mainWindows.setWindowTitle("Nueva Región | Betcon v" + mainWindows.version)
+		self.mainWindows.setWindowTitle(_("New Region") + " | Betcon v" + mainWindows.version)
 		self.txtRegion.returnPressed.connect(self.btnAccept.click)
+		self.translate()
+
+	def translate(self):
+		self.lblName.setText(_("Name"))
+
+		self.btnCancel.setText(_("Cancel"))
+		self.btnAccept.setText(_("Accept"))
 
 	def close(self):
 			self.mainWindows.setCentralWidget(Regions(self.mainWindows))
@@ -31,7 +42,7 @@ class NewRegion(QWidget):
 		bbdd.insert(columns, data, "region")
 		bbdd.close()
 
-		QMessageBox.information(self, "Añadida", "Nueva región añadida.")
+		QMessageBox.information(self, _("Added"), _("New region added."))
 
 		self.close()
 

@@ -7,17 +7,22 @@ sys.path.append(directory + "/lib")
 
 from bbdd import Bbdd
 from func_aux import numberToMonth
+from gettext import gettext as _
+import gettext
 
 
 class TipstersMonth(QWidget):
 	def __init__(self, mainWindows):
 		QWidget.__init__(self)
 		uic.loadUi(directory + "/../ui/tipsters_month.ui", self)
+		gettext.textdomain("betcon")
+		gettext.bindtextdomain("betcon", "../lang/mo")
 		self.mainWindows = mainWindows
 		mainWindows.aNew.triggered.connect(mainWindows.newTipsterMonth)
-		self.mainWindows.setWindowTitle("Tipsters - Historial de pagos | Betcon v" + mainWindows.version)
+		self.mainWindows.setWindowTitle(_("Tipsters - Payment history") + " | Betcon v" + mainWindows.version)
 		self.treeMain.header().hideSection(0)
 		self.treeConjunta.header().hideSection(0)
+		self.translate()
 		self.initTree()
 
 		self.treeMain.itemSelectionChanged.connect(self.changeItem)
@@ -29,6 +34,14 @@ class TipstersMonth(QWidget):
 		self.mainWindows.aDeleteConjunta.triggered.connect(self.deleteConjunta)
 		self.itemSelected = -1
 		self.itemConjunta = -1
+
+	def translate(self):
+
+		header = ["index", _("Year"), _("Month"), _("Tipster"), _("Cost")]
+
+		self.treeMain.setHeaderLabels(header)
+		self.treeConjunta.setHeaderLabels(header)
+		self.lblConjunta.setText(_("Joint purchase"))
 
 	def initTree(self):
 		bd = Bbdd()
@@ -81,8 +94,8 @@ class TipstersMonth(QWidget):
 		self.mainWindows.editConjunta(self.itemConjunta)
 
 	def deleteItem(self):
-		resultado = QMessageBox.question(self, "Eliminar",
-		                                 "¿Estas seguro que desas eliminar este pago?",
+		resultado = QMessageBox.question(self, _("Remove"),
+		                                 _("Are you sure you want to eliminate this payment?"),
 		                                 QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
 		if resultado == QMessageBox.Yes:
 			bd = Bbdd()
@@ -92,8 +105,8 @@ class TipstersMonth(QWidget):
 			bd.close()
 
 	def deleteConjunta(self):
-		resultado = QMessageBox.question(self, "Eliminar",
-		                                 "¿Estás seguro que desas eliminar esta conjunta?",
+		resultado = QMessageBox.question(self, _("Remove"),
+		                                 _("Are you sure you want to eliminate this purchase joint?"),
 		                                 QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
 		if resultado == QMessageBox.Yes:
 			bd = Bbdd()

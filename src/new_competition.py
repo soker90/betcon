@@ -5,17 +5,32 @@ directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspe
 sys.path.append(directory + "/lib")
 from bbdd import Bbdd
 from competitions import Competitions
+from gettext import gettext as _
+import gettext
+
 
 class NewCompetition(QWidget):
 	def __init__(self, mainWindows):
 		QWidget.__init__(self)
 		uic.loadUi(directory + "/../ui/new_competition.ui", self)
+		gettext.textdomain("betcon")
+		gettext.bindtextdomain("betcon", "../lang/mo")
 		self.mainWindows = mainWindows
 		self.btnAccept.clicked.connect(self.accept)
 		self.btnCancel.clicked.connect(self.cancel)
-		self.mainWindows.setWindowTitle("Nueva Competición | Betcon v" + mainWindows.version)
+		self.mainWindows.setWindowTitle(_("New Competition") + " | Betcon v" + mainWindows.version)
 		self.txtName.returnPressed.connect(self.btnAccept.click)
 		self.initData()
+		self.translate()
+
+	def translate(self):
+
+		self.lblName.setText(_("Name"))
+		self.lblRegion.setText(_("Region"))
+		self.lblSport.setText(_("Sport"))
+
+		self.btnCancel.setText(_("Cancel"))
+		self.btnAccept.setText(_("Accept"))
 
 	def initData(self):
 		# cmbRegion
@@ -68,7 +83,7 @@ class NewCompetition(QWidget):
 		bbdd.insert(columns, data, "competition")
 		bbdd.close()
 
-		QMessageBox.information(self, "Añadida", "Nueva competición añadida.")
+		QMessageBox.information(self, _("Added"), "New competition added.")
 
 		self.close()
 

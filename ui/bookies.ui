@@ -16,11 +16,24 @@
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QTreeWidget" name="treeMain">
-     <column>
-      <property name="text">
-       <string notr="true"/>
-      </property>
-     </column>
+     <property name="alternatingRowColors">
+      <bool>false</bool>
+     </property>
+     <property name="uniformRowHeights">
+      <bool>false</bool>
+     </property>
+     <property name="sortingEnabled">
+      <bool>true</bool>
+     </property>
+     <attribute name="headerCascadingSectionResizes">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="headerShowSortIndicator" stdset="0">
+      <bool>true</bool>
+     </attribute>
+     <attribute name="headerStretchLastSection">
+      <bool>true</bool>
+     </attribute>
      <column>
       <property name="text">
        <string>index</string>

@@ -1,6 +1,9 @@
 import sys, os, inspect
 from PyQt5.QtWidgets import QMessageBox, QWidget
 from PyQt5 import uic
+
+from new_market import NewMarket
+
 directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
 sys.path.append(directory + "/lib")
 from bbdd import Bbdd
@@ -11,7 +14,7 @@ import gettext
 class EditMarket(QWidget):
     def __init__(self, mainWindows, id):
         QWidget.__init__(self)
-        uic.loadUi(directory + "/../ui/new_bookie.ui", self)
+        uic.loadUi(directory + "/../ui/new_market.ui", self)
         gettext.textdomain("betcon")
         gettext.bindtextdomain("betcon", "../lang/mo")
         self.mainWindows = mainWindows
@@ -22,6 +25,7 @@ class EditMarket(QWidget):
 
         self.id = id
         self.initData()
+        NewMarket.translate(self)
 
     def initData(self):
         bd = Bbdd()

@@ -1,11 +1,13 @@
 import sys, os, inspect
 from PyQt5.QtWidgets import QMessageBox, QWidget
 from PyQt5 import uic
+
+from new_conjunta import NewConjunta
+
 directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
 sys.path.append(directory + "/lib")
 from bbdd import Bbdd
 from tipsters_month import TipstersMonth
-from func_aux import str_to_float
 from gettext import gettext as _
 import gettext
 
@@ -25,6 +27,7 @@ class EditConjunta(QWidget):
 		self.id = id
 		self.selected = [0, 1]
 		self.initData()
+		NewConjunta.translate(self)
 
 
 	def initData(self):
@@ -80,7 +83,7 @@ class EditConjunta(QWidget):
 		self.close()
 
 	def accept(self):
-		money = str(str_to_float(self.txtMoney.text()))
+		money = str(self.txtMoney.text())
 		data = [self.cmbMonth.currentIndex(), self.txtYear.text(), self.txtName.text(), money]
 		columns = ["month", "year", "name", "money"]
 
