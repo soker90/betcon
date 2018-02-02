@@ -23,13 +23,13 @@ class TestFuncAux(TestCase):
 		item = QTreeWidgetItem(items)
 		item.background(0)
 
-		actual = paint_row(item, "0", "0")
+		actual = paint_row(item, "0€", "0")
 		assert_that(actual.background(0), is_(QBrush(Qt.yellow)))
 
-		actual = paint_row(item, "-10.0", "0")
+		actual = paint_row(item, "-10.0€", "0")
 		assert_that(actual.background(0), is_(QBrush(Qt.yellow)))
 
-		actual = paint_row(item, "20.0", "0")
+		actual = paint_row(item, 20.0, "0")
 		assert_that(actual.background(0), is_(QBrush(Qt.yellow)))
 
 	def test_paint_row_green(self):
@@ -39,8 +39,8 @@ class TestFuncAux(TestCase):
 
 		item = QTreeWidgetItem(items)
 
-		assert_that(paint_row(item, "0.5").background(0), is_(QBrush(Qt.green)))
-		assert_that(paint_row(item, "10").background(0), is_(QBrush(Qt.green)))
+		assert_that(paint_row(item, "0.5€").background(0), is_(QBrush(Qt.green)))
+		assert_that(paint_row(item, 10).background(0), is_(QBrush(Qt.green)))
 
 	def test_paint_row_red(self):
 		items = []
@@ -49,8 +49,8 @@ class TestFuncAux(TestCase):
 
 		item = QTreeWidgetItem(items)
 
-		assert_that(paint_row(item, "-10.0").background(0), is_(QBrush(Qt.red)))
-		assert_that(paint_row(item, "-20").background(0), is_(QBrush(Qt.red)))
+		assert_that(paint_row(item, "-10.0€").background(0), is_(QBrush(Qt.red)))
+		assert_that(paint_row(item, "-20€").background(0), is_(QBrush(Qt.red)))
 
 	def test_paint_row_cyan(self):
 		items = []
@@ -59,7 +59,7 @@ class TestFuncAux(TestCase):
 
 		item = QTreeWidgetItem(items)
 
-		assert_that(paint_row(item, "0").background(0), is_(QBrush(Qt.cyan)))
+		assert_that(paint_row(item, "0€").background(0), is_(QBrush(Qt.cyan)))
 
 	#######################
 	# Test key_from_value #
