@@ -2,8 +2,11 @@ from bbdd import Bbdd
 from bookie import Bookie
 from gettext import gettext as _
 import gettext
+from libyaml import LibYaml
 
 class LibStats:
+	coin = LibYaml().interface["coin"]
+
 	@staticmethod
 	def getYears():
 		gettext.textdomain("betcon")
@@ -54,8 +57,8 @@ class LibStats:
 				win = 0
 			win = win * 100
 			row.append("{0:.2f}%".format(round((win), 2)))
-			row.append("{0:.2f}".format(round((i[6]), 2)))  # Money bet
-			row.append("{0:.2f}".format(round((i[4]), 2)))  # Profit
+			row.append("{0:.2f}".format(round((i[6]), 2)) + LibStats.coin)  # Money bet
+			row.append("{0:.2f}".format(round((i[4]), 2)) + LibStats.coin)  # Profit
 			row.append("{0:.2f}".format(round((i[7]), 2)))  # Average Stake
 			row.append("{0:.2f}".format(round((i[8]), 2)))  # Average Quota
 			data.append(row)
@@ -99,8 +102,8 @@ class LibStats:
 			win = win * 100
 			win = round(win, 2)
 			row.append("{0:.2f}%".format(round((win), 2)))
-			row.append("{0:.2f}".format(round((i[5]), 2)))  # Money bet
-			row.append("{0:.2f}".format(round((i[3]), 2)))  # Profit
+			row.append("{0:.2f}".format(round((i[5]), 2)) + LibStats.coin)  # Money bet
+			row.append("{0:.2f}".format(round((i[3]), 2)) + LibStats.coin)  # Profit
 			row.append("{0:.2f}".format(round((i[6]), 2)))  # Average Stake
 			row.append("{0:.2f}".format(round((i[7]), 2)))  # Average Quota
 			data.append(row)
@@ -144,8 +147,8 @@ class LibStats:
 			win = win * 100
 			win = round(win, 2)
 			row.append("{0:.2f}%".format(round(win, 2)))
-			row.append("{0:.2f}".format(round((i[5]), 2)))  # Money bet
-			row.append("{0:.2f}".format(round((i[3]), 2)))  # Profit
+			row.append("{0:.2f}".format(round((i[5]), 2)) + LibStats.coin)  # Money bet
+			row.append("{0:.2f}".format(round((i[3]), 2)) + LibStats.coin)  # Profit
 			row.append("{0:.2f}".format(round((i[6]), 2)))  # Average Stake
 			row.append("{0:.2f}".format(round((i[7]), 2)))  # Average Quota
 			data.append(row)
@@ -192,8 +195,8 @@ class LibStats:
 				win = 0
 			win = win * 100
 			row.append("{0:.2f}%".format(round(win, 2)))
-			row.append("{0:.2f}".format(round((i[6]), 2)))  # Money bet
-			row.append("{0:.2f}".format(round((i[4]), 2)))  # Profit
+			row.append("{0:.2f}".format(round((i[6]), 2)) + LibStats.coin)  # Money bet
+			row.append("{0:.2f}".format(round((i[4]), 2)) + LibStats.coin)  # Profit
 			row.append("{0:.2f}".format(round((i[7]), 2)))  # Average Stake
 			row.append("{0:.2f}".format(round((i[8]), 2)))  # Average Quota
 			data.append(row)
@@ -240,8 +243,8 @@ class LibStats:
 				win = 0
 			win = win * 100
 			row.append("{0:.2f}%".format(round(win, 2)))
-			row.append("{0:.2f}".format(round((i[6]), 2)))  # Money bet
-			row.append("{0:.2f}".format(round((i[4]), 2)))  # Profit
+			row.append("{0:.2f}".format(round((i[6]), 2)) + LibStats.coin)  # Money bet
+			row.append("{0:.2f}".format(round((i[4]), 2)) + LibStats.coin)  # Profit
 			row.append("{0:.2f}".format(round((i[7]), 2)))  # Average Stake
 			row.append("{0:.2f}".format(round((i[8]), 2)))  # Average Quota
 			data.append(row)
@@ -283,8 +286,8 @@ class LibStats:
 				win = 0
 			win = win * 100
 			row.append("{0:.2f}%".format(round(win, 2)))
-			row.append("{0:.2f}".format(round((i[5]), 2)))  # Money bet
-			row.append("{0:.2f}".format(round((i[3]), 2)))  # Profit
+			row.append("{0:.2f}".format(round((i[5]), 2)) + LibStats.coin)  # Money bet
+			row.append("{0:.2f}".format(round((i[3]), 2)) + LibStats.coin)  # Profit
 			row.append("{0:.2f}".format(round((i[6]), 2)))  # Average Quota
 			data.append(row)
 

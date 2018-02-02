@@ -214,4 +214,4 @@ create table variable
 	value VARCHAR(100)
 );
 
-INSERT INTO variable VALUES ('version', '1.6');
+INSERT INTO variable VALUES ('version', '1.7');

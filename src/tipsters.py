@@ -7,6 +7,8 @@ sys.path.append(directory + "/lib")
 from bbdd import Bbdd
 from gettext import gettext as _
 import gettext
+from libyaml import LibYaml
+from func_aux import paint_row
 
 
 class Tipsters(QWidget):
@@ -20,6 +22,9 @@ class Tipsters(QWidget):
         mainWindows.aNew.triggered.connect(mainWindows.newTipster)
         self.mainWindows.setWindowTitle(_("Tipsters") + " | Betcon v" + mainWindows.version)
         self.treeMain.header().hideSection(1)
+
+        self.coin = LibYaml().interface["coin"]
+
         self.translate()
         self.initTree()
 
@@ -63,10 +68,14 @@ class Tipsters(QWidget):
             profit = bd.sum("bet", "profit", "tipster=" + str(id))
             balance = profit - cost
 
-            cost = "{0:.2f}".format(cost)
-            profit = "{0:.2f}".format(profit)
-            balance = "{0:.2f}".format(balance)
+            if cost == 0:
+                cost = "--" + self.coin
+            else:
+                cost = "{0:.2f}".format(cost) + self.coin
+            profit = "{0:.2f}".format(profit) + self.coin
+            balance = "{0:.2f}".format(balance) + self.coin
             item = QTreeWidgetItem([name, str(id), cost, profit, balance])
+            item = paint_row(item, balance)
             items.append(item)
 
 

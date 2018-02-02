@@ -7,6 +7,7 @@ from bbdd import Bbdd
 from func_aux import str_to_bool
 from gettext import gettext as _
 import gettext
+from libyaml import LibYaml
 
 
 class Bonus(QWidget):
@@ -20,6 +21,8 @@ class Bonus(QWidget):
 		mainWindows.aNew.triggered.connect(mainWindows.newBonus)
 		self.mainWindows.setWindowTitle(_("Bonus") + " | Betcon v" + mainWindows.version)
 		self.treeMain.header().hideSection(1)
+
+		self.coin = LibYaml().interface["coin"]
 		self.initTree()
 
 		self.treeMain.itemSelectionChanged.connect(self.changeItem)
@@ -46,7 +49,7 @@ class Bonus(QWidget):
 			bookie = bd.getValue(i[2], "bookie")
 			money = i[3]
 			free = _("Yes") if str_to_bool(i[4]) else _("No")
-			item = QTreeWidgetItem([str(date), str(id), str(bookie), str(money), str(free)])
+			item = QTreeWidgetItem([str(date), str(id), str(bookie), str(money) + self.coin, str(free)])
 			items.append(item)
 
 		self.treeMain.addTopLevelItems(items)

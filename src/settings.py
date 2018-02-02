@@ -21,25 +21,34 @@ class Settings(QWidget):
 		self.mainWindows = mainWindows
 		mainWindows.diconnectActions()
 		self.mainWindows.setWindowTitle(_("Options") + " | Betcon v" + mainWindows.version)
+
 		self.translate()
 		self.btnAccept.clicked.connect(self.accept)
 		self.btnCancel.clicked.connect(self.cancel)
+
 		self.config = LibYaml()
 		self.txtPercentage.setValue(float(self.config.stake["percentage"]))
 		self.cmbOne.setCurrentIndex(self.config.stake["type"])
 		self.txtStake.setValue(float(self.config.stake["stake"]))
 		if self.config.stake["type"] == 0:
 			self.txtStake.setEnabled(False)
+
 		self.cmbOne.activated.connect(self.updateOne)
 		self.btnCalc.clicked.connect(self.calcBank)
 
+		self.txtCoin.setText(self.config.interface["coin"])
+
 
 	def translate(self):
+		self.lblSetStake.setText(_("Stake"))
 		self.lblCalculate.setText(_("Stake 1 calculation"))
 		self.lblPercentage.setText(_("Stake 1 percentage"))
 		self.lblStake.setText(_("Stake 1"))
 
 		self.cmbOne.addItems([_("Calculated"), _("Fixed")])
+
+		self.lblInterface.setText(_("Interface"))
+		self.lblCoin.setText(_("Coin"))
 
 		self.btnCalc.setText(_("Calculate"))
 		self.btnCancel.setText(_("Cancel"))
@@ -85,6 +94,7 @@ class Settings(QWidget):
 
 		stake = self.txtStake.text()[:-1]
 		self.config.stake["stake"] = float(stake)
+		self.config.interface['coin'] = self.txtCoin.text()
 		self.config.save()
 		self.close()
 

@@ -8,6 +8,7 @@ from bookie import Bookie
 from datetime import datetime, date
 from gettext import gettext as _
 import gettext
+from libyaml import LibYaml
 
 
 
@@ -22,6 +23,9 @@ class Banks(QWidget):
         mainWindows.aNew.triggered.connect(mainWindows.newBank)
         self.mainWindows.setWindowTitle("Bank | Betcon v" + mainWindows.version)
         self.treeMovement.itemSelectionChanged.connect(self.changeItem)
+
+        self.coin = LibYaml().interface["coin"]
+
         self.initData()
         self.initTree()
         self.treeMovement.header().hideSection(1)
@@ -54,20 +58,20 @@ class Banks(QWidget):
 
 
     def initData(self):
-        self.txtDeposit.setText("{0:.2f}".format(Bookie.sumAll("money>0")))
-        self.txtTakeOut.setText("{0:.2f}".format(Bookie.sumAll("money<0")))
+        self.txtDeposit.setText("{0:.2f}".format(Bookie.sumAll("money>0")) + self.coin)
+        self.txtTakeOut.setText("{0:.2f}".format(Bookie.sumAll("money<0"))  + self.coin)
         bookies = Bookie.sumAll()
         bonus = Bookie.sumBonus()
-        self.txtBonus.setText("{0:.2f}".format(bonus))
-        self.txtBookie.setText("{0:.2f}".format(bookies + bonus))
+        self.txtBonus.setText("{0:.2f}".format(bonus)  + self.coin)
+        self.txtBookie.setText("{0:.2f}".format(bookies + bonus)  + self.coin)
 
         bd = Bbdd()
 
         tipsters = bd.sum("tipster_month", "money")
         conjuntas = bd.sum("conjunta", "money")
-        self.txtTipster.setText("-" + str(tipsters + conjuntas))
+        self.txtTipster.setText("-" + str(tipsters + conjuntas)  + self.coin)
         profits = bd.sum("bet", "profit") + bonus
-        self.txtProfit.setText("{0:.2f}".format(profits - tipsters - conjuntas))
+        self.txtProfit.setText("{0:.2f}".format(profits - tipsters - conjuntas)  + self.coin)
         bets = bd.sum("bet", "bet")
         try:
             yields = "{0:.2f}%".format((profits/bets)*100)
@@ -78,20 +82,20 @@ class Banks(QWidget):
         # CC
         cc = bd.select("bank", None, "id=1", "bank")
         cc = cc[0][0]
-        self.txtCc.setText("{0:.2f}".format(cc))
+        self.txtCc.setText("{0:.2f}".format(cc)  + self.coin)
 
         # Paypal
         paypal = bd.select("bank", None, "id=2", "bank")
         paypal = paypal[0][0]
-        self.txtPaypal.setText("{0:.2f}".format(paypal))
+        self.txtPaypal.setText("{0:.2f}".format(paypal)  + self.coin)
 
         # SKRILL
         skrill = bd.select("bank", None, "id=3", "bank")
         skrill = skrill[0][0]
-        self.txtSkrill.setText("{0:.2f}".format(skrill))
+        self.txtSkrill.setText("{0:.2f}".format(skrill)  + self.coin)
 
         total = "{0:.2f}".format(cc+paypal+skrill+bonus+bookies)
-        self.txtTotal.setText(total)
+        self.txtTotal.setText(total  + self.coin)
 
     def initTree(self):
 
@@ -107,7 +111,7 @@ class Banks(QWidget):
             bank += bonus
             if 0.01 > bank > -0.01:
                 continue
-            item = QTreeWidgetItem([i.name, "{0:.2f}".format(bank)])
+            item = QTreeWidgetItem([i.name, "{0:.2f}".format(bank) + self.coin])
             items.append(item)
 
         self.treeBookie.addTopLevelItems(items)
@@ -139,7 +143,7 @@ class Banks(QWidget):
             else:
                 type = _("Deposit at bookie")
 
-            item = QTreeWidgetItem([str(sDate), str(id), bookie, type, str(account), str(money)])
+            item = QTreeWidgetItem([str(sDate), str(id), bookie, type, str(account), str(money) + self.coin])
 
             items.append(item)
 

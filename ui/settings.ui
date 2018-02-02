@@ -19,24 +19,31 @@
      <item row="0" column="1">
       <layout class="QHBoxLayout" name="horizontalLayout"/>
      </item>
-     <item row="1" column="0">
+     <item row="1" column="1">
+      <widget class="QLabel" name="lblSetStake">
+       <property name="text">
+        <string>Stake</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
       <widget class="QLabel" name="lblCalculate">
        <property name="text">
         <string>Calculo del Stake 1</string>
        </property>
       </widget>
      </item>
-     <item row="1" column="1">
+     <item row="2" column="1">
       <widget class="QComboBox" name="cmbOne"/>
      </item>
-     <item row="2" column="0">
+     <item row="3" column="0">
       <widget class="QLabel" name="lblPercentage">
        <property name="text">
         <string>Porcentaje Stake 1</string>
        </property>
       </widget>
      </item>
-     <item row="2" column="1">
+     <item row="3" column="1">
       <layout class="QHBoxLayout" name="horizontalLayout_2">
        <item>
         <widget class="QDoubleSpinBox" name="txtPercentage">
@@ -66,14 +73,14 @@
        </item>
       </layout>
      </item>
-     <item row="3" column="0">
+     <item row="4" column="0">
       <widget class="QLabel" name="lblStake">
        <property name="text">
         <string>Stake 1</string>
        </property>
       </widget>
      </item>
-     <item row="3" column="1">
+     <item row="4" column="1">
       <widget class="QDoubleSpinBox" name="txtStake">
        <property name="locale">
         <locale language="English" country="UnitedStates"/>
@@ -86,21 +93,32 @@
        </property>
       </widget>
      </item>
-     <item row="4" column="1">
+     <item row="5" column="1">
+      <widget class="Line" name="line">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="1">
+      <widget class="QLabel" name="lblInterface">
+       <property name="text">
+        <string>Interfaz</string>
+       </property>
+      </widget>
+     </item>
+     <item row="7" column="0">
+      <widget class="QLabel" name="lblCoin">
+       <property name="text">
+        <string>Moneda</string>
+       </property>
+      </widget>
+     </item>
+     <item row="7" column="1">
+      <widget class="QLineEdit" name="txtCoin"/>
+     </item>
+     <item row="8" column="1">
       <layout class="QGridLayout" name="gridLayout_2">
-       <item row="2" column="3">
-        <widget class="QPushButton" name="btnAccept">
-         <property name="maximumSize">
-          <size>
-           <width>100</width>
-           <height>16777215</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>Aceptar</string>
-         </property>
-        </widget>
-       </item>
        <item row="2" column="2">
         <widget class="QPushButton" name="btnCancel">
          <property name="maximumSize">
@@ -126,6 +144,19 @@
           </size>
          </property>
         </spacer>
+       </item>
+       <item row="2" column="3">
+        <widget class="QPushButton" name="btnAccept">
+         <property name="maximumSize">
+          <size>
+           <width>100</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Aceptar</string>
+         </property>
+        </widget>
        </item>
        <item row="2" column="4">
         <spacer name="horizontalSpacer_3">

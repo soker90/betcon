@@ -17,7 +17,7 @@ def str_to_float(sValue):
 
 def paint_row(item, profit, result=None):
 	if isstring(profit):
-		profit = float(profit)
+		profit = float(profit[:-1])
 
 	profit = float(profit)
 	if result == str(0):

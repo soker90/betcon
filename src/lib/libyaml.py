@@ -8,6 +8,7 @@ class LibYaml:
 		self.directory = directory
 		self.config = self.load()
 		self.stake = self.config["stake"]
+		self.interface = self.config["interface"]
 
 	def load(self):
 		if not os.path.exists(self.directory):
@@ -19,7 +20,7 @@ class LibYaml:
 		return config
 
 	def initConfig(self):
-		data = {'stake': {'percentage': 1.0, 'stake': 0, 'type': 1}}
+		data = {'stake': {'percentage': 1.0, 'stake': 0, 'type': 1}, 'interface': {'coin': '€'}}
 
 		stream = open(self.directory, 'w')
 		yaml.dump(data, stream, default_flow_style=False)

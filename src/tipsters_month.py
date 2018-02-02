@@ -9,6 +9,7 @@ from bbdd import Bbdd
 from func_aux import numberToMonth
 from gettext import gettext as _
 import gettext
+from libyaml import LibYaml
 
 
 class TipstersMonth(QWidget):
@@ -22,6 +23,9 @@ class TipstersMonth(QWidget):
 		self.mainWindows.setWindowTitle(_("Tipsters - Payment history") + " | Betcon v" + mainWindows.version)
 		self.treeMain.header().hideSection(0)
 		self.treeConjunta.header().hideSection(0)
+
+		self.coin = LibYaml().interface["coin"]
+
 		self.translate()
 		self.initTree()
 
@@ -54,7 +58,7 @@ class TipstersMonth(QWidget):
 			month = numberToMonth(i[1]+1)
 			tipster = bd.getValue(i[3], "tipster")
 			money = i[4]
-			item = QTreeWidgetItem([str(id), str(year), str(month), str(tipster), str(money)])
+			item = QTreeWidgetItem([str(id), str(year), str(month), str(tipster), str(money) + self.coin])
 			items.append(item)
 
 		self.treeMain.addTopLevelItems(items)
@@ -72,7 +76,7 @@ class TipstersMonth(QWidget):
 				month = numberToMonth(i[2] + 1)
 				name = i[1]
 				money = i[4]
-				item = QTreeWidgetItem([str(id), str(year), str(month), str(name), str(money)])
+				item = QTreeWidgetItem([str(id), str(year), str(month), str(name), str(money) + self.coin])
 				items.append(item)
 
 			self.treeConjunta.addTopLevelItems(items)

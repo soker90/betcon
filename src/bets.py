@@ -9,6 +9,7 @@ from bbdd import Bbdd
 from func_aux import numberToResult, paint_row
 from gettext import gettext as _
 import gettext
+from libyaml import LibYaml
 
 
 class Bets(QWidget):
@@ -21,6 +22,8 @@ class Bets(QWidget):
 		mainWindows.diconnectActions()
 		mainWindows.aNew.triggered.connect(mainWindows.newBet)
 		self.mainWindows.setWindowTitle(_("Home") + " | Betcon v" + mainWindows.version)
+
+		self.coin = LibYaml().interface["coin"]
 		self.treeMain.header().hideSection(1)
 		self.initTree()
 		self.treeMain.itemSelectionChanged.connect(self.changeItem)
@@ -62,8 +65,8 @@ class Bets(QWidget):
 			quota = i[16]
 
 			item = QTreeWidgetItem([str(index), str(id), str(date), "", str(competition), str(region), player1,
-									player2, pick, "", market, tipster, str(stake), str(one), str(bet), str(quota),
-									str(result), str(profit)])
+									player2, pick, "", market, tipster, str(stake), str(one) + self.coin, str(bet) + self.coin,
+									str(quota), str(result), str(profit) + self.coin])
 
 			item = paint_row(item, profit, result)
 

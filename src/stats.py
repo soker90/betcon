@@ -8,6 +8,7 @@ from datetime import datetime
 from func_aux import key_from_value
 from gettext import gettext as _
 import gettext
+from libyaml import LibYaml
 
 
 class Stats(QWidget):
@@ -18,6 +19,8 @@ class Stats(QWidget):
 		gettext.bindtextdomain("betcon", "../lang/mo")
 		self.mainWindows = mainWindows
 		self.mainWindows.setWindowTitle(_("Stats") + " | Betcon v" + mainWindows.version)
+
+		self.coin = LibYaml().interface["coin"]
 		self.translate()
 
 		self.initData()
@@ -68,11 +71,11 @@ class Stats(QWidget):
 		month = key_from_value(self.months, sMonth)
 
 		data = LibStats.getMonth(year, month)
-		self.txtApostado.setText(str(data[0]))
-		self.txtGanancias.setText(str(data[1]))
-		self.txtPerdidas.setText(str(data[2]))
-		self.txtBeneficio.setText(str(data[3]))
-		self.txtPendiente.setText(str(data[4]))
+		self.txtApostado.setText(str(data[0]) + self.coin)
+		self.txtGanancias.setText(str(data[1]) + self.coin)
+		self.txtPerdidas.setText(str(data[2]) + self.coin)
+		self.txtBeneficio.setText(str(data[3]) + self.coin)
+		self.txtPendiente.setText(str(data[4]) + self.coin)
 		self.txtYield.setText(str(data[5]))
 		self.txtCuota.setText(str(data[6]))
 		self.txtApuestas.setText(str(data[7]))
@@ -80,7 +83,7 @@ class Stats(QWidget):
 		self.txtFallos.setText(str(data[9]))
 		self.txtNulos.setText(str(data[10]))
 		self.txtAcierto.setText(str(data[11]))
-		self.txtApuestaMedia.setText(str(data[12]))
+		self.txtApuestaMedia.setText(str(data[12]) + self.coin)
 
 
 	def getMonths(self, year):
