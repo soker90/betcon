@@ -39,7 +39,7 @@ class NewBookie(QWidget):
     def accept(self):
 
         bookie = Bookie()
-        bookie.setAll(self.txtName.text())
+        bookie.setAll(self.txtName.text(), self.txtCountry.text())
         err = bookie.insert()
 
         if err == 0:

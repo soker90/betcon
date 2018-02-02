@@ -106,7 +106,8 @@ class NewBet(QWidget):
 		for i in data:
 			id = i[0]
 			name = i[1]
-			self.cmbBookie.addItem(name)
+			country = i[2]
+			self.cmbBookie.addItem(name + ' (' + country + ')')
 			self.bookieIndexToId[index] = id
 			index += 1
 

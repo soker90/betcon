@@ -29,7 +29,7 @@ class Bookies(QWidget):
 
 	def translate(self):
 
-		header = [_("Name"), "index"]
+		header = [_("Name"), "index", _("Country")]
 
 		self.treeMain.setHeaderLabels(header)
 
@@ -38,7 +38,7 @@ class Bookies(QWidget):
 
 		items = []
 		for i in data:
-			item = QTreeWidgetItem([i.name, str(i.id)])
+			item = QTreeWidgetItem([i.name, str(i.id), i.country])
 			items.append(item)
 
 		self.treeMain.addTopLevelItems(items)
@@ -47,7 +47,7 @@ class Bookies(QWidget):
 
 	def changeItem(self):
 		self.itemSelected = self.treeMain.currentItem().text(1)
-		self.mainWindows.enableActions() if int(self.itemSelected) > 7 else self.mainWindows.enableTools()
+		self.mainWindows.enableActions()
 
 	def editItem(self):
 		self.mainWindows.editBookie(self.itemSelected)

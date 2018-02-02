@@ -195,13 +195,6 @@ class Bbdd:
 			except Exception as e:
 				print("Error en BBDD: {0}".format(e))
 
-			'''try:
-				query = "ALTER TABLE bookie ADD `country` VARCHAR(150) default 'España'"
-
-				self.cursor.execute(query)
-				self.bd.commit()
-			except Exception as e:
-				print("Error en BBDD: {0}".format(e))'''
 
 			try:
 				query = "create table IF NOT EXISTS variable (key VARCHAR(20) primary key, 	value VARCHAR(100));"
@@ -237,6 +230,14 @@ class Bbdd:
 				query += "UPDATE bet SET result=5 WHERE result='Medio Fallada'; "
 				query += "UPDATE bet SET result=6 WHERE result='Retirada'; "
 				self.cursor.executescript(query)
+				self.bd.commit()
+			except Exception as e:
+				print("Error en BBDD: {0}".format(e))
+
+			try:
+				query = "ALTER TABLE bookie ADD `country` VARCHAR(150) default 'España'"
+
+				self.cursor.execute(query)
 				self.bd.commit()
 			except Exception as e:
 				print("Error en BBDD: {0}".format(e))

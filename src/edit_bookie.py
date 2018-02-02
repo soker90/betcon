@@ -31,6 +31,7 @@ class EditBookie(QWidget):
 
     def initData(self):
         self.txtName.setText(self.item.name)
+        self.txtCountry.setText(self.item.country)
 
     def close(self):
             self.mainWindows.setCentralWidget(Bookies(self.mainWindows))
@@ -40,6 +41,7 @@ class EditBookie(QWidget):
 
     def accept(self):
         self.item.setName(self.txtName.text())
+        self.item.setCountry(self.txtCountry.text())
         err = self.item.update()
 
         if err == 0:

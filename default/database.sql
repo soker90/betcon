@@ -89,24 +89,25 @@ INSERT INTO competition (id, name, region, sport) VALUES (20, '', 1, 20);
 CREATE TABLE bookie
 (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name VARCHAR(50) NOT NULL
+    name VARCHAR(50) NOT NULL,
+    country VARCHAR(150)
 );
 CREATE UNIQUE INDEX bookie_name_uindex ON bookie (name);
 
-INSERT INTO bookie(name) VALUES ('Bet365');
-INSERT INTO bookie(name) VALUES ('Betfair');
-INSERT INTO bookie(name) VALUES ('Sportium');
-INSERT INTO bookie(name) VALUES ('Bwin');
-INSERT INTO bookie(name) VALUES ('888sport');
-INSERT INTO bookie(name) VALUES ('William Hill');
-INSERT INTO bookie(name) VALUES ('Luckia');
-INSERT INTO bookie(name) VALUES ('Marca Apuestas');
-INSERT INTO bookie(name) VALUES ('Paf');
-INSERT INTO bookie(name) VALUES ('Interwetten');
-INSERT INTO bookie(name) VALUES ('Wanabet');
-INSERT INTO bookie(name) VALUES ('Codere');
-INSERT INTO bookie(name) VALUES ('Suertia');
-INSERT INTO bookie(name) VALUES ('Circus');
+INSERT INTO bookie(name, country) VALUES ('Bet365', 'España');
+INSERT INTO bookie(name, country) VALUES ('Betfair', 'España');
+INSERT INTO bookie(name, country) VALUES ('Sportium', 'España');
+INSERT INTO bookie(name, country) VALUES ('Bwin', 'España');
+INSERT INTO bookie(name, country) VALUES ('888sport', 'España');
+INSERT INTO bookie(name, country) VALUES ('William Hill', 'España');
+INSERT INTO bookie(name, country) VALUES ('Luckia', 'España');
+INSERT INTO bookie(name, country) VALUES ('Marca Apuestas', 'España');
+INSERT INTO bookie(name, country) VALUES ('Paf', 'España');
+INSERT INTO bookie(name, country) VALUES ('Interwetten', 'España');
+INSERT INTO bookie(name, country) VALUES ('Wanabet', 'España');
+INSERT INTO bookie(name, country) VALUES ('Codere', 'España');
+INSERT INTO bookie(name, country) VALUES ('Suertia', 'España');
+INSERT INTO bookie(name, country) VALUES ('Circus', 'España');
 
 CREATE  TABLE market
 (

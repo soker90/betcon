@@ -7,14 +7,20 @@ class Bookie:
 	def setId(self, id):
 		self.id = id
 		bd = Bbdd()
-		self.name = bd.getValue(self.id, "bookie")
+
+		self.name, self.country = bd.select("bookie", None, "id=" + str(self.id), "name, country")[0]
+
 		bd.close()
 
 	def setName(self, name):
 		self.name = name
 
-	def setAll(self, name):
+	def setCountry(self, country):
+		self.country = country
+
+	def setAll(self, name, country):
 		self.setName(name)
+		self.setCountry(country)
 
 	#Métodos auxiliares
 
@@ -28,7 +34,7 @@ class Bookie:
 	def insert(self):
 		if not self.isEmpty():
 			bd = Bbdd()
-			msg = bd.insert(["name"], [self.name], "bookie")
+			msg = bd.insert(["name", "country"], [self.name, self.country], "bookie")
 			bd.close()
 		else:
 			msg = "Faltan datos por introducir"
@@ -38,7 +44,7 @@ class Bookie:
 	def update(self):
 		if not self.isEmpty():
 			bd = Bbdd()
-			msg = bd.update(["name"], [self.name], "bookie", "id="+self.id)
+			msg = bd.update(["name", "country"], [self.name, self.country], "bookie", "id="+self.id)
 			bd.close()
 			if msg != 0:
 				msg = "Se ha producido un error al actualizar la BBDD"
