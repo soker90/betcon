@@ -48,7 +48,7 @@ class Bets(QWidget):
 		for i in data:
 			index += 1
 			id = i[0]
-			date = i[1]
+			date = i[1][:-3]
 			competition = bd.getValue(i[3], "competition")
 			region = bd.getValue(i[4], "region")
 			player1 = i[5]
