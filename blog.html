@@ -16,9 +16,9 @@ permalink: /blog/
                     <img class="img-responsive" src="{{ "/assets/img/blog/" | prepend: site.baseurl }}{{ post.img }}">
                 </a>    
                 <a href="{{ post.url | prepend: site.baseurl }}"><h3 class="ctitle">{{ post.title }}</h3></a>
-                <p><csmall>{{ post.date | date: "%b %-d, %Y" }}. | By: {{ post.author }}</csmall></p>
+                <p><csmall>{{ post.date | date: "%d/%m/%Y"" }}. | Por: {{ post.author }}
+                    <a href="{{ post.url | prepend: site.baseurl }}#disqus_thread"></a></csmall></p>
                 {{ post.excerpt }}
-                <a href="{{ post.url | prepend: site.baseurl }}#disqus_thread"></a>
                 <!-- <p><a href="{{ post.url | prepend: site.baseurl }}">[Leer mas]</a></p> -->
                 <div class="hline"></div>
 
