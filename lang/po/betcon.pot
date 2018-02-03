@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-02 14:49+0100\n"
+"POT-Creation-Date: 2018-02-03 19:56+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -62,7 +62,7 @@ msgid "Accept"
 msgstr ""
 
 #: src/add_money.py:60 src/edit_conjunta.py:103 src/new_bank.py:97
-#: src/new_bet.py:324 src/new_bonus.py:86 src/new_bookie.py:46
+#: src/new_bet.py:325 src/new_bonus.py:86 src/new_bookie.py:46
 #: src/new_competition.py:86 src/new_conjunta.py:96 src/new_market.py:47
 #: src/new_region.py:45 src/new_sport.py:46 src/new_tipster_month.py:70
 #: src/new_tipster.py:46
@@ -85,12 +85,12 @@ msgstr ""
 msgid "Tipsters"
 msgstr ""
 
-#: src/banks.py:42 src/stats_bookie.py:33 src/stats.py:38 src/stats_sport.py:32
+#: src/banks.py:42 src/stats_bookie.py:33 src/stats.py:39 src/stats_sport.py:32
 #: src/stats_stake.py:32
 msgid "Profits"
 msgstr ""
 
-#: src/banks.py:43 src/stats.py:40
+#: src/banks.py:43 src/stats.py:41
 msgid "Yield"
 msgstr ""
 
@@ -269,6 +269,36 @@ msgstr ""
 
 #: src/edit_bet.py:358
 msgid "Modified bet."
+msgstr ""
+
+#: src/edit_bet.py:435 src/new_bet.py:402 src/stats.py:40
+#: src/lib/func_aux.py:74
+msgid "Pending"
+msgstr ""
+
+#: src/edit_bet.py:435 src/new_bet.py:402 src/lib/func_aux.py:75
+msgid "Successful"
+msgstr ""
+
+#: src/edit_bet.py:435 src/new_bet.py:402 src/lib/func_aux.py:76
+msgid "Failed"
+msgstr ""
+
+#: src/edit_bet.py:435 src/new_bet.py:402 src/stats.py:46
+#: src/lib/func_aux.py:77
+msgid "Null"
+msgstr ""
+
+#: src/edit_bet.py:435 src/new_bet.py:402 src/lib/func_aux.py:78
+msgid "Half Successful"
+msgstr ""
+
+#: src/edit_bet.py:435 src/new_bet.py:402 src/lib/func_aux.py:79
+msgid "Half Failed"
+msgstr ""
+
+#: src/edit_bet.py:435 src/new_bet.py:402 src/lib/func_aux.py:80
+msgid "Cash out"
 msgstr ""
 
 #: src/edit_bonus.py:25
@@ -517,7 +547,7 @@ msgstr ""
 msgid "Add bet"
 msgstr ""
 
-#: src/new_bet.py:324
+#: src/new_bet.py:325
 msgid "New bet added."
 msgstr ""
 
@@ -712,19 +742,19 @@ msgstr ""
 msgid "Error trying to load the data."
 msgstr ""
 
-#: src/stats_bookie.py:33 src/stats_market.py:33 src/stats.py:42
+#: src/stats_bookie.py:33 src/stats_market.py:33 src/stats.py:43
 #: src/stats_region.py:32 src/stats_sport.py:32 src/stats_stake.py:32
 #: src/stats_tipster.py:33
 msgid "Bets"
 msgstr ""
 
-#: src/stats_bookie.py:33 src/stats_market.py:33 src/stats.py:46
+#: src/stats_bookie.py:33 src/stats_market.py:33 src/stats.py:47
 #: src/stats_region.py:32 src/stats_sport.py:32 src/stats_stake.py:32
 #: src/stats_tipster.py:33
 msgid "Success"
 msgstr ""
 
-#: src/stats_bookie.py:33 src/stats_market.py:33 src/stats.py:35
+#: src/stats_bookie.py:33 src/stats_market.py:33 src/stats.py:36
 #: src/stats_region.py:32 src/stats_sport.py:32 src/stats_stake.py:32
 #: src/stats_tipster.py:33
 msgid "Money Bet"
@@ -745,38 +775,34 @@ msgid "Stats of markets"
 msgstr ""
 
 #: src/stats.py:34
+msgid "Day"
+msgstr ""
+
+#: src/stats.py:35
 msgid "Balance of the bets of the month"
 msgstr ""
 
-#: src/stats.py:36
+#: src/stats.py:37
 msgid "Winnings"
 msgstr ""
 
-#: src/stats.py:37
+#: src/stats.py:38
 msgid "Losses"
 msgstr ""
 
-#: src/stats.py:39 src/lib/func_aux.py:74
-msgid "Pending"
-msgstr ""
-
-#: src/stats.py:41
+#: src/stats.py:42
 msgid "Average Quota"
 msgstr ""
 
-#: src/stats.py:43
+#: src/stats.py:44
 msgid "Won"
 msgstr ""
 
-#: src/stats.py:44
+#: src/stats.py:45
 msgid "Lost"
 msgstr ""
 
-#: src/stats.py:45 src/lib/func_aux.py:77
-msgid "Null"
-msgstr ""
-
-#: src/stats.py:47
+#: src/stats.py:48
 msgid "Average Bet"
 msgstr ""
 
@@ -827,24 +853,4 @@ msgstr ""
 #: src/tipsters.py:95
 msgid ""
 "Are you sure you want to eliminate this tipster and all associated bets?"
-msgstr ""
-
-#: src/lib/func_aux.py:75
-msgid "Successful"
-msgstr ""
-
-#: src/lib/func_aux.py:76
-msgid "Failed"
-msgstr ""
-
-#: src/lib/func_aux.py:78
-msgid "Half Successful"
-msgstr ""
-
-#: src/lib/func_aux.py:79
-msgid "Half Failed"
-msgstr ""
-
-#: src/lib/func_aux.py:80
-msgid "Cash out"
 msgstr ""
