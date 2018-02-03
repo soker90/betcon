@@ -285,6 +285,7 @@ class NewBet(QWidget):
 
 		# cmbResult
 		data.append(self.cmbResult.currentIndex())
+		print(str(self.cmbResult.currentIndex()))
 
 		data.append(str(self.txtProfit.text()))
 		data.append(str(self.txtBet.text()))
@@ -398,7 +399,7 @@ class NewBet(QWidget):
 		self.picks[self.contComb].setMaximumSize(200, 50)
 		self.pnlPick.addWidget(self.picks[self.contComb])
 		self.results.append(QComboBox())
-		self.results[self.contComb].addItems(["Pendiente", "Acertada", "Fallada", "Nula", "Medio Acertada", "Medio Fallada", "Retirada"])
+		self.results[self.contComb].addItems([_("Pending"), _("Successful"), _("Failed"), _("Null"), _("Half Successful"), _("Half Failed"), _("Cash out")])
 		self.pnlResult.addWidget(self.results[self.contComb])
 		self.buttons.append(QPushButton())
 		self.buttons[self.contComb].setText("X")

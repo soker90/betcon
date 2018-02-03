@@ -1,5 +1,5 @@
 import sys, os, inspect
-from PyQt5.QtWidgets import QMessageBox, QWidget, QTreeWidgetItem
+from PyQt5.QtWidgets import QMessageBox, QWidget, QTreeWidgetItem, QComboBox
 from PyQt5 import uic
 directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
 sys.path.append(directory + "/lib")
@@ -31,6 +31,7 @@ class Stats(QWidget):
 
 		self.lblYear.setText(_("Year"))
 		self.lblMonth.setText(_("Month"))
+		self.lblDay.setText(_("Day"))
 		self.lblBalance.setText(_("Balance of the bets of the month"))
 		self.lblBet.setText(_("Money Bet"))
 		self.lblWinnings.setText(_("Winnings"))
@@ -63,12 +64,19 @@ class Stats(QWidget):
 		year = self.cmbYear.currentText()
 		self.cmbMonth.clear()
 		self.cmbMonth.addItems(self.getMonths(year))
+		try:
+			self.cmbMonth.setCurrentIndex(1)
+		except:
+			self.cmbMonth.setCurrentIndex(0)
 		self.updateStats()
 
 	def updateStats(self):
 		year = self.cmbYear.currentText()
 		sMonth = self.cmbMonth.currentText()
-		month = key_from_value(self.months, sMonth)
+		if sMonth is not "":
+			month = key_from_value(self.months, sMonth)
+		else:
+			month = ""
 
 		data = LibStats.getMonth(year, month)
 		self.txtApostado.setText(str(data[0]) + self.coin)
@@ -87,7 +95,7 @@ class Stats(QWidget):
 
 
 	def getMonths(self, year):
-		sMonths = []
+		sMonths = [""]
 		for i in self.years[year]:
 			sMonths.append(self.months[i])
 		return sMonths

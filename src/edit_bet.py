@@ -432,7 +432,7 @@ class EditBet(QWidget):
 		self.picks[self.contComb].setMaximumSize(200, 50)
 		self.pnlPick.addWidget(self.picks[self.contComb])
 		self.results.append(QComboBox())
-		self.results[self.contComb].addItems(["Pendiente", "Acertada", "Fallada", "Nula", "Medio Acertada", "Medio Fallada", "Retirada"])
+		self.results[self.contComb].addItems([_("Pending"), _("Successful"), _("Failed"), _("Null"), _("Half Successful"), _("Half Failed"), _("Cash out")])
 		self.pnlResult.addWidget(self.results[self.contComb])
 		self.buttons.append(QPushButton())
 		self.buttons[self.contComb].setText("X")
@@ -613,17 +613,7 @@ class EditBet(QWidget):
 			self.players2[i].setCurrentText(bet[7])
 			self.picks[i].setText(bet[8])
 
-			result = {
-				"Pendiente": 0,
-				"Acertada": 1,
-				"Fallada": 2,
-				"Nula": 3,
-				"Medio Acertada": 4,
-				"Medio Fallada": 5,
-				"Retirada": 6
-			}[bet[9]]
-
-			self.results[i].setCurrentIndex(result)
+			self.results[i].setCurrentIndex(int(bet[9]))
 			i += 1
 
 		bd.close()
