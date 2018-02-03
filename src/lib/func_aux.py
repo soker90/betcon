@@ -74,7 +74,7 @@ def numberToResult(index):
 		0: _("Pending"),
 		1: _("Successful"),
 		2: _("Failed"),
-		3: _("NulNul"),
+		3: _("Null"),
 		4: _("Half Successful"),
 		5: _("Half Failed"),
 		6: _("Cash out")
