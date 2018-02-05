@@ -4,6 +4,7 @@ from PyQt5.QtWidgets import QLineEdit, QMessageBox, QWidget, QComboBox, QAction,
 from PyQt5 import uic
 from bets import Bets
 from PyQt5.QtCore import QDateTime
+
 directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
 sys.path.append(directory + "/lib")
 from bbdd import Bbdd
@@ -11,6 +12,7 @@ from func_aux import str_to_bool, key_from_value
 from gettext import gettext as _
 import gettext
 from new_bet import NewBet
+from libyaml import LibYaml
 
 
 class EditBet(QWidget):
@@ -80,6 +82,11 @@ class EditBet(QWidget):
 			if id == idBd:
 				idCmb = index
 			name = i[1]
+			country = i[2]
+
+			if LibYaml().interface['bookieCountry'] == 'Y':
+				name += ' (' + country + ')'
+
 			self.cmbBookie.addItem(name)
 			self.bookieIndexToId[index] = id
 			index += 1

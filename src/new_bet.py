@@ -107,7 +107,11 @@ class NewBet(QWidget):
 			id = i[0]
 			name = i[1]
 			country = i[2]
-			self.cmbBookie.addItem(name + ' (' + country + ')')
+
+			if LibYaml().interface['bookieCountry'] == 'Y':
+				name += ' (' + country + ')'
+
+			self.cmbBookie.addItem(name)
 			self.bookieIndexToId[index] = id
 			index += 1
 

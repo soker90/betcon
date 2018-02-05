@@ -37,6 +37,10 @@ class Settings(QWidget):
 		self.btnCalc.clicked.connect(self.calcBank)
 
 		self.txtCoin.setText(self.config.interface["coin"])
+		if self.config.interface['bookieCountry'] == 'Y':
+			self.chkCountryYes.setChecked(True)
+		else:
+			self.chkCountryNo.setChecked(True)
 
 
 	def translate(self):
@@ -49,6 +53,9 @@ class Settings(QWidget):
 
 		self.lblInterface.setText(_("Interface"))
 		self.lblCoin.setText(_("Coin"))
+		self.lblCountry.setText(_("Show countries of the bookies"))
+		self.chkCountryYes.setText(_("Yes"))
+		self.chkCountryNo.setText(_("No"))
 
 		self.btnCalc.setText(_("Calculate"))
 		self.btnCancel.setText(_("Cancel"))
@@ -95,6 +102,7 @@ class Settings(QWidget):
 		stake = self.txtStake.text()[:-1]
 		self.config.stake["stake"] = float(stake)
 		self.config.interface['coin'] = self.txtCoin.text()
+		self.config.interface['bookieCountry'] = 'Y' if self.chkCountryYes.isChecked() else 'N'
 		self.config.save()
 		self.close()
 
