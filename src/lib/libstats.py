@@ -18,6 +18,11 @@ class LibStats:
 		return years, months
 
 	@staticmethod
+	def getDaysOfMonth(year, month):
+		days = Bbdd.getDaysOfMonth("bet", year, month)
+		return days
+
+	@staticmethod
 	def getTipster(year=None, month=None):
 		if year is not None:
 			date = str(year)+"-"+str(month)
@@ -294,9 +299,11 @@ class LibStats:
 		return data
 
 	@staticmethod
-	def getMonth(year=None, month=None, day= None):
-		date = str(year) + "-" + str(month)
-		if day is not None:
+	def getMonth(year=None, month=None, day=None):
+		date = str(year)
+		if month is not None and month is not "":
+			date += "-" + str(month)
+		if day is not None and day is not "":
 			date += "-" + day
 		sql = 'select SUM(bet), ' \
 			  '(select SUM(profit) from bet as b1 WHERE profit>0 AND b1.date LIKE "' + date + '%"), ' \
@@ -317,7 +324,7 @@ class LibStats:
 
 		if datasql[0] == 0:
 			return [0, 0, 0, 0, 0, "0%", 0, 0, 0, 0, 0, "0%", 0]
-
+		print(str(datasql[3]))
 		yi = "{0:.2f}%".format(round(((datasql[3]+bonus)/datasql[0])*100, 2))
 		quota = float("{0:.2f}".format(datasql[5], 2))
 		bet = float("{0:.2f}".format(datasql[10], 2))

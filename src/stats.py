@@ -5,7 +5,7 @@ directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspe
 sys.path.append(directory + "/lib")
 from libstats import LibStats
 from datetime import datetime
-from func_aux import key_from_value
+from func_aux import key_from_value, monthToNumber
 from gettext import gettext as _
 import gettext
 from libyaml import LibYaml
@@ -25,7 +25,8 @@ class Stats(QWidget):
 
 		self.initData()
 		self.cmbYear.activated.connect(self.updateMonths)
-		self.cmbMonth.activated.connect(self.updateStats)
+		self.cmbMonth.activated.connect(self.updateDays)
+		self.cmbDay.activated.connect(self.updateStats)
 
 	def translate(self):
 
@@ -51,12 +52,14 @@ class Stats(QWidget):
 	def initData(self):
 		self.years, self.months = LibStats.getYears()
 		self.cmbYear.addItems(self.years.keys())
+		self.cmbDay.addItem("")
 
 		try:
 			firstKey = next(iter(self.years))
 			self.cmbMonth.addItems(self.getMonths(firstKey))
 
 			self.updateMonths()
+			self.updateDays()
 		except:
 			self.setEnabled(False)
 
@@ -64,21 +67,39 @@ class Stats(QWidget):
 		year = self.cmbYear.currentText()
 		self.cmbMonth.clear()
 		self.cmbMonth.addItems(self.getMonths(year))
+
 		try:
 			self.cmbMonth.setCurrentIndex(1)
 		except:
 			self.cmbMonth.setCurrentIndex(0)
+		self.updateDays()
+
+	def updateDays(self):
+		year = self.cmbYear.currentText()
+		month = self.cmbMonth.currentText()
+		self.cmbDay.clear()
+		if month is not "" and month is not None:
+			try:
+				month = monthToNumber(month)
+
+				self.cmbDay.addItem("")
+				self.cmbDay.addItems(LibStats.getDaysOfMonth(year, month))
+			except:
+				pass
+
 		self.updateStats()
 
 	def updateStats(self):
 		year = self.cmbYear.currentText()
 		sMonth = self.cmbMonth.currentText()
-		if sMonth is not "":
+		if sMonth is not "" and sMonth is not None:
 			month = key_from_value(self.months, sMonth)
+			day = self.cmbDay.currentText()
 		else:
 			month = ""
+			day = ""
 
-		data = LibStats.getMonth(year, month)
+		data = LibStats.getMonth(year, month, day)
 		self.txtApostado.setText(str(data[0]) + self.coin)
 		self.txtGanancias.setText(str(data[1]) + self.coin)
 		self.txtPerdidas.setText(str(data[2]) + self.coin)

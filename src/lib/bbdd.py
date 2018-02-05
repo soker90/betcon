@@ -271,5 +271,17 @@ class Bbdd:
 
 		return years
 
+	@staticmethod
+	def getDaysOfMonth(table, year, month):
+		bd = Bbdd()
+		data = bd.select(table, "date DESC", "date LIKE '"+ year + "-" + month +"-%'", "DISTINCT strftime('%d', date)")
+		bd.close()
+
+		days=[]
+		for day in data:
+			days.append(day[0])
+
+		return days
+
 
 

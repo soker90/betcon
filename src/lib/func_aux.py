@@ -66,6 +66,25 @@ def numberToMonth(index):
 
 	return month
 
+def monthToNumber(index):
+
+	month = {
+		_("January"): "01",
+		_("February"): "02",
+		_("March"): "03",
+		_("April"): "04",
+		_("May"): "05",
+		_("June"): "06",
+		_("July"): "07",
+		_("August"): "08",
+		_("September"): "09",
+		_("October"): "10",
+		_("November"): "11",
+		_("December"): "12"
+	}[index]
+
+	return month
+
 def numberToResult(index):
 
 	index = int(index)

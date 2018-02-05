@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-03 19:56+0100\n"
+"POT-Creation-Date: 2018-02-05 17:32+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -85,12 +85,12 @@ msgstr ""
 msgid "Tipsters"
 msgstr ""
 
-#: src/banks.py:42 src/stats_bookie.py:33 src/stats.py:39 src/stats_sport.py:32
+#: src/banks.py:42 src/stats_bookie.py:33 src/stats.py:40 src/stats_sport.py:32
 #: src/stats_stake.py:32
 msgid "Profits"
 msgstr ""
 
-#: src/banks.py:43 src/stats.py:41
+#: src/banks.py:43 src/stats.py:42
 msgid "Yield"
 msgstr ""
 
@@ -271,33 +271,33 @@ msgstr ""
 msgid "Modified bet."
 msgstr ""
 
-#: src/edit_bet.py:435 src/new_bet.py:402 src/stats.py:40
-#: src/lib/func_aux.py:74
+#: src/edit_bet.py:435 src/new_bet.py:402 src/stats.py:41
+#: src/lib/func_aux.py:93
 msgid "Pending"
 msgstr ""
 
-#: src/edit_bet.py:435 src/new_bet.py:402 src/lib/func_aux.py:75
+#: src/edit_bet.py:435 src/new_bet.py:402 src/lib/func_aux.py:94
 msgid "Successful"
 msgstr ""
 
-#: src/edit_bet.py:435 src/new_bet.py:402 src/lib/func_aux.py:76
+#: src/edit_bet.py:435 src/new_bet.py:402 src/lib/func_aux.py:95
 msgid "Failed"
 msgstr ""
 
-#: src/edit_bet.py:435 src/new_bet.py:402 src/stats.py:46
-#: src/lib/func_aux.py:77
+#: src/edit_bet.py:435 src/new_bet.py:402 src/stats.py:47
+#: src/lib/func_aux.py:96
 msgid "Null"
 msgstr ""
 
-#: src/edit_bet.py:435 src/new_bet.py:402 src/lib/func_aux.py:78
+#: src/edit_bet.py:435 src/new_bet.py:402 src/lib/func_aux.py:97
 msgid "Half Successful"
 msgstr ""
 
-#: src/edit_bet.py:435 src/new_bet.py:402 src/lib/func_aux.py:79
+#: src/edit_bet.py:435 src/new_bet.py:402 src/lib/func_aux.py:98
 msgid "Half Failed"
 msgstr ""
 
-#: src/edit_bet.py:435 src/new_bet.py:402 src/lib/func_aux.py:80
+#: src/edit_bet.py:435 src/new_bet.py:402 src/lib/func_aux.py:99
 msgid "Cash out"
 msgstr ""
 
@@ -576,14 +576,14 @@ msgid "New Joint Purchase"
 msgstr ""
 
 #: src/new_conjunta.py:32 src/new_tipster_month.py:26 src/stats_bookie.py:39
-#: src/stats_market.py:39 src/stats.py:33 src/stats_region.py:38
+#: src/stats_market.py:39 src/stats.py:34 src/stats_region.py:38
 #: src/stats_sport.py:38 src/stats_stake.py:38 src/stats_tipster.py:39
 #: src/tipsters_month.py:44
 msgid "Month"
 msgstr ""
 
 #: src/new_conjunta.py:33 src/new_tipster_month.py:27 src/stats_bookie.py:38
-#: src/stats_market.py:38 src/stats.py:32 src/stats_region.py:37
+#: src/stats_market.py:38 src/stats.py:33 src/stats_region.py:37
 #: src/stats_sport.py:37 src/stats_stake.py:37 src/stats_tipster.py:38
 #: src/tipsters_month.py:44
 msgid "Year"
@@ -598,62 +598,62 @@ msgid "Selected"
 msgstr ""
 
 #: src/new_conjunta.py:39 src/new_tipster_month.py:31 src/lib/func_aux.py:53
-#: src/lib/libstats.py:15
+#: src/lib/func_aux.py:72 src/lib/libstats.py:15
 msgid "January"
 msgstr ""
 
 #: src/new_conjunta.py:39 src/new_tipster_month.py:31 src/lib/func_aux.py:54
-#: src/lib/libstats.py:15
+#: src/lib/func_aux.py:73 src/lib/libstats.py:15
 msgid "February"
 msgstr ""
 
 #: src/new_conjunta.py:39 src/new_tipster_month.py:31 src/lib/func_aux.py:55
-#: src/lib/libstats.py:15
+#: src/lib/func_aux.py:74 src/lib/libstats.py:15
 msgid "March"
 msgstr ""
 
 #: src/new_conjunta.py:39 src/new_tipster_month.py:31 src/lib/func_aux.py:56
-#: src/lib/libstats.py:15
+#: src/lib/func_aux.py:75 src/lib/libstats.py:15
 msgid "April"
 msgstr ""
 
 #: src/new_conjunta.py:39 src/new_tipster_month.py:31 src/lib/func_aux.py:57
-#: src/lib/libstats.py:15
+#: src/lib/func_aux.py:76 src/lib/libstats.py:15
 msgid "May"
 msgstr ""
 
 #: src/new_conjunta.py:39 src/new_tipster_month.py:31 src/lib/func_aux.py:58
-#: src/lib/libstats.py:15
+#: src/lib/func_aux.py:77 src/lib/libstats.py:15
 msgid "June"
 msgstr ""
 
 #: src/new_conjunta.py:39 src/new_tipster_month.py:31 src/lib/func_aux.py:59
-#: src/lib/libstats.py:15
+#: src/lib/func_aux.py:78 src/lib/libstats.py:15
 msgid "July"
 msgstr ""
 
 #: src/new_conjunta.py:40 src/new_tipster_month.py:32 src/lib/func_aux.py:60
-#: src/lib/libstats.py:15
+#: src/lib/func_aux.py:79 src/lib/libstats.py:15
 msgid "August"
 msgstr ""
 
 #: src/new_conjunta.py:40 src/new_tipster_month.py:32 src/lib/func_aux.py:61
-#: src/lib/libstats.py:16
+#: src/lib/func_aux.py:80 src/lib/libstats.py:16
 msgid "September"
 msgstr ""
 
 #: src/new_conjunta.py:40 src/new_tipster_month.py:32 src/lib/func_aux.py:62
-#: src/lib/libstats.py:16
+#: src/lib/func_aux.py:81 src/lib/libstats.py:16
 msgid "October"
 msgstr ""
 
 #: src/new_conjunta.py:40 src/new_tipster_month.py:32 src/lib/func_aux.py:63
-#: src/lib/libstats.py:16
+#: src/lib/func_aux.py:82 src/lib/libstats.py:16
 msgid "November"
 msgstr ""
 
 #: src/new_conjunta.py:40 src/new_tipster_month.py:32 src/lib/func_aux.py:64
-#: src/lib/libstats.py:16
+#: src/lib/func_aux.py:83 src/lib/libstats.py:16
 msgid "December"
 msgstr ""
 
@@ -742,19 +742,19 @@ msgstr ""
 msgid "Error trying to load the data."
 msgstr ""
 
-#: src/stats_bookie.py:33 src/stats_market.py:33 src/stats.py:43
+#: src/stats_bookie.py:33 src/stats_market.py:33 src/stats.py:44
 #: src/stats_region.py:32 src/stats_sport.py:32 src/stats_stake.py:32
 #: src/stats_tipster.py:33
 msgid "Bets"
 msgstr ""
 
-#: src/stats_bookie.py:33 src/stats_market.py:33 src/stats.py:47
+#: src/stats_bookie.py:33 src/stats_market.py:33 src/stats.py:48
 #: src/stats_region.py:32 src/stats_sport.py:32 src/stats_stake.py:32
 #: src/stats_tipster.py:33
 msgid "Success"
 msgstr ""
 
-#: src/stats_bookie.py:33 src/stats_market.py:33 src/stats.py:36
+#: src/stats_bookie.py:33 src/stats_market.py:33 src/stats.py:37
 #: src/stats_region.py:32 src/stats_sport.py:32 src/stats_stake.py:32
 #: src/stats_tipster.py:33
 msgid "Money Bet"
@@ -774,35 +774,35 @@ msgstr ""
 msgid "Stats of markets"
 msgstr ""
 
-#: src/stats.py:34
+#: src/stats.py:35
 msgid "Day"
 msgstr ""
 
-#: src/stats.py:35
+#: src/stats.py:36
 msgid "Balance of the bets of the month"
 msgstr ""
 
-#: src/stats.py:37
+#: src/stats.py:38
 msgid "Winnings"
 msgstr ""
 
-#: src/stats.py:38
+#: src/stats.py:39
 msgid "Losses"
 msgstr ""
 
-#: src/stats.py:42
+#: src/stats.py:43
 msgid "Average Quota"
 msgstr ""
 
-#: src/stats.py:44
+#: src/stats.py:45
 msgid "Won"
 msgstr ""
 
-#: src/stats.py:45
+#: src/stats.py:46
 msgid "Lost"
 msgstr ""
 
-#: src/stats.py:48
+#: src/stats.py:49
 msgid "Average Bet"
 msgstr ""
 
