@@ -1,5 +1,5 @@
 import sys, os, inspect
-from PyQt5.QtWidgets import QMessageBox, QWidget
+from PyQt5.QtWidgets import QMessageBox, QWidget, QFileDialog
 from PyQt5 import uic
 
 from new_bookie import NewBookie
@@ -10,6 +10,7 @@ from bookies import Bookies
 from bookie import Bookie
 from gettext import gettext as _
 import gettext
+from os.path import expanduser
 
 class EditBookie(QWidget):
     def __init__(self, mainWindows, id):
@@ -25,6 +26,7 @@ class EditBookie(QWidget):
 
         self.item = Bookie()
         self.item.setId(id)
+        self.btnBrowse.clicked.connect(self.browseImage)
 
         self.initData()
         NewBookie.translate(self)
@@ -32,6 +34,13 @@ class EditBookie(QWidget):
     def initData(self):
         self.txtName.setText(self.item.name)
         self.txtCountry.setText(self.item.country)
+
+    def browseImage(self):
+            file = QFileDialog.getOpenFileName(None, _("Image of the bookie"), expanduser("~/"), "*.png")
+            if file[0] != '':
+                ruta = file[0]
+                self.item.setRuta(ruta)
+                self.lblBrowse.setText(ruta)
 
     def close(self):
             self.mainWindows.setCentralWidget(Bookies(self.mainWindows))

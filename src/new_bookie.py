@@ -1,8 +1,10 @@
 import sys, os, inspect
-from PyQt5.QtWidgets import QMessageBox, QWidget
+from PyQt5.QtWidgets import QMessageBox, QWidget, QFileDialog
 from PyQt5 import uic
 directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
 sys.path.append(directory + "/lib")
+
+
 
 from bookies import Bookies
 from bookie import Bookie
@@ -26,6 +28,7 @@ class NewBookie(QWidget):
 
         self.lblName.setText(_("Name"))
         self.lblCountry.setText(_("Country"))
+        self.btnBrowse.setText(_("Browse..."))
 
         self.btnCancel.setText(_("Cancel"))
         self.btnAccept.setText(_("Accept"))

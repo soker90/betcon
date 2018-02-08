@@ -10,6 +10,8 @@ from func_aux import numberToResult, paint_row
 from gettext import gettext as _
 import gettext
 from libyaml import LibYaml
+from os.path import expanduser
+
 
 
 class Bets(QWidget):
@@ -77,11 +79,14 @@ class Bets(QWidget):
 				sport = bd.getValue(i[2], "sport")
 				item.setText(3, sport)
 
-			if os.path.isfile(directory + "/../resources/bookies/" + str(i[8]) + ".png"):
-				item.setBackground(9, QBrush(QPixmap(directory + "/../resources/bookies/" + str(i[8]) + ".png")))
+			if os.path.isfile(expanduser("~") + "/.betcon/resources/bookies/" + str(i[8]) + ".png"):
+				item.setBackground(9, QBrush(QPixmap(expanduser("~") + "/.betcon/resources/bookies/" + str(i[8]) + ".png")))
 			else:
-				bookie = bd.getValue(i[8], "bookie")
-				item.setText(9, bookie)
+				if os.path.isfile(directory + "/../resources/bookies/" + str(i[8]) + ".png"):
+					item.setBackground(9, QBrush(QPixmap(directory + "/../resources/bookies/" + str(i[8]) + ".png")))
+				else:
+					bookie = bd.getValue(i[8], "bookie")
+					item.setText(9, bookie)
 
 			items.append(item)
 

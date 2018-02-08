@@ -1,7 +1,15 @@
-import sys
+import sys, os
+from shutil import copy2
+from os.path import expanduser
+
 from bbdd import Bbdd
 
+from images import Images
+
+
 class Bookie:
+
+	ruta = None
 	#Setters
 
 	def setId(self, id):
@@ -21,6 +29,9 @@ class Bookie:
 	def setAll(self, name, country):
 		self.setName(name)
 		self.setCountry(country)
+
+	def setRuta(self, ruta):
+		self.ruta = ruta
 
 	#Métodos auxiliares
 
@@ -48,6 +59,15 @@ class Bookie:
 			bd.close()
 			if msg != 0:
 				msg = "Se ha producido un error al actualizar la BBDD"
+			if self.ruta is not None:
+				try:
+					if not os.path.exists(expanduser("~") + "/.betcon/resources/bookies"):
+						os.makedirs(expanduser("~") + "/.betcon/resources/bookies")
+					copy2(self.ruta, expanduser("~") + "/.betcon/resources/bookies/" + self.id + ".png")
+					img = Images(expanduser("~") + "/.betcon/resources/bookies/" + self.id + ".png")
+					img.resize(100, 20)
+				except:
+					msg = "Imágen incorrecta"
 		else:
 			msg = "Faltan datos por introducir"
 		return msg
