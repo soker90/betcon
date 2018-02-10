@@ -20,6 +20,9 @@ class NewSport(QWidget):
         self.mainWindows.setWindowTitle(_("New Sport") + " | Betcon v" + mainWindows.version)
         self.txtName.returnPressed.connect(self.btnAccept.click)
         self.translate()
+        self.lblImage.hide()
+        self.btnBrowse.hide()
+        self.lblBrowse.hide()
 
     def translate(self):
 

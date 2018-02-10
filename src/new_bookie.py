@@ -23,6 +23,9 @@ class NewBookie(QWidget):
         self.mainWindows.setWindowTitle(_("New Bookie") + " | Betcon v" + mainWindows.version)
         self.txtName.returnPressed.connect(self.btnAccept.click)
         self.translate()
+        self.lblImage.hide()
+        self.btnBrowse.hide()
+        self.lblBrowse.hide()
 
     def translate(self):
 

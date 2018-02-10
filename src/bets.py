@@ -33,7 +33,10 @@ class Bets(QWidget):
 
 		self.coin = LibYaml().interface["coin"]
 		self.treeMain.header().hideSection(1)
-		self.initData()
+		try:
+			self.initData()
+		except:
+			print("No hay datos")
 		self.treeMain.itemSelectionChanged.connect(self.changeItem)
 		self.mainWindows.aEdit.triggered.connect(self.editItem)
 		self.mainWindows.aRemove.triggered.connect(self.deleteItem)
@@ -96,12 +99,15 @@ class Bets(QWidget):
 
 			item = paint_row(item, profit, result)
 
-
-			if os.path.isfile(directory + "/../resources/sports/" + str(i[2]) + ".png"):
-				item.setBackground(3, QBrush(QPixmap(directory + "/../resources/sports/" + str(i[2]) + ".png")))
+			if os.path.isfile(expanduser("~") + "/.betcon/resources/sports/" + str(i[2]) + ".png"):
+				item.setBackground(3, QBrush(QPixmap(expanduser("~") + "/.betcon/resources/sports/" + str(i[2]) + ".png")))
 			else:
-				sport = bd.getValue(i[2], "sport")
-				item.setText(3, sport)
+				if os.path.isfile(directory + "/../resources/sports/" + str(i[2]) + ".png"):
+					item.setBackground(3, QBrush(QPixmap(directory + "/../resources/sports/" + str(i[2]) + ".png")))
+				else:
+					sport = bd.getValue(i[2], "sport")
+					item.setText(3, sport)
+
 
 			if os.path.isfile(expanduser("~") + "/.betcon/resources/bookies/" + str(i[8]) + ".png"):
 				item.setBackground(9, QBrush(QPixmap(expanduser("~") + "/.betcon/resources/bookies/" + str(i[8]) + ".png")))

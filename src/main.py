@@ -401,7 +401,7 @@ class About(QDialog):
 		version = archivo.readline()
 		self.setWindowTitle(_("About"))
 		self.txtText.setHtml("<p style='text-align: center;'><br>Betcon v" + version + "<p/>" \
-		                     "<p style='text-align: center;'>Web: <a href='self.donate'>http://betcon.eduardoparra.es/</a><p/>" \
+		                     "<p style='text-align: center;'>Web: http://betcon.eduardoparra.es/<p/>" \
 		                     "<p style='text-align: center;'>" + _("Created by") + " Eduardo Parra Mazuecos<p/>" \
 		                     "<p style='text-align: center;'>" + _("Contact") + ": eduparra90@gmail.com</p>" \
 			                 "<p style='text-align: center;'>" + _("License") +" GPLv3<p/>" \
@@ -412,6 +412,4 @@ class About(QDialog):
 		                     "<p style='text-align: center;'>" + "German: Franz Lewin Wagner, Rokar. <p/>" \
 		                     "<p style='text-align: center;'>" + "Kurdish: Rokar. <p/>" )
 
-		def donate(self):
-			openUrl("https://www.paypal.me/eduparra")
 

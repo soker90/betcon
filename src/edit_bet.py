@@ -241,6 +241,14 @@ class EditBet(QWidget):
 				self.cmbRegion.setCurrentIndex(idCmb)
 				bd.close()
 				self.setCompetition()
+		else:
+			self.btnAccept.setDisabled(True)
+			bd.close()
+
+		if len(data) == 0 or len(dataRegion) == 0:
+			self.btnAccept.setDisabled(True)
+		else:
+			self.btnAccept.setDisabled(False)
 
 
 
