@@ -28,7 +28,7 @@ def paint_row(item, profit, result=None):
 		profit = float(profit[:-1])
 
 	profit = float(profit)
-	if result == str(0):
+	if result == "0":
 		for j in range(18):
 			item.setBackground(j, QBrush(Qt.yellow))
 	else:

@@ -98,7 +98,7 @@ class Bets(QWidget):
 									player2, pick, "", market, tipster, str(stake), str(one) + self.coin, str(bet) + self.coin,
 									str(quota), str(result), str(profit) + self.coin])
 
-			item = paint_row(item, profit, result)
+			item = paint_row(item, profit, i[13])
 
 			if os.path.isfile(expanduser("~") + "/.betcon/resources/sports/" + str(i[2]) + ".png"):
 				item.setBackground(3, QBrush(QPixmap(expanduser("~") + "/.betcon/resources/sports/" + str(i[2]) + ".png")))
