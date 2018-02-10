@@ -16,6 +16,7 @@ class Competitions(QWidget):
 		uic.loadUi(directory + "/../ui/competitions.ui", self)
 		gettext.textdomain("betcon")
 		gettext.bindtextdomain("betcon", "../lang/mo")
+		gettext.bindtextdomain("betcon", "/usr/share/locale")
 		self.mainWindows = mainWindows
 		mainWindows.diconnectActions()
 		self.treeMain.header().hideSection(1)

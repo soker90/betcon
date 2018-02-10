@@ -15,6 +15,7 @@ class Sports(QWidget):
         uic.loadUi(directory + "/../ui/sports.ui", self)
         gettext.textdomain("betcon")
         gettext.bindtextdomain("betcon", "../lang/mo")
+        gettext.bindtextdomain("betcon", "/usr/share/locale")
         self.mainWindows = mainWindows
         mainWindows.diconnectActions()
         mainWindows.aNew.triggered.connect(mainWindows.newSport)

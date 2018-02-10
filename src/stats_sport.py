@@ -15,6 +15,7 @@ class StatsSport(QWidget):
 		uic.loadUi(directory + "/../ui/stats_sport.ui", self)
 		gettext.textdomain("betcon")
 		gettext.bindtextdomain("betcon", "../lang/mo")
+		gettext.bindtextdomain("betcon", "/usr/share/locale")
 		self.mainWindows = mainWindows
 		self.mainWindows.setWindowTitle(_("Stats Sports") + " | Betcon v" + mainWindows.version)
 		self.translate()

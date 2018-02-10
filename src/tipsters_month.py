@@ -18,6 +18,7 @@ class TipstersMonth(QWidget):
 		uic.loadUi(directory + "/../ui/tipsters_month.ui", self)
 		gettext.textdomain("betcon")
 		gettext.bindtextdomain("betcon", "../lang/mo")
+		gettext.bindtextdomain("betcon", "/usr/share/locale")
 		self.mainWindows = mainWindows
 		mainWindows.aNew.triggered.connect(mainWindows.newTipsterMonth)
 		self.mainWindows.setWindowTitle(_("Tipsters - Payment history") + " | Betcon v" + mainWindows.version)

@@ -11,7 +11,11 @@ import gettext
 
 
 gettext.textdomain("betcon")
+gettext.bindtextdomain("betcon", "/usr/share/locale")
 gettext.bindtextdomain("betcon", "../../lang/mo")
+
+
+
 
 def str_to_float(sValue):
 	setlocale(LC_NUMERIC, '')

@@ -15,6 +15,7 @@ class StatsRegion(QWidget):
         uic.loadUi(directory + "/../ui/stats_region.ui", self)
         gettext.textdomain("betcon")
         gettext.bindtextdomain("betcon", "../lang/mo")
+        gettext.bindtextdomain("betcon", "/usr/share/locale")
         self.mainWindows = mainWindows
         self.mainWindows.setWindowTitle(_("Stats Regions") + " | Betcon v" + mainWindows.version)
         self.translate()

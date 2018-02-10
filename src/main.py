@@ -61,6 +61,7 @@ class Main(QMainWindow):
 		uic.loadUi(directory + "/../ui/wmain.ui", self)
 		gettext.textdomain("betcon")
 		gettext.bindtextdomain("betcon", "../lang/mo")
+		gettext.bindtextdomain("betcon", "/usr/share/locale")
 		self.showMaximized()
 		self.enableTools()
 

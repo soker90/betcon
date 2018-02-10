@@ -18,6 +18,7 @@ class Settings(QWidget):
 		uic.loadUi(directory + "/../ui/settings.ui", self)
 		gettext.textdomain("betcon")
 		gettext.bindtextdomain("betcon", "../lang/mo")
+		gettext.bindtextdomain("betcon", "/usr/share/locale")
 		self.mainWindows = mainWindows
 		mainWindows.diconnectActions()
 		self.mainWindows.setWindowTitle(_("Options") + " | Betcon v" + mainWindows.version)
