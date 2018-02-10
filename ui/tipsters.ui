@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>545</width>
-    <height>430</height>
+    <width>728</width>
+    <height>466</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,19 +16,17 @@
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QTreeWidget" name="treeMain">
+     <attribute name="headerDefaultSectionSize">
+      <number>200</number>
+     </attribute>
      <column>
       <property name="text">
-       <string notr="true"/>
+       <string>Nombre</string>
       </property>
      </column>
      <column>
       <property name="text">
        <string>index</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Nombre</string>
       </property>
      </column>
      <column>
@@ -39,6 +37,11 @@
      <column>
       <property name="text">
        <string>Beneficio de apuestas</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Balance</string>
       </property>
      </column>
     </widget>

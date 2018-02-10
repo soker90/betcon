@@ -19,11 +19,9 @@
      <property name="sortingEnabled">
       <bool>true</bool>
      </property>
-     <column>
-      <property name="text">
-       <string notr="true"/>
-      </property>
-     </column>
+     <attribute name="headerDefaultSectionSize">
+      <number>300</number>
+     </attribute>
      <column>
       <property name="text">
        <string>index</string>

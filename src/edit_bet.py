@@ -4,18 +4,25 @@ from PyQt5.QtWidgets import QLineEdit, QMessageBox, QWidget, QComboBox, QAction,
 from PyQt5 import uic
 from bets import Bets
 from PyQt5.QtCore import QDateTime
+
 directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
 sys.path.append(directory + "/lib")
 from bbdd import Bbdd
-from func_aux import str_to_float, str_to_bool, key_from_value
+from func_aux import str_to_bool, key_from_value
+from gettext import gettext as _
+import gettext
+from new_bet import NewBet
+from libyaml import LibYaml
 
 
 class EditBet(QWidget):
 	def __init__(self, mainWindows, id):
 		QWidget.__init__(self)
 		uic.loadUi(directory + "/../ui/new_bet.ui", self)
+		gettext.textdomain("betcon")
+		gettext.bindtextdomain("betcon", "../lang/mo")
 		self.mainWindows = mainWindows
-		self.mainWindows.setWindowTitle("Modificar Apuesta | Betcon v" + mainWindows.version)
+		self.mainWindows.setWindowTitle(_("Modify Bet") + " | Betcon v" + mainWindows.version)
 		self.btnAccept.clicked.connect(self.accept)
 		self.btnCancel.clicked.connect(self.cancel)
 		self.btnAdd.clicked.connect(self.addCombined)
@@ -33,6 +40,7 @@ class EditBet(QWidget):
 
 		self.combined()
 		self.initCombined()
+		NewBet.translate(self)
 
 
 	def initData(self):
@@ -74,6 +82,11 @@ class EditBet(QWidget):
 			if id == idBd:
 				idCmb = index
 			name = i[1]
+			country = i[2]
+
+			if LibYaml().interface['bookieCountry'] == 'Y':
+				name += ' (' + country + ')'
+
 			self.cmbBookie.addItem(name)
 			self.bookieIndexToId[index] = id
 			index += 1
@@ -159,20 +172,10 @@ class EditBet(QWidget):
 
 		result = bd.getValue(self.id, "bet", "result")
 
-		idResutl = {
-			"Pendiente": 0,
-			"Acertada": 1,
-			"Fallada": 2,
-			"Nula": 3,
-			"Medio Acertada": 4,
-			"Medio Fallada": 5,
-			"Retirada": 6
-		}[result]
-
-		self.cmbResult.setCurrentIndex(idResutl)
+		self.cmbResult.setCurrentIndex(int(result))
 
 		freeBet = bd.getValue(self.id, "bet", "free")
-		print(freeBet)
+
 		self.chkFree.setChecked(freeBet)
 
 
@@ -238,6 +241,14 @@ class EditBet(QWidget):
 				self.cmbRegion.setCurrentIndex(idCmb)
 				bd.close()
 				self.setCompetition()
+		else:
+			self.btnAccept.setDisabled(True)
+			bd.close()
+
+		if len(data) == 0 or len(dataRegion) == 0:
+			self.btnAccept.setDisabled(True)
+		else:
+			self.btnAccept.setDisabled(False)
 
 
 
@@ -320,16 +331,16 @@ class EditBet(QWidget):
 		idTipster = self.tipsterIndexToId.get(self.cmbTipster.currentIndex())
 		data.append(idTipster)
 
-		data.append(str(str_to_float(self.txtStake.text())))
-		data.append(str(str_to_float(self.txtOne.text())))
+		data.append(str(self.txtStake.text()))
+		data.append(str(self.txtOne.text()))
 
 		# cmbResult
-		data.append(self.cmbResult.currentText())
+		data.append(self.cmbResult.currentIndex())
 
 		print(self.txtBet.text())
-		data.append(str(str_to_float(self.txtProfit.text())))
-		data.append(str(str_to_float(self.txtBet.text())))
-		data.append(str(str_to_float(self.txtQuota.text())))
+		data.append(str(self.txtProfit.text()))
+		data.append(str(self.txtBet.text()))
+		data.append(str(self.txtQuota.text()))
 		data.append(1 if self.chkFree.isChecked() else 0)
 
 		columns = ["date", "sport", "competition", "region", "player1", "player2", "pick", "bookie", "market",
@@ -359,7 +370,7 @@ class EditBet(QWidget):
 
 		bbdd.close()
 
-		QMessageBox.information(self, "Modificada", "Apuesta modificada.")
+		QMessageBox.information(self, _("Modified"), _("Modified bet."))
 		self.close()
 
 	def updateProfit(self):
@@ -396,8 +407,8 @@ class EditBet(QWidget):
 		self.updateProfit()
 
 	def updateBet(self):
-		if self.txtStake.text() != "0,00" and self.txtOne.text() != "0,00":
-			bet = str_to_float(self.txtStake.text()) * str_to_float(self.txtOne.text())
+		if self.txtStake.text() != "0.00" and self.txtOne.text() != "0.00":
+			bet = float(self.txtStake.text()) * float(self.txtOne.text())
 			self.txtBet.setValue(bet)
 
 	def addCombined(self):
@@ -436,7 +447,7 @@ class EditBet(QWidget):
 		self.picks[self.contComb].setMaximumSize(200, 50)
 		self.pnlPick.addWidget(self.picks[self.contComb])
 		self.results.append(QComboBox())
-		self.results[self.contComb].addItems(["Pendiente", "Acertada", "Fallada", "Nula", "Medio Acertada", "Medio Fallada", "Retirada"])
+		self.results[self.contComb].addItems([_("Pending"), _("Successful"), _("Failed"), _("Null"), _("Half Successful"), _("Half Failed"), _("Cash out")])
 		self.pnlResult.addWidget(self.results[self.contComb])
 		self.buttons.append(QPushButton())
 		self.buttons[self.contComb].setText("X")
@@ -617,17 +628,7 @@ class EditBet(QWidget):
 			self.players2[i].setCurrentText(bet[7])
 			self.picks[i].setText(bet[8])
 
-			result = {
-				"Pendiente": 0,
-				"Acertada": 1,
-				"Fallada": 2,
-				"Nula": 3,
-				"Medio Acertada": 4,
-				"Medio Fallada": 5,
-				"Retirada": 6
-			}[bet[9]]
-
-			self.results[i].setCurrentIndex(result)
+			self.results[i].setCurrentIndex(int(bet[9]))
 			i += 1
 
 		bd.close()

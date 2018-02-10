@@ -1,19 +1,24 @@
 import sys, os, inspect
 from PyQt5.QtWidgets import QMessageBox, QWidget, QTreeWidgetItem
-from PyQt5 import uic
+from PyQt5 import uic, QtCore
+
 directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
 sys.path.append(directory + "/lib")
 from bbdd import Bbdd
+from gettext import gettext as _
+import gettext
 
 
 class Markets(QWidget):
 	def __init__(self, mainWindows):
 		QWidget.__init__(self)
 		uic.loadUi(directory + "/../ui/markets.ui", self)
+		gettext.textdomain("betcon")
+		gettext.bindtextdomain("betcon", "../lang/mo")
 		self.mainWindows = mainWindows
 		mainWindows.diconnectActions()
 		mainWindows.aNew.triggered.connect(mainWindows.newMarket)
-		self.mainWindows.setWindowTitle("Mercados | Betcon v" + mainWindows.version)
+		self.mainWindows.setWindowTitle(_("Markets") + " | Betcon v" + mainWindows.version)
 		self.treeMain.header().hideSection(1)
 		self.initTree()
 
@@ -22,20 +27,27 @@ class Markets(QWidget):
 		self.mainWindows.aRemove.triggered.connect(self.deleteItem)
 		self.itemSelected = -1
 
+		self.translate()
+
+	def translate(self):
+
+		header = [_("Name"), "index"]
+
+		self.treeMain.setHeaderLabels(header)
+
 	def initTree(self):
 		bd = Bbdd()
 		data = bd.select("market", "name")
 
-		index = 0
 		items = []
 		for i in data:
-			index += 1
 			id = i[0]
 			name = i[1]
-			item = QTreeWidgetItem([str(index), str(id), name])
+			item = QTreeWidgetItem([name, str(id)])
 			items.append(item)
 
 		self.treeMain.addTopLevelItems(items)
+		self.treeMain.sortByColumn(0, QtCore.Qt.AscendingOrder)
 
 		bd.close()
 
@@ -47,7 +59,8 @@ class Markets(QWidget):
 		self.mainWindows.editMarket(self.itemSelected)
 
 	def deleteItem(self):
-		resultado = QMessageBox.question(self, "Eliminar", "¿Estas seguro que desas eliminar el mercado y las apuestas asociadas?",
+		resultado = QMessageBox.question(self, _("Remove"),
+		                                 _("Are you sure you want to eliminate the market and the associated bets?"),
 		                                 QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
 		if resultado == QMessageBox.Yes:
 			bd = Bbdd()

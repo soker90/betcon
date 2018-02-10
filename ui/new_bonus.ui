@@ -19,14 +19,14 @@
      <item>
       <layout class="QFormLayout" name="formLayout_2">
        <item row="0" column="0">
-        <widget class="QLabel" name="label_8">
+        <widget class="QLabel" name="lblDate">
          <property name="text">
           <string>Fecha</string>
          </property>
         </widget>
        </item>
        <item row="1" column="0">
-        <widget class="QLabel" name="label">
+        <widget class="QLabel" name="lblBookie">
          <property name="text">
           <string>Casa</string>
          </property>
@@ -40,7 +40,7 @@
         </widget>
        </item>
        <item row="2" column="0">
-        <widget class="QLabel" name="label_2">
+        <widget class="QLabel" name="lblAmount">
          <property name="text">
           <string>Importe</string>
          </property>
@@ -123,6 +123,9 @@
        </item>
        <item row="2" column="1">
         <widget class="QDoubleSpinBox" name="txtMoney">
+         <property name="locale">
+          <locale language="English" country="UnitedStates"/>
+         </property>
          <property name="maximum">
           <double>999999999.990000009536743</double>
          </property>

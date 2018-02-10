@@ -6,20 +6,22 @@ from PyQt5.QtCore import QDateTime, QVariant
 directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
 sys.path.append(directory + "/lib")
 from bets import Bets
-from decimal import Decimal
-from func_aux import str_to_float, str_to_bool
 
 from bbdd import Bbdd
 from bookie import Bookie
 from libyaml import LibYaml
+from gettext import gettext as _
+import gettext
 
 
 class NewBet(QWidget):
 	def __init__(self, mainWindows):
 		QWidget.__init__(self)
 		uic.loadUi(directory + "/../ui/new_bet.ui", self)
+		gettext.textdomain("betcon")
+		gettext.bindtextdomain("betcon", "../lang/mo")
 		self.mainWindows = mainWindows
-		self.mainWindows.setWindowTitle("Nueva Apuesta | Betcon v" + mainWindows.version)
+		self.mainWindows.setWindowTitle(_("New Bet") + " | Betcon v" + mainWindows.version)
 		self.btnAccept.clicked.connect(self.accept)
 		self.btnCancel.clicked.connect(self.cancel)
 		self.btnAdd.clicked.connect(self.addCombined)
@@ -34,12 +36,46 @@ class NewBet(QWidget):
 		self.txtStake.valueChanged.connect(self.updateBet)
 		self.txtOne.valueChanged.connect(self.updateBet)
 
+		self.translate()
+
 		#self.setPnlVisible(self.pnlDate, False)
 		self.combined()
 
 
 	# self.txtQuota.activated.connect(self.setCompetition)
 
+	def translate(self):
+
+		self.lblDate_2.setText(_("Date"))
+		self.lblDate.setText(_("Date"))
+		self.lblSport_2.setText(_("Sport"))
+		self.lblSport.setText(_("Sport"))
+		self.lblRegion_2.setText(_("Region"))
+		self.lblRegion.setText(_("Region"))
+		self.lblCompetition_2.setText(_("Competition"))
+		self.lblCompetition.setText(_("Competition"))
+		self.lblPlayer1.setText(_("Local"))
+		self.lblPlayer1_2.setText(_("Local"))
+		self.lblPlayer2_2.setText(_("Away"))
+		self.lblPlayer2.setText(_("Away"))
+		self.lblPick_2.setText(_("Pick"))
+		self.lblPick.setText(_("Pick"))
+		self.lblResult.setText(_("Result"))
+		self.lblResult_2.setText(_("Result"))
+
+		self.chkFree.setText(_("Free Bet"))
+		self.lblBookie.setText(_("Bookie"))
+		self.lblMarket.setText(_("Market"))
+		self.lblTipster.setText(_("Tipster"))
+		self.lblStake.setText(_("Stake"))
+		self.lblOne.setText(_("One"))
+		self.lblBet.setText(_("Bet"))
+		self.lblQuota.setText(_("Quota"))
+		self.lblProfit.setText(_("Profit"))
+
+		self.btnCancel.setText(_("Cancel"))
+		self.btnAccept.setText(_("Accept"))
+		self.btnAdd.setText(_("Add bet"))
 
 
 
@@ -70,6 +106,11 @@ class NewBet(QWidget):
 		for i in data:
 			id = i[0]
 			name = i[1]
+			country = i[2]
+
+			if LibYaml().interface['bookieCountry'] == 'Y':
+				name += ' (' + country + ')'
+
 			self.cmbBookie.addItem(name)
 			self.bookieIndexToId[index] = id
 			index += 1
@@ -243,15 +284,16 @@ class NewBet(QWidget):
 		idTipster = self.tipsterIndexToId.get(self.cmbTipster.currentIndex())
 		data.append(idTipster)
 
-		data.append(str(str_to_float(self.txtStake.text())))
-		data.append(str(str_to_float(self.txtOne.text())))
+		data.append(str(self.txtStake.text()))
+		data.append(str(self.txtOne.text()))
 
 		# cmbResult
-		data.append(self.cmbResult.currentText())
+		data.append(self.cmbResult.currentIndex())
+		print(str(self.cmbResult.currentIndex()))
 
-		data.append(str(str_to_float(self.txtProfit.text())))
-		data.append(str(str_to_float(self.txtBet.text())))
-		data.append(str(str_to_float(self.txtQuota.text())))
+		data.append(str(self.txtProfit.text()))
+		data.append(str(self.txtBet.text()))
+		data.append(str(self.txtQuota.text()))
 		data.append(1 if self.chkFree.isChecked() else 0)
 
 		columns = ["date", "sport", "competition", "region", "player1", "player2", "pick", "bookie", "market",
@@ -277,14 +319,14 @@ class NewBet(QWidget):
 				data.append(self.players1[i].currentText())
 				data.append(self.players2[i].currentText())
 				data.append(self.picks[i].text())
-				data.append(self.results[i].currentText())
+				data.append(self.results[i].currentIndex())
 				bbdd.insert(columns, data, "combined")
 
 
 
 		bbdd.close()
 
-		QMessageBox.information(self, "Añadida", "Nueva apuesta añadida.")
+		QMessageBox.information(self, _("Added"), _("New bet added."))
 		self.close()
 
 	def updateProfit(self):
@@ -321,8 +363,8 @@ class NewBet(QWidget):
 		self.updateProfit()
 
 	def updateBet(self):
-		if self.txtStake.text() != "0,00" and self.txtOne.text() != "0,00":
-			bet = str_to_float(self.txtStake.text()) * str_to_float(self.txtOne.text())
+		if self.txtStake.text() != "0.00" and self.txtOne.text() != "0.00":
+			bet = float(self.txtStake.text()) * float(self.txtOne.text())
 			self.txtBet.setValue(bet)
 
 	def addCombined(self):
@@ -361,7 +403,7 @@ class NewBet(QWidget):
 		self.picks[self.contComb].setMaximumSize(200, 50)
 		self.pnlPick.addWidget(self.picks[self.contComb])
 		self.results.append(QComboBox())
-		self.results[self.contComb].addItems(["Pendiente", "Acertada", "Fallada", "Nula", "Medio Acertada", "Medio Fallada", "Retirada"])
+		self.results[self.contComb].addItems([_("Pending"), _("Successful"), _("Failed"), _("Null"), _("Half Successful"), _("Half Failed"), _("Cash out")])
 		self.pnlResult.addWidget(self.results[self.contComb])
 		self.buttons.append(QPushButton())
 		self.buttons[self.contComb].setText("X")

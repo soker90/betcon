@@ -1,33 +1,44 @@
 from bbdd import Bbdd
 from bookie import Bookie
+from gettext import gettext as _
+import gettext
+from libyaml import LibYaml
 
 class LibStats:
+	coin = LibYaml().interface["coin"]
+
 	@staticmethod
 	def getYears():
 		years = Bbdd.getYearMonth("bet")
-		months = {"01": "Enero", "02": "Febrero", "03": "Marzo", "04": "Abril", "05": "Mayo", "06": "Junio", "07": "Julio", "08": "Agosto",
-				  "09": "Septiembre", "10": "Octubre", "11": "Noviembre", "12": "Diciembre"}
+		months = {"01": _("January"), "02": _("February"), "03": _("March"), "04": _("April"), "05": _("May"), "06": _("June"), "07": _("July"), "08": _("August"),
+				  "09": _("September"), "10": _("October"), "11": _("November"), "12": _("December")}
+
 		return years, months
+
+	@staticmethod
+	def getDaysOfMonth(year, month):
+		days = Bbdd.getDaysOfMonth("bet", year, month)
+		return days
 
 	@staticmethod
 	def getTipster(year=None, month=None):
 		if year is not None:
 			date = str(year)+"-"+str(month)
 			sql = 'select tipster.name, sport.name, ' \
-				  '(SELECT count(*) from bet as b1 WHERE b1.result in ("Acertada", "Medio Acertada") ' \
+				  '(SELECT count(*) from bet as b1 WHERE b1.result in (1, 4) ' \
 				  'and b1.tipster = bet.tipster and b1.sport=bet.sport and b1.date LIKE "' + date + '%") as acierto, ' \
-				  '(SELECT count(*) from bet as b1 WHERE b1.result in ("Fallada", "Medio Fallada") and b1.tipster = bet.tipster ' \
+				  '(SELECT count(*) from bet as b1 WHERE b1.result in (2, 5) and b1.tipster = bet.tipster ' \
 				  'and b1.sport=bet.sport and b1.date LIKE "' + date + '%") as fallo, (SELECT SUM(profit) ' \
-				  'from bet as b1 WHERE b1.result <> "Pendiente" and b1.tipster = bet.tipster and b1.sport=bet.sport and b1.date LIKE "' + date + '%") as prof, count(*), ' \
+				  'from bet as b1 WHERE b1.result <> 0 and b1.tipster = bet.tipster and b1.sport=bet.sport and b1.date LIKE "' + date + '%") as prof, count(*), ' \
 				  'SUM(bet), avg(stake), avg(quota) from bet, tipster, sport WHERE bet.tipster=tipster.id ' \
 				  'and bet.sport=sport.id and bet.date LIKE "' + date + '%" GROUP BY bet.tipster,bet.sport '
 
 		else:
 			sql = 'SELECT tipster.name, sport.name, (SELECT count(*) FROM bet AS b1 WHERE b1.result IN ' \
-				  '("Acertada", "Medio Acertada") AND b1.tipster = bet.tipster AND b1.sport=bet.sport) AS acierto, ' \
-				  '(SELECT count(*) FROM bet AS b1 WHERE b1.result IN ("Fallada", "Medio Fallada") AND ' \
+				  '(1, 4) AND b1.tipster = bet.tipster AND b1.sport=bet.sport) AS acierto, ' \
+				  '(SELECT count(*) FROM bet AS b1 WHERE b1.result IN (2, 5) AND ' \
 				  'b1.tipster = bet.tipster AND b1.sport=bet.sport) AS fallo, (SELECT SUM(profit) ' \
-				  'FROM bet AS b1 WHERE b1.result <> "Pendiente" AND b1.tipster = bet.tipster AND b1.sport = bet.sport) AS prof, count(*), ' \
+				  'FROM bet AS b1 WHERE b1.result <> 0 AND b1.tipster = bet.tipster AND b1.sport = bet.sport) AS prof, count(*), ' \
 				  'SUM(bet), avg(stake), avg(quota) FROM bet, tipster, sport ' \
 				  'WHERE bet.tipster=tipster.id AND bet.sport=sport.id GROUP BY bet.tipster,bet.sport'
 
@@ -48,11 +59,11 @@ class LibStats:
 			except ZeroDivisionError:
 				win = 0
 			win = win * 100
-			row.append(str(win)+"%")
-			row.append(str(i[6]))  # Money bet
-			row.append(str(i[4]))  # Profit
-			row.append(str(i[7]))  # Average Stake
-			row.append(str(i[8]))  # Average Quota
+			row.append("{0:.2f}%".format(round((win), 2)))
+			row.append("{0:.2f}".format(round((i[6]), 2)) + LibStats.coin)  # Money bet
+			row.append("{0:.2f}".format(round((i[4]), 2)) + LibStats.coin)  # Profit
+			row.append("{0:.2f}".format(round((i[7]), 2)))  # Average Stake
+			row.append("{0:.2f}".format(round((i[8]), 2)))  # Average Quota
 			data.append(row)
 
 		return data
@@ -62,17 +73,17 @@ class LibStats:
 		if year is not None:
 			date = str(year) + "-" + str(month)
 			sql = 'select bookie.name, (SELECT count(*) from bet as b1 WHERE b1.result in ' \
-				  '("Acertada", "Medio Acertada") and b1.bookie = bet.bookie and b1.date LIKE "' + date + '%") as acierto, ' \
-				  '(SELECT count(*) from bet as b1 WHERE b1.result in ("Fallada", "Medio Fallada") and ' \
+				  '(1, 4) and b1.bookie = bet.bookie and b1.date LIKE "' + date + '%") as acierto, ' \
+				  '(SELECT count(*) from bet as b1 WHERE b1.result in (2, 5) and ' \
 				  'b1.bookie = bet.bookie and b1.date LIKE "' + date + '%") as fallo, (SELECT SUM(profit) ' \
-				  'from bet as b1 WHERE b1.result <> "Pendiente" and b1.bookie = bet.bookie and b1.date LIKE "' + date + '%") as prof, count(*), ' \
+				  'from bet as b1 WHERE b1.result <> 0 and b1.bookie = bet.bookie and b1.date LIKE "' + date + '%") as prof, count(*), ' \
 				  'SUM(bet), avg(stake), avg(quota) from bet, bookie ' \
 				  'WHERE bet.bookie=bookie.id and bet.date LIKE "' + date + '%" GROUP BY bet.bookie'
 		else:
-			sql = 'select bookie.name, (SELECT count(*) from bet as b1 WHERE b1.result in ("Acertada", "Medio Acertada")' \
+			sql = 'select bookie.name, (SELECT count(*) from bet as b1 WHERE b1.result in (1, 4)' \
 				  ' and b1.bookie = bet.bookie) as acierto, (SELECT count(*) from bet as b1 WHERE b1.result in ' \
-				  '("Fallada", "Medio Fallada") and b1.bookie = bet.bookie) as fallo, ' \
-				  '(SELECT SUM(profit) from bet as b1 WHERE b1.result <> "Pendiente" and' \
+				  '(2, 5) and b1.bookie = bet.bookie) as fallo, ' \
+				  '(SELECT SUM(profit) from bet as b1 WHERE b1.result <> 0 and' \
 				  ' b1.bookie = bet.bookie) as prof, count(*), SUM(bet), avg(stake), ' \
 				  'avg(quota) from bet, bookie WHERE bet.bookie=bookie.id GROUP BY bet.bookie'
 
@@ -93,11 +104,11 @@ class LibStats:
 				win = 0
 			win = win * 100
 			win = round(win, 2)
-			row.append(str(win) + "%")
-			row.append(str(i[5]))  # Money bet
-			row.append(str(i[3]))  # Profit
-			row.append(str(i[6]))  # Average Stake
-			row.append(str(i[7]))  # Average Quota
+			row.append("{0:.2f}%".format(round((win), 2)))
+			row.append("{0:.2f}".format(round((i[5]), 2)) + LibStats.coin)  # Money bet
+			row.append("{0:.2f}".format(round((i[3]), 2)) + LibStats.coin)  # Profit
+			row.append("{0:.2f}".format(round((i[6]), 2)))  # Average Stake
+			row.append("{0:.2f}".format(round((i[7]), 2)))  # Average Quota
 			data.append(row)
 
 		return data
@@ -107,17 +118,17 @@ class LibStats:
 		if year is not None:
 			date = str(year) + "-" + str(month)
 			sql = 'select sport.name, (SELECT count(*) from bet as b1 WHERE b1.result in ' \
-				  '("Acertada", "Medio Acertada") and b1.sport=bet.sport and b1.date LIKE "' + date + '%") as acierto, ' \
-				  '(SELECT count(*) from bet as b1 WHERE b1.result in ("Fallada", "Medio Fallada") and ' \
+				  '(1, 4) and b1.sport=bet.sport and b1.date LIKE "' + date + '%") as acierto, ' \
+				  '(SELECT count(*) from bet as b1 WHERE b1.result in (2, 5) and ' \
 				  'b1.sport=bet.sport and b1.date LIKE "' + date + '%") as fallo, (SELECT SUM(profit) ' \
-				  'from bet as b1 WHERE b1.result <> "Pendiente" and b1.sport=bet.sport and b1.date LIKE "' + date + '%") as prof, count(*), ' \
+				  'from bet as b1 WHERE b1.result <> 0 and b1.sport=bet.sport and b1.date LIKE "' + date + '%") as prof, count(*), ' \
 				  'SUM(bet), avg(stake), avg(quota) from bet, sport ' \
 				  'WHERE bet.sport=sport.id and bet.date LIKE "' + date + '%" GROUP BY bet.sport'
 		else:
-			sql = 'select sport.name, (SELECT count(*) from bet as b1 WHERE b1.result in ("Acertada", "Medio Acertada")' \
+			sql = 'select sport.name, (SELECT count(*) from bet as b1 WHERE b1.result in (1, 4)' \
 				  ' and b1.sport = bet.sport) as acierto, (SELECT count(*) from bet as b1 WHERE b1.result in ' \
-				  '("Fallada", "Medio Fallada") and b1.sport = bet.sport) as fallo, ' \
-				  '(SELECT SUM(profit) from bet as b1 WHERE b1.result <> "Pendiente" and' \
+				  '(2, 5) and b1.sport = bet.sport) as fallo, ' \
+				  '(SELECT SUM(profit) from bet as b1 WHERE b1.result <> 0 and' \
 				  ' b1.sport = bet.sport) as prof, count(*), SUM(bet), avg(stake), ' \
 				  'avg(quota) from bet, sport WHERE bet.sport=sport.id GROUP BY bet.sport'
 
@@ -138,11 +149,11 @@ class LibStats:
 				win = 0
 			win = win * 100
 			win = round(win, 2)
-			row.append(str(win) + "%")
-			row.append(str(i[5]))  # Money bet
-			row.append(str(i[3]))  # Profit
-			row.append(str(i[6]))  # Average Stake
-			row.append(str(i[7]))  # Average Quota
+			row.append("{0:.2f}%".format(round(win, 2)))
+			row.append("{0:.2f}".format(round((i[5]), 2)) + LibStats.coin)  # Money bet
+			row.append("{0:.2f}".format(round((i[3]), 2)) + LibStats.coin)  # Profit
+			row.append("{0:.2f}".format(round((i[6]), 2)))  # Average Stake
+			row.append("{0:.2f}".format(round((i[7]), 2)))  # Average Quota
 			data.append(row)
 
 		return data
@@ -152,20 +163,20 @@ class LibStats:
 		if year is not None:
 			date = str(year)+"-"+str(month)
 			sql = 'select region.name, sport.name, ' \
-				  '(SELECT count(*) from bet as b1 WHERE b1.result in ("Acertada", "Medio Acertada") ' \
+				  '(SELECT count(*) from bet as b1 WHERE b1.result in (1, 4) ' \
 				  'and b1.region = bet.region and b1.sport=bet.sport and b1.date LIKE "' + date + '%") as acierto, ' \
-				  '(SELECT count(*) from bet as b1 WHERE b1.result in ("Fallada", "Medio Fallada") and b1.region = bet.region ' \
+				  '(SELECT count(*) from bet as b1 WHERE b1.result in (2, 5) and b1.region = bet.region ' \
 				  'and b1.sport=bet.sport and b1.date LIKE "' + date + '%") as fallo, (SELECT SUM(profit) ' \
-				  'from bet as b1 WHERE b1.result <> "Pendiente" and b1.region = bet.region and b1.sport=bet.sport and b1.date LIKE "' + date + '%") as prof, count(*), ' \
+				  'from bet as b1 WHERE b1.result <> 0 and b1.region = bet.region and b1.sport=bet.sport and b1.date LIKE "' + date + '%") as prof, count(*), ' \
 				  'SUM(bet), avg(stake), avg(quota) from bet, region, sport WHERE bet.region=region.id ' \
 				  'and bet.sport=sport.id and bet.date LIKE "' + date + '%" GROUP BY bet.region,bet.sport '
 
 		else:
 			sql = 'SELECT region.name, sport.name, (SELECT count(*) FROM bet AS b1 WHERE b1.result IN ' \
-				  '("Acertada", "Medio Acertada") AND b1.region = bet.region AND b1.sport=bet.sport) AS acierto, ' \
-				  '(SELECT count(*) FROM bet AS b1 WHERE b1.result IN ("Fallada", "Medio Fallada") AND ' \
+				  '(1, 4) AND b1.region = bet.region AND b1.sport=bet.sport) AS acierto, ' \
+				  '(SELECT count(*) FROM bet AS b1 WHERE b1.result IN (2, 5) AND ' \
 				  'b1.region = bet.region AND b1.sport=bet.sport) AS fallo, (SELECT SUM(profit) ' \
-				  'FROM bet AS b1 WHERE b1.result <> "Pendiente" AND b1.region = bet.region AND b1.sport = bet.sport) AS prof, count(*), ' \
+				  'FROM bet AS b1 WHERE b1.result <> 0 AND b1.region = bet.region AND b1.sport = bet.sport) AS prof, count(*), ' \
 				  'SUM(bet), avg(stake), avg(quota) FROM bet, region, sport ' \
 				  'WHERE bet.region=region.id AND bet.sport=sport.id GROUP BY bet.region, bet.sport'
 
@@ -186,11 +197,11 @@ class LibStats:
 			except ZeroDivisionError:
 				win = 0
 			win = win * 100
-			row.append(str(win) + "%")
-			row.append(str(i[6]))  # Money bet
-			row.append(str(i[4]))  # Profit
-			row.append(str(i[7]))  # Average Stake
-			row.append(str(i[8]))  # Average Quota
+			row.append("{0:.2f}%".format(round(win, 2)))
+			row.append("{0:.2f}".format(round((i[6]), 2)) + LibStats.coin)  # Money bet
+			row.append("{0:.2f}".format(round((i[4]), 2)) + LibStats.coin)  # Profit
+			row.append("{0:.2f}".format(round((i[7]), 2)))  # Average Stake
+			row.append("{0:.2f}".format(round((i[8]), 2)))  # Average Quota
 			data.append(row)
 
 		return data
@@ -200,20 +211,20 @@ class LibStats:
 		if year is not None:
 			date = str(year)+"-"+str(month)
 			sql = 'select market.name, sport.name, ' \
-				  '(SELECT count(*) from bet as b1 WHERE b1.result in ("Acertada", "Medio Acertada") ' \
+				  '(SELECT count(*) from bet as b1 WHERE b1.result in (1, 4) ' \
 				  'and b1.market = bet.market and b1.sport=bet.sport and b1.date LIKE "' + date + '%") as acierto, ' \
-				  '(SELECT count(*) from bet as b1 WHERE b1.result in ("Fallada", "Medio Fallada") and b1.market = bet.market ' \
+				  '(SELECT count(*) from bet as b1 WHERE b1.result in (2, 5) and b1.market = bet.market ' \
 				  'and b1.sport=bet.sport and b1.date LIKE "' + date + '%") as fallo, (SELECT SUM(profit) ' \
-				  'from bet as b1 WHERE b1.result <> "Pendiente" and b1.market = bet.market and b1.sport=bet.sport and b1.date LIKE "' + date + '%") as prof, count(*), ' \
+				  'from bet as b1 WHERE b1.result <> 0 and b1.market = bet.market and b1.sport=bet.sport and b1.date LIKE "' + date + '%") as prof, count(*), ' \
 				  'SUM(bet), avg(stake), avg(quota) from bet, market, sport WHERE bet.market=market.id ' \
 				  'and bet.sport=sport.id and bet.date LIKE "' + date + '%" GROUP BY bet.market, bet.sport '
 
 		else:
 			sql = 'SELECT market.name, sport.name, (SELECT count(*) FROM bet AS b1 WHERE b1.result IN ' \
-				  '("Acertada", "Medio Acertada") AND b1.market = bet.market AND b1.sport=bet.sport) AS acierto, ' \
-				  '(SELECT count(*) FROM bet AS b1 WHERE b1.result IN ("Fallada", "Medio Fallada") AND ' \
+				  '(1, 4) AND b1.market = bet.market AND b1.sport=bet.sport) AS acierto, ' \
+				  '(SELECT count(*) FROM bet AS b1 WHERE b1.result IN (2, 5) AND ' \
 				  'b1.market = bet.market AND b1.sport=bet.sport) AS fallo, (SELECT SUM(profit) ' \
-				  'FROM bet AS b1 WHERE b1.result <> "Pendiente" AND b1.market = bet.market AND b1.sport = bet.sport) AS prof, count(*), ' \
+				  'FROM bet AS b1 WHERE b1.result <> 0 AND b1.market = bet.market AND b1.sport = bet.sport) AS prof, count(*), ' \
 				  'SUM(bet), avg(stake), avg(quota) FROM bet, market, sport ' \
 				  'WHERE bet.market=market.id AND bet.sport=sport.id GROUP BY bet.market, bet.sport'
 
@@ -234,11 +245,11 @@ class LibStats:
 			except ZeroDivisionError:
 				win = 0
 			win = win * 100
-			row.append(str(win) + "%")
-			row.append(str(i[6]))  # Money bet
-			row.append(str(i[4]))  # Profit
-			row.append(str(i[7]))  # Average Stake
-			row.append(str(i[8]))  # Average Quota
+			row.append("{0:.2f}%".format(round(win, 2)))
+			row.append("{0:.2f}".format(round((i[6]), 2)) + LibStats.coin)  # Money bet
+			row.append("{0:.2f}".format(round((i[4]), 2)) + LibStats.coin)  # Profit
+			row.append("{0:.2f}".format(round((i[7]), 2)))  # Average Stake
+			row.append("{0:.2f}".format(round((i[8]), 2)))  # Average Quota
 			data.append(row)
 
 		return data
@@ -248,16 +259,16 @@ class LibStats:
 		if year is not None:
 			date = str(year) + "-" + str(month)
 			sql = 'select bet.stake, (SELECT count(*) from bet as b1 WHERE b1.result in ' \
-				  '("Acertada", "Medio Acertada") and b1.stake=bet.stake and b1.date LIKE "' + date + '%") as acierto, ' \
-				  '(SELECT count(*) from bet as b1 WHERE b1.result in ("Fallada", "Medio Fallada") and ' \
+				  '(1, 4) and b1.stake=bet.stake and b1.date LIKE "' + date + '%") as acierto, ' \
+				  '(SELECT count(*) from bet as b1 WHERE b1.result in (2, 5) and ' \
 				  'b1.stake=bet.stake and b1.date LIKE "' + date + '%") as fallo, (SELECT SUM(profit) ' \
-				  'from bet as b1 WHERE b1.result <> "Pendiente" and b1.stake=bet.stake and b1.date LIKE "' + date + '%") as prof, count(*), ' \
+				  'from bet as b1 WHERE b1.result <> 0 and b1.stake=bet.stake and b1.date LIKE "' + date + '%") as prof, count(*), ' \
 				  'SUM(bet), avg(quota) from bet WHERE bet.date LIKE "' + date + '%" GROUP BY bet.stake'
 		else:
-			sql = 'select bet.stake, (SELECT count(*) from bet as b1 WHERE b1.result in ("Acertada", "Medio Acertada")' \
+			sql = 'select bet.stake, (SELECT count(*) from bet as b1 WHERE b1.result in (1, 4)' \
 				  ' and b1.stake = bet.stake) as acierto, (SELECT count(*) from bet as b1 WHERE b1.result in ' \
-				  '("Fallada", "Medio Fallada") and b1.stake = bet.stake) as fallo, ' \
-				  '(SELECT SUM(profit) from bet as b1 WHERE b1.result <> "Pendiente" and' \
+				  '(2, 5) and b1.stake = bet.stake) as fallo, ' \
+				  '(SELECT SUM(profit) from bet as b1 WHERE b1.result <> 0 and' \
 				  ' b1.stake = bet.stake) as prof, count(*), SUM(bet), ' \
 				  'avg(quota) from bet GROUP BY bet.stake'
 
@@ -277,27 +288,29 @@ class LibStats:
 			except ZeroDivisionError:
 				win = 0
 			win = win * 100
-			win = round(win, 2)
-			row.append(str(win) + "%")
-			row.append(str(i[5]))  # Money bet
-			row.append(str(i[3]))  # Profit
-			row.append(str(i[6]))  # Average Quota
+			row.append("{0:.2f}%".format(round(win, 2)))
+			row.append("{0:.2f}".format(round((i[5]), 2)) + LibStats.coin)  # Money bet
+			row.append("{0:.2f}".format(round((i[3]), 2)) + LibStats.coin)  # Profit
+			row.append("{0:.2f}".format(round((i[6]), 2)))  # Average Quota
 			data.append(row)
 
 		return data
 
 	@staticmethod
-	def getMonth(year=None, month=None):
-		date = str(year) + "-" + str(month)
+	def getMonth(year=None, month=None, day=None):
+		date = str(year)
+		if month is not None and month is not "":
+			date += "-" + str(month)
+		if day is not None and day is not "":
+			date += "-" + day
 		sql = 'select SUM(bet), ' \
 			  '(select SUM(profit) from bet as b1 WHERE profit>0 AND b1.date LIKE "' + date + '%"), ' \
 			  '(select SUM(profit) from bet as b1 WHERE profit<0 AND b1.date LIKE "' + date + '%"), ' \
-			  'SUM(profit), (select SUM(bet) from bet as b1 WHERE b1.result="Pendiente" AND bet.date LIKE "' + date + '%"), ' \
+			  'SUM(profit), (select SUM(bet) from bet as b1 WHERE b1.result=0 AND bet.date LIKE "' + date + '%"), ' \
 			  'AVG(quota), count(bet), (select COUNT(*) from bet as b1 WHERE profit>0 AND b1.date LIKE "' + date + '%"), ' \
-			  '(select count(*) from bet as b1 WHERE profit<0 AND b1.result<>"Pendiente" AND b1.date LIKE "' + date + '%"),' \
+			  '(select count(*) from bet as b1 WHERE profit<0 AND b1.result<>0 AND b1.date LIKE "' + date + '%"),' \
 			  '(select count(*) from bet as b1 WHERE profit=0 AND b1.date LIKE "' + date + '%"), AVG(bet)' \
 			  ' from bet WHERE bet.date LIKE "' + date + '%"'
-
 
 		bd = Bbdd()
 		datasql = bd.executeQuery(sql)
@@ -309,7 +322,6 @@ class LibStats:
 
 		if datasql[0] == 0:
 			return [0, 0, 0, 0, 0, "0%", 0, 0, 0, 0, 0, "0%", 0]
-
 		yi = "{0:.2f}%".format(round(((datasql[3]+bonus)/datasql[0])*100, 2))
 		quota = float("{0:.2f}".format(datasql[5], 2))
 		bet = float("{0:.2f}".format(datasql[10], 2))
