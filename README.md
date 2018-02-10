@@ -30,6 +30,7 @@ Antes de instalar, asegúrate de tener instaladas las dependencias:
 * SQLite3
 * [Pyexcel-ods]('https://github.com/pyexcel/pyexcel-ods')
 * PyYAML
+* Pillow
 
 Para instalar:
 ```
