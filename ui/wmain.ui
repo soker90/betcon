@@ -140,7 +140,7 @@
      <x>0</x>
      <y>0</y>
      <width>949</width>
-     <height>23</height>
+     <height>24</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuArchivo">
@@ -159,9 +159,21 @@
      <string>Ayuda</string>
     </property>
     <addaction name="aAbout"/>
+    <addaction name="aDonate"/>
    </widget>
    <addaction name="menuArchivo"/>
    <addaction name="menuAyuda"/>
+  </widget>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
   </widget>
   <action name="aNew">
    <property name="text">
@@ -393,6 +405,11 @@
    </property>
    <property name="toolTip">
     <string>Opciones</string>
+   </property>
+  </action>
+  <action name="aDonate">
+   <property name="text">
+    <string>Donar</string>
    </property>
   </action>
  </widget>

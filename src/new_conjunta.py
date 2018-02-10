@@ -1,26 +1,47 @@
 import sys, os, inspect
 from PyQt5.QtWidgets import QMessageBox, QWidget
 from PyQt5 import uic
+
 directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
 sys.path.append(directory + "/lib")
 from bbdd import Bbdd
 from tipsters_month import TipstersMonth
-from func_aux import str_to_float
+from gettext import gettext as _
+import gettext
+
 
 class NewConjunta(QWidget):
 	def __init__(self, mainWindows):
 		QWidget.__init__(self)
 		uic.loadUi(directory + "/../ui/new_conjunta.ui", self)
+		gettext.textdomain("betcon")
+		gettext.bindtextdomain("betcon", "../lang/mo")
+		gettext.bindtextdomain("betcon", "/usr/share/locale")
 		self.mainWindows = mainWindows
 		self.btnAccept.clicked.connect(self.accept)
 		self.btnCancel.clicked.connect(self.cancel)
 		self.btnAdd.clicked.connect(self.add)
 		self.btnDel.clicked.connect(self.delete)
-		self.mainWindows.setWindowTitle("Nueva Conjunta | Betcon v" + mainWindows.version)
+		self.mainWindows.setWindowTitle(_("New Joint Purchase") + " | Betcon v" + mainWindows.version)
 
 		self.selected = [0, 1]
 		self.initData()
+		self.translate()
 
+	def translate(self):
+
+		self.lblMonth.setText(_("Month"))
+		self.lblYear.setText(_("Year"))
+		self.lblName.setText(_("Name"))
+		self.lblAmount.setText(_("Amount"))
+		self.lblAvailable.setText(_("Available"))
+		self.lblSelected.setText(_("Selected"))
+
+		self.cmbMonth.addItems([_("January"), _("February"), _("March"), _("April"), _("May"), _("June"), _("July"),
+		                        _("August"), _("September"), _("October"), _("November"), _("December")])
+
+		self.btnCancel.setText(_("Cancel"))
+		self.btnAccept.setText(_("Accept"))
 
 	def initData(self):
 
@@ -51,13 +72,13 @@ class NewConjunta(QWidget):
 		bd.close()
 
 	def close(self):
-			self.mainWindows.setCentralWidget(TipstersMonth(self.mainWindows))
+		self.mainWindows.setCentralWidget(TipstersMonth(self.mainWindows))
 
 	def cancel(self):
 		self.close()
 
 	def accept(self):
-		money = str(str_to_float(self.txtMoney.text()))
+		money = str(self.txtMoney.text())
 		data = [self.cmbMonth.currentIndex(), self.txtYear.text(), self.txtName.text(), money]
 		columns = ["month", "year", "name", "money"]
 
@@ -73,8 +94,7 @@ class NewConjunta(QWidget):
 
 		bbdd.close()
 
-
-		QMessageBox.information(self, "Añadido", "Nueva conjunta añadida.")
+		QMessageBox.information(self, _("Added"), _("New joint purchase added."))
 
 		self.close()
 
@@ -87,5 +107,3 @@ class NewConjunta(QWidget):
 		idTipster = self.selectedIndexToId.get(self.listSelected.currentRow())
 		self.selected.remove(idTipster)
 		self.initData()
-
-

@@ -24,7 +24,7 @@
           <widget class="QDateTimeEdit" name="dtDate"/>
          </item>
          <item row="1" column="0">
-          <widget class="QLabel" name="label_9">
+          <widget class="QLabel" name="lblSport_2">
            <property name="text">
             <string>Deporte</string>
            </property>
@@ -38,7 +38,7 @@
           </widget>
          </item>
          <item row="2" column="0">
-          <widget class="QLabel" name="label_11">
+          <widget class="QLabel" name="lblRegion_2">
            <property name="text">
             <string>Región</string>
            </property>
@@ -52,7 +52,7 @@
           </widget>
          </item>
          <item row="3" column="0">
-          <widget class="QLabel" name="label_10">
+          <widget class="QLabel" name="lblCompetition_2">
            <property name="text">
             <string>Competición</string>
            </property>
@@ -66,21 +66,21 @@
           </widget>
          </item>
          <item row="4" column="0">
-          <widget class="QLabel" name="label_12">
+          <widget class="QLabel" name="lblPlayer1_2">
            <property name="text">
             <string>Local</string>
            </property>
           </widget>
          </item>
          <item row="5" column="0">
-          <widget class="QLabel" name="label_13">
+          <widget class="QLabel" name="lblPlayer2_2">
            <property name="text">
             <string>Visitante</string>
            </property>
           </widget>
          </item>
          <item row="6" column="0">
-          <widget class="QLabel" name="label_14">
+          <widget class="QLabel" name="lblPick_2">
            <property name="text">
             <string>Pick</string>
            </property>
@@ -90,7 +90,7 @@
           <widget class="QLineEdit" name="txtPick"/>
          </item>
          <item row="7" column="0">
-          <widget class="QLabel" name="label_7">
+          <widget class="QLabel" name="lblResult_2">
            <property name="text">
             <string>Resultado</string>
            </property>
@@ -146,7 +146,7 @@
           </widget>
          </item>
          <item row="0" column="0">
-          <widget class="QLabel" name="label_8">
+          <widget class="QLabel" name="lblDate_2">
            <property name="text">
             <string>Fecha</string>
            </property>
@@ -171,7 +171,7 @@
        <item>
         <layout class="QFormLayout" name="formLayout">
          <item row="0" column="0">
-          <widget class="QLabel" name="label">
+          <widget class="QLabel" name="lblBookie">
            <property name="text">
             <string>Casa</string>
            </property>
@@ -181,7 +181,7 @@
           <widget class="QComboBox" name="cmbBookie"/>
          </item>
          <item row="1" column="0">
-          <widget class="QLabel" name="label_2">
+          <widget class="QLabel" name="lblMarket">
            <property name="text">
             <string>Mercado</string>
            </property>
@@ -191,7 +191,7 @@
           <widget class="QComboBox" name="cmbMarket"/>
          </item>
          <item row="2" column="0">
-          <widget class="QLabel" name="label_3">
+          <widget class="QLabel" name="lblTipster">
            <property name="text">
             <string>Tipster</string>
            </property>
@@ -201,7 +201,7 @@
           <widget class="QComboBox" name="cmbTipster"/>
          </item>
          <item row="3" column="0">
-          <widget class="QLabel" name="label_4">
+          <widget class="QLabel" name="lblStake">
            <property name="text">
             <string>Stake</string>
            </property>
@@ -209,6 +209,9 @@
          </item>
          <item row="3" column="1">
           <widget class="QDoubleSpinBox" name="txtStake">
+           <property name="locale">
+            <locale language="English" country="UnitedStates"/>
+           </property>
            <property name="buttonSymbols">
             <enum>QAbstractSpinBox::NoButtons</enum>
            </property>
@@ -218,7 +221,7 @@
           </widget>
          </item>
          <item row="4" column="0">
-          <widget class="QLabel" name="label_5">
+          <widget class="QLabel" name="lblOne">
            <property name="text">
             <string>Unidad</string>
            </property>
@@ -226,6 +229,9 @@
          </item>
          <item row="4" column="1">
           <widget class="QDoubleSpinBox" name="txtOne">
+           <property name="locale">
+            <locale language="English" country="UnitedStates"/>
+           </property>
            <property name="buttonSymbols">
             <enum>QAbstractSpinBox::NoButtons</enum>
            </property>
@@ -235,7 +241,7 @@
           </widget>
          </item>
          <item row="5" column="0">
-          <widget class="QLabel" name="label_6">
+          <widget class="QLabel" name="lblBet">
            <property name="text">
             <string>Apuesta</string>
            </property>
@@ -243,6 +249,9 @@
          </item>
          <item row="5" column="1">
           <widget class="QDoubleSpinBox" name="txtBet">
+           <property name="locale">
+            <locale language="English" country="UnitedStates"/>
+           </property>
            <property name="buttonSymbols">
             <enum>QAbstractSpinBox::NoButtons</enum>
            </property>
@@ -255,7 +264,7 @@
           </widget>
          </item>
          <item row="6" column="0">
-          <widget class="QLabel" name="label_15">
+          <widget class="QLabel" name="lblQuota">
            <property name="text">
             <string>Cuota</string>
            </property>
@@ -263,6 +272,9 @@
          </item>
          <item row="6" column="1">
           <widget class="QDoubleSpinBox" name="txtQuota">
+           <property name="locale">
+            <locale language="English" country="UnitedStates"/>
+           </property>
            <property name="buttonSymbols">
             <enum>QAbstractSpinBox::NoButtons</enum>
            </property>
@@ -275,7 +287,7 @@
           </widget>
          </item>
          <item row="7" column="0">
-          <widget class="QLabel" name="label_16">
+          <widget class="QLabel" name="lblProfit">
            <property name="text">
             <string>Beneficio</string>
            </property>
@@ -283,6 +295,9 @@
          </item>
          <item row="7" column="1">
           <widget class="QDoubleSpinBox" name="txtProfit">
+           <property name="locale">
+            <locale language="English" country="UnitedStates"/>
+           </property>
            <property name="buttonSymbols">
             <enum>QAbstractSpinBox::NoButtons</enum>
            </property>

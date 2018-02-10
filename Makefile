@@ -7,6 +7,7 @@ install:
 	cp -r ui /usr/share/betcon/
 	cp -r resources/bookies /usr/share/betcon/resources/
 	cp -r resources/sports /usr/share/betcon/resources/
+	cp -r lang/mo/* /usr/share/locale/
 	cp default/database.sql /usr/share/betcon/default/
 	cp resources/betcon.desktop /usr/share/applications/
 	cp resources/icon.png /usr/share/pixmaps/betcon.png
@@ -20,7 +21,7 @@ uninstall:
 	rm /usr/bin/betcon
 
 test:
-	nosetests tests
+	nosetests test
 
 clean:
 	rm -rf src/__pycache__

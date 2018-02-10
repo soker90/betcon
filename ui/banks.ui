@@ -19,7 +19,7 @@
      <item>
       <layout class="QFormLayout" name="formLayout_6">
        <item row="0" column="0">
-        <widget class="QLabel" name="label_20">
+        <widget class="QLabel" name="lblDeposits">
          <property name="text">
           <string>Depósitos</string>
          </property>
@@ -27,13 +27,16 @@
        </item>
        <item row="0" column="1">
         <widget class="QLineEdit" name="txtDeposit">
+         <property name="locale">
+          <locale language="English" country="UnitedStates"/>
+         </property>
          <property name="readOnly">
           <bool>true</bool>
          </property>
         </widget>
        </item>
        <item row="2" column="0">
-        <widget class="QLabel" name="label_21">
+        <widget class="QLabel" name="lblBonus">
          <property name="text">
           <string>Bonus</string>
          </property>
@@ -41,13 +44,16 @@
        </item>
        <item row="2" column="1">
         <widget class="QLineEdit" name="txtBonus">
+         <property name="locale">
+          <locale language="English" country="UnitedStates"/>
+         </property>
          <property name="readOnly">
           <bool>true</bool>
          </property>
         </widget>
        </item>
        <item row="4" column="0">
-        <widget class="QLabel" name="label_23">
+        <widget class="QLabel" name="lblProfits">
          <property name="text">
           <string>Beneficios</string>
          </property>
@@ -55,13 +61,16 @@
        </item>
        <item row="4" column="1">
         <widget class="QLineEdit" name="txtProfit">
+         <property name="locale">
+          <locale language="English" country="UnitedStates"/>
+         </property>
          <property name="readOnly">
           <bool>true</bool>
          </property>
         </widget>
        </item>
        <item row="5" column="0">
-        <widget class="QLabel" name="label_24">
+        <widget class="QLabel" name="lblYield">
          <property name="text">
           <string>Yield</string>
          </property>
@@ -69,13 +78,16 @@
        </item>
        <item row="5" column="1">
         <widget class="QLineEdit" name="txtYield">
+         <property name="locale">
+          <locale language="English" country="UnitedStates"/>
+         </property>
          <property name="readOnly">
           <bool>true</bool>
          </property>
         </widget>
        </item>
        <item row="1" column="0">
-        <widget class="QLabel" name="label_22">
+        <widget class="QLabel" name="lblWithdrawals">
          <property name="text">
           <string>Retiradas</string>
          </property>
@@ -83,13 +95,16 @@
        </item>
        <item row="1" column="1">
         <widget class="QLineEdit" name="txtTakeOut">
+         <property name="locale">
+          <locale language="English" country="UnitedStates"/>
+         </property>
          <property name="readOnly">
           <bool>true</bool>
          </property>
         </widget>
        </item>
        <item row="3" column="0">
-        <widget class="QLabel" name="label_2">
+        <widget class="QLabel" name="lblTipsters">
          <property name="text">
           <string>Tipsters</string>
          </property>
@@ -97,6 +112,9 @@
        </item>
        <item row="3" column="1">
         <widget class="QLineEdit" name="txtTipster">
+         <property name="locale">
+          <locale language="English" country="UnitedStates"/>
+         </property>
          <property name="readOnly">
           <bool>true</bool>
          </property>
@@ -107,14 +125,14 @@
      <item>
       <layout class="QFormLayout" name="formLayout_7">
        <item row="0" column="0">
-        <widget class="QLabel" name="label_25">
+        <widget class="QLabel" name="lblBookies">
          <property name="text">
           <string>Casas</string>
          </property>
         </widget>
        </item>
        <item row="1" column="0">
-        <widget class="QLabel" name="label_26">
+        <widget class="QLabel" name="lblBank">
          <property name="text">
           <string>Banco</string>
          </property>
@@ -135,7 +153,7 @@
         </widget>
        </item>
        <item row="4" column="0">
-        <widget class="QLabel" name="label_29">
+        <widget class="QLabel" name="lblTotal">
          <property name="text">
           <string>Total</string>
          </property>
@@ -143,6 +161,9 @@
        </item>
        <item row="0" column="1">
         <widget class="QLineEdit" name="txtBookie">
+         <property name="locale">
+          <locale language="English" country="UnitedStates"/>
+         </property>
          <property name="readOnly">
           <bool>true</bool>
          </property>
@@ -150,6 +171,9 @@
        </item>
        <item row="1" column="1">
         <widget class="QLineEdit" name="txtCc">
+         <property name="locale">
+          <locale language="English" country="UnitedStates"/>
+         </property>
          <property name="readOnly">
           <bool>true</bool>
          </property>
@@ -157,6 +181,9 @@
        </item>
        <item row="2" column="1">
         <widget class="QLineEdit" name="txtPaypal">
+         <property name="locale">
+          <locale language="English" country="UnitedStates"/>
+         </property>
          <property name="readOnly">
           <bool>true</bool>
          </property>
@@ -164,6 +191,9 @@
        </item>
        <item row="3" column="1">
         <widget class="QLineEdit" name="txtSkrill">
+         <property name="locale">
+          <locale language="English" country="UnitedStates"/>
+         </property>
          <property name="readOnly">
           <bool>true</bool>
          </property>
@@ -171,6 +201,9 @@
        </item>
        <item row="4" column="1">
         <widget class="QLineEdit" name="txtTotal">
+         <property name="locale">
+          <locale language="English" country="UnitedStates"/>
+         </property>
          <property name="readOnly">
           <bool>true</bool>
          </property>
@@ -181,7 +214,7 @@
     </layout>
    </item>
    <item>
-    <widget class="QLabel" name="label_7">
+    <widget class="QLabel" name="lblBookiesLong">
      <property name="text">
       <string>En Casas de Apuestas</string>
      </property>
@@ -191,6 +224,9 @@
     <widget class="QTreeWidget" name="treeBookie">
      <property name="enabled">
       <bool>true</bool>
+     </property>
+     <property name="locale">
+      <locale language="English" country="UnitedStates"/>
      </property>
      <property name="selectionMode">
       <enum>QAbstractItemView::NoSelection</enum>
@@ -229,7 +265,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="lblMovements">
      <property name="text">
       <string>Movimientos</string>
      </property>
@@ -237,6 +273,9 @@
    </item>
    <item>
     <widget class="QTreeWidget" name="treeMovement">
+     <property name="locale">
+      <locale language="English" country="UnitedStates"/>
+     </property>
      <property name="sortingEnabled">
       <bool>true</bool>
      </property>

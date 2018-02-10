@@ -19,7 +19,7 @@
      <item>
       <layout class="QFormLayout" name="formLayout_4">
        <item row="0" column="0">
-        <widget class="QLabel" name="label">
+        <widget class="QLabel" name="lblYear">
          <property name="text">
           <string>Año</string>
          </property>
@@ -29,7 +29,7 @@
         <widget class="QComboBox" name="cmbYear"/>
        </item>
        <item row="1" column="0" colspan="2">
-        <widget class="QLabel" name="label_3">
+        <widget class="QLabel" name="lblBalance">
          <property name="maximumSize">
           <size>
            <width>16777215</width>
@@ -47,7 +47,7 @@
           <number>5</number>
          </property>
          <item row="0" column="0">
-          <widget class="QLabel" name="label_9">
+          <widget class="QLabel" name="lblBet">
            <property name="text">
             <string>Apostado</string>
            </property>
@@ -55,13 +55,16 @@
          </item>
          <item row="0" column="1">
           <widget class="QLineEdit" name="txtApostado">
+           <property name="locale">
+            <locale language="English" country="UnitedStates"/>
+           </property>
            <property name="readOnly">
             <bool>true</bool>
            </property>
           </widget>
          </item>
          <item row="1" column="0">
-          <widget class="QLabel" name="label_5">
+          <widget class="QLabel" name="lblWinnings">
            <property name="text">
             <string>Ganancias</string>
            </property>
@@ -69,13 +72,16 @@
          </item>
          <item row="1" column="1">
           <widget class="QLineEdit" name="txtGanancias">
+           <property name="locale">
+            <locale language="English" country="UnitedStates"/>
+           </property>
            <property name="readOnly">
             <bool>true</bool>
            </property>
           </widget>
          </item>
          <item row="2" column="0">
-          <widget class="QLabel" name="label_6">
+          <widget class="QLabel" name="lblLosses">
            <property name="text">
             <string>Perdidas</string>
            </property>
@@ -83,13 +89,16 @@
          </item>
          <item row="2" column="1">
           <widget class="QLineEdit" name="txtPerdidas">
+           <property name="locale">
+            <locale language="English" country="UnitedStates"/>
+           </property>
            <property name="readOnly">
             <bool>true</bool>
            </property>
           </widget>
          </item>
          <item row="3" column="0">
-          <widget class="QLabel" name="label_11">
+          <widget class="QLabel" name="lblProfits">
            <property name="text">
             <string>Beneficio</string>
            </property>
@@ -97,13 +106,16 @@
          </item>
          <item row="3" column="1">
           <widget class="QLineEdit" name="txtBeneficio">
+           <property name="locale">
+            <locale language="English" country="UnitedStates"/>
+           </property>
            <property name="readOnly">
             <bool>true</bool>
            </property>
           </widget>
          </item>
          <item row="4" column="0">
-          <widget class="QLabel" name="label_12">
+          <widget class="QLabel" name="lblPending">
            <property name="text">
             <string>Pendiente</string>
            </property>
@@ -111,13 +123,16 @@
          </item>
          <item row="4" column="1">
           <widget class="QLineEdit" name="txtPendiente">
+           <property name="locale">
+            <locale language="English" country="UnitedStates"/>
+           </property>
            <property name="readOnly">
             <bool>true</bool>
            </property>
           </widget>
          </item>
          <item row="5" column="0">
-          <widget class="QLabel" name="label_13">
+          <widget class="QLabel" name="lblYield">
            <property name="text">
             <string>Yield</string>
            </property>
@@ -125,20 +140,27 @@
          </item>
          <item row="5" column="1">
           <widget class="QLineEdit" name="txtYield">
+           <property name="locale">
+            <locale language="English" country="UnitedStates"/>
+           </property>
            <property name="readOnly">
             <bool>true</bool>
            </property>
           </widget>
          </item>
          <item row="6" column="0">
-          <widget class="QLabel" name="label_19">
+          <widget class="QLabel" name="lblQuota">
            <property name="text">
             <string>Cuota Media</string>
            </property>
           </widget>
          </item>
          <item row="6" column="1">
-          <widget class="QLineEdit" name="txtCuota"/>
+          <widget class="QLineEdit" name="txtCuota">
+           <property name="locale">
+            <locale language="English" country="UnitedStates"/>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>
@@ -146,23 +168,13 @@
      </item>
      <item>
       <layout class="QFormLayout" name="formLayout_2">
-       <item row="0" column="0">
-        <widget class="QLabel" name="label_2">
-         <property name="text">
-          <string>Mes</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QComboBox" name="cmbMonth"/>
-       </item>
-       <item row="1" column="0" colspan="2">
+       <item row="2" column="0" colspan="2">
         <layout class="QFormLayout" name="formLayout_3">
          <property name="topMargin">
           <number>30</number>
          </property>
          <item row="0" column="0">
-          <widget class="QLabel" name="label_10">
+          <widget class="QLabel" name="lblBets">
            <property name="text">
             <string>Apuestas</string>
            </property>
@@ -170,13 +182,16 @@
          </item>
          <item row="0" column="1">
           <widget class="QLineEdit" name="txtApuestas">
+           <property name="locale">
+            <locale language="English" country="UnitedStates"/>
+           </property>
            <property name="readOnly">
             <bool>true</bool>
            </property>
           </widget>
          </item>
          <item row="1" column="0">
-          <widget class="QLabel" name="label_14">
+          <widget class="QLabel" name="lblWon">
            <property name="text">
             <string>Aciertos</string>
            </property>
@@ -184,13 +199,16 @@
          </item>
          <item row="1" column="1">
           <widget class="QLineEdit" name="txtAciertos">
+           <property name="locale">
+            <locale language="English" country="UnitedStates"/>
+           </property>
            <property name="readOnly">
             <bool>true</bool>
            </property>
           </widget>
          </item>
          <item row="2" column="0">
-          <widget class="QLabel" name="label_15">
+          <widget class="QLabel" name="lblLost">
            <property name="text">
             <string>Fallos</string>
            </property>
@@ -198,13 +216,16 @@
          </item>
          <item row="2" column="1">
           <widget class="QLineEdit" name="txtFallos">
+           <property name="locale">
+            <locale language="English" country="UnitedStates"/>
+           </property>
            <property name="readOnly">
             <bool>true</bool>
            </property>
           </widget>
          </item>
          <item row="3" column="0">
-          <widget class="QLabel" name="label_16">
+          <widget class="QLabel" name="lblNull">
            <property name="text">
             <string>Nulos</string>
            </property>
@@ -212,13 +233,16 @@
          </item>
          <item row="3" column="1">
           <widget class="QLineEdit" name="txtNulos">
+           <property name="locale">
+            <locale language="English" country="UnitedStates"/>
+           </property>
            <property name="readOnly">
             <bool>true</bool>
            </property>
           </widget>
          </item>
          <item row="4" column="0">
-          <widget class="QLabel" name="label_17">
+          <widget class="QLabel" name="lblSuccess">
            <property name="text">
             <string>Acierto</string>
            </property>
@@ -226,13 +250,16 @@
          </item>
          <item row="4" column="1">
           <widget class="QLineEdit" name="txtAcierto">
+           <property name="locale">
+            <locale language="English" country="UnitedStates"/>
+           </property>
            <property name="readOnly">
             <bool>true</bool>
            </property>
           </widget>
          </item>
          <item row="5" column="0">
-          <widget class="QLabel" name="label_18">
+          <widget class="QLabel" name="lblAverageBet">
            <property name="text">
             <string>Apuesta Media</string>
            </property>
@@ -240,12 +267,35 @@
          </item>
          <item row="5" column="1">
           <widget class="QLineEdit" name="txtApuestaMedia">
+           <property name="locale">
+            <locale language="English" country="UnitedStates"/>
+           </property>
            <property name="readOnly">
             <bool>true</bool>
            </property>
           </widget>
          </item>
         </layout>
+       </item>
+       <item row="0" column="1">
+        <widget class="QComboBox" name="cmbMonth"/>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="lblMonth">
+         <property name="text">
+          <string>Mes</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QComboBox" name="cmbDay"/>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="lblDay">
+         <property name="text">
+          <string>Día</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -256,7 +306,6 @@
    </item>
   </layout>
   <zorder></zorder>
-  <zorder>layoutWidget</zorder>
  </widget>
  <resources/>
  <connections/>

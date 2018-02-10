@@ -195,13 +195,6 @@ class Bbdd:
 			except Exception as e:
 				print("Error en BBDD: {0}".format(e))
 
-			'''try:
-				query = "ALTER TABLE bookie ADD `country` VARCHAR(150) default 'España'"
-
-				self.cursor.execute(query)
-				self.bd.commit()
-			except Exception as e:
-				print("Error en BBDD: {0}".format(e))'''
 
 			try:
 				query = "create table IF NOT EXISTS variable (key VARCHAR(20) primary key, 	value VARCHAR(100));"
@@ -212,18 +205,46 @@ class Bbdd:
 				print("Error en BBDD: {0}".format(e))
 
 			try:
-				version = self.select("variable", None, "key='version'", "value")
-				if not version:
+				versionUP = self.select("variable", None, "key='version'", "value")
+				if not versionUP:
 					query = " INSERT INTO variable VALUES ('version', 1.6);"
-				elif float(version[0][0]) < 1.6:
-					pass  # For the future
+					self.cursor.execute(query)
+					self.bd.commit()
+			except Exception as e:
+				print("Error en BBDD: {0}".format(e))
+
+		if version < 1.7:
+			try:
+				query = "UPDATE variable SET value=1.7 WHERE key='version';"
+				self.cursor.execute(query)
+				self.bd.commit()
+			except Exception as e:
+				print("Error en BBDD: {0}-".format(e))
+
+			try:
+				query = "UPDATE bet SET result=1 WHERE result='Acertada'; "
+				query += "UPDATE bet SET result=0 WHERE result='Pendiente'; "
+				query += "UPDATE bet SET result=2 WHERE result='Fallada'; "
+				query += "UPDATE bet SET result=3 WHERE result='Nula'; "
+				query += "UPDATE bet SET result=4 WHERE result='Medio Acertada'; "
+				query += "UPDATE bet SET result=5 WHERE result='Medio Fallada'; "
+				query += "UPDATE bet SET result=6 WHERE result='Retirada'; "
+				self.cursor.executescript(query)
+				self.bd.commit()
+			except Exception as e:
+				print("Error en BBDD: {0}".format(e))
+
+			try:
+				query = "ALTER TABLE bookie ADD `country` VARCHAR(150) default 'España'"
+
 				self.cursor.execute(query)
 				self.bd.commit()
 			except Exception as e:
 				print("Error en BBDD: {0}".format(e))
 
-		if version == 1.6:
-			print("hi")
+
+
+
 
 
 	def close(self):
@@ -249,6 +270,18 @@ class Bbdd:
 				years[i[0]] = [i[1]]
 
 		return years
+
+	@staticmethod
+	def getDaysOfMonth(table, year, month):
+		bd = Bbdd()
+		data = bd.select(table, "date DESC", "date LIKE '"+ year + "-" + month +"-%'", "DISTINCT strftime('%d', date)")
+		bd.close()
+
+		days=[]
+		for day in data:
+			days.append(day[0])
+
+		return days
 
 
 

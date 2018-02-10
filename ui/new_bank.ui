@@ -19,7 +19,7 @@
      <item>
       <layout class="QFormLayout" name="formLayout_2">
        <item row="0" column="0">
-        <widget class="QLabel" name="label_8">
+        <widget class="QLabel" name="lblDate">
          <property name="text">
           <string>Fecha</string>
          </property>
@@ -29,7 +29,7 @@
         <widget class="QDateEdit" name="txtDate"/>
        </item>
        <item row="1" column="0">
-        <widget class="QLabel" name="label">
+        <widget class="QLabel" name="lblBookie">
          <property name="text">
           <string>Casa</string>
          </property>
@@ -43,54 +43,27 @@
         </widget>
        </item>
        <item row="2" column="0">
-        <widget class="QLabel" name="label_2">
+        <widget class="QLabel" name="lblType">
          <property name="text">
           <string>Tipo</string>
          </property>
         </widget>
        </item>
        <item row="2" column="1">
-        <widget class="QComboBox" name="cmbType">
-         <item>
-          <property name="text">
-           <string>Depósito en casa</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Retirada a cuenta</string>
-          </property>
-         </item>
-        </widget>
+        <widget class="QComboBox" name="cmbType"/>
        </item>
        <item row="3" column="0">
-        <widget class="QLabel" name="label_3">
+        <widget class="QLabel" name="lblAccount">
          <property name="text">
           <string>Cuenta</string>
          </property>
         </widget>
        </item>
        <item row="3" column="1">
-        <widget class="QComboBox" name="cmbAccount">
-         <item>
-          <property name="text">
-           <string>Banco</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Paypal</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Skrill</string>
-          </property>
-         </item>
-        </widget>
+        <widget class="QComboBox" name="cmbAccount"/>
        </item>
        <item row="4" column="0">
-        <widget class="QLabel" name="label_4">
+        <widget class="QLabel" name="lblAmount">
          <property name="text">
           <string>Importe</string>
          </property>
@@ -98,6 +71,9 @@
        </item>
        <item row="4" column="1">
         <widget class="QDoubleSpinBox" name="txtMoney">
+         <property name="locale">
+          <locale language="English" country="UnitedStates"/>
+         </property>
          <property name="decimals">
           <number>3</number>
          </property>

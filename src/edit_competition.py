@@ -1,23 +1,32 @@
 import sys, os, inspect
 from PyQt5.QtWidgets import QMessageBox, QWidget, QComboBox
 from PyQt5 import uic
+
+from new_competition import NewCompetition
+
 directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
 sys.path.append(directory + "/lib")
 from bbdd import Bbdd
 from competitions import Competitions
+from gettext import gettext as _
+import gettext
 
 class EditCompetition(QWidget):
 	def __init__(self, mainWindows, id):
 		QWidget.__init__(self)
 		uic.loadUi(directory + "/../ui/new_competition.ui", self)
+		gettext.textdomain("betcon")
+		gettext.bindtextdomain("betcon", "../lang/mo")
+		gettext.bindtextdomain("betcon", "/usr/share/locale")
 		self.mainWindows = mainWindows
 		self.btnAccept.clicked.connect(self.accept)
 		self.btnCancel.clicked.connect(self.cancel)
-		self.mainWindows.setWindowTitle("Modificar Competición | Betcon v" + mainWindows.version)
+		self.mainWindows.setWindowTitle(_("Modify Competition") + " | Betcon v" + mainWindows.version)
 		self.txtName.returnPressed.connect(self.btnAccept.click)
 
 		self.id = id
 		self.initData()
+		NewCompetition.translate(self)
 
 	def initData(self):
 		bd = Bbdd()
@@ -84,7 +93,7 @@ class EditCompetition(QWidget):
 		bbdd.update(columns, data, "competition", "id="+self.id)
 		bbdd.close()
 
-		QMessageBox.information(self, "Actualizada", "Competición actualizada.")
+		QMessageBox.information(self, _("Updated"), _("Updated competition."))
 
 		self.close()
 
