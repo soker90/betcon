@@ -1,3 +1,6 @@
+import webbrowser
+
+from PyQt5 import QtCore
 from locale import *
 from sre_compile import isstring
 
@@ -5,6 +8,7 @@ from PyQt5.QtGui import QBrush
 from PyQt5.QtCore import Qt
 from gettext import gettext as _
 import gettext
+
 
 gettext.textdomain("betcon")
 gettext.bindtextdomain("betcon", "../../lang/mo")
@@ -101,4 +105,5 @@ def numberToResult(index):
 
 	return result
 
-
+def openUrl(url):
+	webbrowser.open_new_tab(url)

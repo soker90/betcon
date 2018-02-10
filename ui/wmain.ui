@@ -159,6 +159,7 @@
      <string>Ayuda</string>
     </property>
     <addaction name="aAbout"/>
+    <addaction name="aDonate"/>
    </widget>
    <addaction name="menuArchivo"/>
    <addaction name="menuAyuda"/>
@@ -404,6 +405,11 @@
    </property>
    <property name="toolTip">
     <string>Opciones</string>
+   </property>
+  </action>
+  <action name="aDonate">
+   <property name="text">
+    <string>Donar</string>
    </property>
   </action>
  </widget>

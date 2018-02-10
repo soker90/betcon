@@ -9,8 +9,6 @@ class LibStats:
 
 	@staticmethod
 	def getYears():
-		gettext.textdomain("betcon")
-		gettext.bindtextdomain("betcon", "../../lang/mo")
 		years = Bbdd.getYearMonth("bet")
 		months = {"01": _("January"), "02": _("February"), "03": _("March"), "04": _("April"), "05": _("May"), "06": _("June"), "07": _("July"), "08": _("August"),
 				  "09": _("September"), "10": _("October"), "11": _("November"), "12": _("December")}
@@ -324,7 +322,6 @@ class LibStats:
 
 		if datasql[0] == 0:
 			return [0, 0, 0, 0, 0, "0%", 0, 0, 0, 0, 0, "0%", 0]
-		print(str(datasql[3]))
 		yi = "{0:.2f}%".format(round(((datasql[3]+bonus)/datasql[0])*100, 2))
 		quota = float("{0:.2f}".format(datasql[5], 2))
 		bet = float("{0:.2f}".format(datasql[10], 2))

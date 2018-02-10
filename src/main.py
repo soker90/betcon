@@ -52,6 +52,7 @@ from ods import Ods
 from settings import Settings
 from gettext import gettext as _
 import gettext
+from func_aux import openUrl
 
 
 class Main(QMainWindow):
@@ -118,6 +119,8 @@ class Main(QMainWindow):
 		self.aAbout.setText(_("About..."))
 		self.aSettings.triggered.connect(self.settings)
 		self.aSettings.setText(_("Settings"))
+		self.aDonate.triggered.connect(self.donate)
+		self.aDonate.setText(_("Donate"))
 
 		self.aNewConjunta.triggered.connect(self.newConjunta)
 		self.aNewConjunta.setText(_("New joint purchase"))
@@ -386,6 +389,9 @@ class Main(QMainWindow):
 		about = About()
 		about.exec_()
 
+	def donate(self):
+		openUrl("https://www.paypal.me/eduparra")
+
 
 class About(QDialog):
 	def __init__(self):
@@ -395,7 +401,7 @@ class About(QDialog):
 		version = archivo.readline()
 		self.setWindowTitle(_("About"))
 		self.txtText.setHtml("<p style='text-align: center;'><br>Betcon v" + version + "<p/>" \
-		                     "<p style='text-align: center;'>Web: http://betcon.eduardoparra.es/<p/>" \
+		                     "<p style='text-align: center;'>Web: <a href='self.donate'>http://betcon.eduardoparra.es/</a><p/>" \
 		                     "<p style='text-align: center;'>" + _("Created by") + " Eduardo Parra Mazuecos<p/>" \
 		                     "<p style='text-align: center;'>" + _("Contact") + ": eduparra90@gmail.com</p>" \
 			                 "<p style='text-align: center;'>" + _("License") +" GPLv3<p/>" \
@@ -405,4 +411,7 @@ class About(QDialog):
 		                     "<p style='text-align: center;'>" + "Brazilian Portuguese: Rodrigo Henrique. <p/>" \
 		                     "<p style='text-align: center;'>" + "German: Franz Lewin Wagner, Rokar. <p/>" \
 		                     "<p style='text-align: center;'>" + "Kurdish: Rokar. <p/>" )
+
+		def donate(self):
+			openUrl("https://www.paypal.me/eduparra")
 

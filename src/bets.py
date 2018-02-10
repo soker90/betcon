@@ -25,6 +25,11 @@ class Bets(QWidget):
 		mainWindows.diconnectActions()
 		mainWindows.aNew.triggered.connect(mainWindows.newBet)
 		self.mainWindows.setWindowTitle(_("Home") + " | Betcon v" + mainWindows.version)
+		header = [" ", "index", _("Date"), _("Sport"), _("Competition"), _("Region"), _("Local Team"), _("Away Team"),
+		          _("Pick"), _("Bookie"), _("Market"), _("Tipster"), _("Stake"), _("Stake 1"), _("Bet"), _("Quota"),
+		          _("Result"), _("Profit")]
+		self.lblYear.setText(_("Year"))
+		self.lblMonth.setText(_("Month"))
 
 		self.coin = LibYaml().interface["coin"]
 		self.treeMain.header().hideSection(1)
@@ -38,14 +43,11 @@ class Bets(QWidget):
 		self.itemSelected = -1
 		self.indexSelected = -1
 
-		header = [" ", "index", _("Date"), _("Sport"), _("Competition"), _("Region"), _("Local Team"), _("Away Team"),
-		          _("Pick"), _("Bookie"), _("Market"), _("Tipster"), _("Stake"), _("Stake 1"), _("Bet"), _("Quota"),
-		          _("Result"), _("Profit")]
+
 
 		self.treeMain.setHeaderLabels(header)
 
-		self.lblYear.setText(_("Year"))
-		self.lblMonth.setText(_("Month"))
+
 
 	def initData(self):
 		self.years, self.months = LibStats.getYears()
