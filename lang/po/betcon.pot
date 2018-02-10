@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-08 20:56+0100\n"
+"POT-Creation-Date: 2018-02-10 17:21+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -110,13 +110,13 @@ msgstr ""
 msgid "Movements"
 msgstr ""
 
-#: src/banks.py:51 src/banks.py:55 src/bets.py:39 src/bonus.py:36
+#: src/banks.py:51 src/banks.py:55 src/bets.py:42 src/bonus.py:36
 #: src/new_bank.py:32 src/new_bet.py:67 src/new_bonus.py:29
 #: src/stats_bookie.py:33
 msgid "Bookie"
 msgstr ""
 
-#: src/banks.py:55 src/bets.py:38 src/bonus.py:36 src/new_bank.py:31
+#: src/banks.py:55 src/bets.py:41 src/bonus.py:36 src/new_bank.py:31
 #: src/new_bet.py:49 src/new_bet.py:50 src/new_bonus.py:28
 msgid "Date"
 msgstr ""
@@ -129,83 +129,97 @@ msgstr ""
 msgid "Deposit at bookie"
 msgstr ""
 
-#: src/banks.py:159 src/bets.py:121 src/bonus.py:67 src/bookies.py:56
+#: src/banks.py:159 src/bets.py:149 src/bonus.py:67 src/bookies.py:56
 #: src/competitions.py:63 src/markets.py:62 src/regions.py:61 src/sports.py:61
 #: src/tipsters_month.py:101 src/tipsters_month.py:112 src/tipsters.py:94
 msgid "Remove"
 msgstr ""
 
-#: src/banks.py:159 src/bets.py:121 src/bonus.py:67
+#: src/banks.py:159 src/bets.py:149 src/bonus.py:67
 msgid "Are you sure you want to eliminate it?"
 msgstr ""
 
-#: src/bets.py:26 src/main.py:68 src/main.py:76
+#: src/bets.py:27 src/main.py:68 src/main.py:76
 msgid "Home"
 msgstr ""
 
-#: src/bets.py:38 src/competitions.py:33 src/new_bet.py:51 src/new_bet.py:52
+#: src/bets.py:41 src/competitions.py:33 src/new_bet.py:51 src/new_bet.py:52
 #: src/new_competition.py:30 src/stats_market.py:33 src/stats_region.py:32
 #: src/stats_sport.py:32 src/stats_tipster.py:33
 msgid "Sport"
 msgstr ""
 
-#: src/bets.py:38 src/new_bet.py:55 src/new_bet.py:56
+#: src/bets.py:41 src/new_bet.py:55 src/new_bet.py:56
 msgid "Competition"
 msgstr ""
 
-#: src/bets.py:38 src/competitions.py:33 src/new_bet.py:53 src/new_bet.py:54
+#: src/bets.py:41 src/competitions.py:33 src/new_bet.py:53 src/new_bet.py:54
 #: src/new_competition.py:29 src/stats_region.py:32
 msgid "Region"
 msgstr ""
 
-#: src/bets.py:38
+#: src/bets.py:41
 msgid "Local Team"
 msgstr ""
 
-#: src/bets.py:38
+#: src/bets.py:41
 msgid "Away Team"
 msgstr ""
 
-#: src/bets.py:39 src/new_bet.py:61 src/new_bet.py:62
+#: src/bets.py:42 src/new_bet.py:61 src/new_bet.py:62
 msgid "Pick"
 msgstr ""
 
-#: src/bets.py:39 src/new_bet.py:68 src/stats_market.py:33
+#: src/bets.py:42 src/new_bet.py:68 src/stats_market.py:33
 msgid "Market"
 msgstr ""
 
-#: src/bets.py:39 src/new_bet.py:69 src/new_tipster_month.py:28
+#: src/bets.py:42 src/new_bet.py:69 src/new_tipster_month.py:28
 #: src/stats_tipster.py:33 src/tipsters_month.py:44
 msgid "Tipster"
 msgstr ""
 
-#: src/bets.py:39 src/main.py:111 src/new_bet.py:70 src/settings.py:47
+#: src/bets.py:42 src/main.py:111 src/new_bet.py:70 src/settings.py:47
 #: src/stats_bookie.py:33 src/stats_market.py:33 src/stats_region.py:32
 #: src/stats_sport.py:32 src/stats_stake.py:32 src/stats_tipster.py:33
 msgid "Stake"
 msgstr ""
 
-#: src/bets.py:39 src/settings.py:50
+#: src/bets.py:42 src/settings.py:50
 msgid "Stake 1"
 msgstr ""
 
-#: src/bets.py:39 src/new_bet.py:72
+#: src/bets.py:42 src/new_bet.py:72
 msgid "Bet"
 msgstr ""
 
-#: src/bets.py:39 src/new_bet.py:73 src/stats_bookie.py:33
+#: src/bets.py:42 src/new_bet.py:73 src/stats_bookie.py:33
 #: src/stats_market.py:33 src/stats_region.py:32 src/stats_sport.py:32
 #: src/stats_stake.py:32 src/stats_tipster.py:33
 msgid "Quota"
 msgstr ""
 
-#: src/bets.py:40 src/new_bet.py:63 src/new_bet.py:64
+#: src/bets.py:43 src/new_bet.py:63 src/new_bet.py:64
 msgid "Result"
 msgstr ""
 
-#: src/bets.py:40 src/new_bet.py:74 src/stats_market.py:33
+#: src/bets.py:43 src/new_bet.py:74 src/stats_market.py:33
 #: src/stats_region.py:32 src/stats_tipster.py:33
 msgid "Profit"
+msgstr ""
+
+#: src/bets.py:53 src/new_conjunta.py:33 src/new_tipster_month.py:27
+#: src/stats_bookie.py:38 src/stats_market.py:38 src/stats.py:33
+#: src/stats_region.py:37 src/stats_sport.py:37 src/stats_stake.py:37
+#: src/stats_tipster.py:38 src/tipsters_month.py:44
+msgid "Year"
+msgstr ""
+
+#: src/bets.py:54 src/new_conjunta.py:32 src/new_tipster_month.py:26
+#: src/stats_bookie.py:39 src/stats_market.py:39 src/stats.py:34
+#: src/stats_region.py:38 src/stats_sport.py:38 src/stats_stake.py:38
+#: src/stats_tipster.py:39 src/tipsters_month.py:44
+msgid "Month"
 msgstr ""
 
 #: src/bonus.py:22 src/main.py:94
@@ -581,20 +595,6 @@ msgstr ""
 
 #: src/new_conjunta.py:24
 msgid "New Joint Purchase"
-msgstr ""
-
-#: src/new_conjunta.py:32 src/new_tipster_month.py:26 src/stats_bookie.py:39
-#: src/stats_market.py:39 src/stats.py:34 src/stats_region.py:38
-#: src/stats_sport.py:38 src/stats_stake.py:38 src/stats_tipster.py:39
-#: src/tipsters_month.py:44
-msgid "Month"
-msgstr ""
-
-#: src/new_conjunta.py:33 src/new_tipster_month.py:27 src/stats_bookie.py:38
-#: src/stats_market.py:38 src/stats.py:33 src/stats_region.py:37
-#: src/stats_sport.py:37 src/stats_stake.py:37 src/stats_tipster.py:38
-#: src/tipsters_month.py:44
-msgid "Year"
 msgstr ""
 
 #: src/new_conjunta.py:36

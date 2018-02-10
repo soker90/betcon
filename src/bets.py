@@ -6,11 +6,12 @@ from PyQt5 import uic
 directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
 sys.path.append(directory + "/lib")
 from bbdd import Bbdd
-from func_aux import numberToResult, paint_row
+from func_aux import numberToResult, paint_row, monthToNumber
 from gettext import gettext as _
 import gettext
 from libyaml import LibYaml
 from os.path import expanduser
+from libstats import LibStats
 
 
 
@@ -27,10 +28,12 @@ class Bets(QWidget):
 
 		self.coin = LibYaml().interface["coin"]
 		self.treeMain.header().hideSection(1)
-		self.initTree()
+		self.initData()
 		self.treeMain.itemSelectionChanged.connect(self.changeItem)
 		self.mainWindows.aEdit.triggered.connect(self.editItem)
 		self.mainWindows.aRemove.triggered.connect(self.deleteItem)
+		self.cmbYear.activated.connect(self.updateMonths)
+		self.cmbMonth.activated.connect(self.initTree)
 
 		self.itemSelected = -1
 		self.indexSelected = -1
@@ -41,9 +44,28 @@ class Bets(QWidget):
 
 		self.treeMain.setHeaderLabels(header)
 
+		self.lblYear.setText(_("Year"))
+		self.lblMonth.setText(_("Month"))
+
+	def initData(self):
+		self.years, self.months = LibStats.getYears()
+		self.cmbYear.addItems(self.years.keys())
+		self.updateMonths()
+
+	def updateMonths(self):
+		year = self.cmbYear.currentText()
+		self.cmbMonth.clear()
+		self.cmbMonth.addItems(self.getMonths(year))
+		self.initTree()
+
+
 	def initTree(self):
+		year = self.cmbYear.currentText()
+		month = self.cmbMonth.currentText()
+		month = monthToNumber(month)
+		self.treeMain.clear()
 		bd = Bbdd()
-		data = bd.select("bet", "date DESC")
+		data = bd.select("bet", "date DESC", "date LIKE '" + year + "-" + month + "%'")
 
 		index = 0
 		items = []
@@ -127,6 +149,11 @@ class Bets(QWidget):
 			self.mainWindows.setCentralWidget(Bets(self.mainWindows))
 			self.mainWindows.enableTools()
 
+	def getMonths(self, year):
+		sMonths = []
+		for i in self.years[year]:
+			sMonths.append(self.months[i])
+		return sMonths
 
 
 
