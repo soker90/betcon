@@ -21,6 +21,7 @@ class EditBet(QWidget):
 		uic.loadUi(directory + "/../ui/new_bet.ui", self)
 		gettext.textdomain("betcon")
 		gettext.bindtextdomain("betcon", "../lang/mo")
+		gettext.bindtextdomain("betcon", "/usr/share/locale")
 		self.mainWindows = mainWindows
 		self.mainWindows.setWindowTitle(_("Modify Bet") + " | Betcon v" + mainWindows.version)
 		self.btnAccept.clicked.connect(self.accept)

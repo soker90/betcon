@@ -15,6 +15,7 @@ class StatsStake(QWidget):
         uic.loadUi(directory + "/../ui/stats_stake.ui", self)
         gettext.textdomain("betcon")
         gettext.bindtextdomain("betcon", "../lang/mo")
+        gettext.bindtextdomain("betcon", "/usr/share/locale")
         self.mainWindows = mainWindows
         self.mainWindows.setWindowTitle(_("Stats Stake") + " | Betcon v" + mainWindows.version)
         self.translate()

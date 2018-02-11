@@ -18,6 +18,7 @@ class EditBookie(QWidget):
         uic.loadUi(directory + "/../ui/new_bookie.ui", self)
         gettext.textdomain("betcon")
         gettext.bindtextdomain("betcon", "../lang/mo")
+        gettext.bindtextdomain("betcon", "/usr/share/locale")
         self.mainWindows = mainWindows
         self.btnAccept.clicked.connect(self.accept)
         self.btnCancel.clicked.connect(self.cancel)

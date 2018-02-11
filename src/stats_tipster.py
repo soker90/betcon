@@ -16,6 +16,7 @@ class StatsTipster(QWidget):
         uic.loadUi(directory + "/../ui/stats_tipster.ui", self)
         gettext.textdomain("betcon")
         gettext.bindtextdomain("betcon", "../lang/mo")
+        gettext.bindtextdomain("betcon", "/usr/share/locale")
         self.mainWindows = mainWindows
         self.mainWindows.setWindowTitle(_("Stats Tipsters") + " | Betcon v" + mainWindows.version)
         self.translate()

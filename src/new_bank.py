@@ -17,6 +17,7 @@ class NewBank(QWidget):
 		uic.loadUi(directory + "/../ui/new_bank.ui", self)
 		gettext.textdomain("betcon")
 		gettext.bindtextdomain("betcon", "../lang/mo")
+		gettext.bindtextdomain("betcon", "/usr/share/locale")
 		self.mainWindows = mainWindows
 		self.btnAccept.clicked.connect(self.accept)
 		self.btnCancel.clicked.connect(self.cancel)
@@ -86,7 +87,7 @@ class NewBank(QWidget):
 		bbdd = Bbdd()
 		bbdd.insert(columns, data, "movement")
 
-		money *= -1
+		money = float(money) * (-1)
 		data = ["'+bank+'" + str(money)]
 		columns = ["bank"]
 

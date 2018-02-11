@@ -20,6 +20,7 @@ class NewBet(QWidget):
 		uic.loadUi(directory + "/../ui/new_bet.ui", self)
 		gettext.textdomain("betcon")
 		gettext.bindtextdomain("betcon", "../lang/mo")
+		gettext.bindtextdomain("betcon", "/usr/share/locale")
 		self.mainWindows = mainWindows
 		self.mainWindows.setWindowTitle(_("New Bet") + " | Betcon v" + mainWindows.version)
 		self.btnAccept.clicked.connect(self.accept)

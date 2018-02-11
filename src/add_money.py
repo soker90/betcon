@@ -15,6 +15,7 @@ class AddMoney(QWidget):
 		uic.loadUi(directory + "/../ui/add_money.ui", self)
 		gettext.textdomain("betcon")
 		gettext.bindtextdomain("betcon", "../lang/mo")
+		gettext.bindtextdomain("betcon", "/usr/share/locale")
 		self.mainWindows = mainWindows
 		mainWindows.aNew.triggered.connect(mainWindows.newBank)
 		self.mainWindows.setWindowTitle(_("Add funds") + " | Betcon v" + mainWindows.version)

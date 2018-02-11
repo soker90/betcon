@@ -18,6 +18,7 @@ class Banks(QWidget):
         uic.loadUi(directory + "/../ui/banks.ui", self)
         gettext.textdomain("betcon")
         gettext.bindtextdomain("betcon", "../lang/mo")
+        gettext.bindtextdomain("betcon", "/usr/share/locale")
         self.mainWindows = mainWindows
         mainWindows.diconnectActions()
         mainWindows.aNew.triggered.connect(mainWindows.newBank)
