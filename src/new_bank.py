@@ -87,7 +87,7 @@ class NewBank(QWidget):
 		bbdd = Bbdd()
 		bbdd.insert(columns, data, "movement")
 
-		money *= -1
+		money = float(money) * (-1)
 		data = ["'+bank+'" + str(money)]
 		columns = ["bank"]
 
