@@ -2,10 +2,13 @@ import sys, sqlite3, os, inspect, json, yaml
 from os.path import expanduser
 from collections import OrderedDict
 
+from func_aux import checkFileExist
+
 
 class LibYaml:
 	def __init__(self, directory=expanduser("~/.betcon/config.yml")):
 		self.directory = directory
+		checkFileExist(expanduser("~/.betcon"))
 		self.config = self.load()
 		self.stake = self.config["stake"]
 		self.interface = self.config["interface"]

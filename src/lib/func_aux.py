@@ -1,4 +1,4 @@
-import webbrowser
+import webbrowser, os
 
 from PyQt5 import QtCore
 from locale import *
@@ -111,3 +111,7 @@ def numberToResult(index):
 
 def openUrl(url):
 	webbrowser.open_new_tab(url)
+
+def checkFileExist(directory):
+	if not os.path.exists(directory):
+		os.makedirs(directory)
