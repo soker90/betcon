@@ -338,7 +338,6 @@ class EditBet(QWidget):
 		# cmbResult
 		data.append(self.cmbResult.currentIndex())
 
-		print(self.txtBet.text())
 		data.append(str(self.txtProfit.text()))
 		data.append(str(self.txtBet.text()))
 		data.append(str(self.txtQuota.text()))
@@ -366,7 +365,7 @@ class EditBet(QWidget):
 				data.append(self.players1[i].currentText())
 				data.append(self.players2[i].currentText())
 				data.append(self.picks[i].text())
-				data.append(self.results[i].currentText())
+				data.append(self.results[i].currentIndex())
 				bbdd.insert(columns, data, "combined")
 
 		bbdd.close()
@@ -617,14 +616,17 @@ class EditBet(QWidget):
 			self.addCombined()
 			date = QDateTime.fromString(bet[2], "yyyy-MM-dd hh:mm:ss")
 			self.dates[i].setDateTime(date)
-			sport = key_from_value(self.sportIndexToId, bet[3])
-			self.sports[i].setCurrentIndex(sport)
-			self.setRegionComb(i)
-			region = key_from_value(self.regionIndexToIdCmb[i], bet[5])
-			self.regions[i].setCurrentIndex(region)
-			self.setCompetitionComb(i)
-			competition = key_from_value(self.competitionIndexToIdCmb[i], bet[4])
-			self.competitions[i].setCurrentIndex(competition)
+			try:
+				sport = key_from_value(self.sportIndexToId, bet[3])
+				self.sports[i].setCurrentIndex(sport)
+				self.setRegionComb(i)
+				region = key_from_value(self.regionIndexToIdCmb[i], bet[5])
+				self.regions[i].setCurrentIndex(region)
+				self.setCompetitionComb(i)
+				competition = key_from_value(self.competitionIndexToIdCmb[i], bet[4])
+				self.competitions[i].setCurrentIndex(competition)
+			except:
+				print("No data combined")
 			self.players1[i].setCurrentText(bet[6])
 			self.players2[i].setCurrentText(bet[7])
 			self.picks[i].setText(bet[8])
