@@ -290,7 +290,6 @@ class NewBet(QWidget):
 
 		# cmbResult
 		data.append(self.cmbResult.currentIndex())
-		print(str(self.cmbResult.currentIndex()))
 
 		data.append(str(self.txtProfit.text()))
 		data.append(str(self.txtBet.text()))
@@ -321,6 +320,7 @@ class NewBet(QWidget):
 				data.append(self.players2[i].currentText())
 				data.append(self.picks[i].text())
 				data.append(self.results[i].currentIndex())
+				print(self.results[i].currentIndex())
 				bbdd.insert(columns, data, "combined")
 
 
@@ -439,7 +439,7 @@ class NewBet(QWidget):
 			self.buttons[i].setVisible(visible)
 
 	def combined(self):
-		if self.cmbMarket.currentText() == "Combinada":
+		if self.cmbMarket.currentText() == "Combinada":  # TODO: No comments...
 			self.setCombinedVisible(True)
 		else:
 			self.setCombinedVisible(False)

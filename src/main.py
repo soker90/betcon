@@ -11,6 +11,7 @@ sys.path.append(directory)
 from bets import Bets
 from new_bet import NewBet
 sys.path.append(directory + "/lib")
+
 from regions import Regions
 from new_region import NewRegion
 from competitions import Competitions

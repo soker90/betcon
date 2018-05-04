@@ -229,6 +229,13 @@ class Bbdd:
 				query += "UPDATE bet SET result=4 WHERE result='Medio Acertada'; "
 				query += "UPDATE bet SET result=5 WHERE result='Medio Fallada'; "
 				query += "UPDATE bet SET result=6 WHERE result='Retirada'; "
+				query = "UPDATE combined SET result=1 WHERE result='Acertada'; "
+				query += "UPDATE combined SET result=0 WHERE result='Pendiente'; "
+				query += "UPDATE combined SET result=2 WHERE result='Fallada'; "
+				query += "UPDATE combined SET result=3 WHERE result='Nula'; "
+				query += "UPDATE combined SET result=4 WHERE result='Medio Acertada'; "
+				query += "UPDATE combined SET result=5 WHERE result='Medio Fallada'; "
+				query += "UPDATE combined SET result=6 WHERE result='Retirada'; "
 				self.cursor.executescript(query)
 				self.bd.commit()
 			except Exception as e:
