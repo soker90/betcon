@@ -29,6 +29,8 @@ class EditConjunta(QWidget):
 		self.selected = [0, 1]
 		self.initData()
 		NewConjunta.translate(self)
+		self.listFree.itemSelectionChanged.connect(self.updateEnableButton)
+		self.listSelected.itemSelectionChanged.connect(self.updateEnableButton)
 
 
 	def initData(self):
@@ -76,12 +78,24 @@ class EditConjunta(QWidget):
 				index += 1
 
 		bd.close()
+		self.updateEnableButton()
 
 	def close(self):
 			self.mainWindows.setCentralWidget(TipstersMonth(self.mainWindows))
 
 	def cancel(self):
 		self.close()
+
+	def updateEnableButton(self):
+		if self.listFree.count() == 0 or self.listFree.currentRow() == -1:
+			self.btnAdd.setEnabled(False)
+		else:
+			self.btnAdd.setEnabled(True)
+
+		if self.listSelected.count() == 0 or self.listSelected.currentRow() == -1:
+			self.btnDel.setEnabled(False)
+		else:
+			self.btnDel.setEnabled(True)
 
 	def accept(self):
 		money = str(self.txtMoney.text())
