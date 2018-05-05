@@ -2,7 +2,7 @@ import sys, sqlite3, os, inspect, json, yaml
 from os.path import expanduser
 from collections import OrderedDict
 
-from src.lib.func_aux import checkFileExist
+from func_aux import checkFileExist
 
 
 class LibYaml:
