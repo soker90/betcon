@@ -1,5 +1,5 @@
 from unittest import TestCase
-
+import os
 from hamcrest import assert_that, is_
 from src.lib.libyaml import LibYaml
 
@@ -20,11 +20,4 @@ class TestLibYaml(TestCase):
 		assert_that(valor, self.lib.load())
 
 	def tearDown(self):
-		import os
 		os.remove('/tmp/test.yml')
-
-
-
-
-
-

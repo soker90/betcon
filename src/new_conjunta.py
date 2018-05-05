@@ -1,5 +1,5 @@
 import sys, os, inspect
-from PyQt5.QtWidgets import QMessageBox, QWidget
+from PyQt5.QtWidgets import QMessageBox, QWidget, QListWidget
 from PyQt5 import uic
 
 directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
@@ -27,6 +27,9 @@ class NewConjunta(QWidget):
 		self.selected = [0, 1]
 		self.initData()
 		self.translate()
+
+		self.listFree.itemSelectionChanged.connect(self.updateEnableButton)
+		self.listSelected.itemSelectionChanged.connect(self.updateEnableButton)
 
 	def translate(self):
 
@@ -70,6 +73,7 @@ class NewConjunta(QWidget):
 				index += 1
 
 		bd.close()
+		self.updateEnableButton()
 
 	def close(self):
 		self.mainWindows.setCentralWidget(TipstersMonth(self.mainWindows))
@@ -98,12 +102,27 @@ class NewConjunta(QWidget):
 
 		self.close()
 
+	def updateEnableButton(self):
+		if self.listFree.count() == 0 or self.listFree.currentRow() == -1:
+			self.btnAdd.setEnabled(False)
+		else:
+			self.btnAdd.setEnabled(True)
+
+		if self.listSelected.count() == 0 or self.listSelected.currentRow() == -1:
+			self.btnDel.setEnabled(False)
+		else:
+			self.btnDel.setEnabled(True)
+
 	def add(self):
 		idTipster = self.tipsterIndexToId.get(self.listFree.currentRow())
 		self.selected.append(idTipster)
 		self.initData()
 
+
+
 	def delete(self):
 		idTipster = self.selectedIndexToId.get(self.listSelected.currentRow())
 		self.selected.remove(idTipster)
 		self.initData()
+
+
