@@ -1,7 +1,7 @@
 # Betcon
 [![license](https://img.shields.io/github/license/soker90/betcon.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html) [![GitHub release](https://img.shields.io/github/release/soker90/betcon.svg)](https://github.com/soker90/betcon/releases) [![Github All Releases](https://img.shields.io/github/downloads/soker90/betcon/total.svg)](https://github.com/soker90/betcon/releases/) [![AUR](https://img.shields.io/aur/version/betcon.svg)](https://aur.archlinux.org/packages/betcon) [![Launchpad](https://img.shields.io/badge/PPA%20soker%2Fbetcon-v1.7.3.1--0ubuntu1-yellow.svg)](https://launchpad.net/~soker/+archive/ubuntu/betcon)
 
-Betcon es una aplicación para sistemas GNU/Linux y Windows para la gestión de apuestas deportivas. Betcon tiene licencia GPLv3.
+Betcon es una aplicación para sistemas GNU/Linux, Windows y MAC para la gestión de apuestas deportivas. Betcon tiene licencia GPLv3.
 
 ### Descargas
 
@@ -43,7 +43,7 @@ make install
 git clone https://github.com/soker90/Betcon.git
 ```
 
-#### Windows
+#### MAC y Windows
 [Descarga](https://github.com/soker90/betcon/releases)
 
 ### Tests
