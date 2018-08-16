@@ -35,4 +35,4 @@ Lista completa de cambios:
 
 ```
 
-Actualmente la versión 1.7.6.1 se encuentra disponible para GNU/Linux y como novedad también en Mac (solo en inglés), la próxima versión incluirá el soporte para Windows.
+Actualmente la versión 1.7.6.1 se encuentra disponible para GNU/Linux y como novedad también en Mac (solo en inglés), la próxima versión se actualizará también el instalador para Windows.
