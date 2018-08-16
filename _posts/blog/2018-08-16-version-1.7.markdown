@@ -10,7 +10,7 @@ img: post07.jpg
 thumb: post07_thumb.jpg
 ---
 
-Como principal novedad, en esta versión es la inclusión de múltiples idiomas, cualquiera que quiera colaborar a traducir Betcon a cualquier idioma puede hacerlo desde [aquí]('https://translations.launchpad.net/betcon'). Además, se han realizado gran cantidad de mejoras y correcciones.
+Como principal novedad, en esta versión se han incluido múltiples idiomas, cualquiera que quiera colaborar a traducir Betcon a cualquier idioma puede hacerlo desde [aquí]('https://translations.launchpad.net/betcon'). Además, se han realizado gran cantidad de mejoras y correcciones.
 
 Lista completa de cambios:
 
