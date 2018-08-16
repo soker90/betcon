@@ -1,0 +1,38 @@
+---
+layout: post
+title: "Nueva versión 1.7"
+date: 2018-08-16 22:15:00
+author: Eduardo
+categories:
+- blog
+- versiones
+img: post07.jpg
+thumb: post07_thumb.jpg
+---
+
+Como principal novedad, en esta versión es la inclusión de múltiples idiomas, cualquiera que quiera colaborar a traducir Betcon a cualquier idioma puede hacerlo desde [aquí]('https://translations.launchpad.net/betcon'). Además, se han realizado gran cantidad de mejoras y correcciones.
+
+Lista completa de cambios:
+
+```
+1. Se han redondeado los decimales de las estadísticas
+2. Soporte para múltiples idiomas: Español, Ingles, Alemán (parcial), Kurdo (parcial) y Portugues de Brasil (parcial)
+3. Posibilidad de añadir el país de la casa de apuestas
+4. Añadido el símbolo de la moneda a los campos de dinero
+5. Eliminados los segundos de las fechas de las apuestas
+6. Añadidas estadísticas por año y día
+7. Opción de mostrar/ocultar el país de las casas de apuestas
+8. Añadida opción para cambiar las imágenes de las casas de apuestas
+9. Ahora se muestran las apuestas por meses
+10. Añadido botón para donar al desarrollador
+11. Corregido el color de las apuestas pendientes
+12. Corregido bug en el bank
+13. Corregido fallo al crear la carpeta .betcon
+14. Corregido fallo al editar una combinada
+15. Corregido fallo al eliminar un tipster al crear o editar una conjunta
+16. Mejoras de la interfaz
+17. Correcciones
+
+```
+
+Actualmente la versión 1.7.6.1 se encuentra disponible para GNU/Linux y como novedad también en Mac (solo en inglés), la próxima versión incluirá el soporte para Windows.
