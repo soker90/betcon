@@ -54,15 +54,21 @@ from settings import Settings
 from gettext import gettext as _
 import gettext
 from func_aux import openUrl
+from libyaml import LibYaml
+import platform
 
 
 class Main(QMainWindow):
 	def __init__(self):
 		QMainWindow.__init__(self)
 		uic.loadUi(directory + "/../ui/wmain.ui", self)
+		if platform.system() != 'Linux':
+			self.lang = "/" + LibYaml().interface["lang"]
+		else:
+			self.lang = ""
 		gettext.textdomain("betcon")
-		gettext.bindtextdomain("betcon", "../lang/mo")
-		gettext.bindtextdomain("betcon", "/usr/share/locale")
+		gettext.bindtextdomain("betcon", "../lang/mo" + self.lang)
+		gettext.bindtextdomain("betcon", "/usr/share/locale" + self.lang)
 		self.showMaximized()
 		self.enableTools()
 
