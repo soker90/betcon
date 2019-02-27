@@ -10,6 +10,7 @@ from bets import Bets
 from bookie import Bookie
 from gettext import gettext as _
 import gettext
+import platform
 
 
 class Settings(QWidget):
@@ -54,6 +55,9 @@ class Settings(QWidget):
 
 		langIndex = {"de": 0, "en": 1, "es": 2, "ki": 3, "pt_BR": 4, "tr": 5}
 		self.cmbLanguage.setCurrentIndex(langIndex[self.config.interface['lang']])
+
+		if platform.system() == 'Linux':
+			self.cmbLanguage.setEnabled(False)
 
 
 	def translate(self):
