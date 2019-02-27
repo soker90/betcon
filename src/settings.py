@@ -27,6 +27,7 @@ class Settings(QWidget):
 		self.btnAccept.clicked.connect(self.accept)
 		self.btnCancel.clicked.connect(self.cancel)
 
+
 		# TODO Al cargar el formulario debe actualiza el combobox con el valor del yml
 		self.cmbLanguage.addItem("Deutsch", "de")
 		self.cmbLanguage.addItem("English", "en")
@@ -50,6 +51,9 @@ class Settings(QWidget):
 			self.chkCountryYes.setChecked(True)
 		else:
 			self.chkCountryNo.setChecked(True)
+
+		langIndex = {"de": 0, "en": 1, "es": 2, "ki": 3, "pt_BR": 4, "tr": 5}
+		self.cmbLanguage.setCurrentIndex(langIndex[self.config.interface['lang']])
 
 
 	def translate(self):
