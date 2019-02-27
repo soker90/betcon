@@ -17,8 +17,8 @@ class Settings(QWidget):
 		QWidget.__init__(self)
 		uic.loadUi(directory + "/../ui/settings.ui", self)
 		gettext.textdomain("betcon")
-		gettext.bindtextdomain("betcon", "../lang/mo")
-		gettext.bindtextdomain("betcon", "/usr/share/locale")
+		gettext.bindtextdomain("betcon", "../lang/mo" + mainWindows.lang)
+		gettext.bindtextdomain("betcon", "/usr/share/locale" + mainWindows.lang)
 		self.mainWindows = mainWindows
 		mainWindows.diconnectActions()
 		self.mainWindows.setWindowTitle(_("Options") + " | Betcon v" + mainWindows.version)
@@ -26,6 +26,15 @@ class Settings(QWidget):
 		self.translate()
 		self.btnAccept.clicked.connect(self.accept)
 		self.btnCancel.clicked.connect(self.cancel)
+
+
+		# TODO Al cargar el formulario debe actualiza el combobox con el valor del yml
+		self.cmbLanguage.addItem("Deutsch", "de")
+		self.cmbLanguage.addItem("English", "en")
+		self.cmbLanguage.addItem("Español", "es")
+		self.cmbLanguage.addItem("Kurdî", "ki")
+		self.cmbLanguage.addItem("Português do Brasil", "pt_BR")
+		self.cmbLanguage.addItem("Türk", "tr")
 
 		self.config = LibYaml()
 		self.txtPercentage.setValue(float(self.config.stake["percentage"]))
@@ -42,6 +51,9 @@ class Settings(QWidget):
 			self.chkCountryYes.setChecked(True)
 		else:
 			self.chkCountryNo.setChecked(True)
+
+		langIndex = {"de": 0, "en": 1, "es": 2, "ki": 3, "pt_BR": 4, "tr": 5}
+		self.cmbLanguage.setCurrentIndex(langIndex[self.config.interface['lang']])
 
 
 	def translate(self):
@@ -104,6 +116,7 @@ class Settings(QWidget):
 		self.config.stake["stake"] = float(stake)
 		self.config.interface['coin'] = self.txtCoin.text()
 		self.config.interface['bookieCountry'] = 'Y' if self.chkCountryYes.isChecked() else 'N'
+		self.config.interface['lang'] = self.cmbLanguage.itemData(self.cmbLanguage.currentIndex())
 		self.config.save()
 		self.close()
 

@@ -14,8 +14,8 @@ class StatsMarket(QWidget):
         QWidget.__init__(self)
         uic.loadUi(directory + "/../ui/stats_market.ui", self)
         gettext.textdomain("betcon")
-        gettext.bindtextdomain("betcon", "../lang/mo")
-        gettext.bindtextdomain("betcon", "/usr/share/locale")
+        gettext.bindtextdomain("betcon", "../lang/mo" + mainWindows.lang)
+        gettext.bindtextdomain("betcon", "/usr/share/locale" + mainWindows.lang)
         self.mainWindows = mainWindows
         self.mainWindows.setWindowTitle(_("Stats of markets") + " | Betcon v" + mainWindows.version)
         self.translate()
