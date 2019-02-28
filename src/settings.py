@@ -54,7 +54,10 @@ class Settings(QWidget):
 			self.chkCountryNo.setChecked(True)
 
 		langIndex = {"de": 0, "en": 1, "es": 2, "ki": 3, "pt_BR": 4, "tr": 5}
-		self.cmbLanguage.setCurrentIndex(langIndex[self.config.interface['lang']])
+		try:
+			self.cmbLanguage.setCurrentIndex(langIndex[self.config.interface['lang']])
+		except Exception:
+			self.cmbLanguage.setCurrentIndex(langIndex["es"])
 
 		if platform.system() == 'Linux':
 			self.cmbLanguage.setEnabled(False)
