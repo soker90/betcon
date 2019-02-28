@@ -418,6 +418,7 @@ class About(QDialog):
 		                     "<p style='text-align: center;'>" + "Spanish: Eduardo Parra Mazuecos. <p/>" \
 		                     "<p style='text-align: center;'>" + "Brazilian Portuguese: Rodrigo Henrique. <p/>" \
 		                     "<p style='text-align: center;'>" + "German: Franz Lewin Wagner, Rokar. <p/>" \
-		                     "<p style='text-align: center;'>" + "Kurdish: Rokar. <p/>" )
+				     "<p style='text-align: center;'>" + "Kurdish: Rokar. <p/>" \
+		                     "<p style='text-align: center;'>" + "Turkish: zeugma. <p/>" )
 
 
