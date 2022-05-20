@@ -1,0 +1,24 @@
+---
+layout: post
+title: "Nueva versión 1.7.7"
+date: 2019-02-28 22:58:00
+author: Eduardo
+categories:
+- blog
+- versiones
+img: post07.jpg
+thumb: post07_thumb.jpg
+---
+
+Se han lanzado dos versiones de mantenimiento la 1.7.7 y la 1.7.7.1.
+
+Lista completa de cambios:
+
+```
+1. Añadida selección de idioma
+2. Añadida traducción al turco
+3. Correción en la configuración del idioma
+
+```
+
+Actualmente la versión 1.7.7 solo se encuentra disponible para GNU/Linux y las instalaciones desde el código fuente.
