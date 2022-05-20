@@ -19,8 +19,9 @@ Lista completa de cambios:
 
 ```
 
-Actualmente la versión 1.8.0 solo se encuentra disponible para GNU/Linux y las instalaciones desde el código fuente.
+<!--- Actualmente la versión 1.8.0 solo se encuentra disponible para GNU/Linux y las instalaciones desde el código fuente.
 
 No tengo planificado sacar versiones con nuevas caracteristicas, si quieres contribuir con el desarrollo puedes hacerlo en [Github]('https://github.com/soker90/betcon'). Muchas gracias a todas las personas que me han mandado mails estos años para reportar errores, proponer nuevas funcionalidades o simplemente agradecer el trabajo.
 
 Estoy desarrollando una nueva aplicación para el control de las finanzas personales (tambien libre y gratuita) y cabe la posibilidad de que en un futuro integre la funcionalidad de Betcon. Si eso ocurre lo comunicaré aquí.
+-->
