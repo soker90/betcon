@@ -26,3 +26,9 @@ test:
 clean:
 	rm -rf src/__pycache__
 	rm -rf src/lib/__pycache__
+
+install-dependencies:
+	pip install -r requirements.txt 
+
+start:
+	python src/Betcon

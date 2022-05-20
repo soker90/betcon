@@ -18,7 +18,7 @@ class LibYaml:
 			self.initConfig()
 
 		stream = open(self.directory, 'r')
-		config = yaml.load(stream)
+		config = yaml.safe_load(stream)
 		stream.close()
 		return config
 

@@ -79,7 +79,7 @@ class Stats(QWidget):
 		year = self.cmbYear.currentText()
 		month = self.cmbMonth.currentText()
 		self.cmbDay.clear()
-		if month is not "" and month is not None:
+		if month != "" and month != None:
 			try:
 				month = monthToNumber(month)
 
@@ -93,7 +93,7 @@ class Stats(QWidget):
 	def updateStats(self):
 		year = self.cmbYear.currentText()
 		sMonth = self.cmbMonth.currentText()
-		if sMonth is not "" and sMonth is not None:
+		if sMonth != "" and sMonth != None:
 			month = key_from_value(self.months, sMonth)
 			day = self.cmbDay.currentText()
 		else:

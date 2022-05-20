@@ -49,12 +49,12 @@ from tipsters_month import TipstersMonth
 from edit_tipster_month import EditTipsterMonth
 from new_conjunta import NewConjunta
 from edit_conjunta import EditConjunta
-from ods import Ods
+from lib.ods import Ods
 from settings import Settings
 from gettext import gettext as _
 import gettext
-from func_aux import openUrl
-from libyaml import LibYaml
+from lib.func_aux import openUrl
+from lib.libyaml import LibYaml
 import platform
 
 
@@ -321,21 +321,21 @@ class Main(QMainWindow):
 		self.toolBank.setVisible(False)
 		self.toolTipster.setVisible(False)
 		self.toolConjunta.setVisible(False)
-		if type is "stats":
+		if type == "stats":
 			self.toolSecondary.setVisible(False)
 			self.toolStat.setVisible(True)
-		elif type is "settings":
+		elif type == "settings":
 			self.toolSecondary.setVisible(False)
 		else:
 			self.toolSecondary.setVisible(True)
 			self.toolStat.setVisible(False)
 			self.aEdit.setEnabled(False)
 			self.aRemove.setEnabled(False)
-			if type is "bank":
+			if type == "bank":
 				self.toolBank.setVisible(True)
-			if type is "tipster":
+			if type == "tipster":
 				self.toolTipster.setVisible(True)
-			if type is "tipster_money":
+			if type == "tipster_money":
 				self.toolTipster.setVisible(True)
 				self.toolConjunta.setVisible(True)
 
