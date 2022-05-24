@@ -45,8 +45,12 @@ make install
 git clone https://github.com/soker90/Betcon.git
 ```
 
-#### MAC y Windows
-[Descarga](https://github.com/soker90/betcon/releases)
+#### MAC
+[Descarga](https://github.com/soker90/betcon/releases/download/1.7.6.1/betcon_1.7.6.1-OSX_dmg.zip)
+
+
+#### Windows
+[Descarga](https://github.com/soker90/betcon/releases/download/1.6/betcon_1.6-Windows.exe)
 
 ### Desarollo
 Para instalar las dependencias:
