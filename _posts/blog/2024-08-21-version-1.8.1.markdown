@@ -1,0 +1,21 @@
+---
+layout: post
+title: "Nueva versión 1.8.1"
+date: 2024-08-21 21:38:00
+author: Eduardo
+categories:
+- blog
+- versiones
+img: post10.jpg
+thumb: post10_thumb.jpg
+---
+
+Lista completa de cambios:
+
+```
+1. Añadido el idioma inglés de Reino Unido (Gracias a Stephan Woidowski)
+2. Actualizado el idioma portugués de Brasil, con las traducciones al 100% (Gracias a N0YkcHuGce)
+
+```
+
+Actualmente la versión 1.8.1 solo se encuentra disponible para GNU/Linux y las instalaciones desde el código fuente.
