@@ -32,9 +32,10 @@ class Settings(QWidget):
 		# TODO Al cargar el formulario debe actualiza el combobox con el valor del yml
 		self.cmbLanguage.addItem("Deutsch", "de")
 		self.cmbLanguage.addItem("English", "en")
+		self.cmbLanguage.addItem("English (United Kingdom)", "en_GB")
 		self.cmbLanguage.addItem("Español", "es")
 		self.cmbLanguage.addItem("Kurdî", "ki")
-		self.cmbLanguage.addItem("Português do Brasil", "pt_BR")
+		self.cmbLanguage.addItem("Português (Brasil)", "pt_BR")
 		self.cmbLanguage.addItem("Türk", "tr")
 
 		self.config = LibYaml()
@@ -53,7 +54,7 @@ class Settings(QWidget):
 		else:
 			self.chkCountryNo.setChecked(True)
 
-		langIndex = {"de": 0, "en": 1, "es": 2, "ki": 3, "pt_BR": 4, "tr": 5}
+		langIndex = {"de": 0, "en": 1, "en_GB": 2, "es": 3, "ki": 4, "pt_BR": 5, "tr": 6}
 		try:
 			self.cmbLanguage.setCurrentIndex(langIndex[self.config.interface['lang']])
 		except Exception:
