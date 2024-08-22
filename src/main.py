@@ -412,13 +412,13 @@ class About(QDialog):
 		                     "<p style='text-align: center;'>Web: http://betcon.eduardoparra.es/<p/>" \
 		                     "<p style='text-align: center;'>" + _("Created by") + " Eduardo Parra Mazuecos<p/>" \
 		                     "<p style='text-align: center;'>" + _("Contact") + ": eduparra90@gmail.com</p>" \
-			                 "<p style='text-align: center;'>" + _("License") +" GPLv3<p/>" \
+			                   "<p style='text-align: center;'>" + _("License") +" GPLv3<p/>" \
 		                     "<p style='text-align: center;'>" + _("Translated by:") + "<p/>" \
-			                 "<p style='text-align: center;'>" + "English: Eduardo Parra Mazuecos. <p/>" \
-		                     "<p style='text-align: center;'>" + "Spanish: Eduardo Parra Mazuecos. <p/>" \
-		                     "<p style='text-align: center;'>" + "Brazilian Portuguese: Rodrigo Henrique. <p/>" \
+			                   "<p style='text-align: center;'>" + "English (United Kingdom): Eduardo Parra Mazuecos, Stephan Woidowski.<p/>" \
+		                     "<p style='text-align: center;'>" + "Brazilian Portuguese: Rodrigo Henrique, N0YkcHuGce. <p/>" \
 		                     "<p style='text-align: center;'>" + "German: Franz Lewin Wagner, Rokar. <p/>" \
-				     "<p style='text-align: center;'>" + "Kurdish: Rokar. <p/>" \
+				     						 "<p style='text-align: center;'>" + "Kurdish: Rokar. <p/>" \
+		                     "<p style='text-align: center;'>" + "Spanish: Eduardo Parra Mazuecos. <p/>" \
 		                     "<p style='text-align: center;'>" + "Turkish: zeugma. <p/>" )
 
 
