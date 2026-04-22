@@ -36,8 +36,8 @@ class Bets(QWidget):
 		self.treeMain.header().hideSection(1)
 		try:
 			self.initData()
-		except:
-			print("No hay datos")
+		except Exception as e:
+			print(f"No hay datos: {e}")
 		self.treeMain.itemSelectionChanged.connect(self.changeItem)
 		self.mainWindows.aEdit.triggered.connect(self.editItem)
 		self.mainWindows.aRemove.triggered.connect(self.deleteItem)
@@ -71,7 +71,18 @@ class Bets(QWidget):
 		month = monthToNumber(month)
 		self.treeMain.clear()
 		bd = Bbdd()
-		data = bd.select("bet", "date DESC", "date LIKE '" + year + "-" + month + "%'")
+		query = (
+			"SELECT b.id, b.date, b.sport, b.competition, b.region, b.player1, b.player2, "
+			"b.pick, b.bookie, b.market, b.tipster, b.stake, b.one, b.result, b.profit, b.bet, b.quota, "
+			"c.name, r.name, m.name, t.name "
+			"FROM bet b "
+			"LEFT JOIN competition c ON b.competition = c.id "
+			"LEFT JOIN region r ON b.region = r.id "
+			"LEFT JOIN market m ON b.market = m.id "
+			"LEFT JOIN tipster t ON b.tipster = t.id "
+			"WHERE b.date LIKE ? ORDER BY b.date DESC"
+		)
+		data = bd.executeQuery(query, (f"{year}-{month}%",))
 
 		index = 0
 		items = []
@@ -79,14 +90,13 @@ class Bets(QWidget):
 			index += 1
 			id = i[0]
 			date = i[1][:-3]
-			competition = bd.getValue(i[3], "competition")
-			region = bd.getValue(i[4], "region")
+			competition = i[17]
+			region = i[18]
 			player1 = i[5]
 			player2 = i[6]
 			pick = i[7]
-			#bookie = bd.getValue(i[8], "bookie")
-			market = bd.getValue(i[9], "market")  # TODO Preload in dictionary
-			tipster = bd.getValue(i[10], "tipster")  # TODO Preload in dictionary
+			market = i[19]
+			tipster = i[20]
 			stake = i[11]
 			one = i[12]
 			result = numberToResult(i[13])

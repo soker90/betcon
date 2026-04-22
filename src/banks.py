@@ -127,7 +127,7 @@ class Banks(QWidget):
             id = i[0]
             try:
                 sDate = datetime.strptime(i[1], "%d/%m/%y")
-            except:
+            except ValueError:
                 sDate = datetime.strptime(i[1], "%d/%m/%Y")  # Fix for Windows
             sDate = date.strftime(sDate, "%Y/%m/%d")
             account = i[2]

@@ -1,23 +1,26 @@
-from unittest import TestCase
 import os
-from hamcrest import assert_that, is_
-from src.lib.libyaml import LibYaml
+import pytest
+from libyaml import LibYaml
 
 
-class TestLibYaml(TestCase):
-	lib = LibYaml("/tmp/test.yml")
+@pytest.fixture
+def yaml_file(tmp_path):
+    path = str(tmp_path / "test.yml")
+    yield path
+    if os.path.exists(path):
+        os.remove(path)
 
-	def test_load(self):
-		config = {'stake': {'percentage': 1.0, 'stake': 0, 'type': 1}}
 
-		assert_that(config, self.lib.load())
+def test_load_returns_default_config(yaml_file):
+    lib = LibYaml(yaml_file)
+    config = lib.load()
+    assert "stake" in config
+    assert config["stake"]["percentage"] == 1.0
 
-	def test_save(self):
-		valor = {'test': 'valor'}
-		self.lib.config = valor
-		self.lib.save()
 
-		assert_that(valor, self.lib.load())
-
-	def tearDown(self):
-		os.remove('/tmp/test.yml')
+def test_save_and_reload(yaml_file):
+    lib = LibYaml(yaml_file)
+    lib.config = {"test": "valor"}
+    lib.save()
+    reloaded = lib.load()
+    assert reloaded == {"test": "valor"}

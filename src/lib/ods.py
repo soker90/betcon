@@ -60,21 +60,21 @@ class Ods:
 				if i[0] == "Fecha":
 					continue
 				row.append(i[0])
-				sport = bd.getId("'" + i[1] + "'", "sport")
+				sport = bd.getId(i[1], "sport")
 				if sport is None:
 					bd.insert(["name"], [i[1]], "sport")
-					sport = bd.getId("'" + i[1] + "'", "sport")
+					sport = bd.getId(i[1], "sport")
 				row.append(sport)
 
-				region = bd.getId("'" + i[3] + "'", "region")
+				region = bd.getId(i[3], "region")
 				if region is None:
 					bd.insert(["name"], [i[3]], "region")
-					region = bd.getId("'" + i[3] + "'", "region")
+					region = bd.getId(i[3], "region")
 
-				competition = bd.getId("'" + i[2] + "'", "competition")
+				competition = bd.getId(i[2], "competition")
 				if competition is None:
 					bd.insert(["name", "region", "sport"], [i[2], region, sport], "competition")
-					competition = bd.getId("'" + i[2] + "'", "competition")
+					competition = bd.getId(i[2], "competition")
 				row.append(competition)
 				row.append(region)
 
@@ -82,22 +82,22 @@ class Ods:
 				row.append(i[5])
 				row.append(i[6])
 
-				bookie = bd.getId("'" + i[7] + "'", "bookie")
+				bookie = bd.getId(i[7], "bookie")
 				if bookie is None:
 					bd.insert(["name"], [i[7]], "bookie")
-					bookie = bd.getId("'" + i[7] + "'", "bookie")
+					bookie = bd.getId(i[7], "bookie")
 				row.append(bookie)
 
-				market = bd.getId("'" + i[8] + "'", "market")
+				market = bd.getId(i[8], "market")
 				if market is None:
 					bd.insert(["name"], [i[8]], "market")
-					market = bd.getId("'" + i[8] + "'", "market")
+					market = bd.getId(i[8], "market")
 				row.append(market)
 
-				tipster = bd.getId("'" + i[9] + "'", "tipster")
+				tipster = bd.getId(i[9], "tipster")
 				if tipster is None:
 					bd.insert(["name"], [i[9]], "tipster")
-					tipster = bd.getId("'" + i[9] + "'", "tipster")
+					tipster = bd.getId(i[9], "tipster")
 				row.append(tipster)
 
 				row.append(i[10])
@@ -112,7 +112,7 @@ class Ods:
 				           "tipster", "stake", "one", "result", "profit", "bet", "quota", "free"]
 
 				bd.insert(columns, row, "bet")
-		except:
+		except Exception:
 			return "Error de importación: El archivo de importación no tiene una estructura correcta."
 
 

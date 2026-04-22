@@ -52,9 +52,7 @@ class Tipsters(QWidget):
                 for j in data2:
                     try:
                         money[j[1]] += money_tipster
-                    except:
-                        money[j[1]] = money_tipster
-
+                    except KeyError:
 
         data = bd.select("tipster", "name")
 

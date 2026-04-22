@@ -1,13 +1,13 @@
 import webbrowser, os
 
 from PyQt5 import QtCore
-from locale import *
-from sre_compile import isstring
+from locale import setlocale, LC_NUMERIC, atof
 
 from PyQt5.QtGui import QBrush
 from PyQt5.QtCore import Qt
 from gettext import gettext as _
 import gettext
+from constants import BetResult
 
 
 gettext.textdomain("betcon")
@@ -24,11 +24,11 @@ def str_to_float(sValue):
 
 
 def paint_row(item, profit, result=None):
-	if isstring(profit):
+	if isinstance(profit, str):
 		profit = float(profit[:-1])
 
 	profit = float(profit)
-	if result == "0":
+	if result is not None and int(result) == BetResult.PENDING:
 		for j in range(18):
 			item.setBackground(j, QBrush(Qt.yellow))
 	else:
@@ -98,14 +98,14 @@ def numberToResult(index):
 	index = int(index)
 
 	result = {
-		0: _("Pending"),
-		1: _("Successful"),
-		2: _("Failed"),
-		3: _("Null"),
-		4: _("Half Successful"),
-		5: _("Half Failed"),
-		6: _("Cash out")
-	}[index]
+		BetResult.PENDING:   _("Pending"),
+		BetResult.WON:       _("Successful"),
+		BetResult.LOST:      _("Failed"),
+		BetResult.VOID:      _("Null"),
+		BetResult.HALF_WON:  _("Half Successful"),
+		BetResult.HALF_LOST: _("Half Failed"),
+		BetResult.CASH_OUT:  _("Cash out")
+	}[BetResult(index)]
 
 	return result
 

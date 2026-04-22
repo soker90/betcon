@@ -1,3 +1,5 @@
+PYTHON := $(shell [ -f .venv/bin/python ] && echo .venv/bin/python || echo python3)
+
 all: install
 
 install:
@@ -21,14 +23,14 @@ uninstall:
 	rm /usr/bin/betcon
 
 test:
-	nosetests test
+	$(PYTHON) -m pytest test
 
 clean:
 	rm -rf src/__pycache__
 	rm -rf src/lib/__pycache__
 
 install-dependencies:
-	pip install -r requirements.txt 
+	$(PYTHON) -m pip install -r requirements.txt 
 
 start:
-	python src/Betcon
+	$(PYTHON) src/Betcon

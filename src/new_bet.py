@@ -510,7 +510,7 @@ class NewBet(QWidget):
 				self.btnAccept.setDisabled(True)
 			else:
 				self.btnAccept.setDisabled(False)
-		except:
+		except Exception:
 			self.btnAccept.setDisabled(True)
 
 		bd.close()

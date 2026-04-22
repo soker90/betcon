@@ -62,7 +62,7 @@ class EditSport(QWidget):
 				copy2(self.ruta, expanduser("~") + "/.betcon/resources/sports/" + self.id + ".png")
 				img = Images(expanduser("~") + "/.betcon/resources/sports/" + self.id + ".png")
 				img.resize(100, 20)
-			except:
+			except Exception:
 				msg = "Imágen incorrecta"
 
 		QMessageBox.information(self, _("Updated"), _("Updated sport."))

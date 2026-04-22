@@ -553,7 +553,7 @@ class EditBet(QWidget):
 				self.btnAccept.setDisabled(True)
 			else:
 				self.btnAccept.setDisabled(False)
-		except:
+		except Exception:
 			self.btnAccept.setDisabled(True)
 		bd.close()
 
@@ -625,7 +625,7 @@ class EditBet(QWidget):
 				self.setCompetitionComb(i)
 				competition = key_from_value(self.competitionIndexToIdCmb[i], bet[4])
 				self.competitions[i].setCurrentIndex(competition)
-			except:
+			except Exception:
 				print("No data combined")
 			self.players1[i].setCurrentText(bet[6])
 			self.players2[i].setCurrentText(bet[7])

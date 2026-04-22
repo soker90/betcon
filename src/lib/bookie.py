@@ -66,7 +66,7 @@ class Bookie:
 					copy2(self.ruta, expanduser("~") + "/.betcon/resources/bookies/" + self.id + ".png")
 					img = Images(expanduser("~") + "/.betcon/resources/bookies/" + self.id + ".png")
 					img.resize(100, 20)
-				except:
+				except Exception:
 					msg = "Imágen incorrecta"
 		else:
 			msg = "Faltan datos por introducir"

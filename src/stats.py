@@ -61,7 +61,7 @@ class Stats(QWidget):
 
 			self.updateMonths()
 			self.updateDays()
-		except:
+		except Exception:
 			self.setEnabled(False)
 
 	def updateMonths(self):
@@ -85,7 +85,7 @@ class Stats(QWidget):
 
 				self.cmbDay.addItem("")
 				self.cmbDay.addItems(LibStats.getDaysOfMonth(year, month))
-			except:
+			except Exception:
 				pass
 
 		self.updateStats()

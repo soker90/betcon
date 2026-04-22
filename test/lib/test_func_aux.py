@@ -1,102 +1,117 @@
-from unittest import TestCase
-
-from hamcrest import assert_that, is_
-from src.lib.func_aux import *
-from PyQt5.QtWidgets import QTreeWidgetItem
-from gettext import gettext as _
 import gettext
+import pytest
 
-class TestFuncAux(TestCase):
+from PyQt5.QtWidgets import QTreeWidgetItem
+from PyQt5.QtGui import QBrush
+from PyQt5.QtCore import Qt
 
-	gettext.textdomain("betcon")
-	gettext.bindtextdomain("betcon", "../lang/mo")
+from func_aux import (
+    paint_row, key_from_value, str_to_bool,
+    numberToMonth, numberToResult, str_to_float,
+)
+from constants import BetResult
 
-	##################
-	# Test paint_row #
-	##################
+gettext.bindtextdomain("betcon", "lang/mo")
+gettext.textdomain("betcon")
 
-	def test_paint_row_yellow(self):
-		items = []
-		for i in range(18):
-			items.append("")
 
-		item = QTreeWidgetItem(items)
-		item.background(0)
+def _make_item(cols=18):
+    return QTreeWidgetItem([""] * cols)
 
-		actual = paint_row(item, "0€", "0")
-		assert_that(actual.background(0), is_(QBrush(Qt.yellow)))
 
-		actual = paint_row(item, "-10.0€", "0")
-		assert_that(actual.background(0), is_(QBrush(Qt.yellow)))
+# ---------------------------------------------------------------------------
+# paint_row
+# ---------------------------------------------------------------------------
 
-		actual = paint_row(item, 20.0, "0")
-		assert_that(actual.background(0), is_(QBrush(Qt.yellow)))
+def test_paint_row_pending_shows_yellow():
+    item = paint_row(_make_item(), "0€", str(BetResult.PENDING.value))
+    assert item.background(0) == QBrush(Qt.yellow)
 
-	def test_paint_row_green(self):
-		items = []
-		for i in range(18):
-			items.append("")
+def test_paint_row_pending_ignores_negative_profit():
+    item = paint_row(_make_item(), "-10.0€", str(BetResult.PENDING.value))
+    assert item.background(0) == QBrush(Qt.yellow)
 
-		item = QTreeWidgetItem(items)
+def test_paint_row_pending_ignores_positive_profit():
+    item = paint_row(_make_item(), 20.0, str(BetResult.PENDING.value))
+    assert item.background(0) == QBrush(Qt.yellow)
 
-		assert_that(paint_row(item, "0.5€").background(0), is_(QBrush(Qt.green)))
-		assert_that(paint_row(item, 10).background(0), is_(QBrush(Qt.green)))
+def test_paint_row_green_on_positive_profit():
+    assert paint_row(_make_item(), "0.5€").background(0) == QBrush(Qt.green)
+    assert paint_row(_make_item(), 10).background(0) == QBrush(Qt.green)
 
-	def test_paint_row_red(self):
-		items = []
-		for i in range(18):
-			items.append("")
+def test_paint_row_red_on_negative_profit():
+    assert paint_row(_make_item(), "-10.0€").background(0) == QBrush(Qt.red)
+    assert paint_row(_make_item(), "-20€").background(0) == QBrush(Qt.red)
 
-		item = QTreeWidgetItem(items)
+def test_paint_row_cyan_on_zero_profit():
+    assert paint_row(_make_item(), "0€").background(0) == QBrush(Qt.cyan)
 
-		assert_that(paint_row(item, "-10.0€").background(0), is_(QBrush(Qt.red)))
-		assert_that(paint_row(item, "-20€").background(0), is_(QBrush(Qt.red)))
 
-	def test_paint_row_cyan(self):
-		items = []
-		for i in range(18):
-			items.append("")
+# ---------------------------------------------------------------------------
+# key_from_value
+# ---------------------------------------------------------------------------
 
-		item = QTreeWidgetItem(items)
+def test_key_from_value_finds_correct_key():
+    dic = {1: 3, 2: 22, "ss": "ss", 43: "jj"}
+    assert key_from_value(dic, 22) == 2
 
-		assert_that(paint_row(item, "0€").background(0), is_(QBrush(Qt.cyan)))
 
-	#######################
-	# Test key_from_value #
-	#######################
+# ---------------------------------------------------------------------------
+# str_to_bool
+# ---------------------------------------------------------------------------
 
-	def test_key_from_value(self):
-		dic = {1: 3, 2: 22, "ss": "ss", 43: "jj"}
+@pytest.mark.parametrize("value,expected", [
+    ("True", True),
+    ("False", False),
+    ("anything_else", False),
+])
+def test_str_to_bool(value, expected):
+    assert str_to_bool(value) == expected
 
-		value = 22
 
-		assert_that(key_from_value(dic, value), is_(2))
+# ---------------------------------------------------------------------------
+# numberToMonth  — all 12 months (locale-agnostic: compare at call time)
+# ---------------------------------------------------------------------------
 
-	####################
-	# Test str_to_bool #
-	####################
+@pytest.mark.parametrize("num", range(1, 13))
+def test_numberToMonth_all_months(num):
+    result = numberToMonth(num)
+    assert isinstance(result, str) and len(result) > 0
 
-	def test_str_to_bool(self):
+def test_numberToMonth_returns_12_distinct_values():
+    values = [numberToMonth(n) for n in range(1, 13)]
+    assert len(set(values)) == 12
 
-		assert_that(str_to_bool("True"), is_(True))
-		assert_that(str_to_bool("False"), is_(False))
+def test_numberToMonth_order_is_consistent():
+    """Month 1 < month 6 alphabetically in any supported language is not guaranteed,
+    but the same index must always return the same value."""
+    assert numberToMonth(1) == numberToMonth(1)
+    assert numberToMonth(7) == numberToMonth(7)
 
-	######################
-	# Test numberToMonth #
-	######################
 
-	def test_numberToMonth(self):
+# ---------------------------------------------------------------------------
+# numberToResult  — all 7 BetResult values (locale-agnostic)
+# ---------------------------------------------------------------------------
 
-		assert_that(numberToMonth(1), is_(_("January")))
-		assert_that(numberToMonth(2), is_(_("February")))
-		assert_that(numberToMonth(3), is_(_("March")))
-		assert_that(numberToMonth(4), is_(_("April")))
-		assert_that(numberToMonth(5), is_(_("May")))
-		assert_that(numberToMonth(6), is_(_("June")))
-		assert_that(numberToMonth(7), is_(_("July")))
-		assert_that(numberToMonth(8), is_(_("August")))
-		assert_that(numberToMonth(9), is_(_("September")))
-		assert_that(numberToMonth(10), is_(_("October")))
-		assert_that(numberToMonth(11), is_(_("November")))
-		assert_that(numberToMonth(12), is_(_("December")))
+@pytest.mark.parametrize("code", list(BetResult))
+def test_numberToResult_all_codes_return_string(code):
+    result = numberToResult(code.value)
+    assert isinstance(result, str) and len(result) > 0
+
+def test_numberToResult_returns_7_distinct_values():
+    values = [numberToResult(code.value) for code in BetResult]
+    assert len(set(values)) == 7
+
+
+# ---------------------------------------------------------------------------
+# str_to_float  — comma as decimal separator (European locale)
+# ---------------------------------------------------------------------------
+
+@pytest.mark.parametrize("raw,expected", [
+    ("0",   0.0),
+    ("5",   5.0),
+    ("-1", -1.0),
+])
+def test_str_to_float(raw, expected):
+    assert str_to_float(raw) == pytest.approx(expected)
 

@@ -351,15 +351,15 @@ class Main(QMainWindow):
 	def diconnectActions(self):
 		try:
 			self.aNew.triggered.disconnect()
-		except:
+		except RuntimeError:
 			pass
 		try:
 			self.aEdit.triggered.disconnect()
-		except:
+		except RuntimeError:
 			pass
 		try:
 			self.aRemove.triggered.disconnect()
-		except:
+		except RuntimeError:
 			pass
 
 

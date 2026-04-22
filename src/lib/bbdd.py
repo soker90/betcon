@@ -1,4 +1,4 @@
-import sys, sqlite3, os, inspect, codecs
+import sys, sqlite3, os, inspect
 from os.path import expanduser
 from decimal import Decimal
 
@@ -8,11 +8,14 @@ class Bbdd:
 	name = "betcon.sqlite3"
 
 	def __init__(self):
+		# directoryFull is always resolved so initDatabase() can be called safely
+		self.directoryFull = os.path.realpath(
+			os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0])
+		)
 		exist = False
 		if self.isExist():
 			exist = True
 		else:
-			self.directoryFull = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
 			if not os.path.exists(self.directory):
 				os.makedirs(self.directory)
 
@@ -25,7 +28,7 @@ class Bbdd:
 			try:
 				version = self.select("variable", None, "key = 'version'")[0][1]
 				self.updateDatabase(Decimal(version))
-			except:
+			except Exception:
 				self.updateDatabase(0)
 
 
@@ -46,16 +49,13 @@ class Bbdd:
 		return 0
 
 	def update(self, columns, values, table, where=None):
-
-		sentence = " "
-		for i in range(len(columns)):
-			sentence += str("'" + columns[i]) + "' = '" + str(values[i]) + "', "
-
-		sentence = sentence[:-2]
-
-		query = "UPDATE " + table + " SET " + sentence + " WHERE " + where + ";"
+		sentence = ", ".join(col + " = ?" for col in columns)
+		query = "UPDATE " + table + " SET " + sentence
+		if where:
+			query += " WHERE " + where
+		query += ";"
 		try:
-			self.cursor.execute(query)
+			self.cursor.execute(query, list(values))
 			self.bd.commit()
 		except Exception as e:
 			print("Error update BBDD: {0}".format(e))
@@ -95,8 +95,11 @@ class Bbdd:
 		data = self.cursor.fetchall()
 		return data
 
-	def executeQuery(self, query):
-		self.cursor.execute(query)
+	def executeQuery(self, query, params=None):
+		if params:
+			self.cursor.execute(query, params)
+		else:
+			self.cursor.execute(query)
 		data = self.cursor.fetchall()
 
 		return data
@@ -138,8 +141,8 @@ class Bbdd:
 		if not field:
 			field = "name"
 
-		query = "SELECT " + field + " FROM " + table + " WHERE id=" + str(id)
-		self.cursor.execute(query)
+		query = "SELECT " + field + " FROM " + table + " WHERE id=?"
+		self.cursor.execute(query, (id,))
 		data = self.cursor.fetchone()
 
 		return data[0]
@@ -148,8 +151,8 @@ class Bbdd:
 		if not field:
 			field = "name"
 
-		query = "SELECT id FROM " + table + " WHERE " + field +"=" + str(value)
-		self.cursor.execute(query)
+		query = "SELECT id FROM " + table + " WHERE " + field + "=?"
+		self.cursor.execute(query, (value,))
 		data = self.cursor.fetchone()
 		if data is None:
 			return None
@@ -163,7 +166,8 @@ class Bbdd:
 			return False
 
 	def initDatabase(self):
-		query = codecs.open(self.directoryFull + '/../../default/database.sql', 'r', 'utf8').read()
+		with open(self.directoryFull + '/../../default/database.sql', 'r', encoding='utf-8') as f:
+			query = f.read()
 		self.cursor.executescript(query)
 		self.bd.commit()
 
@@ -281,12 +285,15 @@ class Bbdd:
 	@staticmethod
 	def getDaysOfMonth(table, year, month):
 		bd = Bbdd()
-		data = bd.select(table, "date DESC", "date LIKE '"+ year + "-" + month +"-%'", "DISTINCT strftime('%d', date)")
+		bd.cursor.execute(
+			f"SELECT DISTINCT strftime('%d', date) FROM {table} WHERE date LIKE ? ORDER BY date DESC",
+			(f"{year}-{month}-%",)
+		)
+		raw = bd.cursor.fetchall()
 		bd.close()
 
-		days=[]
-		for day in data:
-			days.append(day[0])
+		days = [day[0] for day in raw]
+		return days
 
 		return days
 
