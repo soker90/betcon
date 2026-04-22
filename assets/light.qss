@@ -238,7 +238,6 @@ QListView::item {
 }
 
 QTreeWidget::item:hover,
-QTableView::item:hover,
 QListView::item:hover {
     background-color: #f0f4fc;
 }

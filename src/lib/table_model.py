@@ -77,10 +77,18 @@ class BetconItemDelegate(QStyledItemDelegate):
     Delegate that:
     1. Respects Qt.BackgroundRole even when a QSS stylesheet is active.
     2. Scales icon-only cells (empty text, has icon) to fill the whole cell rect.
+    3. Applies a row-wide hover highlight.
     """
 
     _ICON_ROLE = Qt.ItemDataRole.DecorationRole
     _TEXT_ROLE = Qt.ItemDataRole.DisplayRole
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self._hovered_row = -1
+
+    def set_hovered_row(self, row: int) -> None:
+        self._hovered_row = row
 
     def paint(self, painter: QPainter, option, index) -> None:
         # 1. Paint custom background
@@ -98,6 +106,11 @@ class BetconItemDelegate(QStyledItemDelegate):
             pixmap = icon.pixmap(option.rect.size())
             painter.drawPixmap(option.rect, pixmap)
             painter.restore()
-            return
+        else:
+            super().paint(painter, option, index)
 
-        super().paint(painter, option, index)
+        # 3. Row-wide hover overlay (drawn last, on top)
+        if index.row() == self._hovered_row:
+            painter.save()
+            painter.fillRect(option.rect, QColor(255, 255, 255, 40))
+            painter.restore()

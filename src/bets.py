@@ -2,6 +2,7 @@ import sys
 import os
 import inspect
 from PySide6.QtWidgets import QWidget, QAbstractItemView, QMessageBox
+from PySide6.QtCore import QEvent
 from uiloader import loadUi
 directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
 sys.path.append(directory + "/lib")
@@ -39,7 +40,11 @@ class Bets(QWidget):
 		self.model.setup(header, hidden_col=1)
 		self.treeMain.setModel(self.model)
 		self.treeMain.setAlternatingRowColors(False)
-		self.treeMain.setItemDelegate(BetconItemDelegate(self.treeMain))
+		self._delegate = BetconItemDelegate(self.treeMain)
+		self.treeMain.setItemDelegate(self._delegate)
+		self.treeMain.setMouseTracking(True)
+		self.treeMain.viewport().setMouseTracking(True)
+		self.treeMain.viewport().installEventFilter(self)
 		self.treeMain.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
 		self.treeMain.horizontalHeader().setStretchLastSection(True)
 		self.treeMain.verticalHeader().setVisible(False)
@@ -60,6 +65,19 @@ class Bets(QWidget):
 		self.treeMain.setColumnHidden(1, True)
 
 
+
+	def eventFilter(self, obj, event):
+		if obj is self.treeMain.viewport():
+			if event.type() == QEvent.Type.MouseMove:
+				index = self.treeMain.indexAt(event.pos())
+				row = index.row() if index.isValid() else -1
+				if row != self._delegate._hovered_row:
+					self._delegate.set_hovered_row(row)
+					self.treeMain.viewport().update()
+			elif event.type() == QEvent.Type.Leave:
+				self._delegate.set_hovered_row(-1)
+				self.treeMain.viewport().update()
+		return super().eventFilter(obj, event)
 
 	def initData(self):
 		self.years, self.months = LibStats.getYears()
