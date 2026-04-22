@@ -12,7 +12,7 @@ import gettext
 from libyaml import LibYaml
 from os.path import expanduser
 from libstats import LibStats
-from table_model import BetconTableModel, paint_row_items, make_icon_item, make_item
+from table_model import BetconTableModel, paint_row_items, make_icon_item, make_item, BetconItemDelegate
 
 
 
@@ -38,7 +38,8 @@ class Bets(QWidget):
 		self.model = BetconTableModel()
 		self.model.setup(header, hidden_col=1)
 		self.treeMain.setModel(self.model)
-		self.treeMain.setAlternatingRowColors(True)
+		self.treeMain.setAlternatingRowColors(False)
+		self.treeMain.setItemDelegate(BetconItemDelegate(self.treeMain))
 		self.treeMain.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
 		self.treeMain.horizontalHeader().setStretchLastSection(True)
 		self.treeMain.verticalHeader().setVisible(False)

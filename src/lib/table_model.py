@@ -1,5 +1,6 @@
-from PySide6.QtGui import QStandardItemModel, QStandardItem, QColor, QIcon, QPixmap
+from PySide6.QtGui import QStandardItemModel, QStandardItem, QColor, QIcon, QPixmap, QPainter
 from PySide6.QtCore import Qt
+from PySide6.QtWidgets import QStyledItemDelegate
 from constants import BetResult
 
 # Result color palette — works on both dark and light themes
@@ -95,3 +96,19 @@ class BetconTableModel(QStandardItemModel):
         """Return the ID stored in the hidden column for a given row."""
         item = self.item(row, self._hidden_col)
         return item.text() if item else ""
+
+
+class BetconItemDelegate(QStyledItemDelegate):
+    """
+    Delegate that respects Qt.BackgroundRole on QStandardItems even when
+    a QSS stylesheet is active (Qt normally ignores BackgroundRole when QSS
+    sets background-color on the view).
+    """
+
+    def paint(self, painter: QPainter, option, index) -> None:
+        bg = index.data(Qt.ItemDataRole.BackgroundRole)
+        if bg is not None and bg.style() != Qt.BrushStyle.NoBrush:
+            painter.save()
+            painter.fillRect(option.rect, bg)
+            painter.restore()
+        super().paint(painter, option, index)
