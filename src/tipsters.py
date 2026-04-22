@@ -2,6 +2,7 @@ import sys
 import os
 import inspect
 from PySide6.QtWidgets import QMessageBox, QWidget, QAbstractItemView
+from PySide6.QtWidgets import QHeaderView
 from uiloader import loadUi
 from table_model import BetconTableModel, make_item, paint_row_items
 directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
@@ -42,6 +43,12 @@ class Tipsters(QWidget):
         self.mainWindows.aRemove.triggered.connect(self.deleteItem)
         self.itemSelected = -1
         self.treeMain.setColumnHidden(1, True)
+        self.treeMain.horizontalHeader().setSectionResizeMode(
+            QHeaderView.ResizeMode.ResizeToContents
+        )
+        self.treeMain.horizontalHeader().setSectionResizeMode(
+            4, QHeaderView.ResizeMode.Stretch
+        )
 
     def translate(self):
         header = [_("Name"), "index", _("Cost"), _("Profit of the bets"), _("Balance")]
