@@ -54,50 +54,19 @@
     </widget>
    </item>
    <item>
-    <widget class="QTreeWidget" name="treeMonth">
-     <property name="locale">
-      <locale language="English" country="UnitedStates"/>
+        <widget class="QTableView" name="treeMonth">
+     <property name="sortingEnabled">
+      <bool>true</bool>
      </property>
-     <column>
-      <property name="text">
-       <string>Tipster</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Deporte</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Apuestas</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Aciertos</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Apostado</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Beneficios</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Stake</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Cuota</string>
-      </property>
-     </column>
+     <property name="alternatingRowColors">
+      <bool>true</bool>
+     </property>
+     <property name="showGrid">
+      <bool>false</bool>
+     </property>
+     <property name="selectionBehavior">
+      <enum>QAbstractItemView::SelectRows</enum>
+     </property>
     </widget>
    </item>
    <item>
@@ -108,56 +77,19 @@
     </widget>
    </item>
    <item>
-    <widget class="QTreeWidget" name="treeTotal">
-     <property name="locale">
-      <locale language="English" country="UnitedStates"/>
-     </property>
-     <property name="selectionMode">
-      <enum>QAbstractItemView::SingleSelection</enum>
-     </property>
+        <widget class="QTableView" name="treeTotal">
      <property name="sortingEnabled">
       <bool>true</bool>
      </property>
-     <column>
-      <property name="text">
-       <string>Tipster</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Deporte</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Apuestas</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Aciertos</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Apostado</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Beneficios</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Stake</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Cuota</string>
-      </property>
-     </column>
+     <property name="alternatingRowColors">
+      <bool>true</bool>
+     </property>
+     <property name="showGrid">
+      <bool>false</bool>
+     </property>
+     <property name="selectionBehavior">
+      <enum>QAbstractItemView::SelectRows</enum>
+     </property>
     </widget>
    </item>
   </layout>

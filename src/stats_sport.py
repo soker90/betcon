@@ -1,12 +1,13 @@
 import sys
 import os
 import inspect
-from PySide6.QtWidgets import QWidget, QTreeWidgetItem
+from PySide6.QtWidgets import QWidget, QAbstractItemView
 from uiloader import loadUi
 directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
 sys.path.append(directory + "/lib")
 from libstats import LibStats
-from func_aux import paint_row, key_from_value
+from func_aux import key_from_value
+from table_model import BetconTableModel, make_item, paint_row_items
 from gettext import gettext as _
 import gettext
 
@@ -34,8 +35,21 @@ class StatsSport(QWidget):
 
 		header = [_("Sport"), _("Bets"), _("Success"), _("Money Bet"), _("Profits"), _("Stake"), _("Quota")]
 
-		self.treeMonth.setHeaderLabels(header)
-		self.treeTotal.setHeaderLabels(header)
+		self.modelMonth = BetconTableModel()
+		self.modelMonth.setup(header)
+		self.treeMonth.setModel(self.modelMonth)
+		self.treeMonth.setAlternatingRowColors(True)
+		self.treeMonth.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
+		self.treeMonth.horizontalHeader().setStretchLastSection(True)
+		self.treeMonth.verticalHeader().setVisible(False)
+
+		self.modelTotal = BetconTableModel()
+		self.modelTotal.setup(header)
+		self.treeTotal.setModel(self.modelTotal)
+		self.treeTotal.setAlternatingRowColors(True)
+		self.treeTotal.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
+		self.treeTotal.horizontalHeader().setStretchLastSection(True)
+		self.treeTotal.verticalHeader().setVisible(False)
 
 		self.lblYear.setText(_("Year"))
 		self.lblMonth.setText(_("Month"))
@@ -51,13 +65,11 @@ class StatsSport(QWidget):
 
 		data = LibStats.getSport()
 
-		items = []
 		for i in data:
-			item = QTreeWidgetItem(i)
-			item = paint_row(item, i[4])
-
-			items.append(item)
-		self.treeTotal.addTopLevelItems(items)
+			row = [make_item(str(v)) for v in i]
+			profit_val = float(str(i[4]).rstrip('€$£ ').replace(',', '.') or '0')
+			paint_row_items(row, profit_val, 1)
+			self.modelTotal.appendRow(row)
 
 		self.updateMonths()
 
@@ -73,14 +85,13 @@ class StatsSport(QWidget):
 		month = key_from_value(self.months, sMonth)
 
 		data = LibStats.getSport(year, month)
-		self.treeMonth.clear()
+		self.modelMonth.removeRows(0, self.modelMonth.rowCount())
 
-		items = []
 		for i in data:
-			item = QTreeWidgetItem(i)
-			item = paint_row(item, i[4])
-			items.append(item)
-		self.treeMonth.addTopLevelItems(items)
+			row = [make_item(str(v)) for v in i]
+			profit_val = float(str(i[4]).rstrip('€$£ ').replace(',', '.') or '0')
+			paint_row_items(row, profit_val, 1)
+			self.modelMonth.appendRow(row)
 
 	def getMonths(self, year):
 		sMonths = []
