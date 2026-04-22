@@ -43,6 +43,7 @@ class Bets(QWidget):
 		self.treeMain.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
 		self.treeMain.horizontalHeader().setStretchLastSection(True)
 		self.treeMain.verticalHeader().setVisible(False)
+		self.treeMain.verticalHeader().setDefaultSectionSize(24)
 		self.treeMain.setSortingEnabled(True)
 
 		try:
@@ -146,6 +147,9 @@ class Bets(QWidget):
 			self.model.appendRow(row)
 
 		self.treeMain.resizeColumnsToContents()
+		# Sport (col 3) and Bookie (col 9) images are 100px wide
+		self.treeMain.setColumnWidth(3, 104)
+		self.treeMain.setColumnWidth(9, 104)
 		bd.close()
 
 	def changeItem(self):
