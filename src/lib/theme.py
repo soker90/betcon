@@ -73,6 +73,7 @@ def apply_theme(app: QApplication, mode: str = "dark") -> None:
     qss_path = os.path.join(_ASSETS, f"{mode}.qss")
     if os.path.exists(qss_path):
         with open(qss_path, encoding="utf-8") as fh:
-            app.setStyleSheet(fh.read())
+            qss = fh.read().replace("{ASSETS}", _ASSETS.replace("\\", "/"))
+        app.setStyleSheet(qss)
     else:
         app.setStyleSheet("")

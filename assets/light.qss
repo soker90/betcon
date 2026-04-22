@@ -200,13 +200,9 @@ QComboBox::drop-down {
 }
 
 QComboBox::down-arrow {
-    image: none;
-    width: 0;
-    height: 0;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-top: 6px solid #1a1a2e;
-    margin: 0 6px;
+    image: url({ASSETS}/arrow-down-light.svg);
+    width: 10px;
+    height: 7px;
 }
 
 QComboBox QAbstractItemView {
