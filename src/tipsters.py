@@ -1,8 +1,9 @@
 import sys
 import os
 import inspect
-from PySide6.QtWidgets import QMessageBox, QWidget, QTreeWidgetItem
+from PySide6.QtWidgets import QMessageBox, QWidget, QAbstractItemView
 from uiloader import loadUi
+from table_model import BetconTableModel, make_item, paint_row_items
 directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
 sys.path.append(directory + "/lib")
 
@@ -10,7 +11,6 @@ from bbdd import Bbdd
 from gettext import gettext as _
 import gettext
 from libyaml import LibYaml
-from func_aux import paint_row
 
 
 class Tipsters(QWidget):
@@ -24,14 +24,21 @@ class Tipsters(QWidget):
         mainWindows.diconnectActions()
         mainWindows.aNew.triggered.connect(mainWindows.newTipster)
         self.mainWindows.setWindowTitle(_("Tipsters") + " | Betcon v" + mainWindows.version)
-        self.treeMain.header().hideSection(1)
+        self.model = BetconTableModel()
+        self.treeMain.setModel(self.model)
+        self.treeMain.setColumnHidden(1, True)
+        self.treeMain.setAlternatingRowColors(True)
+        self.treeMain.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
+        self.treeMain.horizontalHeader().setStretchLastSection(True)
+        self.treeMain.verticalHeader().setVisible(False)
+        self.treeMain.setSortingEnabled(True)
 
         self.coin = LibYaml().interface["coin"]
 
         self.translate()
         self.initTree()
 
-        self.treeMain.itemSelectionChanged.connect(self.changeItem)
+        self.treeMain.selectionModel().selectionChanged.connect(self.changeItem)
         self.mainWindows.aEdit.triggered.connect(self.editItem)
         self.mainWindows.aRemove.triggered.connect(self.deleteItem)
         self.itemSelected = -1
@@ -39,7 +46,7 @@ class Tipsters(QWidget):
     def translate(self):
         header = [_("Name"), "index", _("Cost"), _("Profit of the bets"), _("Balance")]
 
-        self.treeMain.setHeaderLabels(header)
+        self.model.setHorizontalHeaderLabels(header)
 
     def initTree(self):
         bd = Bbdd()
@@ -59,7 +66,6 @@ class Tipsters(QWidget):
 
         data = bd.select("tipster", "name")
 
-        items = []
         for i in data:
             id = i[0]
             name = i[1]
@@ -76,20 +82,17 @@ class Tipsters(QWidget):
                 cost = "{0:.2f}".format(cost) + self.coin
             profit = "{0:.2f}".format(profit) + self.coin
             balance = "{0:.2f}".format(balance) + self.coin
-            item = QTreeWidgetItem([name, str(id), cost, profit, balance])
-            item = paint_row(item, balance)
-            items.append(item)
-
-
-        self.treeMain.addTopLevelItems(items)
+            row = [make_item(name), make_item(str(id)), make_item(cost), make_item(profit), make_item(balance)]
+            paint_row_items(row, float(bd.sum("bet", "profit", "tipster=" + str(id))), 1)
+            self.model.appendRow(row)
 
         bd.close()
 
     def changeItem(self):
-        current = self.treeMain.currentItem()
-        if current is None:
+        indexes = self.treeMain.selectionModel().selectedRows()
+        if not indexes:
             return
-        self.itemSelected = current.text(1)
+        self.itemSelected = self.model.get_id(indexes[0].row())
         self.mainWindows.enableActions()
 
     def editItem(self):

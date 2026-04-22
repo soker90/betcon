@@ -15,35 +15,19 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QTreeWidget" name="treeMain">
-     <attribute name="headerDefaultSectionSize">
-      <number>200</number>
-     </attribute>
-     <column>
-      <property name="text">
-       <string>Nombre</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>index</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Coste</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Beneficio de apuestas</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Balance</string>
-      </property>
-     </column>
+    <widget class="QTableView" name="treeMain">
+     <property name="sortingEnabled">
+      <bool>true</bool>
+     </property>
+     <property name="selectionBehavior">
+      <enum>QAbstractItemView::SelectRows</enum>
+     </property>
+     <property name="alternatingRowColors">
+      <bool>true</bool>
+     </property>
+     <property name="showGrid">
+      <bool>false</bool>
+     </property>
     </widget>
    </item>
   </layout>

@@ -4,7 +4,8 @@ import sys
 from os.path import expanduser
 
 directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
-from PySide6.QtWidgets import QMainWindow, QMessageBox, QDialog, QFileDialog
+from PySide6.QtWidgets import QMainWindow, QMessageBox, QDialog, QFileDialog, QStyle
+from PySide6.QtCore import QSize
 from uiloader import loadUi
 from PySide6.QtGui import QIcon
 sys.path.append(directory)
@@ -147,6 +148,7 @@ class Main(QMainWindow):
 		self.menuArchivo.setTitle(_("File"))
 		self.menuAyuda.setTitle(_("Help"))
 
+		self._setup_icons()
 		self.setCentralWidget(Bets(self))
 
 
@@ -316,6 +318,52 @@ class Main(QMainWindow):
 		self.enableTools("settings")
 
 	#Auxiliary Functions
+
+	def _setup_icons(self):
+		sp = self.style().standardIcon
+		SP = QStyle.StandardPixmap
+
+		# Primary toolbar
+		self.aInicio.setIcon(sp(SP.SP_DirHomeIcon))
+		self.aBank.setIcon(sp(SP.SP_DriveHDIcon))
+		self.aBonus.setIcon(sp(SP.SP_DriveCDIcon))
+		self.aStat.setIcon(sp(SP.SP_FileDialogInfoView))
+		self.aRegion.setIcon(sp(SP.SP_DirIcon))
+		self.aCompetition.setIcon(sp(SP.SP_DirOpenIcon))
+		self.aSport.setIcon(sp(SP.SP_DesktopIcon))
+		self.aBookie.setIcon(sp(SP.SP_DriveNetIcon))
+		self.aMarket.setIcon(sp(SP.SP_FileDialogContentsView))
+		self.aTipster.setIcon(sp(SP.SP_ComputerIcon))
+
+		# Secondary toolbar
+		self.aNew.setIcon(sp(SP.SP_FileDialogNewFolder))
+		self.aEdit.setIcon(sp(SP.SP_FileDialogDetailedView))
+		self.aRemove.setIcon(sp(SP.SP_TrashIcon))
+
+		# Stats toolbar
+		self.aStatsGeneral.setIcon(sp(SP.SP_FileDialogInfoView))
+		self.aStatsSport.setIcon(sp(SP.SP_DesktopIcon))
+		self.aStatsTipster.setIcon(sp(SP.SP_ComputerIcon))
+		self.aStatsBookie.setIcon(sp(SP.SP_DriveNetIcon))
+		self.aStatsMarket.setIcon(sp(SP.SP_FileDialogContentsView))
+		self.aStatsRegion.setIcon(sp(SP.SP_DirIcon))
+		self.aStatsStake.setIcon(sp(SP.SP_FileDialogListView))
+
+		# Bank toolbar
+		self.aAddMoney.setIcon(sp(SP.SP_ArrowRight))
+
+		# Tipster toolbar
+		self.aTipsterMonth.setIcon(sp(SP.SP_FileDialogListView))
+
+		# Conjunta toolbar
+		self.aNewConjunta.setIcon(sp(SP.SP_FileDialogNewFolder))
+		self.aEditConjunta.setIcon(sp(SP.SP_FileDialogDetailedView))
+		self.aDeleteConjunta.setIcon(sp(SP.SP_TrashIcon))
+
+		# Toolbar icon size
+		for toolbar in [self.toolPrimary, self.toolSecondary, self.toolStat,
+		                self.toolBank, self.toolTipster, self.toolConjunta]:
+			toolbar.setIconSize(QSize(20, 20))
 
 	def enableTools(self, type=None):
 		self.toolBank.setVisible(False)

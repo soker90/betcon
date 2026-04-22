@@ -1,10 +1,20 @@
 import sys
+import os
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.realpath(__file__)), "lib"))
+
 from PySide6.QtWidgets import QApplication
 from main import Main
-from pyexcel_ods import save_data
-from collections import OrderedDict
+from theme import apply_theme
+from libyaml import LibYaml
 
 app = QApplication(sys.argv)
+try:
+    _cfg = LibYaml()
+    _mode = _cfg.interface.get("theme", "dark")
+except Exception:
+    _mode = "dark"
+apply_theme(app, _mode)
+
 _main = Main()
 _main.show()
 app.exec()

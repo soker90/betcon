@@ -15,28 +15,19 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QTreeWidget" name="treeMain">
+    <widget class="QTableView" name="treeMain">
      <property name="sortingEnabled">
       <bool>true</bool>
      </property>
-     <attribute name="headerDefaultSectionSize">
-      <number>300</number>
-     </attribute>
-     <column>
-      <property name="text">
-       <string>Nombre</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>index</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Competiciones</string>
-      </property>
-     </column>
+     <property name="selectionBehavior">
+      <enum>QAbstractItemView::SelectRows</enum>
+     </property>
+     <property name="alternatingRowColors">
+      <bool>true</bool>
+     </property>
+     <property name="showGrid">
+      <bool>false</bool>
+     </property>
     </widget>
    </item>
   </layout>

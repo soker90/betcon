@@ -155,7 +155,17 @@
        </item>
       </layout>
      </item>
+     <item row="10" column="0">
+      <widget class="QLabel" name="lblTheme">
+       <property name="text">
+        <string>Tema</string>
+       </property>
+      </widget>
+     </item>
      <item row="10" column="1">
+      <widget class="QComboBox" name="cmbTheme"/>
+     </item>
+     <item row="11" column="1">
       <layout class="QHBoxLayout" name="horizontalLayout_buttons">
        <item>
         <spacer name="horizontalSpacer_2">

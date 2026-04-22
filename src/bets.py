@@ -1,18 +1,18 @@
 import sys
 import os
 import inspect
-from PySide6.QtWidgets import QWidget, QTreeWidgetItem, QMessageBox
-from PySide6.QtGui import QBrush, QPixmap
+from PySide6.QtWidgets import QWidget, QAbstractItemView, QMessageBox
 from uiloader import loadUi
 directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
 sys.path.append(directory + "/lib")
 from bbdd import Bbdd
-from func_aux import numberToResult, paint_row, monthToNumber
+from func_aux import numberToResult, monthToNumber
 from gettext import gettext as _
 import gettext
 from libyaml import LibYaml
 from os.path import expanduser
 from libstats import LibStats
+from table_model import BetconTableModel, paint_row_items, make_icon_item, make_item
 
 
 
@@ -34,23 +34,28 @@ class Bets(QWidget):
 		self.lblMonth.setText(_("Month"))
 
 		self.coin = LibYaml().interface["coin"]
-		self.treeMain.header().hideSection(1)
+
+		self.model = BetconTableModel()
+		self.model.setup(header, hidden_col=1)
+		self.treeMain.setModel(self.model)
+		self.treeMain.setColumnHidden(1, True)
+		self.treeMain.setAlternatingRowColors(True)
+		self.treeMain.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
+		self.treeMain.horizontalHeader().setStretchLastSection(True)
+		self.treeMain.verticalHeader().setVisible(False)
+		self.treeMain.setSortingEnabled(True)
+
 		try:
 			self.initData()
 		except Exception as e:
 			print(f"No hay datos: {e}")
-		self.treeMain.itemSelectionChanged.connect(self.changeItem)
+		self.treeMain.selectionModel().selectionChanged.connect(self.changeItem)
 		self.mainWindows.aEdit.triggered.connect(self.editItem)
 		self.mainWindows.aRemove.triggered.connect(self.deleteItem)
 		self.cmbYear.activated.connect(self.updateMonths)
 		self.cmbMonth.activated.connect(self.initTree)
 
 		self.itemSelected = -1
-		self.indexSelected = -1
-
-
-
-		self.treeMain.setHeaderLabels(header)
 
 
 
@@ -70,93 +75,84 @@ class Bets(QWidget):
 		year = self.cmbYear.currentText()
 		month = self.cmbMonth.currentText()
 		month = monthToNumber(month)
-		self.treeMain.clear()
+		self.model.removeRows(0, self.model.rowCount())
 		bd = Bbdd()
 		query = (
 			"SELECT b.id, b.date, b.sport, b.competition, b.region, b.player1, b.player2, "
 			"b.pick, b.bookie, b.market, b.tipster, b.stake, b.one, b.result, b.profit, b.bet, b.quota, "
-			"c.name, r.name, m.name, t.name "
+			"c.name, r.name, m.name, t.name, s.name, bk.name "
 			"FROM bet b "
 			"LEFT JOIN competition c ON b.competition = c.id "
 			"LEFT JOIN region r ON b.region = r.id "
 			"LEFT JOIN market m ON b.market = m.id "
 			"LEFT JOIN tipster t ON b.tipster = t.id "
+			"LEFT JOIN sport s ON b.sport = s.id "
+			"LEFT JOIN bookie bk ON b.bookie = bk.id "
 			"WHERE b.date LIKE ? ORDER BY b.date DESC"
 		)
 		data = bd.executeQuery(query, (f"{year}-{month}%",))
 
-		index = 0
-		items = []
-		for i in data:
-			index += 1
-			id = i[0]
-			date = i[1][:-3]
-			competition = i[17]
-			region = i[18]
-			player1 = i[5]
-			player2 = i[6]
-			pick = i[7]
-			market = i[19]
-			tipster = i[20]
-			stake = i[11]
-			one = i[12]
-			result = numberToResult(i[13])
-			profit = i[14]
-			bet = i[15]
-			quota = i[16]
+		for index, i in enumerate(data, start=1):
+			sport_id    = str(i[2])
+			bookie_id   = str(i[8])
+			competition = str(i[17]) if i[17] else ""
+			region      = str(i[18]) if i[18] else ""
+			market      = str(i[19]) if i[19] else ""
+			tipster     = str(i[20]) if i[20] else ""
+			sport_name  = str(i[21]) if i[21] else ""
+			bookie_name = str(i[22]) if i[22] else ""
+			profit      = i[14]
 
-			item = QTreeWidgetItem([str(index), str(id), str(date), "", str(competition), str(region), player1,
-									player2, pick, "", market, tipster, str(stake), str(one) + self.coin, str(bet) + self.coin,
-									str(quota), str(result), str(profit) + self.coin])
+			sport_icon = None
+			for path in [
+				expanduser("~") + "/.betcon/resources/sports/" + sport_id + ".png",
+				directory + "/../resources/sports/" + sport_id + ".png",
+			]:
+				if os.path.isfile(path):
+					sport_icon = path
+					break
 
-			item = paint_row(item, profit, i[13])
+			bookie_icon = None
+			for path in [
+				expanduser("~") + "/.betcon/resources/bookies/" + bookie_id + ".png",
+				directory + "/../resources/bookies/" + bookie_id + ".png",
+			]:
+				if os.path.isfile(path):
+					bookie_icon = path
+					break
 
-			if os.path.isfile(expanduser("~") + "/.betcon/resources/sports/" + str(i[2]) + ".png"):
-				item.setBackground(3, QBrush(QPixmap(expanduser("~") + "/.betcon/resources/sports/" + str(i[2]) + ".png")))
-			else:
-				if os.path.isfile(directory + "/../resources/sports/" + str(i[2]) + ".png"):
-					item.setBackground(3, QBrush(QPixmap(directory + "/../resources/sports/" + str(i[2]) + ".png")))
-				else:
-					sport = bd.getValue(i[2], "sport")
-					item.setText(3, sport)
+			row = [
+				make_item(str(index)),
+				make_item(str(i[0])),
+				make_item(str(i[1])[:-3]),
+				make_icon_item(sport_icon, sport_name),
+				make_item(competition),
+				make_item(region),
+				make_item(str(i[5])),
+				make_item(str(i[6])),
+				make_item(str(i[7])),
+				make_icon_item(bookie_icon, bookie_name),
+				make_item(market),
+				make_item(tipster),
+				make_item(str(i[11])),
+				make_item(str(i[12]) + self.coin),
+				make_item(str(i[15]) + self.coin),
+				make_item(str(i[16])),
+				make_item(numberToResult(i[13])),
+				make_item(str(profit) + self.coin),
+			]
+			paint_row_items(row, float(profit), i[13])
+			self.model.appendRow(row)
 
-
-			if os.path.isfile(expanduser("~") + "/.betcon/resources/bookies/" + str(i[8]) + ".png"):
-				item.setBackground(9, QBrush(QPixmap(expanduser("~") + "/.betcon/resources/bookies/" + str(i[8]) + ".png")))
-			else:
-				if os.path.isfile(directory + "/../resources/bookies/" + str(i[8]) + ".png"):
-					item.setBackground(9, QBrush(QPixmap(directory + "/../resources/bookies/" + str(i[8]) + ".png")))
-				else:
-					bookie = bd.getValue(i[8], "bookie")
-					item.setText(9, bookie)
-
-			items.append(item)
-
-		self.treeMain.addTopLevelItems(items)
-
+		self.treeMain.resizeColumnsToContents()
 		bd.close()
 
 	def changeItem(self):
-		current = self.treeMain.currentItem()
-		if current is None:
+		indexes = self.treeMain.selectionModel().selectedRows()
+		if not indexes:
 			return
-
-		if self.itemSelected != -1:
-			self.treeMain.topLevelItem(self.indexSelected).setText(3, "")
-			self.treeMain.topLevelItem(self.indexSelected).setText(9, "")
-
-		self.itemSelected = current.text(1)
-		self.indexSelected = int(current.text(0)) - 1
-
-		bd = Bbdd()
-		sport = bd.getValue(current.text(1), "bet", "sport")
-		sport = bd.getValue(sport, "sport")
-		current.setText(3, sport)
-
-		bookie = bd.getValue(current.text(1), "bet", "bookie")
-		bookie = bd.getValue(bookie, "bookie")
-		current.setText(9, bookie)
-		bd.close()
+		row = indexes[0].row()
+		self.itemSelected = self.model.get_id(row)
 		self.mainWindows.enableActions()
 
 	def editItem(self):

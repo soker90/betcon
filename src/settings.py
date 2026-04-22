@@ -2,12 +2,13 @@ import sys
 import os
 import inspect
 
-from PySide6.QtWidgets import QWidget
+from PySide6.QtWidgets import QWidget, QApplication
 from uiloader import loadUi
 directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
 sys.path.append(directory + "/lib")
 from bbdd import Bbdd
 from libyaml import LibYaml
+from theme import apply_theme
 from bets import Bets
 from bookie import Bookie
 from gettext import gettext as _
@@ -56,6 +57,10 @@ class Settings(QWidget):
 		else:
 			self.chkCountryNo.setChecked(True)
 
+		theme_index = {"dark": 0, "light": 1}
+		current_theme = self.config.interface.get("theme", "dark")
+		self.cmbTheme.setCurrentIndex(theme_index.get(current_theme, 0))
+
 		langIndex = {"de": 0, "en": 1, "en_GB": 2, "es": 3, "ki": 4, "pt_BR": 5, "tr": 6}
 		try:
 			self.cmbLanguage.setCurrentIndex(langIndex[self.config.interface['lang']])
@@ -79,6 +84,10 @@ class Settings(QWidget):
 		self.lblCountry.setText(_("Show countries of the bookies"))
 		self.chkCountryYes.setText(_("Yes"))
 		self.chkCountryNo.setText(_("No"))
+
+		self.lblTheme.setText(_("Theme"))
+		self.cmbTheme.addItem(_("Dark"), "dark")
+		self.cmbTheme.addItem(_("Light"), "light")
 
 		self.btnCalc.setText(_("Calculate"))
 		self.btnCancel.setText(_("Cancel"))
@@ -128,6 +137,8 @@ class Settings(QWidget):
 		self.config.interface['coin'] = self.txtCoin.text()
 		self.config.interface['bookieCountry'] = 'Y' if self.chkCountryYes.isChecked() else 'N'
 		self.config.interface['lang'] = self.cmbLanguage.itemData(self.cmbLanguage.currentIndex())
+		self.config.interface['theme'] = self.cmbTheme.currentData()
 		self.config.save()
+		apply_theme(QApplication.instance(), self.config.interface['theme'])
 		self.close()
 

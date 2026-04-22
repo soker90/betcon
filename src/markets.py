@@ -1,9 +1,9 @@
 import sys
 import os
 import inspect
-from PySide6.QtWidgets import QMessageBox, QWidget, QTreeWidgetItem
-from PySide6 import QtCore
+from PySide6.QtWidgets import QMessageBox, QWidget, QAbstractItemView
 from uiloader import loadUi
+from table_model import BetconTableModel, make_item
 
 directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
 sys.path.append(directory + "/lib")
@@ -23,10 +23,17 @@ class Markets(QWidget):
 		mainWindows.diconnectActions()
 		mainWindows.aNew.triggered.connect(mainWindows.newMarket)
 		self.mainWindows.setWindowTitle(_("Markets") + " | Betcon v" + mainWindows.version)
-		self.treeMain.header().hideSection(1)
+		self.model = BetconTableModel()
+		self.treeMain.setModel(self.model)
+		self.treeMain.setColumnHidden(1, True)
+		self.treeMain.setAlternatingRowColors(True)
+		self.treeMain.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
+		self.treeMain.horizontalHeader().setStretchLastSection(True)
+		self.treeMain.verticalHeader().setVisible(False)
+		self.treeMain.setSortingEnabled(True)
 		self.initTree()
 
-		self.treeMain.itemSelectionChanged.connect(self.changeItem)
+		self.treeMain.selectionModel().selectionChanged.connect(self.changeItem)
 		self.mainWindows.aEdit.triggered.connect(self.editItem)
 		self.mainWindows.aRemove.triggered.connect(self.deleteItem)
 		self.itemSelected = -1
@@ -37,29 +44,24 @@ class Markets(QWidget):
 
 		header = [_("Name"), "index"]
 
-		self.treeMain.setHeaderLabels(header)
+		self.model.setHorizontalHeaderLabels(header)
 
 	def initTree(self):
 		bd = Bbdd()
+		self.model.removeRows(0, self.model.rowCount())
 		data = bd.select("market", "name")
-
-		items = []
 		for i in data:
-			id = i[0]
-			name = i[1]
-			item = QTreeWidgetItem([name, str(id)])
-			items.append(item)
-
-		self.treeMain.addTopLevelItems(items)
-		self.treeMain.sortByColumn(0, QtCore.Qt.SortOrder.AscendingOrder)
+			self.model.appendRow([make_item(i[1]), make_item(str(i[0]))])
+		bd.close()
 
 		bd.close()
 
 	def changeItem(self):
-              current = self.treeMain.currentItem()
-              if current is None:
-                      return
-              self.itemSelected = current.text(1)
+		indexes = self.treeMain.selectionModel().selectedRows()
+		if not indexes:
+			return
+		self.itemSelected = self.model.get_id(indexes[0].row())
+		self.mainWindows.enableActions()
 
 	def editItem(self):
 		self.mainWindows.editMarket(self.itemSelected)

@@ -15,40 +15,19 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QTreeWidget" name="treeMain">
-     <property name="alternatingRowColors">
-      <bool>false</bool>
-     </property>
-     <property name="uniformRowHeights">
-      <bool>false</bool>
-     </property>
+    <widget class="QTableView" name="treeMain">
      <property name="sortingEnabled">
       <bool>true</bool>
      </property>
-     <attribute name="headerCascadingSectionResizes">
+     <property name="selectionBehavior">
+      <enum>QAbstractItemView::SelectRows</enum>
+     </property>
+     <property name="alternatingRowColors">
+      <bool>true</bool>
+     </property>
+     <property name="showGrid">
       <bool>false</bool>
-     </attribute>
-     <attribute name="headerShowSortIndicator" stdset="0">
-      <bool>true</bool>
-     </attribute>
-     <attribute name="headerStretchLastSection">
-      <bool>true</bool>
-     </attribute>
-     <column>
-      <property name="text">
-       <string>index</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Nombre</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>País</string>
-      </property>
-     </column>
+     </property>
     </widget>
    </item>
   </layout>
