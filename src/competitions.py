@@ -55,8 +55,6 @@ class Competitions(QWidget):
 			self.model.appendRow([make_item(str(i[1])), make_item(str(i[0])), make_item(region), make_item(str(sport))])
 		bd.close()
 
-		bd.close()
-
 	def changeItem(self):
 		indexes = self.treeMain.selectionModel().selectedRows()
 		if not indexes:

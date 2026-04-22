@@ -53,8 +53,6 @@ class Regions(QWidget):
 			self.model.appendRow([make_item(i[1]), make_item(str(i[0])), make_item(str(competitions))])
 		bd.close()
 
-		bd.close()
-
 	def changeItem(self):
 		indexes = self.treeMain.selectionModel().selectedRows()
 		if not indexes:
