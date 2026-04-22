@@ -3,31 +3,6 @@ from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QStyledItemDelegate
 from constants import BetResult
 
-# Result color palette — works on both dark and light themes
-_RESULT_COLORS = {
-    BetResult.PENDING: QColor("#6b5e00"),   # amber dark (readable on dark bg)
-    "pending_light":   QColor("#fff3cd"),   # amber light (readable on light bg)
-    "won":             QColor("#1a4d2e"),   # green dark
-    "won_light":       QColor("#d4edda"),   # green light
-    "lost":            QColor("#4d1a1a"),   # red dark
-    "lost_light":      QColor("#f8d7da"),   # red light
-    "draw":            QColor("#1a3a4d"),   # cyan dark
-    "draw_light":      QColor("#d1ecf1"),   # cyan light
-}
-
-
-def _result_bg(result_int: int, dark: bool = True) -> QColor:
-    """Return background QColor for a row given a numeric result."""
-    suffix = "" if dark else "_light"
-    if result_int == BetResult.PENDING:
-        return _RESULT_COLORS["pending" + suffix] if not dark else _RESULT_COLORS[BetResult.PENDING]
-    try:
-        # We only know result here; profit sign determines won/lost/draw
-        # Caller should use paint_row_items directly for full logic
-        return QColor("transparent")
-    except Exception:
-        return QColor("transparent")
-
 
 def paint_row_items(items: list, profit: float, result: int) -> None:
     """
@@ -38,24 +13,18 @@ def paint_row_items(items: list, profit: float, result: int) -> None:
     SKIP_ROLE = Qt.ItemDataRole.UserRole + 10
 
     if result == BetResult.PENDING:
-        bg_dark  = QColor("#5a4d00")
-        bg_light = QColor("#fff3cd")
+        bg = QColor(Qt.GlobalColor.yellow)
     elif profit > 0:
-        bg_dark  = QColor("#1a4d2e")
-        bg_light = QColor("#c3e6cb")
+        bg = QColor(Qt.GlobalColor.green)
     elif profit < 0:
-        bg_dark  = QColor("#4d1a1a")
-        bg_light = QColor("#f5c6cb")
+        bg = QColor(Qt.GlobalColor.red)
     else:
-        bg_dark  = QColor("#0d3040")
-        bg_light = QColor("#bee5eb")
+        bg = QColor(Qt.GlobalColor.cyan)
 
     for item in items:
         if item.data(SKIP_ROLE):
             continue
-        item.setBackground(bg_dark)   # default; theme.py will override via QPalette if needed
-        # Store light variant so themes can use it
-        item.setData(bg_light, Qt.ItemDataRole.UserRole + 11)
+        item.setBackground(bg)
 
 
 def make_icon_item(icon_path: str | None, text: str, bg: QColor | None = None) -> QStandardItem:
