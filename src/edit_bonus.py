@@ -1,7 +1,9 @@
-import sys, os, inspect
-from PyQt5.QtWidgets import QMessageBox, QWidget, QComboBox
-from PyQt5 import uic
-from PyQt5.QtCore import QDate
+import sys
+import os
+import inspect
+from PySide6.QtWidgets import QMessageBox, QWidget
+from uiloader import loadUi
+from PySide6.QtCore import QDate
 
 from new_bonus import NewBonus
 
@@ -16,7 +18,7 @@ import gettext
 class EditBonus(QWidget):
 	def __init__(self, mainWindows, id):
 		QWidget.__init__(self)
-		uic.loadUi(directory + "/../ui/new_bonus.ui", self)
+		loadUi(directory + "/../ui/new_bonus.ui", self)
 		gettext.textdomain("betcon")
 		gettext.bindtextdomain("betcon", "../lang/mo" + mainWindows.lang)
 		gettext.bindtextdomain("betcon", "/usr/share/locale" + mainWindows.lang)

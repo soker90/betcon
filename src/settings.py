@@ -1,7 +1,9 @@
-import sys, os, inspect
+import sys
+import os
+import inspect
 
-from PyQt5.QtWidgets import QWidget
-from PyQt5 import uic
+from PySide6.QtWidgets import QWidget
+from uiloader import loadUi
 directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
 sys.path.append(directory + "/lib")
 from bbdd import Bbdd
@@ -16,7 +18,7 @@ import platform
 class Settings(QWidget):
 	def __init__(self, mainWindows):
 		QWidget.__init__(self)
-		uic.loadUi(directory + "/../ui/settings.ui", self)
+		loadUi(directory + "/../ui/settings.ui", self)
 		gettext.textdomain("betcon")
 		gettext.bindtextdomain("betcon", "../lang/mo" + mainWindows.lang)
 		gettext.bindtextdomain("betcon", "/usr/share/locale" + mainWindows.lang)
@@ -106,6 +108,7 @@ class Settings(QWidget):
 		total = "{0:.2f}".format(cc + paypal + skrill + bonus + bookies)
 		total = float(total) * (self.txtPercentage.value() * 0.01)
 		self.txtStake.setValue(float(total))
+		bd.close()
 
 	def close(self):
 		self.mainWindows.enableTools()

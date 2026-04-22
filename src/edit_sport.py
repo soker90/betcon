@@ -1,6 +1,8 @@
-import sys, os, inspect
-from PyQt5.QtWidgets import QMessageBox, QWidget, QFileDialog
-from PyQt5 import uic
+import sys
+import os
+import inspect
+from PySide6.QtWidgets import QMessageBox, QWidget, QFileDialog
+from uiloader import loadUi
 
 from new_sport import NewSport
 from os.path import expanduser
@@ -17,7 +19,7 @@ from images import Images
 class EditSport(QWidget):
 	def __init__(self, mainWindows, id):
 		QWidget.__init__(self)
-		uic.loadUi(directory + "/../ui/new_sport.ui", self)
+		loadUi(directory + "/../ui/new_sport.ui", self)
 		gettext.textdomain("betcon")
 		gettext.bindtextdomain("betcon", "../lang/mo" + mainWindows.lang)
 		gettext.bindtextdomain("betcon", "/usr/share/locale" + mainWindows.lang)
@@ -63,7 +65,8 @@ class EditSport(QWidget):
 				img = Images(expanduser("~") + "/.betcon/resources/sports/" + self.id + ".png")
 				img.resize(100, 20)
 			except Exception:
-				msg = "Imágen incorrecta"
+				QMessageBox.warning(self, _("Error"), _("Invalid image."))
+				return
 
 		QMessageBox.information(self, _("Updated"), _("Updated sport."))
 

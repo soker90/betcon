@@ -1,4 +1,6 @@
-import sys, sqlite3, os, inspect
+import sqlite3
+import os
+import inspect
 from os.path import expanduser
 from decimal import Decimal
 

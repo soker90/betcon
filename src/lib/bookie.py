@@ -1,4 +1,4 @@
-import sys, os
+import os
 from shutil import copy2
 from os.path import expanduser
 

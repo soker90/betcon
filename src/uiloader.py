@@ -1,0 +1,28 @@
+from PySide6.QtUiTools import QUiLoader
+from PySide6.QtCore import QFile, QIODevice
+
+
+class _UiLoader(QUiLoader):
+	"""Subclass that loads a .ui file directly into an existing widget instance,
+	replicating the behaviour of PyQt5's loadUi(path, base_instance)."""
+
+	def __init__(self, base_instance):
+		super().__init__(base_instance)
+		self._base = base_instance
+
+	def createWidget(self, class_name, parent=None, name=""):
+		# When creating the root widget (no parent), return the existing instance
+		# so all child widgets are reparented into it.
+		if parent is None and self._base is not None:
+			return self._base
+		return super().createWidget(class_name, parent, name)
+
+
+def loadUi(ui_file, base_instance=None):
+	"""Load a Qt Designer .ui file into base_instance (or return a new widget)."""
+	loader = _UiLoader(base_instance)
+	f = QFile(ui_file)
+	f.open(QIODevice.OpenModeFlag.ReadOnly)
+	widget = loader.load(f)
+	f.close()
+	return widget

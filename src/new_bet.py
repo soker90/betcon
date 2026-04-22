@@ -1,8 +1,10 @@
-import sys, os, inspect
+import sys
+import os
+import inspect
 from datetime import datetime
-from PyQt5.QtWidgets import QLineEdit, QMessageBox, QWidget, QComboBox, QAction, QPushButton, QShortcut, QHBoxLayout, QLayout, QDateTimeEdit
-from PyQt5 import uic
-from PyQt5.QtCore import QDateTime, QVariant
+from PySide6.QtWidgets import QLineEdit, QMessageBox, QWidget, QComboBox, QPushButton, QDateTimeEdit
+from uiloader import loadUi
+from PySide6.QtCore import QDateTime
 directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
 sys.path.append(directory + "/lib")
 from bets import Bets
@@ -17,7 +19,7 @@ import gettext
 class NewBet(QWidget):
 	def __init__(self, mainWindows):
 		QWidget.__init__(self)
-		uic.loadUi(directory + "/../ui/new_bet.ui", self)
+		loadUi(directory + "/../ui/new_bet.ui", self)
 		gettext.textdomain("betcon")
 		gettext.bindtextdomain("betcon", "../lang/mo" + mainWindows.lang)
 		gettext.bindtextdomain("betcon", "/usr/share/locale" + mainWindows.lang)
@@ -479,7 +481,7 @@ class NewBet(QWidget):
 		for i in range(self.contComb):
 			self.pnlButton.removeWidget(self.buttons[i])
 			self.buttons[i].disconnect()
-			self.buttons[i].clicked.connect(lambda: self.removeRow(i))
+			self.buttons[i].clicked.connect(lambda checked=False, idx=i: self.removeRow(idx))
 			self.pnlButton.addWidget(self.buttons[i])
 
 		if self.contComb == 9:

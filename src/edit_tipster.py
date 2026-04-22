@@ -1,11 +1,13 @@
-import sys, os, inspect
+import sys
+import os
+import inspect
 
 from new_tipster import NewTipster
 
 directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
 sys.path.append(directory + "/lib")
-from PyQt5.QtWidgets import QMessageBox, QWidget
-from PyQt5 import uic
+from PySide6.QtWidgets import QMessageBox, QWidget
+from uiloader import loadUi
 from bbdd import Bbdd
 from tipsters import Tipsters
 from gettext import gettext as _
@@ -14,7 +16,7 @@ import gettext
 class EditTipster(QWidget):
     def __init__(self, mainWindows, id):
         QWidget.__init__(self)
-        uic.loadUi(directory + "/../ui/new_tipster.ui", self)
+        loadUi(directory + "/../ui/new_tipster.ui", self)
         gettext.textdomain("betcon")
         gettext.bindtextdomain("betcon", "../lang/mo" + mainWindows.lang)
         gettext.bindtextdomain("betcon", "/usr/share/locale" + mainWindows.lang)

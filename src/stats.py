@@ -1,10 +1,11 @@
-import sys, os, inspect
-from PyQt5.QtWidgets import QMessageBox, QWidget, QTreeWidgetItem, QComboBox
-from PyQt5 import uic
+import sys
+import os
+import inspect
+from PySide6.QtWidgets import QWidget
+from uiloader import loadUi
 directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
 sys.path.append(directory + "/lib")
 from libstats import LibStats
-from datetime import datetime
 from func_aux import key_from_value, monthToNumber
 from gettext import gettext as _
 import gettext
@@ -14,7 +15,7 @@ from libyaml import LibYaml
 class Stats(QWidget):
 	def __init__(self, mainWindows):
 		QWidget.__init__(self)
-		uic.loadUi(directory + "/../ui/stats.ui", self)
+		loadUi(directory + "/../ui/stats.ui", self)
 		gettext.textdomain("betcon")
 		gettext.bindtextdomain("betcon", "../lang/mo" + mainWindows.lang)
 		gettext.bindtextdomain("betcon", "/usr/share/locale" + mainWindows.lang)
@@ -71,7 +72,7 @@ class Stats(QWidget):
 
 		try:
 			self.cmbMonth.setCurrentIndex(1)
-		except:
+		except Exception:
 			self.cmbMonth.setCurrentIndex(0)
 		self.updateDays()
 
@@ -79,7 +80,7 @@ class Stats(QWidget):
 		year = self.cmbYear.currentText()
 		month = self.cmbMonth.currentText()
 		self.cmbDay.clear()
-		if month != "" and month != None:
+		if month != "" and month is not None:
 			try:
 				month = monthToNumber(month)
 
@@ -93,14 +94,17 @@ class Stats(QWidget):
 	def updateStats(self):
 		year = self.cmbYear.currentText()
 		sMonth = self.cmbMonth.currentText()
-		if sMonth != "" and sMonth != None:
+		if sMonth != "" and sMonth is not None:
 			month = key_from_value(self.months, sMonth)
 			day = self.cmbDay.currentText()
 		else:
 			month = ""
 			day = ""
 
-		data = LibStats.getMonth(year, month, day)
+		try:
+			data = LibStats.getMonth(year, month, day)
+		except Exception:
+			return
 		self.txtApostado.setText(str(data[0]) + self.coin)
 		self.txtGanancias.setText(str(data[1]) + self.coin)
 		self.txtPerdidas.setText(str(data[2]) + self.coin)

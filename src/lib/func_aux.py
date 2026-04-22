@@ -1,10 +1,9 @@
-import webbrowser, os
-
-from PyQt5 import QtCore
+import webbrowser
+import os
 from locale import setlocale, LC_NUMERIC, atof
 
-from PyQt5.QtGui import QBrush
-from PyQt5.QtCore import Qt
+from PySide6.QtGui import QBrush
+from PySide6.QtCore import Qt
 from gettext import gettext as _
 import gettext
 from constants import BetResult
@@ -30,17 +29,17 @@ def paint_row(item, profit, result=None):
 	profit = float(profit)
 	if result is not None and int(result) == BetResult.PENDING:
 		for j in range(18):
-			item.setBackground(j, QBrush(Qt.yellow))
+			item.setBackground(j, QBrush(Qt.GlobalColor.yellow))
 	else:
 		if profit < 0:
 			for j in range(18):
-				item.setBackground(j, QBrush(Qt.red))
+				item.setBackground(j, QBrush(Qt.GlobalColor.red))
 		elif profit > 0:
 			for j in range(18):
-				item.setBackground(j, QBrush(Qt.green))
+				item.setBackground(j, QBrush(Qt.GlobalColor.green))
 		else:
 			for j in range(18):
-				item.setBackground(j, QBrush(Qt.cyan))
+				item.setBackground(j, QBrush(Qt.GlobalColor.cyan))
 
 	return item
 

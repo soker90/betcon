@@ -4,9 +4,9 @@ import sys
 from os.path import expanduser
 
 directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
-from PyQt5.QtWidgets import QMainWindow, QMessageBox, QDialog, QFileDialog
-from PyQt5 import uic
-from PyQt5.Qt import QIcon
+from PySide6.QtWidgets import QMainWindow, QMessageBox, QDialog, QFileDialog
+from uiloader import loadUi
+from PySide6.QtGui import QIcon
 sys.path.append(directory)
 from bets import Bets
 from new_bet import NewBet
@@ -61,7 +61,7 @@ import platform
 class Main(QMainWindow):
 	def __init__(self):
 		QMainWindow.__init__(self)
-		uic.loadUi(directory + "/../ui/wmain.ui", self)
+		loadUi(directory + "/../ui/wmain.ui", self)
 		if platform.system() != 'Linux':
 			self.lang = "/" + LibYaml().interface["lang"]
 		else:
@@ -349,18 +349,12 @@ class Main(QMainWindow):
 		self.aDeleteConjunta.setEnabled(enable)
 
 	def diconnectActions(self):
-		try:
+		if self.aNew.receivers("triggered()") > 0:
 			self.aNew.triggered.disconnect()
-		except RuntimeError:
-			pass
-		try:
+		if self.aEdit.receivers("triggered()") > 0:
 			self.aEdit.triggered.disconnect()
-		except RuntimeError:
-			pass
-		try:
+		if self.aRemove.receivers("triggered()") > 0:
 			self.aRemove.triggered.disconnect()
-		except RuntimeError:
-			pass
 
 
 	#Events
@@ -395,7 +389,7 @@ class Main(QMainWindow):
 
 	def about(self):
 		about = About()
-		about.exec_()
+		about.exec()
 
 	def donate(self):
 		openUrl("https://www.paypal.me/eduparra")
@@ -404,7 +398,7 @@ class Main(QMainWindow):
 class About(QDialog):
 	def __init__(self):
 		QDialog.__init__(self)
-		uic.loadUi(directory + "/../ui/about.ui", self)
+		loadUi(directory + "/../ui/about.ui", self)
 		archivo = open(directory + "/version.txt")
 		version = archivo.readline()
 		self.setWindowTitle(_("About"))

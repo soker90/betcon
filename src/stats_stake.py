@@ -1,6 +1,8 @@
-import sys, os, inspect
-from PyQt5.QtWidgets import QWidget, QTreeWidgetItem
-from PyQt5 import uic
+import sys
+import os
+import inspect
+from PySide6.QtWidgets import QWidget, QTreeWidgetItem
+from uiloader import loadUi
 directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
 sys.path.append(directory + "/lib")
 from libstats import LibStats
@@ -12,7 +14,7 @@ import gettext
 class StatsStake(QWidget):
     def __init__(self, mainWindows):
         QWidget.__init__(self)
-        uic.loadUi(directory + "/../ui/stats_stake.ui", self)
+        loadUi(directory + "/../ui/stats_stake.ui", self)
         gettext.textdomain("betcon")
         gettext.bindtextdomain("betcon", "../lang/mo" + mainWindows.lang)
         gettext.bindtextdomain("betcon", "/usr/share/locale" + mainWindows.lang)

@@ -1,7 +1,6 @@
-import sys, sqlite3, os, inspect, json
+from collections import OrderedDict
 from os.path import expanduser
 from pyexcel_ods import save_data, get_data
-from collections import OrderedDict
 from bbdd import Bbdd
 
 

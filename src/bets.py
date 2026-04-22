@@ -1,8 +1,9 @@
-import sys, os, inspect
-from PyQt5.QtWidgets import QWidget, QTreeWidgetItem, QMessageBox, QTreeWidget
-from PyQt5.QtGui import QBrush, QPixmap, QFont
-from PyQt5.QtCore import Qt, QStringListModel
-from PyQt5 import uic
+import sys
+import os
+import inspect
+from PySide6.QtWidgets import QWidget, QTreeWidgetItem, QMessageBox
+from PySide6.QtGui import QBrush, QPixmap
+from uiloader import loadUi
 directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
 sys.path.append(directory + "/lib")
 from bbdd import Bbdd
@@ -18,7 +19,7 @@ from libstats import LibStats
 class Bets(QWidget):
 	def __init__(self, mainWindows):
 		QWidget.__init__(self)
-		uic.loadUi(directory + "/../ui/bets.ui", self)
+		loadUi(directory + "/../ui/bets.ui", self)
 		gettext.textdomain("betcon")
 		gettext.bindtextdomain("betcon", "../lang/mo" + mainWindows.lang)
 		gettext.bindtextdomain("betcon", "/usr/share/locale" + mainWindows.lang)
@@ -136,22 +137,25 @@ class Bets(QWidget):
 		bd.close()
 
 	def changeItem(self):
+		current = self.treeMain.currentItem()
+		if current is None:
+			return
 
 		if self.itemSelected != -1:
 			self.treeMain.topLevelItem(self.indexSelected).setText(3, "")
 			self.treeMain.topLevelItem(self.indexSelected).setText(9, "")
 
-		self.itemSelected = self.treeMain.currentItem().text(1)
-		self.indexSelected = int(self.treeMain.currentItem().text(0)) - 1
+		self.itemSelected = current.text(1)
+		self.indexSelected = int(current.text(0)) - 1
 
 		bd = Bbdd()
-		sport = bd.getValue(self.treeMain.currentItem().text(1), "bet", "sport")
+		sport = bd.getValue(current.text(1), "bet", "sport")
 		sport = bd.getValue(sport, "sport")
-		self.treeMain.currentItem().setText(3, sport)
+		current.setText(3, sport)
 
-		bookie = bd.getValue(self.treeMain.currentItem().text(1), "bet", "bookie")
+		bookie = bd.getValue(current.text(1), "bet", "bookie")
 		bookie = bd.getValue(bookie, "bookie")
-		self.treeMain.currentItem().setText(9, bookie)
+		current.setText(9, bookie)
 		bd.close()
 		self.mainWindows.enableActions()
 

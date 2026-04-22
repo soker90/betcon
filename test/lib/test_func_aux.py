@@ -1,9 +1,9 @@
 import gettext
 import pytest
 
-from PyQt5.QtWidgets import QTreeWidgetItem
-from PyQt5.QtGui import QBrush
-from PyQt5.QtCore import Qt
+from PySide6.QtWidgets import QTreeWidgetItem
+from PySide6.QtGui import QBrush
+from PySide6.QtCore import Qt
 
 from func_aux import (
     paint_row, key_from_value, str_to_bool,
@@ -25,26 +25,26 @@ def _make_item(cols=18):
 
 def test_paint_row_pending_shows_yellow():
     item = paint_row(_make_item(), "0€", str(BetResult.PENDING.value))
-    assert item.background(0) == QBrush(Qt.yellow)
+    assert item.background(0) == QBrush(Qt.GlobalColor.yellow)
 
 def test_paint_row_pending_ignores_negative_profit():
     item = paint_row(_make_item(), "-10.0€", str(BetResult.PENDING.value))
-    assert item.background(0) == QBrush(Qt.yellow)
+    assert item.background(0) == QBrush(Qt.GlobalColor.yellow)
 
 def test_paint_row_pending_ignores_positive_profit():
     item = paint_row(_make_item(), 20.0, str(BetResult.PENDING.value))
-    assert item.background(0) == QBrush(Qt.yellow)
+    assert item.background(0) == QBrush(Qt.GlobalColor.yellow)
 
 def test_paint_row_green_on_positive_profit():
-    assert paint_row(_make_item(), "0.5€").background(0) == QBrush(Qt.green)
-    assert paint_row(_make_item(), 10).background(0) == QBrush(Qt.green)
+    assert paint_row(_make_item(), "0.5€").background(0) == QBrush(Qt.GlobalColor.green)
+    assert paint_row(_make_item(), 10).background(0) == QBrush(Qt.GlobalColor.green)
 
 def test_paint_row_red_on_negative_profit():
-    assert paint_row(_make_item(), "-10.0€").background(0) == QBrush(Qt.red)
-    assert paint_row(_make_item(), "-20€").background(0) == QBrush(Qt.red)
+    assert paint_row(_make_item(), "-10.0€").background(0) == QBrush(Qt.GlobalColor.red)
+    assert paint_row(_make_item(), "-20€").background(0) == QBrush(Qt.GlobalColor.red)
 
 def test_paint_row_cyan_on_zero_profit():
-    assert paint_row(_make_item(), "0€").background(0) == QBrush(Qt.cyan)
+    assert paint_row(_make_item(), "0€").background(0) == QBrush(Qt.GlobalColor.cyan)
 
 
 # ---------------------------------------------------------------------------

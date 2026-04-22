@@ -1,0 +1,6 @@
+[lint]
+# E402: module-level imports not at top of file.
+# This project uses sys.path.append() before local imports in every source file
+# because it is not installed as a package. Suppressed globally until the project
+# is restructured as a proper installable package.
+ignore = ["E402"]

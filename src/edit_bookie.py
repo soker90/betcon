@@ -1,6 +1,8 @@
-import sys, os, inspect
-from PyQt5.QtWidgets import QMessageBox, QWidget, QFileDialog
-from PyQt5 import uic
+import sys
+import os
+import inspect
+from PySide6.QtWidgets import QMessageBox, QWidget, QFileDialog
+from uiloader import loadUi
 
 from new_bookie import NewBookie
 
@@ -15,7 +17,7 @@ from os.path import expanduser
 class EditBookie(QWidget):
     def __init__(self, mainWindows, id):
         QWidget.__init__(self)
-        uic.loadUi(directory + "/../ui/new_bookie.ui", self)
+        loadUi(directory + "/../ui/new_bookie.ui", self)
         gettext.textdomain("betcon")
         gettext.bindtextdomain("betcon", "../lang/mo" + mainWindows.lang)
         gettext.bindtextdomain("betcon", "/usr/share/locale" + mainWindows.lang)

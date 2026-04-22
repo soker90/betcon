@@ -1,6 +1,6 @@
-import sys, sqlite3, os, inspect, json, yaml
+import os
+import yaml
 from os.path import expanduser
-from collections import OrderedDict
 
 from func_aux import checkFileExist
 

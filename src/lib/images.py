@@ -1,4 +1,3 @@
-import sys, sqlite3, os, inspect, json, yaml
 from PIL import Image
 
 class Images:

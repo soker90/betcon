@@ -2,7 +2,6 @@ from bbdd import Bbdd
 from bookie import Bookie
 from constants import BetResult
 from gettext import gettext as _
-import gettext
 from libyaml import LibYaml
 
 class LibStats:
@@ -230,7 +229,7 @@ class LibStats:
 				f' WHERE bet.region=region.id AND bet.sport=sport.id AND bet.date LIKE :dp'
 				f' GROUP BY bet.region, bet.sport'
 			)
-			params = {{'dp': f'{year}-{month}%'}}
+			params = {'dp': f'{year}-{month}%'}
 		else:
 			sql = (
 				f'SELECT region.name, sport.name,'
@@ -293,7 +292,7 @@ class LibStats:
 				f' WHERE bet.market=market.id AND bet.sport=sport.id AND bet.date LIKE :dp'
 				f' GROUP BY bet.market, bet.sport'
 			)
-			params = {{'dp': f'{year}-{month}%'}}
+			params = {'dp': f'{year}-{month}%'}
 		else:
 			sql = (
 				f'SELECT market.name, sport.name,'
@@ -355,7 +354,7 @@ class LibStats:
 				f' FROM bet WHERE bet.date LIKE :dp'
 				f' GROUP BY bet.stake'
 			)
-			params = {{'dp': f'{year}-{month}%'}}
+			params = {'dp': f'{year}-{month}%'}
 		else:
 			sql = (
 				f'SELECT bet.stake,'
@@ -418,18 +417,18 @@ class LibStats:
 		)
 
 		bd = Bbdd()
-		datasql = bd.executeQuery(sql, {{'dp': dp}})
+		datasql = bd.executeQuery(sql, {"dp": dp})
 		bd.close()
 		bonus = Bookie.sumBonus(f"date LIKE '{dp}'")
 		datasql = datasql[0]
 		if bonus is None:
 			bonus = 0
 
-		if datasql[0] == 0:
+		if datasql[0] is None or datasql[0] == 0 or datasql[6] is None or datasql[6] == 0:
 			return [0, 0, 0, 0, 0, "0%", 0, 0, 0, 0, 0, "0%", 0]
 		yi = "{0:.2f}%".format(round(((datasql[3]+bonus)/datasql[0])*100, 2))
-		quota = float("{0:.2f}".format(datasql[5], 2))
-		bet = float("{0:.2f}".format(datasql[10], 2))
+		quota = float("{0:.2f}".format(datasql[5]))
+		bet = float("{0:.2f}".format(datasql[10]))
 
 		aciertos = "{0:.2f}%".format(round((datasql[7] / datasql[6]) * 100, 2))
 		data0 = "{0:.2f}".format(round(datasql[0], 2))

@@ -1,6 +1,8 @@
-import sys, os, inspect
-from PyQt5.QtWidgets import QMessageBox, QWidget
-from PyQt5 import uic
+import sys
+import os
+import inspect
+from PySide6.QtWidgets import QMessageBox, QWidget
+from uiloader import loadUi
 
 from new_tipster_month import NewTipsterMonth
 
@@ -14,7 +16,7 @@ import gettext
 class EditTipsterMonth(QWidget):
 	def __init__(self, mainWindows, id):
 		QWidget.__init__(self)
-		uic.loadUi(directory + "/../ui/new_tipster_month.ui", self)
+		loadUi(directory + "/../ui/new_tipster_month.ui", self)
 		gettext.textdomain("betcon")
 		gettext.bindtextdomain("betcon", "../lang/mo" + mainWindows.lang)
 		gettext.bindtextdomain("betcon", "/usr/share/locale" + mainWindows.lang)

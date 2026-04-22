@@ -1,6 +1,8 @@
-import sys, os, inspect
-from PyQt5.QtWidgets import QMessageBox, QWidget, QTreeWidgetItem
-from PyQt5 import uic, QtCore
+import os
+import inspect
+from PySide6.QtWidgets import QMessageBox, QWidget, QTreeWidgetItem
+from PySide6 import QtCore
+from uiloader import loadUi
 
 directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
 from bookie import Bookie
@@ -10,7 +12,7 @@ import gettext
 class Bookies(QWidget):
 	def __init__(self, mainWindows):
 		QWidget.__init__(self)
-		uic.loadUi(directory + "/../ui/bookies.ui", self)
+		loadUi(directory + "/../ui/bookies.ui", self)
 		gettext.textdomain("betcon")
 		gettext.bindtextdomain("betcon", "../lang/mo" + mainWindows.lang)
 		gettext.bindtextdomain("betcon", "/usr/share/locale" + mainWindows.lang)
@@ -43,12 +45,14 @@ class Bookies(QWidget):
 			items.append(item)
 
 		self.treeMain.addTopLevelItems(items)
-		self.treeMain.sortByColumn(0, QtCore.Qt.AscendingOrder)
+		self.treeMain.sortByColumn(0, QtCore.Qt.SortOrder.AscendingOrder)
 
 
 	def changeItem(self):
-		self.itemSelected = self.treeMain.currentItem().text(1)
-		self.mainWindows.enableActions()
+              current = self.treeMain.currentItem()
+              if current is None:
+                      return
+              self.itemSelected = current.text(1)
 
 	def editItem(self):
 		self.mainWindows.editBookie(self.itemSelected)
