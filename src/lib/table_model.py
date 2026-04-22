@@ -60,6 +60,10 @@ def make_item(text: str) -> QStandardItem:
 class BetconTableModel(QStandardItemModel):
     """QStandardItemModel subclass with helpers for Betcon tables."""
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._hidden_col = 1
+
     def setup(self, headers: list[str], hidden_col: int = 1) -> None:
         """Configure column headers. hidden_col is the 0-based index of the ID column."""
         self.setColumnCount(len(headers))
