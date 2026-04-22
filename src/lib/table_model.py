@@ -25,6 +25,7 @@ def paint_row_items(items: list, profit: float, result: int) -> None:
         if item.data(SKIP_ROLE):
             continue
         item.setBackground(bg)
+        item.setForeground(QColor(Qt.GlobalColor.black))
 
 
 def make_icon_item(icon_path: str | None, text: str, bg: QColor | None = None) -> QStandardItem:
@@ -33,12 +34,16 @@ def make_icon_item(icon_path: str | None, text: str, bg: QColor | None = None) -
     If icon_path exists, the icon is set. bg sets a custom background for this cell only.
     """
     SKIP_ROLE = Qt.ItemDataRole.UserRole + 10
-    item = QStandardItem(text)
-    item.setData(True, SKIP_ROLE)  # exclude from row-level paint
+    has_icon = False
     if icon_path:
         pix = QPixmap(icon_path)
         if not pix.isNull():
-            item.setIcon(QIcon(pix))
+            has_icon = True
+    item = QStandardItem("" if has_icon else text)
+    item.setData(True, SKIP_ROLE)  # exclude from row-level paint
+    if has_icon:
+        item.setIcon(QIcon(pix))
+        item.setToolTip(text)
     if bg is not None:
         item.setBackground(bg)
     item.setEditable(False)
