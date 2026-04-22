@@ -74,15 +74,30 @@ class BetconTableModel(QStandardItemModel):
 
 class BetconItemDelegate(QStyledItemDelegate):
     """
-    Delegate that respects Qt.BackgroundRole on QStandardItems even when
-    a QSS stylesheet is active (Qt normally ignores BackgroundRole when QSS
-    sets background-color on the view).
+    Delegate that:
+    1. Respects Qt.BackgroundRole even when a QSS stylesheet is active.
+    2. Scales icon-only cells (empty text, has icon) to fill the whole cell rect.
     """
 
+    _ICON_ROLE = Qt.ItemDataRole.DecorationRole
+    _TEXT_ROLE = Qt.ItemDataRole.DisplayRole
+
     def paint(self, painter: QPainter, option, index) -> None:
+        # 1. Paint custom background
         bg = index.data(Qt.ItemDataRole.BackgroundRole)
         if bg is not None and bg.style() != Qt.BrushStyle.NoBrush:
             painter.save()
             painter.fillRect(option.rect, bg)
             painter.restore()
+
+        # 2. If icon-only cell, draw icon scaled to fill the cell
+        text = index.data(self._TEXT_ROLE) or ""
+        icon = index.data(self._ICON_ROLE)
+        if icon and not text:
+            painter.save()
+            pixmap = icon.pixmap(option.rect.size())
+            painter.drawPixmap(option.rect, pixmap)
+            painter.restore()
+            return
+
         super().paint(painter, option, index)
