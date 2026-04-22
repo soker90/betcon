@@ -38,7 +38,6 @@ class Bets(QWidget):
 		self.model = BetconTableModel()
 		self.model.setup(header, hidden_col=1)
 		self.treeMain.setModel(self.model)
-		self.treeMain.setColumnHidden(1, True)
 		self.treeMain.setAlternatingRowColors(True)
 		self.treeMain.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
 		self.treeMain.horizontalHeader().setStretchLastSection(True)
@@ -56,6 +55,7 @@ class Bets(QWidget):
 		self.cmbMonth.activated.connect(self.initTree)
 
 		self.itemSelected = -1
+		self.treeMain.setColumnHidden(1, True)
 
 
 

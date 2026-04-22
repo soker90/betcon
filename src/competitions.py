@@ -24,7 +24,6 @@ class Competitions(QWidget):
 		mainWindows.diconnectActions()
 		self.model = BetconTableModel()
 		self.treeMain.setModel(self.model)
-		self.treeMain.setColumnHidden(1, True)
 		self.treeMain.setAlternatingRowColors(True)
 		self.treeMain.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
 		self.treeMain.horizontalHeader().setStretchLastSection(True)
@@ -38,6 +37,7 @@ class Competitions(QWidget):
 		self.mainWindows.aRemove.triggered.connect(self.deleteItem)
 		self.itemSelected = -1
 		self.translate()
+		self.treeMain.setColumnHidden(1, True)
 
 	def translate(self):
 

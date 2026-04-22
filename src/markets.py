@@ -25,7 +25,6 @@ class Markets(QWidget):
 		self.mainWindows.setWindowTitle(_("Markets") + " | Betcon v" + mainWindows.version)
 		self.model = BetconTableModel()
 		self.treeMain.setModel(self.model)
-		self.treeMain.setColumnHidden(1, True)
 		self.treeMain.setAlternatingRowColors(True)
 		self.treeMain.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
 		self.treeMain.horizontalHeader().setStretchLastSection(True)
@@ -39,6 +38,7 @@ class Markets(QWidget):
 		self.itemSelected = -1
 
 		self.translate()
+		self.treeMain.setColumnHidden(1, True)
 
 	def translate(self):
 

@@ -26,7 +26,6 @@ class Tipsters(QWidget):
         self.mainWindows.setWindowTitle(_("Tipsters") + " | Betcon v" + mainWindows.version)
         self.model = BetconTableModel()
         self.treeMain.setModel(self.model)
-        self.treeMain.setColumnHidden(1, True)
         self.treeMain.setAlternatingRowColors(True)
         self.treeMain.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
         self.treeMain.horizontalHeader().setStretchLastSection(True)
@@ -42,6 +41,7 @@ class Tipsters(QWidget):
         self.mainWindows.aEdit.triggered.connect(self.editItem)
         self.mainWindows.aRemove.triggered.connect(self.deleteItem)
         self.itemSelected = -1
+        self.treeMain.setColumnHidden(1, True)
 
     def translate(self):
         header = [_("Name"), "index", _("Cost"), _("Profit of the bets"), _("Balance")]
