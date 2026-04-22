@@ -192,12 +192,21 @@ QComboBox:focus {
 
 QComboBox::drop-down {
     border: none;
+    border-left: 1px solid #c8cdd8;
+    background-color: #e8eaed;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
     width: 24px;
 }
 
 QComboBox::down-arrow {
-    width: 10px;
-    height: 10px;
+    image: none;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid #1a1a2e;
+    margin: 0 6px;
 }
 
 QComboBox QAbstractItemView {
