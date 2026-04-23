@@ -221,8 +221,8 @@ QComboBox QAbstractItemView::item {
 }
 
 QComboBox QAbstractItemView::item:hover {
-    background-color: #585b70;
-    color: #cdd6f4;
+    background-color: #89b4fa;
+    color: #1e1e2e;
 }
 
 /* ── TreeWidget / TableView ──────────────────────────────────────────── */
