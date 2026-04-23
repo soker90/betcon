@@ -215,6 +215,16 @@ QComboBox QAbstractItemView {
     padding: 2px;
 }
 
+QComboBox QAbstractItemView::item {
+    padding: 4px 8px;
+    min-height: 24px;
+}
+
+QComboBox QAbstractItemView::item:hover {
+    background-color: #45475a;
+    color: #cdd6f4;
+}
+
 /* ── TreeWidget / TableView ──────────────────────────────────────────── */
 QTreeWidget,
 QTableView,
