@@ -297,7 +297,5 @@ class Bbdd:
 		days = [day[0] for day in raw]
 		return days
 
-		return days
-
 
 

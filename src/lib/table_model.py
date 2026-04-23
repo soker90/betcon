@@ -101,13 +101,15 @@ class BetconItemDelegate(QStyledItemDelegate):
             painter.fillRect(option.rect, bg)
             painter.restore()
 
-        # 2. If icon-only cell, draw icon scaled to fill the cell
+        # 2. If icon-only cell, draw icon centered without distortion
         text = index.data(self._TEXT_ROLE) or ""
         icon = index.data(self._ICON_ROLE)
         if icon and not text:
             painter.save()
             pixmap = icon.pixmap(option.rect.size())
-            painter.drawPixmap(option.rect, pixmap)
+            target_rect = pixmap.rect()
+            target_rect.moveCenter(option.rect.center())
+            painter.drawPixmap(target_rect, pixmap)
             painter.restore()
         else:
             super().paint(painter, option, index)

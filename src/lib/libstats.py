@@ -403,11 +403,11 @@ class LibStats:
 			date += "-" + day
 		dp = date + "%"
 		sql = (
-			f'SELECT SUM(bet),'
-			f' (SELECT SUM(profit) FROM bet AS b1 WHERE profit>0 AND b1.date LIKE :dp),'
-			f' (SELECT SUM(profit) FROM bet AS b1 WHERE profit<0 AND b1.date LIKE :dp),'
-			f' SUM(profit),'
-			f' (SELECT SUM(bet) FROM bet AS b1 WHERE b1.result={P} AND b1.date LIKE :dp),'
+			f'SELECT COALESCE(SUM(bet), 0),'
+			f' (SELECT COALESCE(SUM(profit), 0) FROM bet AS b1 WHERE profit>0 AND b1.date LIKE :dp),'
+			f' (SELECT COALESCE(SUM(profit), 0) FROM bet AS b1 WHERE profit<0 AND b1.date LIKE :dp),'
+			f' COALESCE(SUM(profit), 0),'
+			f' (SELECT COALESCE(SUM(bet), 0) FROM bet AS b1 WHERE b1.result={P} AND b1.date LIKE :dp),'
 			f' AVG(quota), count(bet),'
 			f' (SELECT COUNT(*) FROM bet AS b1 WHERE profit>0 AND b1.date LIKE :dp),'
 			f' (SELECT count(*) FROM bet AS b1 WHERE profit<0 AND b1.result<>{P} AND b1.date LIKE :dp),'
