@@ -128,7 +128,7 @@ class TipstersMonth(QWidget):
 		if resultado == QMessageBox.Yes:
 			bd = Bbdd()
 			bd.delete("conjunta", str(self.itemConjunta))
-			bd.deleteWhere("conjunta_tipster","conjunta=" + str(self.itemConjunta))
+			bd.deleteWhere("conjunta_tipster", "conjunta=?", (self.itemConjunta,))
 			self.mainWindows.setCentralWidget(TipstersMonth(self.mainWindows))
 			self.mainWindows.enableTools("tipster_money")
 			bd.close()

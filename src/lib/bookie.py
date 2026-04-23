@@ -55,7 +55,7 @@ class Bookie:
 	def update(self):
 		if not self.isEmpty():
 			bd = Bbdd()
-			msg = bd.update(["name", "country"], [self.name, self.country], "bookie", "id="+self.id)
+			msg = bd.update(["name", "country"], [self.name, self.country], "bookie", "id=?", (self.id,))
 			bd.close()
 			if msg != 0:
 				msg = "Se ha producido un error al actualizar la BBDD"
@@ -96,9 +96,9 @@ class Bookie:
 		return msg
 
 	@staticmethod
-	def deleteWhere(table, where):
+	def deleteWhere(table, where, params=None):
 		bd = Bbdd()
-		msg = bd.deleteWhere(table, where)
+		msg = bd.deleteWhere(table, where, params)
 		bd.close()
 		if msg != 0:
 			msg = "Se ha producido un error al actualizar la BBDD"
@@ -119,14 +119,13 @@ class Bookie:
 		return data
 
 	@staticmethod
-	def sumBonus(where=None):
+	def sumBonus(date=None):
 		bd = Bbdd()
-		if where:
-			where = "free='True' and " + where
+		if date:
+			where = "free='True' AND date LIKE ?"
+			data = bd.sum("bonus", "money", where, (date,))
 		else:
-			where = "free='True' "
-
-		data = bd.sum("bonus", "money", where)
+			data = bd.sum("bonus", "money", "free='True'")
 
 		bd.close()
 		return data

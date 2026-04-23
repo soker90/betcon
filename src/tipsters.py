@@ -112,7 +112,7 @@ class Tipsters(QWidget):
         if resultado == QMessageBox.Yes:
             bd = Bbdd()
             bd.delete("tipster", self.itemSelected)
-            bd.deleteWhere("bet", "tipster=" + str(self.itemSelected))
+            bd.deleteWhere("bet", "tipster=?", (self.itemSelected,))
             self.mainWindows.setCentralWidget(Tipsters(self.mainWindows))
             self.mainWindows.enableTools()
 

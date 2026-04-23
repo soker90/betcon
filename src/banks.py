@@ -172,7 +172,8 @@ class Banks(QWidget):
             bd.delete("movement", self.itemSelected)
             data = ["'+bank+'" + self.treeMovement.currentItem().text(5)]
             columns = ["bank"]
-            bd.update(columns, data, "bank", "name='" + self.treeMovement.currentItem().text(4)+"'")
+            bank_name = self.treeMovement.currentItem().text(4)
+            bd.update(columns, data, "bank", "name=?", (bank_name,))
             bd.close()
             self.mainWindows.setCentralWidget(Banks(self.mainWindows))
             self.mainWindows.enableTools("bank")

@@ -71,7 +71,7 @@ class Markets(QWidget):
 		if resultado == QMessageBox.Yes:
 			bd = Bbdd()
 			bd.delete("market", self.itemSelected)
-			bd.deleteWhere("bet", "market=" + str(self.itemSelected))
+			bd.deleteWhere("bet", "market=?", (self.itemSelected,))
 			self.mainWindows.setCentralWidget(Markets(self.mainWindows))
 			self.mainWindows.enableTools()
 

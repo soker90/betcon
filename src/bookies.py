@@ -64,8 +64,8 @@ class Bookies(QWidget):
 										 QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
 		if resultado == QMessageBox.Yes:
 			err = Bookie.delete(self.itemSelected)
-			Bookie.deleteWhere("bet", "bookie=" + str(self.itemSelected))
-			Bookie.deleteWhere("bonus", "bookie=" + str(self.itemSelected))
+			Bookie.deleteWhere("bet", "bookie=?", (self.itemSelected,))
+			Bookie.deleteWhere("bonus", "bookie=?", (self.itemSelected,))
 			if err != 0:
 				QMessageBox.critical(self, _("Error"), _("There was an error deleting the house"))
 

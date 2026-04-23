@@ -70,8 +70,8 @@ class Sports(QWidget):
         if resultado == QMessageBox.Yes:
             bd = Bbdd()
             bd.delete("sport", self.itemSelected)
-            bd.deleteWhere("competition", "sport="+str(self.itemSelected))
-            bd.deleteWhere("bet", "sport=" + str(self.itemSelected))
+            bd.deleteWhere("competition", "sport=?", (self.itemSelected,))
+            bd.deleteWhere("bet", "sport=?", (self.itemSelected,))
             self.mainWindows.setCentralWidget(Sports(self.mainWindows))
             self.mainWindows.enableTools()
 

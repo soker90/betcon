@@ -71,7 +71,7 @@ class Competitions(QWidget):
 		if resultado == QMessageBox.Yes:
 			bd = Bbdd()
 			bd.delete("competition", self.itemSelected)
-			bd.deleteWhere("bet", "competition=" + str(self.itemSelected))
+			bd.deleteWhere("bet", "competition=?", (self.itemSelected,))
 			self.mainWindows.setCentralWidget(Competitions(self.mainWindows))
 			self.mainWindows.enableTools()
 

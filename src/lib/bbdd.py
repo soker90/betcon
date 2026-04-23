@@ -50,14 +50,15 @@ class Bbdd:
 			return -1
 		return 0
 
-	def update(self, columns, values, table, where=None):
+	def update(self, columns, values, table, where=None, where_params=None):
 		sentence = ", ".join(col + " = ?" for col in columns)
 		query = "UPDATE " + table + " SET " + sentence
 		if where:
 			query += " WHERE " + where
 		query += ";"
 		try:
-			self.cursor.execute(query, list(values))
+			params = list(values) + list(where_params or [])
+			self.cursor.execute(query, params)
 			self.bd.commit()
 		except Exception as e:
 			print("Error update BBDD: {0}".format(e))
@@ -73,10 +74,10 @@ class Bbdd:
 			return -1
 		return 0
 
-	def deleteWhere(self, table, where):
+	def deleteWhere(self, table, where, params=None):
 		try:
 			query = "DELETE FROM " + table + " WHERE " + where + ";"
-			self.cursor.execute(query)
+			self.cursor.execute(query, params or [])
 			self.bd.commit()
 		except Exception as e:
 			print("Error delete BBDD: {0}".format(e))
@@ -116,12 +117,12 @@ class Bbdd:
 
 		return data[0][0]
 
-	def sum(self, table, field, where=None):
+	def sum(self, table, field, where=None, params=None):
 		query = "SELECT sum(" + field + ") FROM " + table
 		if where:
 			query += " WHERE " + where
 
-		self.cursor.execute(query)
+		self.cursor.execute(query, params or [])
 		data = self.cursor.fetchall()
 		sum = data[0][0]
 		if sum is None:

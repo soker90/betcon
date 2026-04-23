@@ -70,7 +70,7 @@ class Regions(QWidget):
 		if resultado == QMessageBox.Yes:
 			bd = Bbdd()
 			bd.delete("region", self.itemSelected)
-			bd.deleteWhere("competition", "region=" + str(self.itemSelected))
-			bd.deleteWhere("bet", "region=" + str(self.itemSelected))
+			bd.deleteWhere("competition", "region=?", (self.itemSelected,))
+			bd.deleteWhere("bet", "region=?", (self.itemSelected,))
 			self.mainWindows.setCentralWidget(Regions(self.mainWindows))
 			self.mainWindows.enableTools()
