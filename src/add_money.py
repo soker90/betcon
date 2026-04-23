@@ -57,7 +57,7 @@ class AddMoney(QWidget):
 		account = self.cmbAccount.currentIndex()
 
 		bbdd = Bbdd()
-		bbdd.update(columns, data, "bank", "id="+str(account+1))
+		bbdd.update(columns, data, "bank", "id=?", (account + 1,))
 		bbdd.close()
 
 		QMessageBox.information(self, _("Added"), _("Added funds."))

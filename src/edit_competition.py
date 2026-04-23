@@ -92,7 +92,7 @@ class EditCompetition(QWidget):
 		columns = ["name", "region", "sport"]
 
 		bbdd = Bbdd()
-		bbdd.update(columns, data, "competition", "id="+self.id)
+		bbdd.update(columns, data, "competition", "id=?", (self.id,))
 		bbdd.close()
 
 		QMessageBox.information(self, _("Updated"), _("Updated competition."))

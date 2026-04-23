@@ -87,7 +87,7 @@ class EditBonus(QWidget):
 
 		columns = ["date", "bookie", "money", "free"]
 
-		bbdd.update(columns, data, "bonus", "id="+self.id)
+		bbdd.update(columns, data, "bonus", "id=?", (self.id,))
 
 		QMessageBox.information(self, _("Updated"), _("Updated bonus."))
 

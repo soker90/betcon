@@ -76,11 +76,11 @@ class Tipsters(QWidget):
         for i in data:
             id = i[0]
             name = i[1]
-            cost = bd.sum("tipster_month", "money", "tipster=" + str(id))
+            cost = bd.sum("tipster_month", "money", "tipster=?", (id,))
             if id in money.keys():
                 cost += money[id]
 
-            profit = bd.sum("bet", "profit", "tipster=" + str(id))
+            profit = bd.sum("bet", "profit", "tipster=?", (id,))
             balance = profit - cost
 
             if cost == 0:
@@ -90,7 +90,7 @@ class Tipsters(QWidget):
             profit = "{0:.2f}".format(profit) + self.coin
             balance = "{0:.2f}".format(balance) + self.coin
             row = [make_item(name), make_item(str(id)), make_item(cost), make_item(profit), make_item(balance)]
-            paint_row_items(row, float(bd.sum("bet", "profit", "tipster=" + str(id))), 1)
+            paint_row_items(row, float(bd.sum("bet", "profit", "tipster=?", (id,))), 1)
             self.model.appendRow(row)
 
         bd.close()

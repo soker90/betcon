@@ -419,7 +419,7 @@ class LibStats:
 		bd = Bbdd()
 		datasql = bd.executeQuery(sql, {"dp": dp})
 		bd.close()
-		bonus = Bookie.sumBonus(dp)
+		bonus = Bookie.sumBonus(date=dp)
 		datasql = datasql[0]
 		if bonus is None:
 			bonus = 0

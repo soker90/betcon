@@ -49,7 +49,7 @@ class EditMarket(QWidget):
         columns = ["name"]
 
         bbdd = Bbdd()
-        bbdd.update(columns, data, "market", "id="+self.id)
+        bbdd.update(columns, data, "market", "id=?", (self.id,))
         bbdd.close()
 
         QMessageBox.information(self, _("Updated"), _("Market updated."))

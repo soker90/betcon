@@ -348,11 +348,11 @@ class EditBet(QWidget):
 		columns = ["date", "sport", "competition", "region", "player1", "player2", "pick", "bookie", "market",
 		           "tipster", "stake", "one", "result", "profit", "bet", "quota", "free"]
 
-		bbdd.update(columns, data, "bet", "id="+self.id)
+		bbdd.update(columns, data, "bet", "id=?", (self.id,))
 
 		if self.cmbMarket.currentText() == "Combinada":
 			columns = ["bet", "date", "sport", "competition", "region", "player1", "player2", "pick", "result"]
-			bbdd.deleteWhere("combined", "bet=" + str(self.id))
+			bbdd.deleteWhere("combined", "bet=?", (self.id,))
 
 			for i in range(0, self.contComb):
 				data = []

@@ -105,14 +105,14 @@ class Bookie:
 		return msg
 
 	@staticmethod
-	def sumAll(where=None):
+	def sumAll(where=None, where_params=None):
 		bd = Bbdd()
-		data = bd.sum("movement", "money", where)
+		data = bd.sum("movement", "money", where, where_params)
 		if where is None:
 			profit = bd.sum("bet", "profit")
 			data += profit
-		elif where[0] == "b":
-			profit = bd.sum("bet", "profit", where)
+		elif where.startswith("bookie"):
+			profit = bd.sum("bet", "profit", where, where_params)
 			data += profit
 
 		bd.close()

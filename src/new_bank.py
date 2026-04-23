@@ -94,7 +94,7 @@ class NewBank(QWidget):
 		columns = ["bank"]
 
 		account = self.cmbAccount.currentIndex()
-		bbdd.update(columns, data, "bank", "id="+str(account + 1))
+		bbdd.update(columns, data, "bank", "id=?", (account + 1,))
 		bbdd.close()
 
 		QMessageBox.information(self, _("Added"), _("Added movement."))

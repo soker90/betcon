@@ -107,7 +107,7 @@ class Banks(QWidget):
 
         items = []
         for i in data:
-            bank = Bookie.sumAll("bookie=" + str(i.id))
+            bank = Bookie.sumAll("bookie=?", (i.id,))
             bank = 0.0 if bank is None else bank
             bonus = Bookie.sumBonus(bookie_id=i.id)
             bonus = 0.0 if bonus is None else bonus

@@ -49,7 +49,7 @@ class EditRegion(QWidget):
 		columns = ["name"]
 
 		bbdd = Bbdd()
-		bbdd.update(columns, data, "region", "id="+self.id)
+		bbdd.update(columns, data, "region", "id=?", (self.id,))
 		bbdd.close()
 
 		QMessageBox.information(self, _("Updated"), _("Updated region."))

@@ -105,9 +105,9 @@ class EditConjunta(QWidget):
 		columns = ["month", "year", "name", "money"]
 
 		bbdd = Bbdd()
-		bbdd.update(columns, data, "conjunta", "id=" + str(self.id))
+		bbdd.update(columns, data, "conjunta", "id=?", (self.id,))
 
-		bbdd.deleteWhere("conjunta_tipster", "conjunta=" + str(self.id))
+		bbdd.deleteWhere("conjunta_tipster", "conjunta=?", (self.id,))
 
 		for i in self.selected:
 			if i in (0, 1):

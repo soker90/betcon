@@ -54,7 +54,7 @@ class EditSport(QWidget):
 		columns = ["name"]
 
 		bbdd = Bbdd()
-		bbdd.update(columns, data, "sport", "id="+self.id)
+		bbdd.update(columns, data, "sport", "id=?", (self.id,))
 		bbdd.close()
 
 		if self.ruta is not None:
