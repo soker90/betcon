@@ -210,8 +210,8 @@ QComboBox QAbstractItemView {
     color: #cdd6f4;
     border: 1px solid #45475a;
     border-radius: 5px;
-    selection-background-color: #313244;
-    selection-color: #cdd6f4;
+    selection-background-color: #89b4fa;
+    selection-color: #1e1e2e;
     padding: 2px;
 }
 
