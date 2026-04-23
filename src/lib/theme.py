@@ -58,18 +58,25 @@ _ROLES = {
 
 
 class _ComboHoverFilter(QObject):
-    """Event filter that enables WA_Hover on every QComboBox view so that
-    QSS ``::item:hover`` rules work correctly in popup mode."""
+    """Event filter installed on QApplication that catches ChildPolished events
+    (fired for every widget at any depth) to enable WA_Hover on QComboBox views,
+    so that QSS ``::item:hover`` rules work correctly in popup mode."""
 
     def eventFilter(self, obj, event):
-        if event.type() == QEvent.Type.ChildAdded:
+        if event.type() == QEvent.Type.ChildPolished:
             child = event.child()
             if isinstance(child, QComboBox):
                 child.view().setAttribute(Qt.WidgetAttribute.WA_Hover, True)
         return False
 
 
-_combo_hover_filter: _ComboHoverFilter | None = None
+_combo_hover_filter: "_ComboHoverFilter | None" = None
+_original_show_popup = QComboBox.showPopup
+
+
+def _patched_show_popup(self):
+    self.view().setAttribute(Qt.WidgetAttribute.WA_Hover, True)
+    _original_show_popup(self)
 
 
 def _build_palette(colors: dict) -> QPalette:
@@ -100,6 +107,8 @@ def apply_theme(app: QApplication, mode: str = "dark") -> None:
     if _combo_hover_filter is None:
         _combo_hover_filter = _ComboHoverFilter()
         app.installEventFilter(_combo_hover_filter)
+        # Monkey-patch showPopup as guaranteed fallback for late-created combos.
+        QComboBox.showPopup = _patched_show_popup
 
     # Also patch any comboboxes already alive.
     for combo in app.findChildren(QComboBox):
