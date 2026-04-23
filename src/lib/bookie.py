@@ -119,13 +119,17 @@ class Bookie:
 		return data
 
 	@staticmethod
-	def sumBonus(date=None):
+	def sumBonus(date=None, bookie_id=None):
 		bd = Bbdd()
+		where_parts = ["free='True'"]
+		params = []
 		if date:
-			where = "free='True' AND date LIKE ?"
-			data = bd.sum("bonus", "money", where, (date,))
-		else:
-			data = bd.sum("bonus", "money", "free='True'")
-
+			where_parts.append("date LIKE ?")
+			params.append(date)
+		if bookie_id is not None:
+			where_parts.append("bookie=?")
+			params.append(int(bookie_id))
+		data = bd.sum("bonus", "money", " AND ".join(where_parts), params or None)
 		bd.close()
+		return data
 		return data

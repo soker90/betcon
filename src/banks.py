@@ -109,7 +109,7 @@ class Banks(QWidget):
         for i in data:
             bank = Bookie.sumAll("bookie=" + str(i.id))
             bank = 0.0 if bank is None else bank
-            bonus = Bookie.sumBonus("bookie=" + str(i.id))
+            bonus = Bookie.sumBonus(bookie_id=i.id)
             bonus = 0.0 if bonus is None else bonus
             bank += bonus
             if 0.01 > bank > -0.01:
