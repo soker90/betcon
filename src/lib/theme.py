@@ -1,6 +1,7 @@
 import os
+from PySide6.QtCore import Qt, QObject, QEvent
 from PySide6.QtGui import QPalette, QColor
-from PySide6.QtWidgets import QApplication
+from PySide6.QtWidgets import QApplication, QComboBox
 
 _ASSETS = os.path.normpath(os.path.join(os.path.dirname(__file__), "..", "..", "assets"))
 
@@ -56,6 +57,21 @@ _ROLES = {
 }
 
 
+class _ComboHoverFilter(QObject):
+    """Event filter that enables WA_Hover on every QComboBox view so that
+    QSS ``::item:hover`` rules work correctly in popup mode."""
+
+    def eventFilter(self, obj, event):
+        if event.type() == QEvent.Type.ChildAdded:
+            child = event.child()
+            if isinstance(child, QComboBox):
+                child.view().setAttribute(Qt.WidgetAttribute.WA_Hover, True)
+        return False
+
+
+_combo_hover_filter: _ComboHoverFilter | None = None
+
+
 def _build_palette(colors: dict) -> QPalette:
     palette = QPalette()
     for name, hex_color in colors.items():
@@ -67,6 +83,8 @@ def _build_palette(colors: dict) -> QPalette:
 
 def apply_theme(app: QApplication, mode: str = "dark") -> None:
     """Apply dark or light theme palette + QSS to the application."""
+    global _combo_hover_filter
+
     colors = _DARK if mode == "dark" else _LIGHT
     app.setPalette(_build_palette(colors))
 
@@ -77,3 +95,12 @@ def apply_theme(app: QApplication, mode: str = "dark") -> None:
         app.setStyleSheet(qss)
     else:
         app.setStyleSheet("")
+
+    # Install once: enables WA_Hover on QComboBox views so ::item:hover works.
+    if _combo_hover_filter is None:
+        _combo_hover_filter = _ComboHoverFilter()
+        app.installEventFilter(_combo_hover_filter)
+
+    # Also patch any comboboxes already alive.
+    for combo in app.findChildren(QComboBox):
+        combo.view().setAttribute(Qt.WidgetAttribute.WA_Hover, True)
