@@ -28,7 +28,16 @@ wheels/
 #  Usually these files are written by a python script from a template
 #  before PyInstaller builds the exe, so as to inject date/other infos into it.
 *.manifest
-*.spec
+
+# Packaging
+packaging/
+*.deb
+*.rpm
+*.dmg
+*.exe
+*.iss
+dmg_settings.py
+rpmbuild/
 
 # Installer logs
 pip-log.txt

@@ -1,0 +1,294 @@
+name: Build Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libxcb-xinerama0 \
+            libxcb-cursor0 \
+            libxkbcommon-x11-0 \
+            libegl1 \
+            libdbus-1-3 \
+            rpm \
+            fakeroot \
+            dpkg-dev
+      
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pyinstaller
+      
+      - name: Build with PyInstaller
+        run: |
+          pyinstaller betcon.spec
+      
+      - name: Get version
+        id: version
+        run: echo "VERSION=$(cat src/version.txt)" >> $GITHUB_OUTPUT
+      
+      - name: Create .tar.gz
+        run: |
+          cd dist
+          tar -czf betcon-${{ steps.version.outputs.VERSION }}-linux-x86_64.tar.gz betcon/
+          cd ..
+      
+      - name: Build .deb package
+        run: |
+          VERSION=${{ steps.version.outputs.VERSION }}
+          mkdir -p packaging/deb/betcon_${VERSION}/DEBIAN
+          mkdir -p packaging/deb/betcon_${VERSION}/usr/bin
+          mkdir -p packaging/deb/betcon_${VERSION}/usr/share/applications
+          mkdir -p packaging/deb/betcon_${VERSION}/usr/share/pixmaps
+          mkdir -p packaging/deb/betcon_${VERSION}/opt/betcon
+          
+          cp -r dist/betcon/* packaging/deb/betcon_${VERSION}/opt/betcon/
+          
+          cat > packaging/deb/betcon_${VERSION}/usr/bin/betcon << 'EOF'
+          #!/bin/bash
+          /opt/betcon/betcon "$@"
+          EOF
+          chmod +x packaging/deb/betcon_${VERSION}/usr/bin/betcon
+          
+          cp resources/betcon.desktop packaging/deb/betcon_${VERSION}/usr/share/applications/
+          cp resources/icon.png packaging/deb/betcon_${VERSION}/usr/share/pixmaps/betcon.png
+          
+          cat > packaging/deb/betcon_${VERSION}/DEBIAN/control << EOF
+          Package: betcon
+          Version: ${VERSION}
+          Section: utils
+          Priority: optional
+          Architecture: amd64
+          Maintainer: soker90 <soker90@gmail.com>
+          Description: Aplicación para la gestión de apuestas deportivas
+           Betcon es una aplicación de escritorio para gestionar apuestas deportivas,
+           incluyendo seguimiento de beneficios, estadísticas y más.
+          EOF
+          
+          dpkg-deb --build packaging/deb/betcon_${VERSION}
+          mv packaging/deb/betcon_${VERSION}.deb dist/betcon-${VERSION}-amd64.deb
+      
+      - name: Build .rpm package
+        run: |
+          VERSION=${{ steps.version.outputs.VERSION }}
+          mkdir -p ~/rpmbuild/{BUILD,RPMS,SOURCES,SPECS,SRPMS}
+          
+          cat > ~/rpmbuild/SPECS/betcon.spec << EOF
+          Name:           betcon
+          Version:        ${VERSION}
+          Release:        1%{?dist}
+          Summary:        Aplicación para la gestión de apuestas deportivas
+          License:        MIT
+          URL:            https://github.com/soker90/betcon
+          
+          %description
+          Betcon es una aplicación de escritorio para gestionar apuestas deportivas,
+          incluyendo seguimiento de beneficios, estadísticas y más.
+          
+          %install
+          mkdir -p %{buildroot}/opt/betcon
+          mkdir -p %{buildroot}/usr/bin
+          mkdir -p %{buildroot}/usr/share/applications
+          mkdir -p %{buildroot}/usr/share/pixmaps
+          cp -r ${PWD}/dist/betcon/* %{buildroot}/opt/betcon/
+          cat > %{buildroot}/usr/bin/betcon << 'EOFBIN'
+          #!/bin/bash
+          /opt/betcon/betcon "\$@"
+          EOFBIN
+          chmod +x %{buildroot}/usr/bin/betcon
+          cp ${PWD}/resources/betcon.desktop %{buildroot}/usr/share/applications/
+          cp ${PWD}/resources/icon.png %{buildroot}/usr/share/pixmaps/betcon.png
+          
+          %files
+          /opt/betcon/*
+          /usr/bin/betcon
+          /usr/share/applications/betcon.desktop
+          /usr/share/pixmaps/betcon.png
+          EOF
+          
+          rpmbuild -bb ~/rpmbuild/SPECS/betcon.spec
+          cp ~/rpmbuild/RPMS/x86_64/betcon-${VERSION}-1.*.rpm dist/betcon-${VERSION}-x86_64.rpm
+      
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux-packages
+          path: |
+            dist/*.tar.gz
+            dist/*.deb
+            dist/*.rpm
+
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pyinstaller
+      
+      - name: Build with PyInstaller
+        run: |
+          pyinstaller betcon.spec
+      
+      - name: Get version
+        id: version
+        shell: bash
+        run: echo "VERSION=$(cat src/version.txt)" >> $GITHUB_OUTPUT
+      
+      - name: Create installer with Inno Setup
+        run: |
+          choco install innosetup -y
+          $VERSION = "${{ steps.version.outputs.VERSION }}"
+          
+          $InnoScript = @"
+          #define MyAppName "Betcon"
+          #define MyAppVersion "$VERSION"
+          #define MyAppPublisher "soker90"
+          #define MyAppURL "https://github.com/soker90/betcon"
+          #define MyAppExeName "betcon.exe"
+          
+          [Setup]
+          AppId={{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}
+          AppName={#MyAppName}
+          AppVersion={#MyAppVersion}
+          AppPublisher={#MyAppPublisher}
+          AppPublisherURL={#MyAppURL}
+          AppSupportURL={#MyAppURL}
+          AppUpdatesURL={#MyAppURL}
+          DefaultDirName={autopf}\{#MyAppName}
+          DefaultGroupName={#MyAppName}
+          OutputBaseFilename=betcon-{#MyAppVersion}-setup
+          OutputDir=dist
+          Compression=lzma
+          SolidCompression=yes
+          WizardStyle=modern
+          
+          [Languages]
+          Name: "spanish"; MessagesFile: "compiler:Languages\Spanish.isl"
+          Name: "english"; MessagesFile: "compiler:Default.isl"
+          
+          [Tasks]
+          Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
+          
+          [Files]
+          Source: "dist\betcon\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+          
+          [Icons]
+          Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
+          Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
+          
+          [Run]
+          Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
+          "@
+          
+          $InnoScript | Out-File -FilePath "betcon.iss" -Encoding UTF8
+          & "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" betcon.iss
+      
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-installer
+          path: dist/*.exe
+
+  build-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pyinstaller dmgbuild
+      
+      - name: Build with PyInstaller
+        run: |
+          pyinstaller betcon.spec
+      
+      - name: Get version
+        id: version
+        run: echo "VERSION=$(cat src/version.txt)" >> $GITHUB_OUTPUT
+      
+      - name: Create .dmg
+        run: |
+          VERSION=${{ steps.version.outputs.VERSION }}
+          
+          cat > dmg_settings.py << EOF
+          files = ['dist/betcon.app']
+          symlinks = {'Applications': '/Applications'}
+          badge_icon = 'resources/icon.png'
+          icon_locations = {
+              'betcon.app': (140, 120),
+              'Applications': (500, 120)
+          }
+          background = None
+          window_rect = ((100, 100), (640, 280))
+          icon_size = 128
+          EOF
+          
+          dmgbuild -s dmg_settings.py "Betcon" "dist/betcon-${VERSION}-macos.dmg"
+      
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: macos-dmg
+          path: dist/*.dmg
+
+  create-release:
+    needs: [build-linux, build-windows, build-macos]
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/')
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Get version
+        id: version
+        run: echo "VERSION=$(cat src/version.txt)" >> $GITHUB_OUTPUT
+      
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+      
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: Betcon v${{ steps.version.outputs.VERSION }}
+          draft: false
+          prerelease: false
+          files: |
+            artifacts/linux-packages/*
+            artifacts/windows-installer/*
+            artifacts/macos-dmg/*
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
