@@ -221,7 +221,7 @@ QComboBox QAbstractItemView::item {
 }
 
 QComboBox QAbstractItemView::item:hover {
-    background-color: #45475a;
+    background-color: #585b70;
     color: #cdd6f4;
 }
 
