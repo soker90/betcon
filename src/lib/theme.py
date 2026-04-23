@@ -74,8 +74,50 @@ _combo_hover_filter: "_ComboHoverFilter | None" = None
 _original_show_popup = QComboBox.showPopup
 
 
+_current_mode: str = "dark"
+
+
 def _patched_show_popup(self):
-    self.view().setAttribute(Qt.WidgetAttribute.WA_Hover, True)
+    view = self.view()
+    view.setAttribute(Qt.WidgetAttribute.WA_Hover, True)
+    # Apply popup-specific styles directly on the view so Wayland doesn't
+    # strip the inherited application stylesheet.
+    if _current_mode == "dark":
+        view.setStyleSheet(
+            "QAbstractItemView {"
+            "  background-color: #181825;"
+            "  color: #cdd6f4;"
+            "  border: 1px solid #45475a;"
+            "  selection-background-color: #89b4fa;"
+            "  selection-color: #1e1e2e;"
+            "}"
+            "QAbstractItemView::item {"
+            "  padding: 4px 8px;"
+            "  min-height: 24px;"
+            "}"
+            "QAbstractItemView::item:hover {"
+            "  background-color: #89b4fa;"
+            "  color: #1e1e2e;"
+            "}"
+        )
+    else:
+        view.setStyleSheet(
+            "QAbstractItemView {"
+            "  background-color: #ffffff;"
+            "  color: #1a1a2e;"
+            "  border: 1px solid #c8cdd8;"
+            "  selection-background-color: #dde8f8;"
+            "  selection-color: #0078d4;"
+            "}"
+            "QAbstractItemView::item {"
+            "  padding: 4px 8px;"
+            "  min-height: 24px;"
+            "}"
+            "QAbstractItemView::item:hover {"
+            "  background-color: #dde8f8;"
+            "  color: #0078d4;"
+            "}"
+        )
     _original_show_popup(self)
 
 
@@ -90,8 +132,9 @@ def _build_palette(colors: dict) -> QPalette:
 
 def apply_theme(app: QApplication, mode: str = "dark") -> None:
     """Apply dark or light theme palette + QSS to the application."""
-    global _combo_hover_filter
+    global _combo_hover_filter, _current_mode
 
+    _current_mode = mode
     colors = _DARK if mode == "dark" else _LIGHT
     app.setPalette(_build_palette(colors))
 
