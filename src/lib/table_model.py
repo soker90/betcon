@@ -25,7 +25,6 @@ def paint_row_items(items: list, profit: float, result: int) -> None:
         if item.data(SKIP_ROLE):
             continue
         item.setBackground(bg)
-        item.setForeground(QColor(Qt.GlobalColor.black))
 
 
 def make_icon_item(icon_path: str | None, text: str, bg: QColor | None = None) -> QStandardItem:
