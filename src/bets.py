@@ -51,6 +51,12 @@ class Bets(QWidget):
 		self.treeMain.verticalHeader().setDefaultSectionSize(24)
 		self.treeMain.setSortingEnabled(True)
 
+		font = self.treeMain.font()
+		font.setPointSizeF(font.pointSizeF() + 1)
+		font.setBold(True)
+		self.treeMain.setFont(font)
+		self.treeMain.verticalHeader().setDefaultSectionSize(28)
+
 		try:
 			self.initData()
 		except Exception as e:

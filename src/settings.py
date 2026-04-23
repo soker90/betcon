@@ -57,8 +57,8 @@ class Settings(QWidget):
 		else:
 			self.chkCountryNo.setChecked(True)
 
-		theme_index = {"dark": 0, "light": 1}
-		current_theme = self.config.interface.get("theme", "dark")
+		theme_index = {"auto": 0, "dark": 1, "light": 2}
+		current_theme = self.config.interface.get("theme", "auto")
 		self.cmbTheme.setCurrentIndex(theme_index.get(current_theme, 0))
 
 		langIndex = {"de": 0, "en": 1, "en_GB": 2, "es": 3, "ki": 4, "pt_BR": 5, "tr": 6}
@@ -86,6 +86,7 @@ class Settings(QWidget):
 		self.chkCountryNo.setText(_("No"))
 
 		self.lblTheme.setText(_("Theme"))
+		self.cmbTheme.addItem(_("Auto (system)"), "auto")
 		self.cmbTheme.addItem(_("Dark"), "dark")
 		self.cmbTheme.addItem(_("Light"), "light")
 

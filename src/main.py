@@ -360,8 +360,14 @@ class Main(QMainWindow):
 	#Events
 
 	def closeEvent(self, event):
-		resultado = QMessageBox.question(self, _("Quit"), _("Are you sure you want to exit the application?"),
-										 QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+		msg = QMessageBox(self)
+		msg.setWindowTitle(_("Quit"))
+		msg.setText(_("Are you sure you want to exit the application?"))
+		msg.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+		msg.setDefaultButton(QMessageBox.No)
+		msg.setButtonText(QMessageBox.Yes, _("Yes"))
+		msg.setButtonText(QMessageBox.No, _("No"))
+		resultado = msg.exec()
 		if resultado == QMessageBox.Yes:
 			event.accept()
 		else:

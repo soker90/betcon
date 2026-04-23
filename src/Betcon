@@ -10,9 +10,9 @@ from libyaml import LibYaml
 app = QApplication(sys.argv)
 try:
     _cfg = LibYaml()
-    _mode = _cfg.interface.get("theme", "dark")
+    _mode = _cfg.interface.get("theme", "auto")
 except Exception:
-    _mode = "dark"
+    _mode = "auto"
 apply_theme(app, _mode)
 
 _main = Main()

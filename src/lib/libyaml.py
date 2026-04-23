@@ -23,7 +23,7 @@ class LibYaml:
 		return config
 
 	def initConfig(self):
-		data = {'stake': {'percentage': 1.0, 'stake': 0, 'type': 1}, 'interface': {'coin': '€', 'bookieCountry': 'N', 'lang': 'es', 'theme': 'dark'}}
+		data = {'stake': {'percentage': 1.0, 'stake': 0, 'type': 1}, 'interface': {'coin': '€', 'bookieCountry': 'N', 'lang': 'es', 'theme': 'auto'}}
 
 		stream = open(self.directory, 'w')
 		yaml.dump(data, stream, default_flow_style=False)

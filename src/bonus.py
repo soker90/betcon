@@ -71,7 +71,14 @@ class Bonus(QWidget):
 		self.mainWindows.editBonus(self.itemSelected)
 
 	def deleteItem(self):
-		resultado = QMessageBox.question(self, _("Remove"), _("Are you sure you want to eliminate it?"), QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+		msg = QMessageBox(self)
+		msg.setWindowTitle(_("Remove"))
+		msg.setText(_("Are you sure you want to eliminate it?"))
+		msg.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+		msg.setDefaultButton(QMessageBox.No)
+		msg.setButtonText(QMessageBox.Yes, _("Yes"))
+		msg.setButtonText(QMessageBox.No, _("No"))
+		resultado = msg.exec()
 		if resultado == QMessageBox.Yes:
 			bd = Bbdd()
 			bd.delete("bonus", self.itemSelected)
