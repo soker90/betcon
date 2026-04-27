@@ -8,8 +8,6 @@ directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspe
 sys.path.append(directory + "/lib")
 from bbdd import Bbdd
 from func_aux import numberToResult, monthToNumber
-from gettext import gettext as _
-import gettext
 from libyaml import LibYaml
 from os.path import expanduser
 from libstats import LibStats
@@ -21,9 +19,6 @@ class Bets(QWidget):
 	def __init__(self, mainWindows):
 		QWidget.__init__(self)
 		loadUi(directory + "/../ui/bets.ui", self)
-		gettext.textdomain("betcon")
-		gettext.bindtextdomain("betcon", "../lang/mo" + mainWindows.lang)
-		gettext.bindtextdomain("betcon", "/usr/share/locale" + mainWindows.lang)
 		self.mainWindows = mainWindows
 		mainWindows.diconnectActions()
 		mainWindows.aNew.triggered.connect(mainWindows.newBet)

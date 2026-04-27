@@ -8,17 +8,12 @@ from table_model import BetconTableModel, make_item
 directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
 sys.path.append(directory + "/lib")
 from bbdd import Bbdd
-from gettext import gettext as _
-import gettext
 
 
 class Regions(QWidget):
 	def __init__(self, mainWindows):
 		QWidget.__init__(self)
 		loadUi(directory + "/../ui/regions.ui", self)
-		gettext.textdomain("betcon")
-		gettext.bindtextdomain("betcon", "../lang/mo" + mainWindows.lang)
-		gettext.bindtextdomain("betcon", "/usr/share/locale" + mainWindows.lang)
 		self.mainWindows = mainWindows
 		mainWindows.diconnectActions()
 		mainWindows.aNew.triggered.connect(mainWindows.newRegion)

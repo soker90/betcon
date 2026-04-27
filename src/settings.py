@@ -11,8 +11,6 @@ from libyaml import LibYaml
 from theme import apply_theme
 from bets import Bets
 from bookie import Bookie
-from gettext import gettext as _
-import gettext
 import platform
 
 
@@ -20,9 +18,6 @@ class Settings(QWidget):
 	def __init__(self, mainWindows):
 		QWidget.__init__(self)
 		loadUi(directory + "/../ui/settings.ui", self)
-		gettext.textdomain("betcon")
-		gettext.bindtextdomain("betcon", "../lang/mo" + mainWindows.lang)
-		gettext.bindtextdomain("betcon", "/usr/share/locale" + mainWindows.lang)
 		self.mainWindows = mainWindows
 		mainWindows.diconnectActions()
 		self.mainWindows.setWindowTitle(_("Options") + " | Betcon v" + mainWindows.version)

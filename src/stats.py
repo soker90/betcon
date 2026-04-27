@@ -9,8 +9,6 @@ directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspe
 sys.path.append(directory + "/lib")
 from libstats import LibStats
 from func_aux import key_from_value, monthToNumber
-from gettext import gettext as _
-import gettext
 from libyaml import LibYaml
 
 
@@ -18,17 +16,6 @@ class Stats(QWidget):
 	def __init__(self, mainWindows):
 		QWidget.__init__(self)
 		loadUi(directory + "/../ui/stats.ui", self)
-		gettext.textdomain("betcon")
-		local_mo = os.path.normpath(directory + "/../lang/mo" + mainWindows.lang)
-		if os.path.isdir(local_mo):
-			gettext.bindtextdomain("betcon", local_mo)
-		else:
-			gettext.bindtextdomain("betcon", "/usr/share/locale" + mainWindows.lang)
-		self._gt = gettext.translation(
-			"betcon",
-			localedir=local_mo if os.path.isdir(local_mo) else "/usr/share/locale",
-			fallback=True,
-		)
 		self.mainWindows = mainWindows
 		self.mainWindows.setWindowTitle(_("Stats") + " | Betcon v" + mainWindows.version)
 
@@ -191,5 +178,5 @@ class Stats(QWidget):
 		bottom = self.chartWidget.getAxis('bottom')
 		bottom.setTicks([[(i, lbl[:3]) for i, lbl in enumerate(labels)]])
 		self.chartWidget.addLine(y=0, pen=pg.mkPen('gray', width=1))
-		self.chartWidget.setTitle(self._gt.gettext('Monthly profit') + f' · {year}', color=fg)
+		self.chartWidget.setTitle(_('Monthly profit') + f' · {year}', color=fg)
 

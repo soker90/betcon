@@ -9,17 +9,12 @@ from bbdd import Bbdd
 from banks import Banks
 from datetime import datetime
 from PySide6.QtCore import QDate
-from gettext import gettext as _
-import gettext
 from libyaml import LibYaml
 
 class NewBank(QWidget):
 	def __init__(self, mainWindows):
 		QWidget.__init__(self)
 		loadUi(directory + "/../ui/new_bank.ui", self)
-		gettext.textdomain("betcon")
-		gettext.bindtextdomain("betcon", "../lang/mo" + mainWindows.lang)
-		gettext.bindtextdomain("betcon", "/usr/share/locale" + mainWindows.lang)
 		self.mainWindows = mainWindows
 		self.btnAccept.clicked.connect(self.accept)
 		self.btnCancel.clicked.connect(self.cancel)
@@ -37,7 +32,7 @@ class NewBank(QWidget):
 		self.lblAccount.setText(_("Account"))
 		self.lblAmount.setText(_("Amount"))
 
-		self.cmbAccount.addItems([_("Bank"), "Paypal", "Skrill"])
+		self.cmbAccount.addItems([_("Bank"), _("Paypal"), _("Skrill")])
 		self.cmbType.addItems([_("Deposit")  + "(" + self.coin + ")", _("Withdraw") + "(" + self.coin + ")"])
 
 		self.btnCancel.setText(_("Cancel"))

@@ -12,16 +12,11 @@ sys.path.append(directory + "/lib")
 from bbdd import Bbdd
 from bonus import Bonus
 from func_aux import str_to_bool
-from gettext import gettext as _
-import gettext
 
 class EditBonus(QWidget):
 	def __init__(self, mainWindows, id):
 		QWidget.__init__(self)
 		loadUi(directory + "/../ui/new_bonus.ui", self)
-		gettext.textdomain("betcon")
-		gettext.bindtextdomain("betcon", "../lang/mo" + mainWindows.lang)
-		gettext.bindtextdomain("betcon", "/usr/share/locale" + mainWindows.lang)
 		self.mainWindows = mainWindows
 		self.btnAccept.clicked.connect(self.accept)
 		self.btnCancel.clicked.connect(self.cancel)

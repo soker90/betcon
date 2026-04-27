@@ -1,5 +1,6 @@
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtCore import QFile, QIODevice
+from lib.qt_translator import translate_widget
 
 
 class _UiLoader(QUiLoader):
@@ -25,4 +26,6 @@ def loadUi(ui_file, base_instance=None):
 	f.open(QIODevice.OpenModeFlag.ReadOnly)
 	widget = loader.load(f)
 	f.close()
+	# Automatically translate all widgets
+	translate_widget(widget)
 	return widget

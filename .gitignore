@@ -110,3 +110,5 @@ ENV/
 
 #pyCharm
 .idea/
+
+*.po~

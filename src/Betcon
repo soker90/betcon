@@ -2,6 +2,9 @@ import sys
 import os
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.realpath(__file__)), "lib"))
 
+# Initialize internationalization FIRST
+import i18n
+
 from PySide6.QtWidgets import QApplication
 from main import Main
 from theme import apply_theme

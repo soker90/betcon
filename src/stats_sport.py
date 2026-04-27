@@ -8,17 +8,12 @@ sys.path.append(directory + "/lib")
 from libstats import LibStats
 from func_aux import key_from_value
 from table_model import BetconTableModel, make_item, paint_row_items
-from gettext import gettext as _
-import gettext
 
 
 class StatsSport(QWidget):
 	def __init__(self, mainWindows):
 		QWidget.__init__(self)
 		loadUi(directory + "/../ui/stats_sport.ui", self)
-		gettext.textdomain("betcon")
-		gettext.bindtextdomain("betcon", "../lang/mo" + mainWindows.lang)
-		gettext.bindtextdomain("betcon", "/usr/share/locale" + mainWindows.lang)
 		self.mainWindows = mainWindows
 		self.mainWindows.setWindowTitle(_("Stats Sports") + " | Betcon v" + mainWindows.version)
 		self.translate()

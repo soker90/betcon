@@ -1,7 +1,6 @@
 from bbdd import Bbdd
 from bookie import Bookie
 from constants import BetResult
-from gettext import gettext as _
 from libyaml import LibYaml
 
 class LibStats:

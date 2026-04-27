@@ -11,8 +11,6 @@ directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspe
 sys.path.append(directory + "/lib")
 from bbdd import Bbdd
 from func_aux import key_from_value
-from gettext import gettext as _
-import gettext
 from new_bet import NewBet
 from libyaml import LibYaml
 
@@ -21,9 +19,6 @@ class EditBet(QWidget):
 	def __init__(self, mainWindows, id):
 		QWidget.__init__(self)
 		loadUi(directory + "/../ui/new_bet.ui", self)
-		gettext.textdomain("betcon")
-		gettext.bindtextdomain("betcon", "../lang/mo" + mainWindows.lang)
-		gettext.bindtextdomain("betcon", "/usr/share/locale" + mainWindows.lang)
 		self.mainWindows = mainWindows
 		self.mainWindows.setWindowTitle(_("Modify Bet") + " | Betcon v" + mainWindows.version)
 		self.btnAccept.clicked.connect(self.accept)

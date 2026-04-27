@@ -7,17 +7,12 @@ directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspe
 sys.path.append(directory + "/lib")
 from banks import Banks
 from bbdd import Bbdd
-from gettext import gettext as _
-import gettext
 
 
 class AddMoney(QWidget):
 	def __init__(self, mainWindows):
 		QWidget.__init__(self)
 		loadUi(directory + "/../ui/add_money.ui", self)
-		gettext.textdomain("betcon")
-		gettext.bindtextdomain("betcon", "../lang/mo" + mainWindows.lang)
-		gettext.bindtextdomain("betcon", "/usr/share/locale" + mainWindows.lang)
 		self.mainWindows = mainWindows
 		mainWindows.aNew.triggered.connect(mainWindows.newBank)
 		self.mainWindows.setWindowTitle(_("Add funds") + " | Betcon v" + mainWindows.version)
@@ -32,7 +27,7 @@ class AddMoney(QWidget):
 		self.lblType.setText(_("Type"))
 		self.lblAmount.setText(_("Amount"))
 
-		self.cmbAccount.addItems([_("Bank"), "Paypal", "Skrill"])
+		self.cmbAccount.addItems([_("Bank"), _("Paypal"), _("Skrill")])
 		self.cmbType.addItems([_("Deposit"), _("Withdraw")])
 
 		self.btnCancel.setText(_("Cancel"))

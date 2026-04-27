@@ -11,8 +11,6 @@ from bbdd import Bbdd
 from bookie import Bookie
 from libstats import LibStats
 from datetime import datetime, date
-from gettext import gettext as _
-import gettext
 from libyaml import LibYaml
 
 
@@ -21,17 +19,6 @@ class Banks(QWidget):
     def __init__(self, mainWindows):
         QWidget.__init__(self)
         loadUi(directory + "/../ui/banks.ui", self)
-        gettext.textdomain("betcon")
-        local_mo = os.path.normpath(directory + "/../lang/mo" + mainWindows.lang)
-        if os.path.isdir(local_mo):
-            gettext.bindtextdomain("betcon", local_mo)
-        else:
-            gettext.bindtextdomain("betcon", "/usr/share/locale" + mainWindows.lang)
-        self._gt = gettext.translation(
-            "betcon",
-            localedir=local_mo if os.path.isdir(local_mo) else "/usr/share/locale",
-            fallback=True,
-        )
         self.mainWindows = mainWindows
         mainWindows.diconnectActions()
         mainWindows.aNew.triggered.connect(mainWindows.newBank)
@@ -86,7 +73,7 @@ class Banks(QWidget):
             view_start = max(x_min, x_max - 90 * 86400)
             self.chartWidget.setXRange(view_start, x_max + padding, padding=0)
 
-        self.chartWidget.setTitle(self._gt.gettext('Bank evolution'), color=fg)
+        self.chartWidget.setTitle(_('Bank evolution'), color=fg)
         self.layout().insertWidget(1, self.chartWidget)
 
     def translate(self):

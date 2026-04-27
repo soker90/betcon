@@ -34,3 +34,14 @@ install-dependencies:
 
 start:
 	$(PYTHON) src/Betcon
+
+translate-extract:
+	xgettext -d betcon -o lang/po/betcon.pot --from-code=UTF-8 src/*.py src/lib/*.py
+
+translate-update:
+	cd lang/po && for file in *.po; do msgmerge -U $$file betcon.pot; done
+
+translate-compile:
+	cd lang/po && for file in *.po; do lang=$${file%.po}; mkdir -p ../mo/$$lang/LC_MESSAGES; msgfmt $$file -o ../mo/$$lang/LC_MESSAGES/betcon.mo; done
+
+translate: translate-extract translate-update translate-compile

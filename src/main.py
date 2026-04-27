@@ -51,8 +51,6 @@ from new_conjunta import NewConjunta
 from edit_conjunta import EditConjunta
 from lib.ods import Ods
 from settings import Settings
-from gettext import gettext as _
-import gettext
 from lib.func_aux import openUrl
 from lib.libyaml import LibYaml
 import platform
@@ -66,12 +64,6 @@ class Main(QMainWindow):
 			self.lang = "/" + LibYaml().interface["lang"]
 		else:
 			self.lang = ""
-		gettext.textdomain("betcon")
-		local_mo = os.path.normpath(directory + "/../lang/mo" + self.lang)
-		if os.path.isdir(local_mo):
-			gettext.bindtextdomain("betcon", local_mo)
-		else:
-			gettext.bindtextdomain("betcon", "/usr/share/locale" + self.lang)
 		self.showMaximized()
 		self.enableTools()
 

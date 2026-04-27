@@ -4,14 +4,9 @@ from locale import setlocale, LC_NUMERIC, atof
 
 from PySide6.QtGui import QBrush
 from PySide6.QtCore import Qt
-from gettext import gettext as _
-import gettext
 from constants import BetResult
 
 
-gettext.textdomain("betcon")
-gettext.bindtextdomain("betcon", "/usr/share/locale")
-gettext.bindtextdomain("betcon", "../../lang/mo")
 
 
 

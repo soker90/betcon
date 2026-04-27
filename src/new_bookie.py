@@ -10,16 +10,11 @@ sys.path.append(directory + "/lib")
 
 from bookies import Bookies
 from bookie import Bookie
-from gettext import gettext as _
-import gettext
 
 class NewBookie(QWidget):
     def __init__(self, mainWindows):
         QWidget.__init__(self)
         loadUi(directory + "/../ui/new_bookie.ui", self)
-        gettext.textdomain("betcon")
-        gettext.bindtextdomain("betcon", "../lang/mo" + mainWindows.lang)
-        gettext.bindtextdomain("betcon", "/usr/share/locale" + mainWindows.lang)
         self.mainWindows = mainWindows
         self.btnAccept.clicked.connect(self.accept)
         self.btnCancel.clicked.connect(self.cancel)
