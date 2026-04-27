@@ -1,5 +1,6 @@
 import sys
 import os
+from lib.paths import get_base_dir
 import inspect
 from datetime import datetime
 from PySide6.QtWidgets import QLineEdit, QMessageBox, QWidget, QComboBox, QPushButton, QDateTimeEdit
@@ -7,7 +8,7 @@ from uiloader import loadUi
 from bets import Bets
 from PySide6.QtCore import QDateTime
 
-directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
+directory = get_base_dir()
 sys.path.append(directory + "/lib")
 from bbdd import Bbdd
 from func_aux import key_from_value

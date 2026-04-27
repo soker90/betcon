@@ -1,9 +1,10 @@
 import inspect
 import os
+from lib.paths import get_base_dir
 import sys
 from os.path import expanduser
 
-directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
+directory = get_base_dir()
 from PySide6.QtWidgets import QMainWindow, QMessageBox, QDialog, QFileDialog
 from uiloader import loadUi
 from PySide6.QtGui import QIcon
@@ -67,8 +68,15 @@ class Main(QMainWindow):
 		self.showMaximized()
 		self.enableTools()
 
-		archivo = open(directory+"/version.txt")
-		self.version = archivo.readline()
+		# Read version from version.txt - handle PyInstaller bundle
+		if getattr(sys, 'frozen', False):
+			version_path = os.path.join(sys._MEIPASS, 'version.txt')
+		else:
+			version_path = os.path.join(directory, 'version.txt')
+		
+		with open(version_path) as archivo:
+			self.version = archivo.readline().strip()
+		
 		self.setWindowTitle(_("Home") + " | Betcon v" + self.version)
 		if os.path.isfile("/usr/share/pixmaps/betcon.png"):
 			image = "/usr/share/pixmaps/betcon.png"
@@ -400,8 +408,16 @@ class About(QDialog):
 	def __init__(self):
 		QDialog.__init__(self)
 		loadUi(directory + "/../ui/about.ui", self)
-		archivo = open(directory + "/version.txt")
-		version = archivo.readline()
+		
+		# Read version from version.txt - handle PyInstaller bundle
+		if getattr(sys, 'frozen', False):
+			version_path = os.path.join(sys._MEIPASS, 'version.txt')
+		else:
+			version_path = os.path.join(directory, 'version.txt')
+		
+		with open(version_path) as archivo:
+			version = archivo.readline().strip()
+		
 		self.setWindowTitle(_("About"))
 		self.txtText.setHtml("<p style='text-align: center;'><br>Betcon v" + version + "<p/>" \
 		                     "<p style='text-align: center;'>Web: http://betcon.eduardoparra.es/<p/>" \

@@ -1,4 +1,5 @@
 # -*- mode: python ; coding: utf-8 -*-
+# Especificación optimizada para Linux: numpy excluido (se usa del sistema)
 import os
 import sys
 from pathlib import Path
@@ -23,9 +24,10 @@ datas = [
     (str(resources_dir / 'bookies'), 'resources/bookies'),
     (str(resources_dir / 'sports'), 'resources/sports'),
     (str(resources_dir / 'icon.png'), 'resources'),
+    (str(src_dir / 'version.txt'), '.'),
 ]
 
-# Imports ocultos necesarios para las dependencias
+# Imports ocultos para PySide6 y librerías pequeñas que pueden no estar en todas las distribuciones
 hiddenimports = [
     'PySide6.QtCore',
     'PySide6.QtGui',
@@ -33,11 +35,6 @@ hiddenimports = [
     'PySide6.QtSvg',
     'pyexcel_ods',
     'pyexcel_io',
-    'yaml',
-    'PIL',
-    'PIL.Image',
-    'numpy',
-    'pyqtgraph',
 ]
 
 a = Analysis(
@@ -95,17 +92,3 @@ coll = COLLECT(
     upx_exclude=[],
     name='betcon',
 )
-
-# Para macOS, crear un bundle .app
-if sys.platform == 'darwin':
-    app = BUNDLE(
-        coll,
-        name='betcon.app',
-        icon=str(resources_dir / 'icon.png') if (resources_dir / 'icon.png').exists() else None,
-        bundle_identifier='com.soker90.betcon',
-        info_plist={
-            'NSHighResolutionCapable': 'True',
-            'LSBackgroundOnly': 'False',
-            'CFBundleShortVersionString': open(str(src_dir / 'version.txt')).read().strip(),
-        },
-    )

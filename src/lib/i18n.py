@@ -1,6 +1,7 @@
 """Internationalization module for Betcon"""
 import locale
 import os
+import sys
 import builtins
 import gettext
 
@@ -25,9 +26,14 @@ if lang and lang != 'C':
 else:
     lang_code = 'es'  # Default to Spanish
 
-# Get the base directory (betcon/src/lib -> betcon)
-base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-locale_dir = os.path.join(base_dir, "lang", "mo")
+# Get the base directory for translations
+# When frozen (PyInstaller), use sys._MEIPASS
+if getattr(sys, 'frozen', False):
+    locale_dir = os.path.join(sys._MEIPASS, "lang", "mo")
+else:
+    # Development mode: betcon/src/lib -> betcon
+    base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    locale_dir = os.path.join(base_dir, "lang", "mo")
 
 # Try to load translations
 try:

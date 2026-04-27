@@ -1,10 +1,11 @@
 import os
+from lib.paths import get_base_dir
 import inspect
 from PySide6.QtWidgets import QMessageBox, QWidget, QAbstractItemView
 from uiloader import loadUi
 from table_model import BetconTableModel, make_item
 
-directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
+directory = get_base_dir()
 from bookie import Bookie
 
 class Bookies(QWidget):

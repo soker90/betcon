@@ -1,11 +1,12 @@
 import sys
 import os
+from lib.paths import get_base_dir
 import inspect
 from PySide6.QtWidgets import QMessageBox, QWidget, QAbstractItemView
 from PySide6.QtWidgets import QHeaderView
 from uiloader import loadUi
 from table_model import BetconTableModel, make_item, paint_row_items
-directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
+directory = get_base_dir()
 sys.path.append(directory + "/lib")
 
 from bbdd import Bbdd

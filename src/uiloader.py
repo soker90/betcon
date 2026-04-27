@@ -1,6 +1,7 @@
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtCore import QFile, QIODevice
 from lib.qt_translator import translate_widget
+import os
 
 
 class _UiLoader(QUiLoader):
@@ -21,8 +22,12 @@ class _UiLoader(QUiLoader):
 
 def loadUi(ui_file, base_instance=None):
 	"""Load a Qt Designer .ui file into base_instance (or return a new widget)."""
+	# Normalize the path to handle cases like /path/src/../ui/file.ui
+	# where 'src' doesn't exist but ../ui should still resolve correctly
+	ui_file_normalized = os.path.normpath(ui_file)
+	
 	loader = _UiLoader(base_instance)
-	f = QFile(ui_file)
+	f = QFile(ui_file_normalized)
 	f.open(QIODevice.OpenModeFlag.ReadOnly)
 	widget = loader.load(f)
 	f.close()
