@@ -227,57 +227,57 @@ jobs:
           name: windows-installer
           path: dist/*.exe
 
-  build-macos:
-    runs-on: macos-latest
-    steps:
-      - uses: actions/checkout@v4
-      
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-      
-      - name: Install Python dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-          pip install pyinstaller dmgbuild
-      
-      - name: Build with PyInstaller
-        run: |
-          pyinstaller betcon.spec
-      
-      - name: Get version
-        id: version
-        run: echo "VERSION=${GITHUB_REF_NAME#v}" >> $GITHUB_OUTPUT
-      
-      - name: Create .dmg
-        run: |
-          VERSION=${{ steps.version.outputs.VERSION }}
-          
-          cat > dmg_settings.py << EOF
-          files = ['dist/betcon.app']
-          symlinks = {'Applications': '/Applications'}
-          badge_icon = 'resources/icon.png'
-          icon_locations = {
-              'betcon.app': (140, 120),
-              'Applications': (500, 120)
-          }
-          background = None
-          window_rect = ((100, 100), (640, 280))
-          icon_size = 128
-          EOF
-          
-          dmgbuild -s dmg_settings.py "Betcon" "dist/betcon-${VERSION}-macos.dmg"
-      
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: macos-dmg
-          path: dist/*.dmg
+  # build-macos:
+  #   runs-on: macos-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     
+  #     - name: Set up Python
+  #       uses: actions/setup-python@v5
+  #       with:
+  #         python-version: '3.11'
+  #     
+  #     - name: Install Python dependencies
+  #       run: |
+  #         python -m pip install --upgrade pip
+  #         pip install -r requirements.txt
+  #         pip install pyinstaller dmgbuild
+  #     
+  #     - name: Build with PyInstaller
+  #       run: |
+  #         pyinstaller betcon.spec
+  #     
+  #     - name: Get version
+  #       id: version
+  #       run: echo "VERSION=${GITHUB_REF_NAME#v}" >> $GITHUB_OUTPUT
+  #     
+  #     - name: Create .dmg
+  #       run: |
+  #         VERSION=${{ steps.version.outputs.VERSION }}
+  #         
+  #         cat > dmg_settings.py << EOF
+  #         files = ['dist/betcon.app']
+  #         symlinks = {'Applications': '/Applications'}
+  #         badge_icon = 'resources/icon.png'
+  #         icon_locations = {
+  #             'betcon.app': (140, 120),
+  #             'Applications': (500, 120)
+  #         }
+  #         background = None
+  #         window_rect = ((100, 100), (640, 280))
+  #         icon_size = 128
+  #         EOF
+  #         
+  #         dmgbuild -s dmg_settings.py "Betcon" "dist/betcon-${VERSION}-macos.dmg"
+  #     
+  #     - name: Upload artifacts
+  #       uses: actions/upload-artifact@v4
+  #       with:
+  #         name: macos-dmg
+  #         path: dist/*.dmg
 
   create-release:
-    needs: [build-linux, build-windows, build-macos]
+    needs: [build-linux, build-windows]
     runs-on: ubuntu-latest
     if: startsWith(github.ref, 'refs/tags/')
     steps:
@@ -301,6 +301,5 @@ jobs:
           files: |
             artifacts/linux-packages/*
             artifacts/windows-installer/*
-            artifacts/macos-dmg/*
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
