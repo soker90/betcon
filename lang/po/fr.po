@@ -1,0 +1,604 @@
+# French translations for betcon
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-02-10 18:47+0100\n"
+"PO-Revision-Date: 2026-04-27 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: French\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: fr\n"
+
+msgid "Add funds"
+msgstr "Ajouter des fonds"
+
+msgid "Account"
+msgstr "Compte"
+
+msgid "Type"
+msgstr "Type"
+
+msgid "Amount"
+msgstr "Montant"
+
+msgid "Bank"
+msgstr "Banque"
+
+msgid "Deposit"
+msgstr "Dépôt"
+
+msgid "Withdraw"
+msgstr "Retrait"
+
+msgid "Cancel"
+msgstr "Annuler"
+
+msgid "Accept"
+msgstr "Accepter"
+
+msgid "Added"
+msgstr "Ajouté"
+
+msgid "Added funds."
+msgstr "Fonds ajoutés."
+
+msgid "Deposits"
+msgstr "Dépôts"
+
+msgid "Withdrawals"
+msgstr "Retraits"
+
+msgid "Tipsters"
+msgstr "Tipsters"
+
+msgid "Profits"
+msgstr "Bénéfices"
+
+msgid "Yield"
+msgstr "Rendement"
+
+msgid "Bookies"
+msgstr "Bookmakers"
+
+msgid "Total"
+msgstr "Total"
+
+msgid "In bookies"
+msgstr "Chez les bookmakers"
+
+msgid "Movements"
+msgstr "Mouvements"
+
+msgid "Bookie"
+msgstr "Bookmaker"
+
+msgid "Date"
+msgstr "Date"
+
+msgid "Withdrawal to the bank."
+msgstr "Retrait sur le compte."
+
+msgid "Deposit at bookie"
+msgstr "Dépôt chez le bookmaker"
+
+msgid "Remove"
+msgstr "Supprimer"
+
+msgid "Are you sure you want to eliminate it?"
+msgstr "Êtes-vous sûr de vouloir le supprimer ?"
+
+msgid "Home"
+msgstr "Accueil"
+
+msgid "Sport"
+msgstr "Sport"
+
+msgid "Competition"
+msgstr "Compétition"
+
+msgid "Region"
+msgstr "Région"
+
+msgid "Local Team"
+msgstr "Équipe locale"
+
+msgid "Away Team"
+msgstr "Équipe visiteuse"
+
+msgid "Pick"
+msgstr "Pronostic"
+
+msgid "Market"
+msgstr "Marché"
+
+msgid "Tipster"
+msgstr "Tipster"
+
+msgid "Stake"
+msgstr "Mise"
+
+msgid "Stake 1"
+msgstr "Unité"
+
+msgid "Bet"
+msgstr "Pari"
+
+msgid "Quota"
+msgstr "Cote"
+
+msgid "Result"
+msgstr "Résultat"
+
+msgid "Profit"
+msgstr "Bénéfice"
+
+msgid "Year"
+msgstr "Année"
+
+msgid "Month"
+msgstr "Mois"
+
+msgid "Bonus"
+msgstr "Bonus"
+
+msgid "Freed"
+msgstr "Libéré"
+
+msgid "Yes"
+msgstr "Oui"
+
+msgid "No"
+msgstr "Non"
+
+msgid "Name"
+msgstr "Nom"
+
+msgid "Country"
+msgstr "Pays"
+
+msgid "Error"
+msgstr "Erreur"
+
+msgid "There was an error deleting the house"
+msgstr "Une erreur s'est produite lors de la suppression du bookmaker"
+
+msgid "Competitions"
+msgstr "Compétitions"
+
+msgid "Are you sure you want to eliminate "
+msgstr "Êtes-vous sûr de vouloir supprimer "
+
+msgid "the competition and the associated bets?"
+msgstr "la compétition et les paris associés ?"
+
+msgid "Modify Bet"
+msgstr "Modifier le pari"
+
+msgid "Modified"
+msgstr "Modifié"
+
+msgid "Modified bet."
+msgstr "Pari modifié."
+
+msgid "Pending"
+msgstr "En attente"
+
+msgid "Successful"
+msgstr "Gagné"
+
+msgid "Failed"
+msgstr "Perdu"
+
+msgid "Null"
+msgstr "Nul"
+
+msgid "Half Successful"
+msgstr "Demi-gagné"
+
+msgid "Half Failed"
+msgstr "Demi-perdu"
+
+msgid "Cash out"
+msgstr "Encaissement"
+
+msgid "Modify Bonus"
+msgstr "Modifier le bonus"
+
+msgid "Updated"
+msgstr "Mis à jour"
+
+msgid "Updated bonus."
+msgstr "Bonus mis à jour."
+
+msgid "Modify Bookie"
+msgstr "Modifier le bookmaker"
+
+msgid "Image of the bookie"
+msgstr "Image du bookmaker"
+
+msgid "Updated bookie."
+msgstr "Bookmaker mis à jour."
+
+msgid "Modify Competition"
+msgstr "Modifier la compétition"
+
+msgid "Updated competition."
+msgstr "Compétition mise à jour."
+
+msgid "Update joint purchase"
+msgstr "Mettre à jour l'achat groupé"
+
+msgid "New joint purchase added."
+msgstr "Nouvel achat groupé ajouté."
+
+msgid "Modify Market"
+msgstr "Modifier le marché"
+
+msgid "Market updated."
+msgstr "Marché mis à jour."
+
+msgid "New Region"
+msgstr "Nouvelle région"
+
+msgid "Updated region."
+msgstr "Région mise à jour."
+
+msgid "New Sport"
+msgstr "Nouveau sport"
+
+msgid "Updated sport."
+msgstr "Sport mis à jour."
+
+msgid "New Payment Tipster"
+msgstr "Nouveau paiement tipster"
+
+msgid "Added tipster payment."
+msgstr "Paiement tipster ajouté."
+
+msgid "Modify Tipster"
+msgstr "Modifier le tipster"
+
+msgid "Updated tipster."
+msgstr "Tipster mis à jour."
+
+msgid "Regions"
+msgstr "Régions"
+
+msgid "Sports"
+msgstr "Sports"
+
+msgid "Markets"
+msgstr "Marchés"
+
+msgid "Stats"
+msgstr "Statistiques"
+
+msgid "Payment history"
+msgstr "Historique des paiements"
+
+msgid "General"
+msgstr "Général"
+
+msgid "Add/Withdraw funds"
+msgstr "Ajouter/Retirer des fonds"
+
+msgid "Close"
+msgstr "Fermer"
+
+msgid "About..."
+msgstr "À propos..."
+
+msgid "Settings"
+msgstr "Paramètres"
+
+msgid "Donate"
+msgstr "Faire un don"
+
+msgid "New joint purchase"
+msgstr "Nouvel achat groupé"
+
+msgid "Export"
+msgstr "Exporter"
+
+msgid "Import"
+msgstr "Importer"
+
+msgid "New"
+msgstr "Nouveau"
+
+msgid "Edit"
+msgstr "Modifier"
+
+msgid "Delete"
+msgstr "Supprimer"
+
+msgid "Edit joint purchase"
+msgstr "Modifier l'achat groupé"
+
+msgid "Delete joint purchase"
+msgstr "Supprimer l'achat groupé"
+
+msgid "File"
+msgstr "Fichier"
+
+msgid "Help"
+msgstr "Aide"
+
+msgid "Quit"
+msgstr "Quitter"
+
+msgid "Are you sure you want to exit the application?"
+msgstr "Êtes-vous sûr de vouloir quitter l'application ?"
+
+msgid "Export data"
+msgstr "Exporter les données"
+
+msgid "Exported"
+msgstr "Exporté"
+
+msgid "Exported data"
+msgstr "Données exportées"
+
+msgid "Import data"
+msgstr "Importer les données"
+
+msgid "Imported"
+msgstr "Importé"
+
+msgid "Imported data"
+msgstr "Données importées"
+
+msgid "About"
+msgstr "À propos"
+
+msgid "Created by"
+msgstr "Créé par"
+
+msgid "Contact"
+msgstr "Contact"
+
+msgid "License"
+msgstr "Licence"
+
+msgid "Translated by:"
+msgstr "Traduit par :"
+
+msgid "New Movement"
+msgstr "Nouveau mouvement"
+
+msgid "Added movement."
+msgstr "Mouvement ajouté."
+
+msgid "New Bet"
+msgstr "Nouveau pari"
+
+msgid "Local"
+msgstr "Domicile"
+
+msgid "Away"
+msgstr "Extérieur"
+
+msgid "Free Bet"
+msgstr "Pari gratuit"
+
+msgid "One"
+msgstr "Unité"
+
+msgid "Add bet"
+msgstr "Ajouter un pari"
+
+msgid "New bet added."
+msgstr "Nouveau pari ajouté."
+
+msgid "New Bonus"
+msgstr "Nouveau bonus"
+
+msgid "New bonus added."
+msgstr "Nouveau bonus ajouté."
+
+msgid "New Bookie"
+msgstr "Nouveau bookmaker"
+
+msgid "Browse..."
+msgstr "Parcourir..."
+
+msgid "New bookie added."
+msgstr "Nouveau bookmaker ajouté."
+
+msgid "New Competition"
+msgstr "Nouvelle compétition"
+
+msgid "New Joint Purchase"
+msgstr "Nouvel achat groupé"
+
+msgid "Available"
+msgstr "Disponible"
+
+msgid "Selected"
+msgstr "Sélectionné"
+
+msgid "January"
+msgstr "Janvier"
+
+msgid "February"
+msgstr "Février"
+
+msgid "March"
+msgstr "Mars"
+
+msgid "April"
+msgstr "Avril"
+
+msgid "May"
+msgstr "Mai"
+
+msgid "June"
+msgstr "Juin"
+
+msgid "July"
+msgstr "Juillet"
+
+msgid "August"
+msgstr "Août"
+
+msgid "September"
+msgstr "Septembre"
+
+msgid "October"
+msgstr "Octobre"
+
+msgid "November"
+msgstr "Novembre"
+
+msgid "December"
+msgstr "Décembre"
+
+msgid "New Market"
+msgstr "Nouveau marché"
+
+msgid "New market added."
+msgstr "Nouveau marché ajouté."
+
+msgid "New region added."
+msgstr "Nouvelle région ajoutée."
+
+msgid "New sport added."
+msgstr "Nouveau sport ajouté."
+
+msgid "New Tipster Payment"
+msgstr "Nouveau paiement tipster"
+
+msgid "New tipster payment added."
+msgstr "Nouveau paiement tipster ajouté."
+
+msgid "New Tipster"
+msgstr "Nouveau tipster"
+
+msgid "New tipster added."
+msgstr "Nouveau tipster ajouté."
+
+msgid "Are you sure you want to eliminate the region "
+msgstr "Êtes-vous sûr de vouloir supprimer la région "
+
+msgid "Options"
+msgstr "Options"
+
+msgid "Stake 1 calculation"
+msgstr "Calcul de la mise 1"
+
+msgid "Stake 1 percentage"
+msgstr "Pourcentage de la mise 1"
+
+msgid "Calculated"
+msgstr "Calculé"
+
+msgid "Fixed"
+msgstr "Fixe"
+
+msgid "Interface"
+msgstr "Interface"
+
+msgid "Coin"
+msgstr "Devise"
+
+msgid "Show countries of the bookies"
+msgstr "Afficher les pays des bookmakers"
+
+msgid "Calculate"
+msgstr "Calculer"
+
+msgid "Are you sure you want to eliminate the sport"
+msgstr "Êtes-vous sûr de vouloir supprimer le sport"
+
+msgid "and its associated competitions and bets?"
+msgstr "et ses compétitions et paris associés ?"
+
+msgid "Stats of bookies"
+msgstr "Statistiques des bookmakers"
+
+msgid "Error trying to load the data."
+msgstr "Erreur lors du chargement des données."
+
+msgid "Bets"
+msgstr "Paris"
+
+msgid "Success"
+msgstr "Réussite"
+
+msgid "Money Bet"
+msgstr "Montant misé"
+
+msgid "Total of the month"
+msgstr "Total du mois"
+
+msgid "Totals"
+msgstr "Totaux"
+
+msgid "Stats of markets"
+msgstr "Statistiques des marchés"
+
+msgid "Day"
+msgstr "Jour"
+
+msgid "Balance of the bets of the month"
+msgstr "Solde des paris du mois"
+
+msgid "Winnings"
+msgstr "Gains"
+
+msgid "Losses"
+msgstr "Pertes"
+
+msgid "Average Quota"
+msgstr "Cote moyenne"
+
+msgid "Won"
+msgstr "Gagné"
+
+msgid "Lost"
+msgstr "Perdu"
+
+msgid "Average Bet"
+msgstr "Pari moyen"
+
+msgid "Stats Regions"
+msgstr "Statistiques régions"
+
+msgid "Stats Sports"
+msgstr "Statistiques sports"
+
+msgid "Stats Stake"
+msgstr "Statistiques mises"
+
+msgid "Stats Tipsters"
+msgstr "Statistiques tipsters"
+
+msgid "Tipsters - Payment history"
+msgstr "Tipsters - Historique des paiements"
+
+msgid "Cost"
+msgstr "Coût"
+
+msgid "Joint purchase"
+msgstr "Achat groupé"
+
+msgid "Are you sure you want to eliminate this payment?"
+msgstr "Êtes-vous sûr de vouloir supprimer ce paiement ?"
+
+msgid "Are you sure you want to eliminate this purchase joint?"
+msgstr "Êtes-vous sûr de vouloir supprimer cet achat groupé ?"
+
+msgid "Profit of the bets"
+msgstr "Bénéfice des paris"
+
+msgid "Balance"
+msgstr "Solde"
+
+msgid "Bank evolution"
+msgstr "Évolution de la bankroll"
+
+msgid "Monthly profit"
+msgstr "Bénéfice mensuel"
