@@ -39,6 +39,22 @@ jobs:
       - name: Build with PyInstaller
         run: |
           pyinstaller betcon.spec.linux
+          # Rename output directory from betcon.spec to betcon
+          if [ -d "dist/betcon.spec" ]; then
+            mv dist/betcon.spec dist/betcon
+          fi
+      
+      - name: Verify build output
+        run: |
+          echo "Contents of dist/:"
+          ls -la dist/
+          if [ -d "dist/betcon" ]; then
+            echo "✓ betcon/ directory exists"
+            ls -la dist/betcon/
+          else
+            echo "✗ betcon/ directory not found!"
+            exit 1
+          fi
       
       - name: Get version
         id: version
