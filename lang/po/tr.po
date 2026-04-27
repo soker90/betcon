@@ -872,3 +872,11 @@ msgstr ""
 msgid ""
 "Are you sure you want to eliminate this tipster and all associated bets?"
 msgstr ""
+
+#: src/banks.py
+msgid "Bank evolution"
+msgstr "Banka evrimi"
+
+#: src/stats.py
+msgid "Monthly profit"
+msgstr "Aylık kâr"

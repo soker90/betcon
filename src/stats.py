@@ -1,7 +1,9 @@
 import sys
 import os
 import inspect
-from PySide6.QtWidgets import QWidget
+import pyqtgraph as pg
+from PySide6.QtWidgets import QWidget, QApplication
+from PySide6.QtGui import QPalette
 from uiloader import loadUi
 directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
 sys.path.append(directory + "/lib")
@@ -17,8 +19,16 @@ class Stats(QWidget):
 		QWidget.__init__(self)
 		loadUi(directory + "/../ui/stats.ui", self)
 		gettext.textdomain("betcon")
-		gettext.bindtextdomain("betcon", "../lang/mo" + mainWindows.lang)
-		gettext.bindtextdomain("betcon", "/usr/share/locale" + mainWindows.lang)
+		local_mo = os.path.normpath(directory + "/../lang/mo" + mainWindows.lang)
+		if os.path.isdir(local_mo):
+			gettext.bindtextdomain("betcon", local_mo)
+		else:
+			gettext.bindtextdomain("betcon", "/usr/share/locale" + mainWindows.lang)
+		self._gt = gettext.translation(
+			"betcon",
+			localedir=local_mo if os.path.isdir(local_mo) else "/usr/share/locale",
+			fallback=True,
+		)
 		self.mainWindows = mainWindows
 		self.mainWindows.setWindowTitle(_("Stats") + " | Betcon v" + mainWindows.version)
 
@@ -29,11 +39,10 @@ class Stats(QWidget):
 		self.cmbYear.activated.connect(self.updateMonths)
 		self.cmbMonth.activated.connect(self.updateDays)
 		self.cmbDay.activated.connect(self.updateStats)
+		self.initChart()
+		self.cmbYear.activated.connect(self.updateChart)
 
 	def translate(self):
-
-		self.lblYear.setText(_("Year"))
-		self.lblMonth.setText(_("Month"))
 		self.lblDay.setText(_("Day"))
 		self.grpBalance.setTitle(_("Balance of the bets of the month"))
 		self.grpBets.setTitle(_("Bets"))
@@ -127,6 +136,60 @@ class Stats(QWidget):
 			sMonths.append(self.months[i])
 		return sMonths
 
+	@staticmethod
+	def _chart_colors():
+		is_dark = QApplication.instance().palette().color(QPalette.ColorRole.Window).lightnessF() < 0.5
+		return {
+			'bg':   '#1e1e2e' if is_dark else '#ffffff',
+			'fg':   '#cdd6f4' if is_dark else '#1a1a2e',
+			'pos':  '#a6e3a1',
+			'neg':  '#f38ba8',
+		}
 
+	def initChart(self):
+		colors = self._chart_colors()
+		bg, fg = colors['bg'], colors['fg']
 
+		# Remove the vertical spacer so the chart can expand
+		layout = self.layout()
+		for i in range(layout.count() - 1, -1, -1):
+			item = layout.itemAt(i)
+			if item and item.spacerItem():
+				layout.removeItem(item)
+				break
+
+		self.chartWidget = pg.PlotWidget()
+		self.chartWidget.setBackground(bg)
+		self.chartWidget.setMinimumHeight(200)
+		for axis_name in ('left', 'bottom'):
+			ax = self.chartWidget.getAxis(axis_name)
+			ax.setPen(pg.mkPen(fg))
+			ax.setTextPen(pg.mkPen(fg))
+
+		layout.addWidget(self.chartWidget)
+		self.updateChart()
+
+	def updateChart(self):
+		colors = self._chart_colors()
+		fg = colors['fg']
+
+		year = self.cmbYear.currentText()
+		if not year:
+			return
+
+		labels, profits = LibStats.getMonthlyProfitsByYear(year)
+		self.chartWidget.clear()
+		if not labels:
+			return
+
+		x = list(range(len(labels)))
+		for xi, yi in zip(x, profits):
+			color = '#a6e3a1' if yi >= 0 else '#f38ba8'
+			bar = pg.BarGraphItem(x=[xi], height=[yi], width=0.6, brush=color, pen=pg.mkPen(None))
+			self.chartWidget.addItem(bar)
+
+		bottom = self.chartWidget.getAxis('bottom')
+		bottom.setTicks([[(i, lbl[:3]) for i, lbl in enumerate(labels)]])
+		self.chartWidget.addLine(y=0, pen=pg.mkPen('gray', width=1))
+		self.chartWidget.setTitle(self._gt.gettext('Monthly profit') + f' · {year}', color=fg)
 

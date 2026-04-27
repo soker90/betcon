@@ -1,12 +1,15 @@
 import sys
 import os
 import inspect
-from PySide6.QtWidgets import QMessageBox, QWidget, QTreeWidgetItem
+import pyqtgraph as pg
+from PySide6.QtWidgets import QMessageBox, QWidget, QTreeWidgetItem, QApplication
+from PySide6.QtGui import QPalette
 from uiloader import loadUi
 directory = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
 sys.path.append(directory + "/lib")
 from bbdd import Bbdd
 from bookie import Bookie
+from libstats import LibStats
 from datetime import datetime, date
 from gettext import gettext as _
 import gettext
@@ -19,8 +22,16 @@ class Banks(QWidget):
         QWidget.__init__(self)
         loadUi(directory + "/../ui/banks.ui", self)
         gettext.textdomain("betcon")
-        gettext.bindtextdomain("betcon", "../lang/mo" + mainWindows.lang)
-        gettext.bindtextdomain("betcon", "/usr/share/locale" + mainWindows.lang)
+        local_mo = os.path.normpath(directory + "/../lang/mo" + mainWindows.lang)
+        if os.path.isdir(local_mo):
+            gettext.bindtextdomain("betcon", local_mo)
+        else:
+            gettext.bindtextdomain("betcon", "/usr/share/locale" + mainWindows.lang)
+        self._gt = gettext.translation(
+            "betcon",
+            localedir=local_mo if os.path.isdir(local_mo) else "/usr/share/locale",
+            fallback=True,
+        )
         self.mainWindows = mainWindows
         mainWindows.diconnectActions()
         mainWindows.aNew.triggered.connect(mainWindows.newBank)
@@ -36,6 +47,47 @@ class Banks(QWidget):
 
         self.itemSelected = -1
         self.translate()
+        self.initChart()
+
+    def initChart(self):
+        is_dark = QApplication.instance().palette().color(QPalette.ColorRole.Window).lightnessF() < 0.5
+        bg = '#1e1e2e' if is_dark else '#ffffff'
+        fg = '#cdd6f4' if is_dark else '#1a1a2e'
+        line_color = '#89b4fa' if is_dark else '#0078d4'
+
+        date_axis = pg.DateAxisItem(orientation='bottom')
+        self.chartWidget = pg.PlotWidget(axisItems={'bottom': date_axis})
+        self.chartWidget.setBackground(bg)
+        self.chartWidget.setMinimumHeight(200)
+        for axis_name in ('left', 'bottom'):
+            ax = self.chartWidget.getAxis(axis_name)
+            ax.setPen(pg.mkPen(fg))
+            ax.setTextPen(pg.mkPen(fg))
+
+        dates, profits = LibStats.getBankEvolution()
+        if dates:
+            timestamps = []
+            for d in dates:
+                try:
+                    ts = datetime.strptime(d[:10], "%Y-%m-%d").timestamp()
+                except ValueError:
+                    ts = 0.0
+                timestamps.append(ts)
+            self.chartWidget.plot(timestamps, profits, pen=pg.mkPen(line_color, width=2))
+            self.chartWidget.addLine(y=0, pen=pg.mkPen('gray', width=1))
+
+            # Acotar el rango X entre la primera y última fecha con datos
+            x_min = timestamps[0]
+            x_max = timestamps[-1]
+            padding = (x_max - x_min) * 0.02 or 86400  # al menos 1 día de margen
+            self.chartWidget.setLimits(xMin=x_min - padding, xMax=x_max + padding)
+
+            # Mostrar de primeras los últimos 90 días (o todo si hay menos)
+            view_start = max(x_min, x_max - 90 * 86400)
+            self.chartWidget.setXRange(view_start, x_max + padding, padding=0)
+
+        self.chartWidget.setTitle(self._gt.gettext('Bank evolution'), color=fg)
+        self.layout().insertWidget(1, self.chartWidget)
 
     def translate(self):
 

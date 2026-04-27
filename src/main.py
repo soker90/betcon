@@ -67,8 +67,11 @@ class Main(QMainWindow):
 		else:
 			self.lang = ""
 		gettext.textdomain("betcon")
-		gettext.bindtextdomain("betcon", "../lang/mo" + self.lang)
-		gettext.bindtextdomain("betcon", "/usr/share/locale" + self.lang)
+		local_mo = os.path.normpath(directory + "/../lang/mo" + self.lang)
+		if os.path.isdir(local_mo):
+			gettext.bindtextdomain("betcon", local_mo)
+		else:
+			gettext.bindtextdomain("betcon", "/usr/share/locale" + self.lang)
 		self.showMaximized()
 		self.enableTools()
 

@@ -876,3 +876,11 @@ msgid ""
 msgstr ""
 "Tem certeza de que deseja eliminar este informante e todas as apostas "
 "associadas?"
+
+#: src/banks.py
+msgid "Bank evolution"
+msgstr "Evolução do banco"
+
+#: src/stats.py
+msgid "Monthly profit"
+msgstr "Lucro mensal"

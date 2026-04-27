@@ -440,3 +440,46 @@ class LibStats:
 				datasql[8], datasql[9], aciertos, bet]
 
 		return data
+
+	@staticmethod
+	def getMonthlyProfitsByYear(year):
+		P = BetResult.PENDING.value
+		bd = Bbdd()
+		sql = (
+			f"SELECT strftime('%m', date) AS m, COALESCE(SUM(profit), 0)"
+			f" FROM bet WHERE result <> {P} AND date LIKE :dp"
+			f" GROUP BY m ORDER BY m"
+		)
+		rows = bd.executeQuery(sql, {'dp': f'{year}%'})
+		bd.close()
+
+		month_names = {
+			"01": _("January"), "02": _("February"), "03": _("March"),
+			"04": _("April"), "05": _("May"), "06": _("June"),
+			"07": _("July"), "08": _("August"), "09": _("September"),
+			"10": _("October"), "11": _("November"), "12": _("December"),
+		}
+		labels = [month_names.get(r[0], r[0]) for r in rows]
+		profits = [round(r[1], 2) for r in rows]
+		return labels, profits
+
+	@staticmethod
+	def getBankEvolution():
+		P = BetResult.PENDING.value
+		bd = Bbdd()
+		sql = (
+			f"SELECT date, COALESCE(SUM(profit), 0) FROM bet"
+			f" WHERE result <> {P}"
+			f" GROUP BY date ORDER BY date ASC"
+		)
+		rows = bd.executeQuery(sql)
+		bd.close()
+
+		dates = []
+		cumulative = []
+		total = 0.0
+		for r in rows:
+			dates.append(r[0])
+			total = round(total + r[1], 4)
+			cumulative.append(total)
+		return dates, cumulative

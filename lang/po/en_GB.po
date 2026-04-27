@@ -875,3 +875,11 @@ msgid ""
 "Are you sure you want to eliminate this tipster and all associated bets?"
 msgstr ""
 "Are you sure you want to eliminate this tipster and all associated bets?"
+
+#: src/banks.py
+msgid "Bank evolution"
+msgstr "Bank evolution"
+
+#: src/stats.py
+msgid "Monthly profit"
+msgstr "Monthly profit"
