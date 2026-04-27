@@ -38,7 +38,7 @@ jobs:
       
       - name: Build with PyInstaller
         run: |
-          pyinstaller betcon.spec
+          pyinstaller betcon.spec.linux
       
       - name: Get version
         id: version
