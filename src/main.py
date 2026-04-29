@@ -50,7 +50,7 @@ from tipsters_month import TipstersMonth
 from edit_tipster_month import EditTipsterMonth
 from new_conjunta import NewConjunta
 from edit_conjunta import EditConjunta
-from lib.ods import Ods
+from lib.csv_export import CsvExport
 from settings import Settings
 from lib.func_aux import openUrl
 from lib.libyaml import LibYaml
@@ -380,15 +380,15 @@ class Main(QMainWindow):
 	def export(self):
 		file = QFileDialog.getSaveFileName(None, _("Export data"), expanduser("~/") + "betcon.csv", "*.csv")
 		if file[0] != '':
-			ods = Ods(file[0])
-			ods.export()
+			csv_export = CsvExport(file[0])
+			csv_export.export()
 			QMessageBox.information(self, _("Exported"), _("Exported data"), QMessageBox.Ok)
 
 	def imports(self):
 		file = QFileDialog.getOpenFileName(None, _("Import data"), expanduser("~/"), "*.csv")
 		if file[0] != '':
-			ods = Ods(file[0])
-			err = ods.imports()
+			csv_export = CsvExport(file[0])
+			err = csv_export.imports()
 			if err:
 				QMessageBox.warning(self, "Error", err, QMessageBox.Ok)
 			else:

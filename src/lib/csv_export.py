@@ -3,7 +3,7 @@ from os.path import expanduser
 from bbdd import Bbdd
 
 
-class Ods:
+class CsvExport:
 	def __init__(self, directory=expanduser("~/betcon.csv"), directory_bd = None):
 		self.directory = directory
 		self.directory_bd = directory_bd
@@ -15,7 +15,7 @@ class Ods:
 			bd = Bbdd(self.directory_bd)
 
 		data = bd.select("bet")
-		dataOds = [["Fecha", "Deporte", "Competicion", "Región", "Local", "Visitante", "Pick", "Casa", "Mercado",
+		dataCsv = [["Fecha", "Deporte", "Competicion", "Región", "Local", "Visitante", "Pick", "Casa", "Mercado",
 		            "Tipster", "Stake", "Unidad", "Resultado", "Beneficio", "Apuesta", "Cuota", "Gratuita"]]
 		for i in data:
 			row = []
@@ -36,14 +36,14 @@ class Ods:
 			row.append(i[15])
 			row.append(i[16])
 			row.append("No" if i[17] == 0 else "Sí")
-			dataOds.append(row)
+			dataCsv.append(row)
 
 		bd.close()
 		
 		# Escribir archivo CSV
 		with open(self.directory, 'w', newline='', encoding='utf-8') as csvfile:
 			writer = csv.writer(csvfile)
-			writer.writerows(dataOds)
+			writer.writerows(dataCsv)
 
 	def imports(self):
 		if self.directory_bd is None:
