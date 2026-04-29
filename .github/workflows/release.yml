@@ -20,37 +20,16 @@ jobs:
       - name: Install system dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y \
-            libxcb-xinerama0 \
-            libxcb-cursor0 \
-            libxkbcommon-x11-0 \
-            libegl1 \
-            libdbus-1-3 \
-            rpm \
-            fakeroot \
-            dpkg-dev
+          sudo apt-get install -y rpm fakeroot dpkg-dev gettext
       
-      - name: Install Python dependencies
+      - name: Compile translations
         run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-          pip install pyinstaller
-      
-      - name: Build with PyInstaller
-        run: |
-          pyinstaller betcon.spec
-      
-      - name: Verify build output
-        run: |
-          echo "Contents of dist/:"
-          ls -la dist/
-          if [ -d "dist/betcon" ]; then
-            echo "✓ betcon/ directory exists"
-            ls -la dist/betcon/
-          else
-            echo "✗ betcon/ directory not found!"
-            exit 1
-          fi
+          cd lang/po
+          for po in *.po; do
+            lang=$(basename $po .po)
+            mkdir -p ../mo/$lang/LC_MESSAGES
+            msgfmt $po -o ../mo/$lang/LC_MESSAGES/betcon.mo
+          done
       
       - name: Get version
         id: version
@@ -58,9 +37,10 @@ jobs:
       
       - name: Create .tar.gz
         run: |
-          cd dist
-          tar -czf betcon-${{ steps.version.outputs.VERSION }}-linux-x86_64.tar.gz betcon/
-          cd ..
+          VERSION=${{ steps.version.outputs.VERSION }}
+          mkdir -p dist
+          tar --exclude='.git' --exclude='dist' --exclude='build' --exclude='.venv' \
+              -czf dist/betcon-$VERSION-source.tar.gz .
       
       - name: Build .deb package
         run: |
@@ -71,23 +51,34 @@ jobs:
           mkdir -p packaging/deb/betcon_${VERSION}/usr/share/pixmaps
           mkdir -p packaging/deb/betcon_${VERSION}/opt/betcon
           
-          cp -r dist/betcon/* packaging/deb/betcon_${VERSION}/opt/betcon/
+          # Copy Python source files
+          cp -r src/* packaging/deb/betcon_${VERSION}/opt/betcon/
+          cp -r ui packaging/deb/betcon_${VERSION}/opt/betcon/
+          cp -r lang packaging/deb/betcon_${VERSION}/opt/betcon/
+          cp -r assets packaging/deb/betcon_${VERSION}/opt/betcon/
+          cp -r resources packaging/deb/betcon_${VERSION}/opt/betcon/
+          cp -r default packaging/deb/betcon_${VERSION}/opt/betcon/
           
+          # Create wrapper script
           cat > packaging/deb/betcon_${VERSION}/usr/bin/betcon << 'EOF'
           #!/bin/bash
-          /opt/betcon/betcon "$@"
+          cd /opt/betcon
+          exec python3 Betcon "$@"
           EOF
           chmod +x packaging/deb/betcon_${VERSION}/usr/bin/betcon
           
+          # Install desktop file and icon
           cp resources/betcon.desktop packaging/deb/betcon_${VERSION}/usr/share/applications/
           cp resources/icon.png packaging/deb/betcon_${VERSION}/usr/share/pixmaps/betcon.png
           
+          # Create control file with dependencies
           cat > packaging/deb/betcon_${VERSION}/DEBIAN/control << EOF
           Package: betcon
           Version: ${VERSION}
           Section: utils
           Priority: optional
           Architecture: amd64
+          Depends: python3, python3-pyside6.qtcore, python3-pyside6.qtgui, python3-pyside6.qtwidgets, python3-numpy, python3-yaml, python3-pil, python3-pyqtgraph
           Maintainer: soker90 <soker90@gmail.com>
           Description: Aplicación para la gestión de apuestas deportivas
            Betcon es una aplicación de escritorio para gestionar apuestas deportivas,
@@ -107,8 +98,9 @@ jobs:
           Version:        ${VERSION}
           Release:        1%{?dist}
           Summary:        Aplicación para la gestión de apuestas deportivas
-          License:        MIT
+          License:        GPLv3
           URL:            https://github.com/soker90/betcon
+          Requires:       python3 python3-pyside6 python3-numpy python3-pyyaml python3-pillow python3-pyqtgraph
           
           %description
           Betcon es una aplicación de escritorio para gestionar apuestas deportivas,
@@ -119,12 +111,23 @@ jobs:
           mkdir -p %{buildroot}/usr/bin
           mkdir -p %{buildroot}/usr/share/applications
           mkdir -p %{buildroot}/usr/share/pixmaps
-          cp -r ${PWD}/dist/betcon/* %{buildroot}/opt/betcon/
+          
+          # Copy Python source files
+          cp -r ${PWD}/src/* %{buildroot}/opt/betcon/
+          cp -r ${PWD}/ui %{buildroot}/opt/betcon/
+          cp -r ${PWD}/lang %{buildroot}/opt/betcon/
+          cp -r ${PWD}/assets %{buildroot}/opt/betcon/
+          cp -r ${PWD}/resources %{buildroot}/opt/betcon/
+          cp -r ${PWD}/default %{buildroot}/opt/betcon/
+          
+          # Create wrapper script
           cat > %{buildroot}/usr/bin/betcon << 'EOFBIN'
           #!/bin/bash
-          /opt/betcon/betcon "\$@"
+          cd /opt/betcon
+          exec python3 Betcon "\$@"
           EOFBIN
           chmod +x %{buildroot}/usr/bin/betcon
+          
           cp ${PWD}/resources/betcon.desktop %{buildroot}/usr/share/applications/
           cp ${PWD}/resources/icon.png %{buildroot}/usr/share/pixmaps/betcon.png
           
