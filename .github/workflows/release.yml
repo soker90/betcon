@@ -51,8 +51,8 @@ jobs:
           mkdir -p packaging/deb/betcon_${VERSION}/usr/share/pixmaps
           mkdir -p packaging/deb/betcon_${VERSION}/opt/betcon
           
-          # Copy Python source files
-          cp -r src/* packaging/deb/betcon_${VERSION}/opt/betcon/
+          # Copy Python source files maintaining directory structure
+          cp -r src packaging/deb/betcon_${VERSION}/opt/betcon/
           cp -r ui packaging/deb/betcon_${VERSION}/opt/betcon/
           cp -r lang packaging/deb/betcon_${VERSION}/opt/betcon/
           cp -r assets packaging/deb/betcon_${VERSION}/opt/betcon/
@@ -62,7 +62,7 @@ jobs:
           # Create wrapper script
           cat > packaging/deb/betcon_${VERSION}/usr/bin/betcon << 'EOF'
           #!/bin/bash
-          cd /opt/betcon
+          cd /opt/betcon/src
           exec python3 Betcon "$@"
           EOF
           chmod +x packaging/deb/betcon_${VERSION}/usr/bin/betcon
@@ -78,7 +78,7 @@ jobs:
           Section: utils
           Priority: optional
           Architecture: amd64
-          Depends: python3, python3-pyside6.qtcore, python3-pyside6.qtgui, python3-pyside6.qtwidgets, python3-numpy, python3-yaml, python3-pil, python3-pyqtgraph
+          Depends: python3, python3-pyside6.qtcore, python3-pyside6.qtgui, python3-pyside6.qtwidgets, qt6-tools-dev, python3-numpy, python3-yaml, python3-pil, python3-pyqtgraph, python3-colorama
           Maintainer: soker90 <soker90@gmail.com>
           Description: Aplicación para la gestión de apuestas deportivas
            Betcon es una aplicación de escritorio para gestionar apuestas deportivas,
@@ -100,7 +100,7 @@ jobs:
           Summary:        Aplicación para la gestión de apuestas deportivas
           License:        GPLv3
           URL:            https://github.com/soker90/betcon
-          Requires:       python3 python3-pyside6 python3-numpy python3-pyyaml python3-pillow python3-pyqtgraph
+          Requires:       python3 python3-pyside6 qt6-qttools python3-numpy python3-pyyaml python3-pillow python3-pyqtgraph python3-colorama
           
           %description
           Betcon es una aplicación de escritorio para gestionar apuestas deportivas,
@@ -112,8 +112,8 @@ jobs:
           mkdir -p %{buildroot}/usr/share/applications
           mkdir -p %{buildroot}/usr/share/pixmaps
           
-          # Copy Python source files
-          cp -r ${PWD}/src/* %{buildroot}/opt/betcon/
+          # Copy Python source files maintaining directory structure
+          cp -r ${PWD}/src %{buildroot}/opt/betcon/
           cp -r ${PWD}/ui %{buildroot}/opt/betcon/
           cp -r ${PWD}/lang %{buildroot}/opt/betcon/
           cp -r ${PWD}/assets %{buildroot}/opt/betcon/
@@ -123,7 +123,7 @@ jobs:
           # Create wrapper script
           cat > %{buildroot}/usr/bin/betcon << 'EOFBIN'
           #!/bin/bash
-          cd /opt/betcon
+          cd /opt/betcon/src
           exec python3 Betcon "\$@"
           EOFBIN
           chmod +x %{buildroot}/usr/bin/betcon
