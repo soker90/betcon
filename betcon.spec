@@ -90,3 +90,16 @@ coll = COLLECT(
     upx_exclude=[],
     name='betcon',
 )
+
+# macOS: wrap the collected bundle into a .app
+if sys.platform == 'darwin':
+    app = BUNDLE(
+        coll,
+        name='Betcon.app',
+        icon=str(resources_dir / 'icon.png') if (resources_dir / 'icon.png').exists() else None,
+        bundle_identifier='es.eduardoparra.betcon',
+        info_plist={
+            'NSHighResolutionCapable': True,
+            'NSRequiresAquaSystemAppearance': False,
+        },
+    )

@@ -533,6 +533,12 @@ msgstr "Yên hatine wergirtin"
 msgid "Imported data"
 msgstr ""
 
+msgid "Importing..."
+msgstr "Tên wergirtin..."
+
+msgid "Cannot read the file."
+msgstr "Pelê nayê xwendin."
+
 #: src/main.py:413
 msgid "About"
 msgstr "Der barê"

@@ -4,9 +4,10 @@ from bbdd import Bbdd
 
 
 class CsvExport:
-	def __init__(self, directory=expanduser("~/betcon.csv"), directory_bd = None):
+	def __init__(self, directory=expanduser("~/betcon.csv"), directory_bd=None, progress_callback=None):
 		self.directory = directory
 		self.directory_bd = directory_bd
+		self.progress_callback = progress_callback
 
 	def export(self):
 		if self.directory_bd is None:
@@ -45,6 +46,10 @@ class CsvExport:
 			writer = csv.writer(csvfile)
 			writer.writerows(dataCsv)
 
+	def count_rows(self):
+		with open(self.directory, 'r', encoding='utf-8') as csvfile:
+			return sum(1 for row in csv.reader(csvfile) if row and row[0] != 'Fecha')
+
 	def imports(self):
 		if self.directory_bd is None:
 			bd = Bbdd()
@@ -56,7 +61,8 @@ class CsvExport:
 			with open(self.directory, 'r', encoding='utf-8') as csvfile:
 				reader = csv.reader(csvfile)
 				data = list(reader)
-			
+
+			imported = 0
 			for i in data:
 				row = []
 				if i[0] == "Fecha":
@@ -114,6 +120,9 @@ class CsvExport:
 				           "tipster", "stake", "one", "result", "profit", "bet", "quota", "free"]
 
 				bd.insert(columns, row, "bet")
+				imported += 1
+				if self.progress_callback:
+					self.progress_callback(imported)
 		except Exception:
 			return "Error de importación: El archivo de importación no tiene una estructura correcta."
 

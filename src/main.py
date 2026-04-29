@@ -5,7 +5,8 @@ import sys
 from os.path import expanduser
 
 directory = get_base_dir()
-from PySide6.QtWidgets import QMainWindow, QMessageBox, QDialog, QFileDialog
+from PySide6.QtWidgets import QMainWindow, QMessageBox, QDialog, QFileDialog, QProgressDialog
+from PySide6.QtCore import Qt, QThread, Signal
 from uiloader import loadUi
 from PySide6.QtGui import QIcon
 sys.path.append(directory)
@@ -52,6 +53,21 @@ from new_conjunta import NewConjunta
 from edit_conjunta import EditConjunta
 from lib.csv_export import CsvExport
 from settings import Settings
+
+
+class ImportWorker(QThread):
+	progress = Signal(int)
+	finished = Signal(object)  # None o mensaje de error
+
+	def __init__(self, path):
+		super().__init__()
+		self.path = path
+
+	def run(self):
+		csv_export = CsvExport(self.path, progress_callback=lambda n: self.progress.emit(n))
+		err = csv_export.imports()
+		self.finished.emit(err)
+
 from lib.func_aux import openUrl
 from lib.libyaml import LibYaml
 import platform
@@ -386,14 +402,35 @@ class Main(QMainWindow):
 
 	def imports(self):
 		file = QFileDialog.getOpenFileName(None, _("Import data"), expanduser("~/"), "*.csv")
-		if file[0] != '':
-			csv_export = CsvExport(file[0])
-			err = csv_export.imports()
-			if err:
-				QMessageBox.warning(self, "Error", err, QMessageBox.Ok)
-			else:
-				QMessageBox.information(self, _("Imported"), _("Imported data"), QMessageBox.Ok)
+		if file[0] == '':
+			return
+
+		# Contar filas para la barra de progreso
+		try:
+			total = CsvExport(file[0]).count_rows()
+		except Exception:
+			QMessageBox.warning(self, "Error", _("Cannot read the file."), QMessageBox.Ok)
+			return
+
+		progress = QProgressDialog(_("Importing..."), None, 0, total, self)
+		progress.setWindowTitle(_("Import data"))
+		progress.setWindowModality(Qt.WindowModal)
+		progress.setMinimumDuration(0)
+		progress.setValue(0)
+
+		self._import_worker = ImportWorker(file[0])
+		self._import_worker.progress.connect(progress.setValue)
+		self._import_worker.finished.connect(lambda err: self._on_import_finished(err, progress))
+		self._import_worker.start()
+
+	def _on_import_finished(self, err, progress):
+		progress.close()
+		if err:
+			QMessageBox.warning(self, "Error", err, QMessageBox.Ok)
+		else:
+			QMessageBox.information(self, _("Imported"), _("Imported data"), QMessageBox.Ok)
 		self.setCentralWidget(Bets(self))
+
 
 
 	def about(self):

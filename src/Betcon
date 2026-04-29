@@ -1,16 +1,26 @@
 import sys
 import os
+import signal
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.realpath(__file__)), "lib"))
 
 # Initialize internationalization FIRST
 import i18n
 
 from PySide6.QtWidgets import QApplication
+from PySide6.QtCore import QTimer
 from main import Main
 from theme import apply_theme
 from libyaml import LibYaml
 
 app = QApplication(sys.argv)
+
+# Handle Ctrl+C / SIGINT cleanly so it doesn't bubble into Qt overrides.
+# A periodic timer lets Python process signals while Qt owns the event loop.
+signal.signal(signal.SIGINT, lambda *_: app.quit())
+_sigint_timer = QTimer()
+_sigint_timer.setInterval(200)
+_sigint_timer.timeout.connect(lambda: None)  # wake Python to check signals
+_sigint_timer.start()
 try:
     _cfg = LibYaml()
     _mode = _cfg.interface.get("theme", "auto")

@@ -533,6 +533,12 @@ msgstr "İçe aktarıldı"
 msgid "Imported data"
 msgstr ""
 
+msgid "Importing..."
+msgstr "İçe aktarılıyor..."
+
+msgid "Cannot read the file."
+msgstr "Dosya okunamıyor."
+
 #: src/main.py:413
 msgid "About"
 msgstr "Hakkında"

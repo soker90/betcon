@@ -528,6 +528,12 @@ msgstr "Importé"
 msgid "Imported data"
 msgstr "Données importées"
 
+msgid "Importing..."
+msgstr "Importation..."
+
+msgid "Cannot read the file."
+msgstr "Impossible de lire le fichier."
+
 #: src/main.py:413
 msgid "About"
 msgstr "À propos"
