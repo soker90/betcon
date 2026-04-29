@@ -1,11 +1,10 @@
-from collections import OrderedDict
+import csv
 from os.path import expanduser
-from pyexcel_ods import save_data, get_data
 from bbdd import Bbdd
 
 
 class Ods:
-	def __init__(self, directory=expanduser("~/betcon.ods"), directory_bd = None):
+	def __init__(self, directory=expanduser("~/betcon.csv"), directory_bd = None):
 		self.directory = directory
 		self.directory_bd = directory_bd
 
@@ -15,7 +14,6 @@ class Ods:
 		else:
 			bd = Bbdd(self.directory_bd)
 
-		file = OrderedDict()
 		data = bd.select("bet")
 		dataOds = [["Fecha", "Deporte", "Competicion", "Región", "Local", "Visitante", "Pick", "Casa", "Mercado",
 		            "Tipster", "Stake", "Unidad", "Resultado", "Beneficio", "Apuesta", "Cuota", "Gratuita"]]
@@ -41,9 +39,11 @@ class Ods:
 			dataOds.append(row)
 
 		bd.close()
-		file.update({"Apuestas": dataOds})
-
-		save_data(self.directory, file)
+		
+		# Escribir archivo CSV
+		with open(self.directory, 'w', newline='', encoding='utf-8') as csvfile:
+			writer = csv.writer(csvfile)
+			writer.writerows(dataOds)
 
 	def imports(self):
 		if self.directory_bd is None:
@@ -52,8 +52,11 @@ class Ods:
 			bd = Bbdd(self.directory_bd)
 
 		try:
-			data = get_data(self.directory)
-			data = data.popitem()[1]
+			# Leer archivo CSV
+			with open(self.directory, 'r', encoding='utf-8') as csvfile:
+				reader = csv.reader(csvfile)
+				data = list(reader)
+			
 			for i in data:
 				row = []
 				if i[0] == "Fecha":

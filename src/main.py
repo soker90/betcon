@@ -378,14 +378,14 @@ class Main(QMainWindow):
 
 	# Import/Export
 	def export(self):
-		file = QFileDialog.getSaveFileName(None, _("Export data"), expanduser("~/") + "betcon.ods", "*.ods")
+		file = QFileDialog.getSaveFileName(None, _("Export data"), expanduser("~/") + "betcon.csv", "*.csv")
 		if file[0] != '':
 			ods = Ods(file[0])
 			ods.export()
 			QMessageBox.information(self, _("Exported"), _("Exported data"), QMessageBox.Ok)
 
 	def imports(self):
-		file = QFileDialog.getOpenFileName(None, _("Import data"), expanduser("~/"), "*.ods")
+		file = QFileDialog.getOpenFileName(None, _("Import data"), expanduser("~/"), "*.csv")
 		if file[0] != '':
 			ods = Ods(file[0])
 			err = ods.imports()

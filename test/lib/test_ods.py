@@ -1,4 +1,4 @@
-"""Tests for src/lib/ods.py (export / import round-trip).
+"""Tests for src/lib/ods.py (export / import round-trip to CSV).
 
 Uses pytest's tmp_path fixture for temporary files and db_memory (conftest.py)
 to redirect all Bbdd instances to an isolated database.
@@ -25,28 +25,28 @@ def _seed_bet(bd):
 
 def test_export_creates_file(db_memory, tmp_path):
     _seed_bet(db_memory)
-    ods_path = str(tmp_path / "export.ods")
-    Ods(ods_path).export()
+    csv_path = str(tmp_path / "export.csv")
+    Ods(csv_path).export()
 
     import os
-    assert os.path.exists(ods_path)
+    assert os.path.exists(csv_path)
 
 
 def test_export_file_is_nonempty(db_memory, tmp_path):
     _seed_bet(db_memory)
-    ods_path = str(tmp_path / "export.ods")
-    Ods(ods_path).export()
+    csv_path = str(tmp_path / "export.csv")
+    Ods(csv_path).export()
 
     import os
-    assert os.path.getsize(ods_path) > 0
+    assert os.path.getsize(csv_path) > 0
 
 
 def test_export_with_empty_db_creates_file(db_memory, tmp_path):
-    ods_path = str(tmp_path / "empty_export.ods")
-    Ods(ods_path).export()
+    csv_path = str(tmp_path / "empty_export.csv")
+    Ods(csv_path).export()
 
     import os
-    assert os.path.exists(ods_path)
+    assert os.path.exists(csv_path)
 
 
 # ---------------------------------------------------------------------------
@@ -56,17 +56,17 @@ def test_export_with_empty_db_creates_file(db_memory, tmp_path):
 def test_import_round_trip(db_memory, tmp_path):
     """Export a bet, then import it back into a fresh DB and verify it appears."""
     _seed_bet(db_memory)
-    ods_path = str(tmp_path / "roundtrip.ods")
+    csv_path = str(tmp_path / "roundtrip.csv")
 
     # Export
-    Ods(ods_path).export()
+    Ods(csv_path).export()
 
     # Clear bets
     db_memory.deleteWhere("bet", "1=1")
     assert db_memory.count("bet") == 0
 
     # Import
-    result = Ods(ods_path).imports()
+    result = Ods(csv_path).imports()
     assert result is None  # None = success (no error string returned)
     assert db_memory.count("bet") == 1
 

@@ -33,8 +33,6 @@ hiddenimports = [
     'PySide6.QtGui',
     'PySide6.QtWidgets',
     'PySide6.QtSvg',
-    'pyexcel_ods',
-    'pyexcel_io',
 ]
 
 a = Analysis(

@@ -391,12 +391,12 @@
   </action>
   <action name="aImport">
    <property name="text">
-    <string>Importar de ods</string>
+    <string>Importar de CSV</string>
    </property>
   </action>
   <action name="aExport">
    <property name="text">
-    <string>Exportar a ods</string>
+    <string>Exportar a CSV</string>
    </property>
   </action>
   <action name="aSettings">
