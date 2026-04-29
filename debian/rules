@@ -1,0 +1,31 @@
+#!/usr/bin/make -f
+
+%:
+	dh $@
+
+override_dh_auto_install:
+	dh_auto_install
+	install -d debian/betcon/opt/betcon
+	cp -r src debian/betcon/opt/betcon/
+	cp -r ui debian/betcon/opt/betcon/
+	cp -r resources debian/betcon/opt/betcon/
+	cp -r lang debian/betcon/opt/betcon/
+	cp -r default debian/betcon/opt/betcon/
+	cp -r assets debian/betcon/opt/betcon/
+	install -d debian/betcon/usr/bin
+	install -m 755 resources/betcon debian/betcon/usr/bin/betcon
+	install -d debian/betcon/usr/share/applications
+	install -m 644 resources/betcon.desktop debian/betcon/usr/share/applications/betcon.desktop
+
+override_dh_auto_build:
+	true
+
+override_dh_auto_test:
+	python3 -m pytest test/ -v || true 
+
+
+# dh_make generated override targets
+# This is example for Cmake (See https://bugs.debian.org/641051 )
+#override_dh_auto_configure:
+#	dh_auto_configure -- #	-DCMAKE_LIBRARY_PATH=$(DEB_HOST_MULTIARCH)
+

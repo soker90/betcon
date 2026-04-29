@@ -1,0 +1,15 @@
+Source: betcon
+Section: utils
+Priority: optional
+Maintainer: Eduardo Parra Mazuecos <eduparra90@gmail.com>
+Build-Depends: debhelper (>=9), python3-setuptools
+Standards-Version: 4.1.1
+Homepage: http://betcon.eduardoparra.es
+Vcs-Git: https://github.com/eduardoparra/betcon.git
+Vcs-Browser: https://github.com/eduardoparra/betcon
+
+Package: betcon
+Architecture: amd64
+Depends: python3-pyside6, python3-yaml, python3-pil, python3-pyqtgraph, python3-numpy, ${shlibs:Depends}, ${misc:Depends}
+Description: Gestión de apuestas deportivas
+ Betcon, es una aplicación para almacenar los datos de apuestas deportivas y mostras estadisticas en base a ellos. 

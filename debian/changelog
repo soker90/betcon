@@ -1,0 +1,19 @@
+betcon (2.1.0-1ubuntu1) noble; urgency=medium
+
+  * Reemplazar dependencia pyexcel-ods por CSV con biblioteca estándar
+  * Añadir barra de progreso al importar CSV (QProgressDialog + QThread)
+  * Actualizar traducciones.
+
+ -- Eduardo Parra Mazuecos <eduparra90@gmail.com>  Wed, 29 Apr 2026 00:00:00 +0200
+
+betcon (2.0.0-1) focal; urgency=medium
+
+  * Migración a PySide6
+  * Nueva interfaz mejorada
+  * Gráficos mejorados con pyqtgraph
+  * Mejor rendimiento
+  * Soporte para múltiples idiomas
+  * Correción de bugs
+
+ -- Eduardo Parra Mazuecos <eduparra90@gmail.com>  Sun, 27 Apr 2026 00:00:00 +0200
+
