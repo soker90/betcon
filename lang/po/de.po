@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: betcon\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-27 20:48+0200\n"
-"PO-Revision-Date: 2017-11-25 16:54+0000\n"
-"Last-Translator: Franz Lewin Wagner <Unknown>\n"
+"PO-Revision-Date: 2026-04-30 12:12+0000\n"
+"Last-Translator: Eduardo Parra <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
-"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2024-08-21 18:24+0000\n"
-"X-Generator: Launchpad (build 1b1ed1ad2dbfc71ee62b5c5491c975135a771bf0)\n"
+"X-Launchpad-Export-Date: 2026-04-30 16:00+0000\n"
+"X-Generator: Launchpad (build 91d5f4cbcbec62cc98ca9991c8ad99af4e21f85a)\n"
+"Language: de\n"
 
 #: src/add_money.py:23
 msgid "Add funds"
@@ -42,11 +42,11 @@ msgstr "Bank"
 
 #: src/add_money.py:35 src/new_bank.py:40
 msgid "Paypal"
-msgstr ""
+msgstr "Paypal"
 
 #: src/add_money.py:35 src/new_bank.py:40
 msgid "Skrill"
-msgstr ""
+msgstr "Skrill"
 
 #: src/add_money.py:36 src/new_bank.py:41
 msgid "Deposit"
@@ -265,8 +265,11 @@ msgid "Country"
 msgstr "Land"
 
 #: src/bookies.py:63
-msgid "Are you sure you want to eliminate the bookie and the associated bets?"
+msgid ""
+"Are you sure you want to eliminate the bookie and the associated bets?"
 msgstr ""
+"Sind Sie sicher, dass Sie den Buchmacher und die zugehörigen Wetten löschen "
+"möchten?"
 
 #: src/bookies.py:70 src/edit_bookie.py:62 src/edit_sport.py:68
 #: src/new_bookie.py:57
@@ -395,7 +398,7 @@ msgstr "Neuer Sport"
 
 #: src/edit_sport.py:68
 msgid "Invalid image."
-msgstr ""
+msgstr "Ungültiges Bild."
 
 #: src/edit_sport.py:71
 msgid "Updated sport."
@@ -560,8 +563,11 @@ msgid "Translated by:"
 msgstr "Übersetzt von:"
 
 #: src/markets.py:69
-msgid "Are you sure you want to eliminate the market and the associated bets?"
+msgid ""
+"Are you sure you want to eliminate the market and the associated bets?"
 msgstr ""
+"Sind Sie sicher, dass Sie den Markt und die zugehörigen Wetten löschen "
+"möchten?"
 
 #: src/new_bank.py:26
 msgid "New Movement"
@@ -765,19 +771,19 @@ msgstr "Länder der Buchmacher anzeigen"
 
 #: src/settings.py:88
 msgid "Theme"
-msgstr ""
+msgstr "Thema"
 
 #: src/settings.py:89
 msgid "Auto (system)"
-msgstr ""
+msgstr "Automatisch (System)"
 
 #: src/settings.py:90
 msgid "Dark"
-msgstr ""
+msgstr "Dunkel"
 
 #: src/settings.py:91
 msgid "Light"
-msgstr ""
+msgstr "Hell"
 
 #: src/settings.py:93
 msgid "Calculate"
@@ -916,3 +922,5 @@ msgstr "Guthaben"
 msgid ""
 "Are you sure you want to eliminate this tipster and all associated bets?"
 msgstr ""
+"Sind Sie sicher, dass Sie diesen Tipster und alle zugehörigen Wetten löschen "
+"möchten?"

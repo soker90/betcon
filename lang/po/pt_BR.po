@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: betcon\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-27 20:48+0200\n"
-"PO-Revision-Date: 2023-03-21 17:34+0000\n"
-"Last-Translator: N0YkcHuGce <Unknown>\n"
+"PO-Revision-Date: 2026-04-30 12:15+0000\n"
+"Last-Translator: Eduardo Parra <Unknown>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
-"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2024-08-21 18:24+0000\n"
-"X-Generator: Launchpad (build 1b1ed1ad2dbfc71ee62b5c5491c975135a771bf0)\n"
+"X-Launchpad-Export-Date: 2026-04-30 16:00+0000\n"
+"X-Generator: Launchpad (build 91d5f4cbcbec62cc98ca9991c8ad99af4e21f85a)\n"
+"Language: pt_BR\n"
 
 #: src/add_money.py:23
 msgid "Add funds"
@@ -42,11 +42,11 @@ msgstr "Banco"
 
 #: src/add_money.py:35 src/new_bank.py:40
 msgid "Paypal"
-msgstr ""
+msgstr "Paypal"
 
 #: src/add_money.py:35 src/new_bank.py:40
 msgid "Skrill"
-msgstr ""
+msgstr "Skrill"
 
 #: src/add_money.py:36 src/new_bank.py:41
 msgid "Deposit"
@@ -265,7 +265,8 @@ msgid "Country"
 msgstr "país"
 
 #: src/bookies.py:63
-msgid "Are you sure you want to eliminate the bookie and the associated bets?"
+msgid ""
+"Are you sure you want to eliminate the bookie and the associated bets?"
 msgstr ""
 "Tem certeza de que deseja eliminar o apostador e as apostas associadas?"
 
@@ -396,7 +397,7 @@ msgstr "novo esporte"
 
 #: src/edit_sport.py:68
 msgid "Invalid image."
-msgstr ""
+msgstr "Imagem inválida."
 
 #: src/edit_sport.py:71
 msgid "Updated sport."
@@ -561,8 +562,10 @@ msgid "Translated by:"
 msgstr "Traduzido por:"
 
 #: src/markets.py:69
-msgid "Are you sure you want to eliminate the market and the associated bets?"
-msgstr "Tem certeza de que deseja eliminar o mercado e as apostas associadas?"
+msgid ""
+"Are you sure you want to eliminate the market and the associated bets?"
+msgstr ""
+"Tem certeza de que deseja eliminar o mercado e as apostas associadas?"
 
 #: src/new_bank.py:26
 msgid "New Movement"
@@ -766,19 +769,19 @@ msgstr "Mostrar países das casas de apostas"
 
 #: src/settings.py:88
 msgid "Theme"
-msgstr ""
+msgstr "Tema"
 
 #: src/settings.py:89
 msgid "Auto (system)"
-msgstr ""
+msgstr "Automático (sistema)"
 
 #: src/settings.py:90
 msgid "Dark"
-msgstr ""
+msgstr "Escuro"
 
 #: src/settings.py:91
 msgid "Light"
-msgstr ""
+msgstr "Claro"
 
 #: src/settings.py:93
 msgid "Calculate"

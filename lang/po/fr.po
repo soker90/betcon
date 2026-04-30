@@ -4,13 +4,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-27 20:48+0200\n"
-"PO-Revision-Date: 2026-04-27 00:00+0000\n"
-"Last-Translator: \n"
+"PO-Revision-Date: 2026-04-30 12:15+0000\n"
+"Last-Translator: Eduardo Parra <Unknown>\n"
 "Language-Team: French\n"
-"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2026-04-30 16:00+0000\n"
+"X-Generator: Launchpad (build 91d5f4cbcbec62cc98ca9991c8ad99af4e21f85a)\n"
+"Language: fr\n"
 
 #: src/add_money.py:23
 msgid "Add funds"
@@ -36,11 +38,11 @@ msgstr "Banque"
 
 #: src/add_money.py:35 src/new_bank.py:40
 msgid "Paypal"
-msgstr ""
+msgstr "Paypal"
 
 #: src/add_money.py:35 src/new_bank.py:40
 msgid "Skrill"
-msgstr ""
+msgstr "Skrill"
 
 #: src/add_money.py:36 src/new_bank.py:41
 msgid "Deposit"
@@ -259,9 +261,10 @@ msgid "Country"
 msgstr "Pays"
 
 #: src/bookies.py:63
-#, fuzzy
-msgid "Are you sure you want to eliminate the bookie and the associated bets?"
-msgstr "Êtes-vous sûr de vouloir supprimer le sport"
+msgid ""
+"Are you sure you want to eliminate the bookie and the associated bets?"
+msgstr ""
+"Êtes-vous sûr de vouloir supprimer le bookmaker et les paris associés ?"
 
 #: src/bookies.py:70 src/edit_bookie.py:62 src/edit_sport.py:68
 #: src/new_bookie.py:57
@@ -390,7 +393,7 @@ msgstr "Nouveau sport"
 
 #: src/edit_sport.py:68
 msgid "Invalid image."
-msgstr ""
+msgstr "Image non valide."
 
 #: src/edit_sport.py:71
 msgid "Updated sport."
@@ -555,9 +558,9 @@ msgid "Translated by:"
 msgstr "Traduit par :"
 
 #: src/markets.py:69
-#, fuzzy
-msgid "Are you sure you want to eliminate the market and the associated bets?"
-msgstr "Êtes-vous sûr de vouloir supprimer la région "
+msgid ""
+"Are you sure you want to eliminate the market and the associated bets?"
+msgstr "Êtes-vous sûr de vouloir supprimer le marché et les paris associés ?"
 
 #: src/new_bank.py:26
 msgid "New Movement"
@@ -761,19 +764,19 @@ msgstr "Afficher les pays des bookmakers"
 
 #: src/settings.py:88
 msgid "Theme"
-msgstr ""
+msgstr "Thème"
 
 #: src/settings.py:89
 msgid "Auto (system)"
-msgstr ""
+msgstr "Automatique (système)"
 
 #: src/settings.py:90
 msgid "Dark"
-msgstr ""
+msgstr "Sombre"
 
 #: src/settings.py:91
 msgid "Light"
-msgstr ""
+msgstr "Clair"
 
 #: src/settings.py:93
 msgid "Calculate"
@@ -909,7 +912,7 @@ msgid "Balance"
 msgstr "Solde"
 
 #: src/tipsters.py:110
-#, fuzzy
 msgid ""
 "Are you sure you want to eliminate this tipster and all associated bets?"
-msgstr "Êtes-vous sûr de vouloir supprimer cet achat groupé ?"
+msgstr ""
+"Êtes-vous sûr de vouloir supprimer ce tipster et tous les paris associés ?"

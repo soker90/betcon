@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: betcon\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-27 20:48+0200\n"
-"PO-Revision-Date: 2023-03-21 17:34+0000\n"
-"Last-Translator: N0YkcHuGce <Unknown>\n"
+"PO-Revision-Date: 2026-04-30 10:25+0000\n"
+"Last-Translator: Eduardo Parra <Unknown>\n"
 "Language-Team: European Portuguese <pt_PT@li.org>\n"
-"Language: pt_PT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2024-08-21 18:24+0000\n"
-"X-Generator: Launchpad (build 1b1ed1ad2dbfc71ee62b5c5491c975135a771bf0)\n"
+"X-Launchpad-Export-Date: 2026-04-30 16:00+0000\n"
+"X-Generator: Launchpad (build 91d5f4cbcbec62cc98ca9991c8ad99af4e21f85a)\n"
+"Language: pt_PT\n"
 
 #: src/add_money.py:23
 msgid "Add funds"
@@ -265,7 +265,8 @@ msgid "Country"
 msgstr "país"
 
 #: src/bookies.py:63
-msgid "Are you sure you want to eliminate the bookie and the associated bets?"
+msgid ""
+"Are you sure you want to eliminate the bookie and the associated bets?"
 msgstr ""
 "Tem certeza de que deseja eliminar o apostador e as apostas associadas?"
 
@@ -561,8 +562,10 @@ msgid "Translated by:"
 msgstr "Traduzido por:"
 
 #: src/markets.py:69
-msgid "Are you sure you want to eliminate the market and the associated bets?"
-msgstr "Tem certeza de que deseja eliminar o mercado e as apostas associadas?"
+msgid ""
+"Are you sure you want to eliminate the market and the associated bets?"
+msgstr ""
+"Tem certeza de que deseja eliminar o mercado e as apostas associadas?"
 
 #: src/new_bank.py:26
 msgid "New Movement"
