@@ -1,8 +1,61 @@
 ---
 layout: default
 ---
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
+<style>
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    padding: 20px 0 60px;
+}
+@media (max-width: 900px) {
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 500px) {
+    .gallery-grid { grid-template-columns: 1fr; }
+}
+.gallery-item a {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    background: #111;
+}
+.gallery-item img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.gallery-item a:hover img {
+    transform: scale(1.04);
+    opacity: 0.75;
+}
+.gallery-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 6px 10px;
+    background: rgba(0,0,0,0.55);
+    color: #fff;
+    font-size: 13px;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.gallery-item a:hover .gallery-caption {
+    opacity: 1;
+}
+</style>
+
 {% include wrap.html %}
 
   {{ content }}
 
 {% include images.html %}
+
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+<script>GLightbox({ selector: '.glightbox', loop: true });</script>
