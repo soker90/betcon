@@ -1,0 +1,63 @@
+name: betcon
+base: core24
+version: '2.1.1'
+summary: Gestión de apuestas deportivas
+description: |
+  Betcon es una aplicación de escritorio para almacenar y analizar
+  apuestas deportivas. Muestra estadísticas de beneficios, rachas
+  y rendimiento por deporte o casa de apuestas.
+
+grade: stable
+confinement: strict
+
+apps:
+  betcon:
+    command: bin/betcon
+    extensions: [gnome]
+    desktop: share/applications/betcon.desktop
+    plugs:
+      - home
+      - network
+
+parts:
+  python-deps:
+    plugin: python
+    source: .
+    python-packages:
+      - PySide6>=6.6
+      - PyYAML>=6.0
+      - pyqtgraph>=0.13
+      - numpy
+      - Pillow>=9.0
+
+  app-files:
+    plugin: dump
+    source: .
+    organize:
+      src: share/betcon/src
+      ui: share/betcon/ui
+      resources: share/betcon/resources
+      assets: share/betcon/assets
+      default: share/betcon/default
+      lang/mo: share/betcon/lang/mo
+    prime:
+      - share/betcon/
+
+  desktop-files:
+    plugin: dump
+    source: resources
+    organize:
+      betcon.desktop: share/applications/betcon.desktop
+      icon.png: share/icons/hicolor/256x256/apps/betcon.png
+    prime:
+      - share/applications/
+      - share/icons/
+
+  launcher:
+    plugin: dump
+    source: snap/local
+    organize:
+      betcon: bin/betcon
+    override-prime: |
+      craftctl default
+      chmod +x $CRAFT_PRIME/bin/betcon
