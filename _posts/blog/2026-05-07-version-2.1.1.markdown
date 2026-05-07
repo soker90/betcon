@@ -1,0 +1,53 @@
+---
+layout: post
+title: "Nueva versión 2.1.1"
+date: 2026-05-07 12:00:00
+author: Eduardo
+categories:
+- blog
+- versiones
+img: post11.jpg
+thumb: post11_thumb.jpg
+---
+
+Después de casi dos años sin actualizaciones públicas, llega la primera versión 2.x de Betcon. Esta versión trae una renovación importante de la interfaz y mejoras en el día a día de uso.
+
+Novedades principales:
+
+```
+1. Nueva interfaz más moderna y fluida
+2. Modo oscuro
+3. Mayor rendimiento general de la aplicación
+4. Barra de progreso al importar archivos CSV
+5. Nuevos idiomas: francés, italiano y portugués de Portugal
+6. Traducciones actualizadas en todos los idiomas disponibles
+7. Disponible para Windows, macOS y GNU/Linux
+```
+
+La aplicación está disponible en español, inglés, alemán, francés, italiano, portugués, turco y kurdo.
+
+## Descargas
+
+**Windows**
+[Descargar instalador (.exe)](https://github.com/soker90/betcon/releases/download/v2.1.1/betcon-2.1.1-setup.exe)
+
+**macOS**
+[Descargar imagen de disco (.dmg)](https://github.com/soker90/betcon/releases/download/v2.1.1/betcon-2.1.1-macos.dmg)
+
+**GNU/Linux**
+
+Arch Linux — desde AUR:
+```bash
+yay -S betcon
+```
+
+Ubuntu/Debian — desde el PPA oficial:
+```bash
+sudo add-apt-repository ppa:soker/betcon
+sudo apt update
+sudo apt install betcon
+```
+
+[Descargar .deb](https://github.com/soker90/betcon/releases/download/v2.1.1/betcon-2.1.1-amd64.deb) · [Descargar .rpm](https://github.com/soker90/betcon/releases/download/v2.1.1/betcon-2.1.1-x86_64.rpm) · [Código fuente (.tar.gz)](https://github.com/soker90/betcon/releases/download/v2.1.1/betcon-2.1.1-source.tar.gz)
+
+Si encuentras algún error o tienes alguna sugerencia puedes abrir un issue en [Github](https://github.com/soker90/betcon).
