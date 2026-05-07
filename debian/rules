@@ -4,7 +4,6 @@
 	dh $@
 
 override_dh_auto_install:
-	dh_auto_install
 	install -d debian/betcon/opt/betcon
 	cp -r src debian/betcon/opt/betcon/
 	cp -r ui debian/betcon/opt/betcon/
